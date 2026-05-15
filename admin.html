@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenScape Admin</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #F7F2EA; }
+    #root:empty::after {
+      content: "Loading…";
+      display: block;
+      text-align: center;
+      padding: 80px;
+      color: #7A7A72;
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 1. React UMD globals -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- 2. Babel to transform JSX in the browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- 3. Full app — inline JSX, no ES module imports needed -->
+  <script type="text/babel" data-presets="react">
+    const { useState, useEffect, useCallback } = React;
+
+    // ─── API CONFIG ────────────────────────────────────────────────────────────
+    // For local dev:  "http://localhost:8080"
+    // For production: "https://your-do-app.ondigitalocean.app"
+  const API_BASE = "https://sewa-subida-production.up.railway.app";
+
+    async function apiFetch(path, options = {}, token = null) {
+      const res = await fetch(`${API_BASE}${path}`, {
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          ...options.headers,
+        },
+      });
+      const text = await res.text();
+      if (!res.ok) {
+        const msg = (() => { try { return JSON.parse(text).error; } catch { return text || res.statusText; } })();
+        throw new Error(msg);
+      }
+      return text ? JSON.parse(text) : null;
+    }
+
+    // ─── DB MAPPERS ────────────────────────────────────────────────────────────
+    function galleryFromDb(r) { return { ...r, desc: r.description }; }
+    function galleryToDb(item) { const { desc, ...rest } = item; return { ...rest, description: desc }; }
+    function pricingFromDb(r) { return { ...r, desc: r.description, ctaStyle: r.cta_style }; }
+    function pricingToDb(plan) { const { desc, ctaStyle, ...rest } = plan; return { ...rest, description: desc, cta_style: ctaStyle }; }
+
+    // ─── SEED DATA ─────────────────────────────────────────────────────────────
+    const SEED_GALLERY = [
+      { title: "Woodland Retreat",     cat: "modern",   description: "A stunning full-landscape transformation in Lalitpur — merging structured modern lines with organic planting beds and a custom stone pathway.",  service: "Garden Design & Landscaping", duration: "3 Weeks",   location: "Lalitpur",        budget: "$$$",  height: 210, bg: "linear-gradient(145deg,#c8e6b0,#4A7C40)", image: "images/modern1.jpg",   sort_order: 0 },
+      { title: "Tropical Paradise",    cat: "tropical", description: "A lush tropical garden in Bhaktapur featuring banana palms, bird-of-paradise, and a gravel pathway winding through dense planting.",           service: "Plant Selection & Planting",  duration: "10 Days",  location: "Bhaktapur",       budget: "$$",   height: 145, bg: "linear-gradient(145deg,#d4edda,#2D5A27)", image: "images/tropical.jpeg", sort_order: 1 },
+      { title: "Sunstone Patio",       cat: "patio",    description: "Hand-laid sandstone patio with integrated seating walls, raised planters, and a pergola draped in climbing jasmine — Kathmandu residence.",   service: "Garden Design & Landscaping", duration: "2 Weeks",   location: "Kathmandu",       budget: "$$$",  height: 175, bg: "linear-gradient(145deg,#fce4b0,#C98B1A)", image: "images/patio1.jpg",    sort_order: 2 },
+      { title: "Evergreen Lawn",       cat: "lawn",     description: "Premium sod installation with full ground preparation, edging, and a smart drip irrigation setup — lush result achieved in under 48 hours.", service: "Lawn Installation",            duration: "2 Days",    location: "Madhyapur Thimi", budget: "$$",   height: 135, bg: "linear-gradient(145deg,#7BAE6A,#1E3D1A)", image: "images/lawns.jpg",     sort_order: 3 },
+      { title: "Bali Garden",          cat: "tropical", description: "A Bali-inspired sanctuary complete with bamboo screens, a tiered water feature, and hand-selected tropical foliage for year-round density.",  service: "Garden Design & Landscaping", duration: "4 Weeks",   location: "Lalitpur",        budget: "$$$",  height: 220, bg: "linear-gradient(145deg,#c8f0b0,#5aaa40)", image: "images/topical1.jpeg", sort_order: 4 },
+      { title: "Water Feature Garden", cat: "modern",   description: "A sleek contemporary garden centred around a rill water feature flanked by ornamental grasses and polished concrete edging.",                  service: "Garden Design & Landscaping", duration: "3 Weeks",   location: "Kathmandu",       budget: "$$$$", height: 155, bg: "linear-gradient(145deg,#dce8f0,#5a8aad)", image: "images/modern2.webp",  sort_order: 5 },
+      { title: "Courtyard Design",     cat: "patio",    description: "A walled urban courtyard transformed with raised beds, mixed stone and brick paving, and an overhead shade structure trailing wisteria.",      service: "Garden Design & Landscaping", duration: "2.5 Weeks", location: "Bhaktapur",       budget: "$$$",  height: 190, bg: "linear-gradient(145deg,#f0e0c0,#b8884a)", image: "images/patio2.jpg",    sort_order: 6 },
+      { title: "Meadow Lawn",          cat: "lawn",     description: "A naturalistic wildflower meadow lawn seeded with native Nepali species, bordered by dry stone walling and low-growing native shrubs.",        service: "Lawn Installation",            duration: "3 Days",    location: "Pokhara",         budget: "$$",   height: 130, bg: "linear-gradient(145deg,#a8d890,#3a7a2a)", image: "images/lawns1.jpg",    sort_order: 7 },
+      { title: "Evening Garden",       cat: "modern",   description: "A minimal night-garden with architectural lighting, clipped box hedging, and lit stepping stones creating a dramatic dusk ambiance.",          service: "Garden Lighting & Design",    duration: "2 Weeks",   location: "Lalitpur",        budget: "$$$$", height: 165, bg: "linear-gradient(145deg,#e0d8f0,#7070b8)", image: "images/moder3.webp",   sort_order: 8 },
+    ];
+
+    const SEED_PRICING = [
+      { name: "Starter",     icon: "fa-seedling", description: "Perfect for small gardens that need a light monthly touch.",          price: "2,500", period: "/month", note: "Billed monthly · Cancel anytime", popular: false, cta_style: "outline",  features: [{ text: "Monthly site visit (1× per month)", enabled: true }, { text: "Mowing and edging", enabled: true }, { text: "Debris and leaf clearance", enabled: true }, { text: "Basic pruning", enabled: true }, { text: "Fertilising included", enabled: false }, { text: "Pest & disease treatment", enabled: false }, { text: "Monthly health report", enabled: false }], sort_order: 0 },
+      { name: "Garden Care", icon: "fa-leaf",     description: "Our most popular plan — complete fortnightly garden care.",           price: "5,500", period: "/month", note: "Billed monthly · Cancel anytime", popular: true,  cta_style: "primary",  features: [{ text: "Fortnightly visits (2× per month)", enabled: true }, { text: "Mowing, edging & trimming", enabled: true }, { text: "Debris and leaf clearance", enabled: true }, { text: "Pruning and deadheading", enabled: true }, { text: "Seasonal fertilising", enabled: true }, { text: "Basic pest monitoring", enabled: true }, { text: "Monthly health report", enabled: false }], sort_order: 1 },
+      { name: "Premium",     icon: "fa-star",     description: "Weekly full-service care for gardens that demand the best.",          price: "9,500", period: "/month", note: "Billed monthly · Cancel anytime", popular: false, cta_style: "outline",  features: [{ text: "Weekly visits (4× per month)", enabled: true }, { text: "Full mowing, edging & trimming", enabled: true }, { text: "Debris clearance every visit", enabled: true }, { text: "Expert pruning & shaping", enabled: true }, { text: "Fertilising & soil treatment", enabled: true }, { text: "Pest & disease treatment", enabled: true }, { text: "Monthly garden health report", enabled: true }], sort_order: 2 },
+    ];
+
+    // ─── EXPORT BUILDERS ──────────────────────────────────────────────────────
+    function buildGalleryJS(items) {
+      return `// GreenScape Gallery Data — auto-generated\nwindow.GALLERY_DATA = ${JSON.stringify(items, null, 2)};\n`;
+    }
+    function buildPricingJS(items) {
+      return `// GreenScape Pricing Data — auto-generated\nwindow.PRICING_DATA = ${JSON.stringify(items, null, 2)};\n`;
+    }
+    function buildRenderGalleryJS() {
+      return `// render-gallery.js\n(function() {\n  const data = window.GALLERY_DATA;\n  if (!data) return;\n  const grid = document.getElementById('masonry');\n  if (!grid) return;\n  const tabs = document.getElementById('filter-tabs');\n  const cats = [...new Set(data.map(d => d.cat))];\n  if (tabs) {\n    tabs.innerHTML = '<button class="filter-tab active" data-filter="all">All Work</button>' +\n      cats.map(c => \`<button class="filter-tab" data-filter="\${c}">\${c.charAt(0).toUpperCase()+c.slice(1)}</button>\`).join('');\n  }\n  function renderItems(filter) {\n    grid.innerHTML = '';\n    let visible = 0;\n    data.forEach((item) => {\n      if (filter !== 'all' && item.cat !== filter) return;\n      visible++;\n      const div = document.createElement('div');\n      div.className = 'masonry-item reveal delay-' + ((visible - 1) % 3 + 1);\n      div.dataset.cat = item.cat;\n      div.dataset.title = item.title;\n      div.dataset.desc = item.description || item.desc || '';\n      div.dataset.service = item.service;\n      div.dataset.duration = item.duration;\n      div.dataset.location = item.location;\n      div.dataset.budget = item.budget;\n      div.setAttribute('onclick', 'openLightbox(this)');\n      div.innerHTML = \`<div class="masonry-fake-img" style="height:\${item.height}px;background:\${item.bg}"><img src="\${item.image}" alt="\${item.title}" loading="lazy"></div><span class="masonry-cat-badge">\${item.cat.charAt(0).toUpperCase()+item.cat.slice(1)}</span><div class="masonry-overlay"><div class="masonry-info"><h4>\${item.title}</h4><span>\${item.cat.charAt(0).toUpperCase()+item.cat.slice(1)} \xb7 \${item.service} \xb7 \${item.budget}</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>\`;\n      grid.appendChild(div);\n    });\n    const cd = document.getElementById('count-display');\n    if (cd) cd.textContent = visible;\n    const empty = document.getElementById('empty-state');\n    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';\n    document.querySelectorAll('.reveal').forEach(el => { if (window._revealObserver) window._revealObserver.observe(el); });\n  }\n  renderItems('all');\n  document.addEventListener('click', e => {\n    const tab = e.target.closest('.filter-tab');\n    if (!tab) return;\n    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));\n    tab.classList.add('active');\n    renderItems(tab.dataset.filter);\n  });\n  window.getVisibleItems = function() { return Array.from(document.querySelectorAll('.masonry-item')); };\n})();\n`;
+    }
+    function buildRenderPricingJS() {
+      return `// render-pricing.js\n(function() {\n  const data = window.PRICING_DATA;\n  if (!data) return;\n  const grid = document.querySelector('.pricing-grid');\n  if (!grid) return;\n  grid.innerHTML = data.map((plan, i) => {\n    const featHtml = plan.features.map(f => \`<div class="price-feat\${f.enabled ? '' : ' disabled'}"><i class="fa-solid \${f.enabled ? 'fa-check' : 'fa-xmark'}"></i> \${f.text}</div>\`).join('');\n    return \`<div class="price-card\${plan.popular ? ' popular' : ''} reveal-scale delay-\${i+1}">\${plan.popular ? '<span class="popular-badge">Most Popular</span>' : ''}<div class="price-icon"><i class="fa-solid \${plan.icon}"></i></div><h3>\${plan.name}</h3><p class="price-desc">\${plan.description || plan.desc || ''}</p><div class="price-amount"><span class="price-currency">Rs.</span><span class="price-num">\${plan.price}</span><span class="price-per">\${plan.period}</span></div><p class="price-note">\${plan.note}</p><div class="price-divider"></div><div class="price-features">\${featHtml}</div><a href="index.html#contact" class="price-cta price-cta-\${plan.cta_style || plan.ctaStyle}">Get Started \u2192</a></div>\`;\n  }).join('');\n  document.querySelectorAll('.reveal-scale').forEach(el => { if (window._revealObserver) window._revealObserver.observe(el); });\n})();\n`;
+    }
+
+    // ─── STYLES ───────────────────────────────────────────────────────────────
+    const inputStyle  = { width: "100%", padding: "10px 14px", border: "1.5px solid #d8e8d0", borderRadius: 10, fontSize: 14, color: "#262622", background: "#fafdf8", outline: "none", fontFamily: "inherit", boxSizing: "border-box" };
+    const selectStyle = { ...inputStyle, appearance: "none" };
+    const CATEGORIES  = ["modern", "tropical", "lawn", "patio", "events", "irrigation"];
+    const BUDGETS     = ["$", "$$", "$$$", "$$$$"];
+    const catColors   = { modern: "#5a8aad", tropical: "#2D5A27", lawn: "#3a7a2a", patio: "#b8884a", events: "#9b5ea3", irrigation: "#1a6b8a" };
+
+    // ─── COMPONENTS ──────────────────────────────────────────────────────────
+    function Toast({ msg, onClose }) {
+      useEffect(() => { const t = setTimeout(onClose, 3000); return () => clearTimeout(t); }, []);
+      return (
+        <div style={{ position: "fixed", bottom: 28, right: 28, background: "#2A5726", color: "#fff", padding: "14px 22px", borderRadius: 12, fontSize: 14, fontWeight: 500, boxShadow: "0 8px 32px rgba(26,61,24,0.28)", zIndex: 9999, display: "flex", alignItems: "center", gap: 10 }}>
+          <span style={{ fontSize: 18 }}>✓</span> {msg}
+        </div>
+      );
+    }
+
+    function Modal({ title, onClose, children }) {
+      return (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(26,61,24,0.55)", backdropFilter: "blur(4px)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }} onClick={e => e.target === e.currentTarget && onClose()}>
+          <div style={{ background: "#fff", borderRadius: 20, padding: 32, width: "100%", maxWidth: 560, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 20px 60px rgba(26,61,24,0.22)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+              <h3 style={{ fontFamily: "Georgia, serif", fontSize: 20, color: "#1A3D18" }}>{title}</h3>
+              <button onClick={onClose} style={{ background: "#f0f0ec", border: "none", borderRadius: 8, width: 32, height: 32, cursor: "pointer", fontSize: 16, color: "#555" }}>✕</button>
+            </div>
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    function Field({ label, children }) {
+      return (
+        <div style={{ marginBottom: 16 }}>
+          <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: "#4A4A44", textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>{label}</label>
+          {children}
+        </div>
+      );
+    }
+
+    function GalleryForm({ item, onSave, onClose, loading }) {
+      const blank = { title: "", cat: "modern", desc: "", service: "", duration: "", location: "", budget: "$$", height: 180, bg: "linear-gradient(145deg,#c8e6b0,#4A7C40)", image: "" };
+      const [form, setForm] = useState(item || blank);
+      const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+      return (
+        <>
+          <Field label="Title"><input style={inputStyle} value={form.title} onChange={e => set("title", e.target.value)} placeholder="Project name" /></Field>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            <Field label="Category">
+              <select style={selectStyle} value={form.cat} onChange={e => set("cat", e.target.value)}>
+                {CATEGORIES.map(c => <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>)}
+              </select>
+            </Field>
+            <Field label="Budget">
+              <select style={selectStyle} value={form.budget} onChange={e => set("budget", e.target.value)}>
+                {BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}
+              </select>
+            </Field>
+          </div>
+          <Field label="Description"><textarea style={{ ...inputStyle, minHeight: 80, resize: "vertical" }} value={form.desc} onChange={e => set("desc", e.target.value)} /></Field>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            <Field label="Service"><input style={inputStyle} value={form.service} onChange={e => set("service", e.target.value)} placeholder="e.g. Garden Design" /></Field>
+            <Field label="Duration"><input style={inputStyle} value={form.duration} onChange={e => set("duration", e.target.value)} placeholder="e.g. 2 Weeks" /></Field>
+            <Field label="Location"><input style={inputStyle} value={form.location} onChange={e => set("location", e.target.value)} placeholder="e.g. Kathmandu" /></Field>
+            <Field label="Card Height (px)"><input style={inputStyle} type="number" value={form.height} onChange={e => set("height", +e.target.value)} /></Field>
+          </div>
+          <Field label="Image Path"><input style={inputStyle} value={form.image} onChange={e => set("image", e.target.value)} placeholder="images/photo.jpg" /></Field>
+          <Field label="Fallback Background Gradient"><input style={inputStyle} value={form.bg} onChange={e => set("bg", e.target.value)} /></Field>
+          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: form.bg, height: 48, border: "1.5px solid #e0e8dc" }} />
+          <div style={{ display: "flex", gap: 10, marginTop: 24, justifyContent: "flex-end" }}>
+            <button onClick={onClose} style={{ padding: "10px 22px", border: "1.5px solid #cce0c8", borderRadius: 100, background: "transparent", cursor: "pointer", fontSize: 14 }}>Cancel</button>
+            <button onClick={() => onSave(form)} disabled={loading} style={{ padding: "10px 22px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading ? "not-allowed" : "pointer", fontSize: 14, fontWeight: 600, opacity: loading ? 0.7 : 1 }}>
+              {loading ? "Saving…" : "Save Item"}
+            </button>
+          </div>
+        </>
+      );
+    }
+
+    function PricingForm({ plan, onSave, onClose, loading }) {
+      const blank = { name: "", icon: "fa-leaf", desc: "", price: "", period: "/month", note: "Billed monthly · Cancel anytime", popular: false, ctaStyle: "outline", features: [{ text: "", enabled: true }] };
+      const [form, setForm] = useState(plan ? JSON.parse(JSON.stringify(plan)) : blank);
+      const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+      const setFeat    = (i, k, v) => setForm(f => { const feats = [...f.features]; feats[i] = { ...feats[i], [k]: v }; return { ...f, features: feats }; });
+      const addFeat    = () => setForm(f => ({ ...f, features: [...f.features, { text: "", enabled: true }] }));
+      const removeFeat = i  => setForm(f => ({ ...f, features: f.features.filter((_, idx) => idx !== i) }));
+      return (
+        <>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            <Field label="Plan Name"><input style={inputStyle} value={form.name} onChange={e => set("name", e.target.value)} /></Field>
+            <Field label="FA Icon class"><input style={inputStyle} value={form.icon} onChange={e => set("icon", e.target.value)} placeholder="fa-leaf" /></Field>
+            <Field label="Price (Rs.)"><input style={inputStyle} value={form.price} onChange={e => set("price", e.target.value)} placeholder="5,500" /></Field>
+            <Field label="Period"><input style={inputStyle} value={form.period} onChange={e => set("period", e.target.value)} placeholder="/month" /></Field>
+          </div>
+          <Field label="Description"><textarea style={{ ...inputStyle, minHeight: 60, resize: "vertical" }} value={form.desc} onChange={e => set("desc", e.target.value)} /></Field>
+          <Field label="Note"><input style={inputStyle} value={form.note} onChange={e => set("note", e.target.value)} /></Field>
+          <div style={{ display: "flex", gap: 20, alignItems: "center", marginBottom: 16 }}>
+            <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, cursor: "pointer" }}>
+              <input type="checkbox" checked={form.popular} onChange={e => set("popular", e.target.checked)} /> Mark as "Most Popular"
+            </label>
+            <Field label="CTA Style">
+              <select style={{ ...selectStyle, width: "auto" }} value={form.ctaStyle} onChange={e => set("ctaStyle", e.target.value)}>
+                <option value="primary">Primary (filled)</option>
+                <option value="outline">Outline</option>
+              </select>
+            </Field>
+          </div>
+          <label style={{ fontSize: 12, fontWeight: 600, color: "#4A4A44", textTransform: "uppercase", letterSpacing: 1 }}>Features</label>
+          <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
+            {form.features.map((f, i) => (
+              <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                <input type="checkbox" checked={f.enabled} onChange={e => setFeat(i, "enabled", e.target.checked)} />
+                <input style={{ ...inputStyle, flex: 1 }} value={f.text} onChange={e => setFeat(i, "text", e.target.value)} placeholder="Feature description" />
+                <button onClick={() => removeFeat(i)} style={{ background: "#fee2e2", border: "none", borderRadius: 8, width: 30, height: 30, cursor: "pointer", color: "#dc2626", fontWeight: "bold", flexShrink: 0 }}>×</button>
+              </div>
+            ))}
+            <button onClick={addFeat} style={{ alignSelf: "flex-start", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, padding: "6px 16px", fontSize: 13, cursor: "pointer", color: "#2A5726" }}>+ Add Feature</button>
+          </div>
+          <div style={{ display: "flex", gap: 10, marginTop: 24, justifyContent: "flex-end" }}>
+            <button onClick={onClose} style={{ padding: "10px 22px", border: "1.5px solid #cce0c8", borderRadius: 100, background: "transparent", cursor: "pointer", fontSize: 14 }}>Cancel</button>
+            <button onClick={() => onSave(form)} disabled={loading} style={{ padding: "10px 22px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading ? "not-allowed" : "pointer", fontSize: 14, fontWeight: 600, opacity: loading ? 0.7 : 1 }}>
+              {loading ? "Saving…" : "Save Plan"}
+            </button>
+          </div>
+        </>
+      );
+    }
+
+    // ─── LOGIN ────────────────────────────────────────────────────────────────
+    function LoginScreen({ onLogin }) {
+      const [password, setPassword] = useState("");
+      const [error, setError]       = useState("");
+      const [loading, setLoading]   = useState(false);
+
+      const submit = async () => {
+        if (!password) return;
+        setLoading(true); setError("");
+        try {
+          const data = await apiFetch("/api/login", { method: "POST", body: JSON.stringify({ password }) });
+          onLogin(data.token);
+        } catch (e) {
+          setError(e.message || "Incorrect password");
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      return (
+        <div style={{ minHeight: "100vh", background: "#F7F2EA", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Sans','Segoe UI',sans-serif" }}>
+          <div style={{ background: "#fff", borderRadius: 24, padding: "48px 40px", width: "100%", maxWidth: 400, boxShadow: "0 20px 60px rgba(26,61,24,0.12)", textAlign: "center" }}>
+            <div style={{ width: 56, height: 56, background: "#1A3D18", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, margin: "0 auto 20px" }}>🌿</div>
+            <h1 style={{ fontFamily: "Georgia,serif", fontSize: 24, color: "#1A3D18", margin: "0 0 6px" }}>GreenScape Admin</h1>
+            <p style={{ color: "#7A7A72", fontSize: 13, marginBottom: 32 }}>Enter the admin password to continue</p>
+            <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && submit()} style={{ ...inputStyle, marginBottom: 12, textAlign: "center", letterSpacing: 2 }} autoFocus />
+            {error && <div style={{ background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 10, padding: "10px 14px", fontSize: 13, color: "#dc2626", marginBottom: 12 }}>{error}</div>}
+            <button onClick={submit} disabled={loading || !password} style={{ width: "100%", padding: "12px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading || !password ? "not-allowed" : "pointer", fontSize: 15, fontWeight: 600, opacity: loading || !password ? 0.7 : 1 }}>
+              {loading ? "Checking…" : "Sign In →"}
+            </button>
+            <p style={{ fontSize: 12, color: "#bbb", marginTop: 20 }}>
+              Make sure your API server is running at <code>{API_BASE}</code>
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    // ─── MAIN APP ─────────────────────────────────────────────────────────────
+    function App() {
+      const [token, setToken]           = useState(() => sessionStorage.getItem("gs_token") || null);
+      const [tab, setTab]               = useState("gallery");
+      const [gallery, setGallery]       = useState([]);
+      const [pricing, setPricing]       = useState([]);
+      const [modal, setModal]           = useState(null);
+      const [exportModal, setExportModal] = useState(null);
+      const [toast, setToast]           = useState(null);
+      const [loading, setLoading]       = useState(true);
+      const [saving, setSaving]         = useState(false);
+      const [error, setError]           = useState(null);
+
+      const showToast = msg => setToast(msg);
+
+      const handleLogin = (newToken) => { sessionStorage.setItem("gs_token", newToken); setToken(newToken); };
+      const handleLogout = () => { sessionStorage.removeItem("gs_token"); setToken(null); };
+
+      const api = useCallback((path, options) => apiFetch(path, options, token), [token]);
+
+      useEffect(() => { if (token) loadAll(); }, [token]);
+
+      async function loadAll() {
+        setLoading(true); setError(null);
+        try {
+          const [gRows, pRows] = await Promise.all([api("/api/gallery"), api("/api/pricing")]);
+          if (gRows.length === 0) {
+            await Promise.all(SEED_GALLERY.map(item => api("/api/gallery", { method: "POST", body: JSON.stringify(item) })));
+            setGallery((await api("/api/gallery")).map(galleryFromDb));
+          } else { setGallery(gRows.map(galleryFromDb)); }
+          if (pRows.length === 0) {
+            await Promise.all(SEED_PRICING.map(plan => api("/api/pricing", { method: "POST", body: JSON.stringify(plan) })));
+            setPricing((await api("/api/pricing")).map(pricingFromDb));
+          } else { setPricing(pRows.map(pricingFromDb)); }
+        } catch (e) {
+          if (e.message?.includes("Invalid") || e.message?.includes("token")) handleLogout();
+          else setError("Could not connect to the API: " + e.message);
+        } finally { setLoading(false); }
+      }
+
+      // Gallery CRUD
+      const saveGalleryItem = async (item) => {
+        setSaving(true);
+        try {
+          const dbItem = galleryToDb(item);
+          if (item.id) {
+            const { id, created_at, ...fields } = dbItem;
+            await api(`/api/gallery/${item.id}`, { method: "PATCH", body: JSON.stringify(fields) });
+            setGallery(g => g.map(x => x.id === item.id ? { ...item } : x));
+            showToast("Gallery item updated!");
+          } else {
+            const row = await api("/api/gallery", { method: "POST", body: JSON.stringify({ ...dbItem, sort_order: gallery.length }) });
+            setGallery(g => [...g, galleryFromDb(row)]);
+            showToast("Gallery item added!");
+          }
+          setModal(null);
+        } catch (e) { showToast("Error: " + e.message); }
+        finally { setSaving(false); }
+      };
+
+      const deleteGallery = async (id) => {
+        setSaving(true);
+        try { await api(`/api/gallery/${id}`, { method: "DELETE" }); setGallery(g => g.filter(x => x.id !== id)); showToast("Item deleted."); }
+        catch (e) { showToast("Error: " + e.message); }
+        finally { setSaving(false); }
+      };
+
+      const moveGallery = async (id, dir) => {
+        const arr = [...gallery]; const i = arr.findIndex(x => x.id === id); const j = i + dir;
+        if (j < 0 || j >= arr.length) return;
+        [arr[i], arr[j]] = [arr[j], arr[i]]; setGallery(arr);
+        try { await Promise.all([api(`/api/gallery/${arr[i].id}`, { method: "PATCH", body: JSON.stringify({ sort_order: i }) }), api(`/api/gallery/${arr[j].id}`, { method: "PATCH", body: JSON.stringify({ sort_order: j }) })]); }
+        catch (e) { showToast("Reorder failed: " + e.message); }
+      };
+
+      // Pricing CRUD
+      const savePricing = async (plan) => {
+        setSaving(true);
+        try {
+          const dbPlan = pricingToDb(plan);
+          if (plan.id) {
+            const { id, created_at, ...fields } = dbPlan;
+            await api(`/api/pricing/${plan.id}`, { method: "PATCH", body: JSON.stringify(fields) });
+            setPricing(p => p.map(x => x.id === plan.id ? { ...plan } : x));
+            showToast("Pricing plan updated!");
+          } else {
+            const row = await api("/api/pricing", { method: "POST", body: JSON.stringify({ ...dbPlan, sort_order: pricing.length }) });
+            setPricing(p => [...p, pricingFromDb(row)]);
+            showToast("Pricing plan added!");
+          }
+          setModal(null);
+        } catch (e) { showToast("Error: " + e.message); }
+        finally { setSaving(false); }
+      };
+
+      const deletePricing = async (id) => {
+        setSaving(true);
+        try { await api(`/api/pricing/${id}`, { method: "DELETE" }); setPricing(p => p.filter(x => x.id !== id)); showToast("Plan deleted."); }
+        catch (e) { showToast("Error: " + e.message); }
+        finally { setSaving(false); }
+      };
+
+      const movePricing = async (id, dir) => {
+        const arr = [...pricing]; const i = arr.findIndex(x => x.id === id); const j = i + dir;
+        if (j < 0 || j >= arr.length) return;
+        [arr[i], arr[j]] = [arr[j], arr[i]]; setPricing(arr);
+        try { await Promise.all([api(`/api/pricing/${arr[i].id}`, { method: "PATCH", body: JSON.stringify({ sort_order: i }) }), api(`/api/pricing/${arr[j].id}`, { method: "PATCH", body: JSON.stringify({ sort_order: j }) })]); }
+        catch (e) { showToast("Reorder failed: " + e.message); }
+      };
+
+      // Export
+      const exportGallery       = () => setExportModal({ title: "data-gallery.js",   content: buildGalleryJS(gallery) });
+      const exportPricing       = () => setExportModal({ title: "data-pricing.js",   content: buildPricingJS(pricing) });
+      const exportRenderGallery = () => setExportModal({ title: "render-gallery.js", content: buildRenderGalleryJS() });
+      const exportRenderPricing = () => setExportModal({ title: "render-pricing.js", content: buildRenderPricingJS() });
+
+      if (!token) return <LoginScreen onLogin={handleLogin} />;
+
+      return (
+        <div style={{ minHeight: "100vh", background: "#F7F2EA", fontFamily: "'DM Sans','Segoe UI',sans-serif" }}>
+
+          {/* Header */}
+          <div style={{ background: "#1A3D18", padding: "0 32px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 2px 16px rgba(26,61,24,0.3)", position: "sticky", top: 0, zIndex: 100 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 36, height: 36, background: "#C8891A", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🌿</div>
+              <div>
+                <div style={{ color: "#fff", fontFamily: "Georgia,serif", fontSize: 17, fontWeight: 700, lineHeight: 1 }}>GreenScape Admin</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase" }}>
+                  {loading ? "Connecting…" : "☁ Live — DigitalOcean PostgreSQL"}
+                </div>
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              {["gallery", "pricing"].map(t => (
+                <button key={t} onClick={() => setTab(t)} style={{ padding: "8px 20px", borderRadius: 100, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 600, background: tab === t ? "#C8891A" : "rgba(255,255,255,0.1)", color: tab === t ? "#fff" : "rgba(255,255,255,0.7)", transition: "all 0.2s" }}>
+                  {t === "gallery" ? "🖼 Gallery" : "💰 Pricing"}
+                </button>
+              ))}
+              <button onClick={handleLogout} style={{ marginLeft: 8, padding: "8px 16px", borderRadius: 100, border: "1.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "rgba(255,255,255,0.65)", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>
+                Sign Out
+              </button>
+            </div>
+          </div>
+
+          <div style={{ maxWidth: 1160, margin: "0 auto", padding: "32px 24px" }}>
+
+            {/* Error Banner */}
+            {error && (
+              <div style={{ background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 14, padding: "14px 18px", marginBottom: 24, fontSize: 13, color: "#dc2626", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span>⚠️ {error}</span>
+                <button onClick={loadAll} style={{ background: "#dc2626", color: "#fff", border: "none", borderRadius: 100, padding: "6px 16px", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>Retry</button>
+              </div>
+            )}
+
+            {/* Spinner */}
+            {loading && (
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "80px 0", gap: 16 }}>
+                <div style={{ width: 48, height: 48, border: "4px solid #e8f4e0", borderTop: "4px solid #2A5726", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+                <p style={{ color: "#7A7A72", fontSize: 14 }}>Loading from DigitalOcean PostgreSQL…</p>
+              </div>
+            )}
+
+            {/* ── GALLERY TAB ── */}
+            {!loading && tab === "gallery" && (
+              <>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
+                  <div>
+                    <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, color: "#1A3D18", margin: 0 }}>Portfolio Gallery</h2>
+                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{gallery.length} items · saved to PostgreSQL</p>
+                  </div>
+                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                    <button onClick={exportRenderGallery} style={{ padding: "9px 18px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>⬇ render-gallery.js</button>
+                    <button onClick={exportGallery}       style={{ padding: "9px 18px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>⬇ data-gallery.js</button>
+                    <button onClick={() => setModal({ type: "gallery-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Item</button>
+                  </div>
+                </div>
+                <div style={{ background: "#fffbe8", border: "1.5px solid #e8d08a", borderRadius: 14, padding: "14px 18px", marginBottom: 24, fontSize: 13, color: "#7a5c00" }}>
+                  <strong>How to wire this up:</strong> Export <code>data-gallery.js</code> and <code>render-gallery.js</code>, place in your project root. In <code>portfolio.html</code> empty <code>#masonry</code> and <code>#filter-tabs</code>, then add before <code>&lt;/body&gt;</code>: <code style={{ background: "#fef3c7", padding: "2px 6px", borderRadius: 4 }}>&lt;script src="data-gallery.js"&gt;&lt;/script&gt;&lt;script src="render-gallery.js"&gt;&lt;/script&gt;</code>
+                </div>
+                <div style={{ display: "grid", gap: 12 }}>
+                  {gallery.map((item, idx) => (
+                    <div key={item.id} style={{ background: "#fff", borderRadius: 16, padding: "16px 20px", border: "1.5px solid rgba(42,87,38,0.1)", display: "flex", gap: 16, alignItems: "center", boxShadow: "0 2px 8px rgba(26,61,24,0.06)" }}>
+                      <div style={{ width: 64, height: 52, borderRadius: 10, background: item.bg, flexShrink: 0, border: "1.5px solid #e0e8dc" }} />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                          <span style={{ fontWeight: 700, fontSize: 15, color: "#1A3D18" }}>{item.title}</span>
+                          <span style={{ background: catColors[item.cat] || "#6A9E5A", color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", padding: "2px 8px", borderRadius: 100 }}>{item.cat}</span>
+                          <span style={{ color: "#C8891A", fontSize: 12, fontWeight: 600 }}>{item.budget}</span>
+                        </div>
+                        <div style={{ fontSize: 12, color: "#7A7A72", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.location} · {item.duration} · {item.service}</div>
+                      </div>
+                      <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
+                        <button onClick={() => moveGallery(item.id, -1)} disabled={idx === 0 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === 0 ? "not-allowed" : "pointer", opacity: idx === 0 ? 0.4 : 1, fontSize: 14 }}>↑</button>
+                        <button onClick={() => moveGallery(item.id, 1)}  disabled={idx === gallery.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === gallery.length - 1 ? "not-allowed" : "pointer", opacity: idx === gallery.length - 1 ? 0.4 : 1, fontSize: 14 }}>↓</button>
+                        <button onClick={() => setModal({ type: "gallery-edit", item })} style={{ padding: "6px 14px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>Edit</button>
+                        <button onClick={() => deleteGallery(item.id)} disabled={saving} style={{ padding: "6px 14px", background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#dc2626", fontWeight: 600 }}>Delete</button>
+                      </div>
+                    </div>
+                  ))}
+                  {gallery.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "#7A7A72", fontSize: 14 }}>No items yet. <button onClick={() => setModal({ type: "gallery-new" })} style={{ color: "#2A5726", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>Add your first →</button></div>}
+                </div>
+              </>
+            )}
+
+            {/* ── PRICING TAB ── */}
+            {!loading && tab === "pricing" && (
+              <>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
+                  <div>
+                    <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, color: "#1A3D18", margin: 0 }}>Pricing Plans</h2>
+                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{pricing.length} plans · saved to PostgreSQL</p>
+                  </div>
+                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                    <button onClick={exportRenderPricing} style={{ padding: "9px 18px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>⬇ render-pricing.js</button>
+                    <button onClick={exportPricing}       style={{ padding: "9px 18px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>⬇ data-pricing.js</button>
+                    <button onClick={() => setModal({ type: "pricing-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Plan</button>
+                  </div>
+                </div>
+                <div style={{ background: "#fffbe8", border: "1.5px solid #e8d08a", borderRadius: 14, padding: "14px 18px", marginBottom: 24, fontSize: 13, color: "#7a5c00" }}>
+                  <strong>How to wire this up:</strong> Export <code>data-pricing.js</code> and <code>render-pricing.js</code>, place in your project root. In <code>services.html</code> empty <code>.pricing-grid</code>, then add before <code>&lt;/body&gt;</code>: <code style={{ background: "#fef3c7", padding: "2px 6px", borderRadius: 4 }}>&lt;script src="data-pricing.js"&gt;&lt;/script&gt;&lt;script src="render-pricing.js"&gt;&lt;/script&gt;</code>
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
+                  {pricing.map((plan, idx) => (
+                    <div key={plan.id} style={{ background: "#fff", borderRadius: 20, padding: "24px", border: plan.popular ? "2px solid #2A5726" : "1.5px solid rgba(42,87,38,0.1)", position: "relative", boxShadow: plan.popular ? "0 8px 28px rgba(26,61,24,0.12)" : "0 2px 8px rgba(26,61,24,0.06)" }}>
+                      {plan.popular && <span style={{ position: "absolute", top: 16, right: 16, background: "#2A5726", color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", padding: "3px 10px", borderRadius: 100 }}>Most Popular</span>}
+                      <div style={{ width: 48, height: 48, background: "#e8f4e0", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, marginBottom: 14 }}>🌿</div>
+                      <div style={{ fontFamily: "Georgia,serif", fontSize: 18, color: "#1A3D18", fontWeight: 700 }}>{plan.name}</div>
+                      <div style={{ fontSize: 12, color: "#7A7A72", marginBottom: 12 }}>{plan.desc}</div>
+                      <div style={{ display: "flex", alignItems: "baseline", gap: 3, marginBottom: 4 }}>
+                        <span style={{ fontSize: 13, color: "#1A3D18", fontWeight: 600 }}>Rs.</span>
+                        <span style={{ fontFamily: "Georgia,serif", fontSize: 32, color: "#1A3D18", fontWeight: 700, lineHeight: 1 }}>{plan.price}</span>
+                        <span style={{ fontSize: 12, color: "#7A7A72" }}>{plan.period}</span>
+                      </div>
+                      <div style={{ fontSize: 11, color: "#7A7A72", marginBottom: 16 }}>{plan.note}</div>
+                      <div style={{ borderTop: "1px solid #ede6d8", paddingTop: 16, marginBottom: 16 }}>
+                        {plan.features.map((f, i) => (
+                          <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: f.enabled ? "#4A4A44" : "#aaa", marginBottom: 6, opacity: f.enabled ? 1 : 0.6 }}>
+                            <span style={{ color: f.enabled ? "#6A9E5A" : "#bbb", fontSize: 10 }}>{f.enabled ? "✓" : "✕"}</span>
+                            {f.text}
+                          </div>
+                        ))}
+                      </div>
+                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                        <button onClick={() => movePricing(plan.id, -1)} disabled={idx === 0 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === 0 ? "not-allowed" : "pointer", opacity: idx === 0 ? 0.4 : 1 }}>↑</button>
+                        <button onClick={() => movePricing(plan.id, 1)}  disabled={idx === pricing.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === pricing.length - 1 ? "not-allowed" : "pointer", opacity: idx === pricing.length - 1 ? 0.4 : 1 }}>↓</button>
+                        <button onClick={() => setModal({ type: "pricing-edit", item: plan })} style={{ padding: "6px 14px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>Edit</button>
+                        <button onClick={() => deletePricing(plan.id)} disabled={saving} style={{ padding: "6px 14px", background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#dc2626", fontWeight: 600 }}>Delete</button>
+                      </div>
+                    </div>
+                  ))}
+                  {pricing.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "#7A7A72", fontSize: 14, gridColumn: "1/-1" }}>No plans yet. <button onClick={() => setModal({ type: "pricing-new" })} style={{ color: "#2A5726", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>Add your first →</button></div>}
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Modals */}
+          {modal?.type === "gallery-new"  && <Modal title="Add Gallery Item"  onClose={() => setModal(null)}><GalleryForm onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "gallery-edit" && <Modal title="Edit Gallery Item" onClose={() => setModal(null)}><GalleryForm item={modal.item} onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "pricing-new"  && <Modal title="Add Pricing Plan"  onClose={() => setModal(null)}><PricingForm onSave={savePricing} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "pricing-edit" && <Modal title="Edit Pricing Plan" onClose={() => setModal(null)}><PricingForm plan={modal.item} onSave={savePricing} onClose={() => setModal(null)} loading={saving} /></Modal>}
+
+          {/* Export modal */}
+          {exportModal && (
+            <Modal title={`Export: ${exportModal.title}`} onClose={() => setExportModal(null)}>
+              <p style={{ fontSize: 13, color: "#7A7A72", marginBottom: 12 }}>Copy the code below and save as <strong>{exportModal.title}</strong> in your project root.</p>
+              <textarea readOnly value={exportModal.content} onClick={e => e.target.select()} style={{ width: "100%", height: 280, fontFamily: "monospace", fontSize: 11, padding: 14, borderRadius: 10, border: "1.5px solid #d8e8d0", background: "#f8fdf6", resize: "vertical", color: "#262622", boxSizing: "border-box" }} />
+              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 16 }}>
+                <button onClick={() => { navigator.clipboard.writeText(exportModal.content); showToast("Copied to clipboard!"); }} style={{ padding: "10px 22px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 14, fontWeight: 600 }}>Copy to Clipboard</button>
+              </div>
+            </Modal>
+          )}
+
+          {toast && <Toast msg={toast} onClose={() => setToast(null)} />}
+        </div>
+      );
+    }
+
+    // Mount
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

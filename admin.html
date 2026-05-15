@@ -36,8 +36,7 @@
     // ─── API CONFIG ────────────────────────────────────────────────────────────
     // For local dev:  "http://localhost:8080"
     // For production: "https://your-do-app.ondigitalocean.app"
-  const API_BASE = "https://sewa-subida-production.up.railway.app";
-
+const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
     async function apiFetch(path, options = {}, token = null) {
       const res = await fetch(`${API_BASE}${path}`, {
         ...options,

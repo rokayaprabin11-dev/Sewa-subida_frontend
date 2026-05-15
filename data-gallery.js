@@ -4,7 +4,7 @@
 // Place at project ROOT (same folder as portfolio.html)
 
 (function () {
-  var API = "https://sewa-subida-production.up.railway.app";
+var API = "https://sewa-subidabackend-production.up.railway.app";
 
   fetch(API + "/api/gallery")
     .then(function (res) {

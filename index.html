@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenScape — Garden Design & Landscaping</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* ========== RESET & ROOT ========== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-dark:#1A3D18;
+  --green-mid:#2A5726;
+  --green-rich:#3A7033;
+  --green-sage:#6A9E5A;
+  --green-light:#A8C89A;
+  --green-pale:#E8F4E0;
+  --gold:#C8891A;
+  --gold-light:#E8A820;
+  --gold-pale:#FBF0D8;
+  --sand:#F7F2EA;
+  --sand-dark:#EDE6D8;
+  --charcoal:#262622;
+  --slate:#4A4A44;
+  --muted:#7A7A72;
+  --white:#FFFFFF;
+  --shadow-sm:0 2px 8px rgba(26,61,24,0.08);
+  --shadow-md:0 8px 28px rgba(26,61,24,0.14);
+  --shadow-lg:0 20px 60px rgba(26,61,24,0.18);
+  --radius:12px;
+  --radius-lg:20px;
+  --radius-xl:28px;
+  --transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--charcoal);overflow-x:hidden;cursor:none}
+
+/* ========== CUSTOM CURSOR ========== */
+#cursor-dot{position:fixed;width:8px;height:8px;background:var(--green-rich);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,background 0.2s}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--green-sage);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.12s ease;opacity:0.7}
+body.hovering #cursor-ring{width:50px;height:50px;border-color:var(--gold);opacity:1}
+body.hovering #cursor-dot{background:var(--gold);width:10px;height:10px}
+
+/* ========== LOADING SCREEN ========== */
+#loader{position:fixed;inset:0;background:var(--green-dark);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:10000;transition:opacity 0.8s,visibility 0.8s}
+#loader.hidden{opacity:0;visibility:hidden}
+.loader-plant{width:80px;height:80px;position:relative}
+.loader-stem{position:absolute;bottom:0;left:50%;width:3px;background:var(--green-sage);transform:translateX(-50%);animation:grow-stem 1.8s ease-out forwards}
+@keyframes grow-stem{0%{height:0}100%{height:60px}}
+.loader-leaf-l{position:absolute;bottom:20px;left:50%;width:0;height:0;border-radius:50% 0 50% 50%;background:var(--green-light);transform-origin:right center;animation:grow-leaf-l 0.6s 0.8s ease-out forwards;opacity:0}
+@keyframes grow-leaf-l{0%{width:0;height:0;opacity:0}100%{width:28px;height:18px;opacity:1;transform:translateX(-100%) rotate(-30deg)}}
+.loader-leaf-r{position:absolute;bottom:32px;left:50%;width:0;height:0;border-radius:0 50% 50% 50%;background:var(--green-sage);transform-origin:left center;animation:grow-leaf-r 0.6s 1.1s ease-out forwards;opacity:0}
+@keyframes grow-leaf-r{0%{width:0;height:0;opacity:0}100%{width:28px;height:18px;opacity:1;transform:rotate(30deg)}}
+.loader-bloom{position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:24px;background:var(--gold-light);border-radius:50%;animation:bloom 0.5s 1.5s ease-out forwards;opacity:0;scale:0}
+@keyframes bloom{0%{opacity:0;scale:0}100%{opacity:1;scale:1}}
+.loader-text{color:rgba(255,255,255,0.6);font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-top:32px;animation:fade-in-text 0.6s 1.6s ease forwards;opacity:0}
+@keyframes fade-in-text{to{opacity:1}}
+
+/* ========== SCROLL ANIMATIONS ========== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.85);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.delay-1{transition-delay:0.1s}.delay-2{transition-delay:0.2s}.delay-3{transition-delay:0.3s}.delay-4{transition-delay:0.4s}.delay-5{transition-delay:0.5s}
+
+/* ========== HEADER ========== */
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between;transition:var(--transition)}
+#header.scrolled{background:rgba(247,242,234,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(42,87,38,0.1);box-shadow:var(--shadow-sm)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:42px;height:42px;border-radius:12px;object-fit:cover;flex-shrink:0;transition:var(--transition);display:block}
+.logo:hover .logo-icon{background:var(--green-rich);transform:rotate(-5deg) scale(1.05)}
+.logo-name{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);font-weight:700;transition:color 0.3s}
+#header.scrolled .logo-name{color:var(--green-dark)}
+nav{display:flex;align-items:center;gap:32px}
+nav a{font-size:14px;color:rgba(255,255,255,0.85);text-decoration:none;font-weight:400;letter-spacing:0.2px;position:relative;transition:color 0.3s;cursor:none}
+nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold-light);transition:width 0.3s}
+nav a:hover::after{width:100%}
+nav a:hover{color:var(--white)}
+#header.scrolled nav a{color:var(--slate)}
+#header.scrolled nav a:hover{color:var(--green-dark)}
+.nav-cta{background:var(--gold);color:var(--white)!important;padding:10px 22px;border-radius:100px;font-weight:500;font-size:13px;border:none;cursor:none;transition:var(--transition);text-decoration:none;animation:gold-glow 2.5s ease-in-out infinite}
+.nav-cta::after{display:none!important}
+@keyframes gold-glow{0%,100%{box-shadow:0 0 0 0 rgba(200,137,26,0.4)}50%{box-shadow:0 0 0 10px rgba(200,137,26,0)}}
+.nav-cta:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;padding:6px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:var(--transition)}
+#header.scrolled .hamburger span{background:var(--charcoal)}
+
+/* ========== HERO ========== */
+#hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:var(--green-dark)}
+.hero-animated-bg{position:absolute;inset:0;overflow:hidden}
+.hero-circle{position:absolute;border-radius:50%;filter:blur(60px);animation:float-circle 8s ease-in-out infinite}
+.hero-circle.c1{width:500px;height:500px;background:rgba(58,112,51,0.35);top:-150px;right:-100px;animation-delay:0s}
+.hero-circle.c2{width:400px;height:400px;background:rgba(200,137,26,0.12);bottom:-100px;left:-80px;animation-delay:2s}
+.hero-circle.c3{width:300px;height:300px;background:rgba(106,158,90,0.2);top:40%;left:30%;animation-delay:4s}
+@keyframes float-circle{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-20px) scale(1.05)}}
+.hero-leaves{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.leaf-shadow{position:absolute;width:120px;height:80px;background:rgba(255,255,255,0.03);border-radius:60% 40% 60% 40%;filter:blur(8px);animation:leaf-float 12s ease-in-out infinite}
+.leaf-shadow:nth-child(1){top:15%;left:8%;animation-delay:0s}
+.leaf-shadow:nth-child(2){top:60%;right:10%;animation-delay:3s;width:90px;height:60px}
+.leaf-shadow:nth-child(3){top:30%;right:25%;animation-delay:6s;width:150px;height:100px}
+.leaf-shadow:nth-child(4){bottom:20%;left:20%;animation-delay:9s;width:80px;height:55px}
+@keyframes leaf-float{0%,100%{transform:translate(0,0) rotate(0deg)}33%{transform:translate(12px,-8px) rotate(3deg)}66%{transform:translate(-8px,5px) rotate(-2deg)}}
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:760px;padding:0 24px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--gold-light);font-size:11px;padding:6px 16px;border-radius:100px;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;backdrop-filter:blur(8px);animation:hero-badge-in 0.8s 0.3s ease backwards}
+@keyframes hero-badge-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge-dot{width:6px;height:6px;background:var(--gold-light);border-radius:50%;animation:blink 1.5s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,72px);color:var(--white);line-height:1.15;font-weight:700;margin-bottom:20px}
+.hero-title .line{display:block;overflow:hidden}
+.hero-title .line span{display:block;animation:line-in 0.9s cubic-bezier(0.16,1,0.3,1) backwards}
+.hero-title .line:nth-child(1) span{animation-delay:0.4s}
+.hero-title .line:nth-child(2) span{animation-delay:0.6s}
+.hero-title .line:nth-child(3) span{animation-delay:0.8s}
+@keyframes line-in{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.hero-title em{font-style:italic;color:var(--green-light)}
+.hero-subtitle{color:rgba(255,255,255,0.65);font-size:18px;font-weight:300;margin-bottom:40px;line-height:1.6;animation:fade-up 0.8s 1.1s ease backwards}
+@keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fade-up 0.8s 1.3s ease backwards}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--white);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;border:none;cursor:none;transition:var(--transition);animation:pulse-gold 2.5s 2s ease-in-out infinite}
+@keyframes pulse-gold{0%,100%{box-shadow:0 0 0 0 rgba(200,137,26,0.5)}50%{box-shadow:0 0 0 14px rgba(200,137,26,0)}}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:400;text-decoration:none;border:1.5px solid rgba(255,255,255,0.35);cursor:none;transition:var(--transition);backdrop-filter:blur(4px)}
+.btn-secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.7);transform:translateY(-3px)}
+.scroll-indicator{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:2px;text-transform:uppercase;animation:fade-up 0.8s 1.8s ease backwards}
+.scroll-leaf-wrap{width:28px;height:44px;border:1.5px solid rgba(255,255,255,0.2);border-radius:100px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px}
+.scroll-leaf-inner{width:4px;height:8px;background:var(--gold-light);border-radius:2px;animation:scroll-drop 1.8s ease-in-out infinite}
+@keyframes scroll-drop{0%{transform:translateY(0);opacity:1}80%{transform:translateY(16px);opacity:0}100%{transform:translateY(0);opacity:0}}
+
+/* ========== SECTION UTILS ========== */
+section{padding:100px 40px}
+.section-inner{max-width:1160px;margin:0 auto}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--green-sage);margin-bottom:12px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,46px);color:var(--green-dark);line-height:1.2;margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--muted);font-weight:300;line-height:1.65;max-width:540px}
+.divider{width:56px;height:3px;background:linear-gradient(90deg,var(--green-mid),var(--green-sage));border-radius:2px;margin:20px 0}
+
+/* ========== QUICK SERVICES CARDS ========== */
+#quick-services{position:relative;padding:0 40px;margin-top:-60px;z-index:10}
+.quick-cards-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.qcard{background:var(--white);border-radius:var(--radius-lg);padding:28px 22px;border:1px solid rgba(42,87,38,0.08);box-shadow:var(--shadow-md);transition:var(--transition);cursor:none}
+.qcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--green-light)}
+.qcard-icon{width:52px;height:52px;background:var(--green-pale);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;transition:var(--transition)}
+.qcard:hover .qcard-icon{background:var(--green-mid);transform:scale(1.1) rotate(-5deg)}
+.qcard h4{font-size:15px;font-weight:600;color:var(--green-dark);margin-bottom:6px}
+.qcard p{font-size:13px;color:var(--muted);line-height:1.5}
+.qcard-icon{background:none;overflow:visible;position:relative;margin:-10% 0 40px 10%}
+.qcard-icon img{width:100px;height:100px;object-fit:cover;display:block;border-radius:14px;position:absolute;top:-20px;left:50%;transform:translateX(-50%);z-index:2}
+
+/* ========== BEFORE/AFTER ========== */
+#before-after{background:var(--sand-dark)}
+.ba-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.ba-text .section-title{margin-bottom:16px}
+.ba-text p{font-size:15px;color:var(--slate);line-height:1.7;margin-bottom:24px}
+.ba-features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.ba-feature{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--slate)}
+.ba-feature-dot{width:8px;height:8px;background:var(--green-sage);border-radius:50%;flex-shrink:0}
+.ba-slider-wrap{position:relative;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg);cursor:col-resize;user-select:none;height:420px}
+.ba-before,.ba-after{position:absolute;inset:0;background-size:cover;background-position:center}
+.ba-before{background-image:url("images/before.png");z-index:1}
+.ba-before::after{content:'';position:absolute;inset:0;opacity:0}
+.ba-after{background-image:url("images/after.jpg");clip-path:inset(0 0 0 50%);transition:clip-path 0s;z-index:2}
+.ba-after::after{content:'';position:absolute;inset:0;background:none;opacity:0}
+.ba-divider-line{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--white);z-index:3;transform:translateX(-50%)}
+.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:var(--white);border-radius:50%;border:3px solid var(--green-mid);display:flex;align-items:center;justify-content:center;z-index:4;box-shadow:var(--shadow-md);font-size:18px;color:var(--green-mid)}
+.ba-label{position:absolute;top:20px;z-index:5;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:100px}
+.ba-label.before{left:20px;background:rgba(0,0,0,0.45);color:var(--white)}
+.ba-label.after{right:20px;background:var(--green-mid);color:var(--white)}
+.ba-drag-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:5;font-size:11px;color:rgba(255,255,255,0.8);background:rgba(0,0,0,0.35);padding:5px 14px;border-radius:100px;white-space:nowrap;font-family:'DM Sans',sans-serif;backdrop-filter:blur(4px)}
+
+/* ========== ABOUT ========== */
+#about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-photos{position:relative;height:520px}
+.ap-main{position:absolute;top:0;left:0;width:74%;height:78%;border-radius:var(--radius-xl);overflow:hidden;background-image:url("images/dream.png");background-size:cover;background-position:center;box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center}
+.ap-main-inner{text-align:center;color:rgba(255,255,255,0.95);text-shadow:0 2px 8px rgba(0,0,0,0.4)}
+.ap-main-emoji{font-size:64px;display:block;margin-bottom:16px}
+.ap-main-text{font-family:'Playfair Display',serif;font-size:18px;font-style:italic}
+.ap-float{position:absolute;bottom:0;right:0;width:58%;height:55%;border-radius:var(--radius-lg);overflow:hidden;background-image:url("images/community.png");background-size:cover;background-position:center;box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center}
+.ap-float-inner{text-align:center}
+.ap-float-emoji{font-size:48px;display:block;margin-bottom:10px}
+.ap-badge{position:absolute;top:24px;right:-16px;background:var(--gold);color:var(--white);padding:14px 18px;border-radius:var(--radius);box-shadow:var(--shadow-md);text-align:center;font-size:13px}
+.ap-badge-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;display:block;line-height:1}
+.about-text p{font-size:15px;color:var(--slate);line-height:1.75;margin-bottom:20px}
+.about-stats{display:flex;gap:32px;margin:32px 0;padding:24px 0;border-top:1px solid var(--sand-dark);border-bottom:1px solid var(--sand-dark)}
+.stat{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--green-dark);display:block;line-height:1}
+.stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ========== WHY CHOOSE US ========== */
+#why{background:var(--green-dark);padding:80px 40px}
+.why-header{text-align:center;margin-bottom:60px}
+.why-header .tag{color:var(--gold-light)}
+.why-header .section-title{color:var(--white)}
+.why-header .section-sub{color:rgba(255,255,255,0.6);margin:0 auto}
+.why-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.why-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:32px 24px;transition:var(--transition);position:relative;overflow:hidden}
+.why-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(106,158,90,0.12),transparent);opacity:0;transition:opacity 0.3s}
+.why-card:hover{transform:translateY(-6px);border-color:rgba(106,158,90,0.4);box-shadow:0 20px 40px rgba(0,0,0,0.2)}
+.why-card:hover::before{opacity:1}
+.why-icon{width:72px;height:72px;margin-bottom:20px;display:block;border-radius:22px;overflow:hidden;background:rgba(255,255,255,0.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.12)}
+.why-icon img{width:100%;height:100%;object-fit:cover;display:block}
+.why-card h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:10px}
+.why-card p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65}
+.why-card-num{position:absolute;top:20px;right:20px;font-family:'Playfair Display',serif;font-size:56px;color:rgba(255,255,255,0.04);font-weight:700;line-height:1}
+
+/* ========== SERVICES ========== */
+#services{background:var(--sand)}
+.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.srv-card{background:var(--white);border-radius:var(--radius-xl);overflow:hidden;border:1px solid rgba(42,87,38,0.07);box-shadow:var(--shadow-sm);transition:var(--transition);position:relative;cursor:none}
+.srv-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.srv-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden;transition:transform 0.5s ease}
+.srv-card:hover .srv-img-inner{transform:scale(1.08)}
+.srv-img-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:52px;transition:transform 0.5s ease}
+img.srv-img-inner{width:100%;height:100%;object-fit:cover}
+.srv-img.s1{background:linear-gradient(145deg,#d4edd0,#8ac878)}
+.srv-img.s2{background:linear-gradient(145deg,#cde8c8,#5a9e48)}
+.srv-img.s3{background:linear-gradient(145deg,#f5e8c0,#d4a838)}
+.srv-img.s4{background:linear-gradient(145deg,#f0d8e0,#c07888)}
+.srv-img.s5{background:linear-gradient(145deg,#d0e0f0,#6888b8)}
+.srv-img.s6{background:linear-gradient(145deg,#d8d0f0,#8070c0)}
+.srv-learn{position:absolute;bottom:0;left:0;right:0;background:var(--green-mid);color:var(--white);text-align:center;padding:12px;font-size:13px;font-weight:500;transform:translateY(100%);transition:transform 0.3s ease;cursor:none;letter-spacing:0.5px}
+.srv-card:hover .srv-learn{transform:translateY(0)}
+.srv-body{padding:22px}
+.srv-body h3{font-family:'Playfair Display',serif;font-size:18px;color:var(--green-dark);margin-bottom:8px}
+.srv-body p{font-size:13px;color:var(--muted);line-height:1.6}
+.srv-tag{display:inline-block;margin-top:12px;font-size:11px;color:var(--green-sage);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
+/* ========== PORTFOLIO ========== */
+#portfolio{background:var(--white)}
+.portfolio-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:32px}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.filter-tab{padding:8px 20px;border-radius:100px;border:1.5px solid rgba(42,87,38,0.15);font-size:13px;font-weight:500;color:var(--slate);cursor:none;transition:var(--transition);background:transparent}
+.filter-tab.active,.filter-tab:hover{background:var(--green-mid);color:var(--white);border-color:var(--green-mid)}
+.masonry-grid{columns:3;gap:16px}
+.masonry-item{break-inside:avoid;margin-bottom:16px;border-radius:var(--radius-lg);overflow:hidden;position:relative;cursor:none;transition:var(--transition)}
+.masonry-item:hover{transform:scale(1.02);box-shadow:var(--shadow-lg)}
+.masonry-item img,.masonry-fake-img{width:100%;display:block;border-radius:var(--radius-lg)}
+.masonry-fake-img{position:relative;overflow:hidden}
+.masonry-fake-img img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
+.masonry-item:hover .masonry-fake-img{transform:scale(1.06)}
+.masonry-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,61,24,0.85) 0%,transparent 50%);opacity:0;transition:opacity 0.3s;border-radius:var(--radius-lg);display:flex;align-items:flex-end;padding:20px}
+.masonry-item:hover .masonry-overlay{opacity:1}
+.masonry-info{color:var(--white)}
+.masonry-info h4{font-family:'Playfair Display',serif;font-size:15px;margin-bottom:4px}
+.masonry-info span{font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase}
+
+/* ========== TESTIMONIALS ========== */
+#testimonials{background:var(--green-dark);padding:80px 40px;overflow:hidden}
+.testimonials-header{text-align:center;margin-bottom:52px}
+.testimonials-header .tag{color:var(--gold-light)}
+.testimonials-header .section-title{color:var(--white)}
+.carousel-track-wrap{overflow:hidden;position:relative;touch-action:pan-y}
+.carousel-track-wrap::before,.carousel-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.carousel-track-wrap::before{left:0;background:linear-gradient(to right,var(--green-dark),transparent)}
+.carousel-track-wrap::after{right:0;background:linear-gradient(to left,var(--green-dark),transparent)}
+.carousel-track{display:flex;gap:20px;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1)}
+.rev-card{min-width:320px;max-width:320px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl);padding:28px;flex-shrink:0;transition:var(--transition)}
+.rev-card:hover{background:rgba(255,255,255,0.1);transform:translateY(-4px)}
+.rev-stars{color:var(--gold-light);font-size:16px;letter-spacing:2px;margin-bottom:16px}
+.rev-text{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:20px}
+.rev-person{display:flex;align-items:center;gap:12px}
+.rev-avatar{width:44px;height:44px;border-radius:50%;background:var(--green-sage);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--white);flex-shrink:0}
+.rev-name{font-weight:600;color:var(--white);font-size:14px}
+.rev-location{font-size:12px;color:rgba(255,255,255,0.45)}
+.carousel-controls{display:flex;justify-content:center;gap:12px;margin-top:36px}
+.carousel-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.7);cursor:none;display:flex;align-items:center;justify-content:center;font-size:20px;transition:var(--transition)}
+.carousel-btn:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.5);color:var(--white)}
+.carousel-dots{display:flex;align-items:center;gap:8px}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:none;transition:var(--transition)}
+.carousel-dot.active{background:var(--gold-light);width:24px;border-radius:4px}
+
+/* ========== BLOG ========== */
+#blog{background:var(--sand)}
+.blog-scroll-wrap{overflow:hidden;position:relative;margin:0 -40px;padding:0 40px}
+.blog-scroll{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px;scrollbar-width:none;-ms-overflow-style:none}
+.blog-scroll::-webkit-scrollbar{display:none}
+.blog-card{min-width:280px;background:var(--white);border-radius:var(--radius-xl);overflow:hidden;border:1px solid rgba(42,87,38,0.07);box-shadow:var(--shadow-sm);flex-shrink:0;cursor:none;transition:var(--transition)}
+.blog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.blog-thumb{height:160px;position:relative;overflow:hidden;border-radius:var(--radius-lg)}
+.blog-card:hover .blog-thumb-inner{transform:scale(1.08)}
+.blog-thumb-inner{width:100%;height:100%;position:relative;overflow:hidden;border-radius:inherit}
+.blog-thumb-inner img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
+.bt1{background:linear-gradient(135deg,#c8e6b0,#4A7C40)}
+.bt2{background:linear-gradient(135deg,#fce4b0,#C98B1A)}
+.bt3{background:linear-gradient(135deg,#d4edda,#2D5A27)}
+.bt4{background:linear-gradient(135deg,#dce8f0,#5a8aad)}
+.blog-body{padding:20px}
+.blog-cat{font-size:10px;font-weight:700;color:var(--green-sage);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.blog-card h3{font-family:'Playfair Display',serif;font-size:16px;color:var(--green-dark);line-height:1.4;margin-bottom:10px}
+.blog-card p{font-size:13px;color:var(--muted);line-height:1.55}
+.blog-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--sand-dark)}
+.blog-date{font-size:11px;color:var(--muted)}
+.blog-read{font-size:12px;font-weight:600;color:var(--green-mid)}
+
+/* ========== FAQ ========== */
+#faq{background:var(--white);padding:80px 40px}
+.faq-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(42,87,38,0.1);background:var(--sand);transition:var(--transition)}
+.faq-item.open{border-color:var(--green-sage);box-shadow:var(--shadow-sm)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;cursor:none;gap:16px}
+.faq-q-text{font-size:15px;font-weight:500;color:var(--green-dark);line-height:1.4}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:var(--green-pale);border:1.5px solid rgba(42,87,38,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--green-mid);flex-shrink:0;transition:transform 0.3s,background 0.3s}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--green-mid);color:var(--white)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
+.faq-item.open .faq-a{max-height:300px;padding:0 22px 20px}
+.faq-a p{font-size:14px;color:var(--slate);line-height:1.7;border-top:1px solid rgba(42,87,38,0.08);padding-top:16px}
+.faq-aside{position:sticky;top:100px}
+.faq-aside-box{background:var(--green-dark);border-radius:var(--radius-xl);padding:36px;color:var(--white);margin-bottom:20px}
+.faq-aside-box h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:12px}
+.faq-aside-box p{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:24px}
+.faq-aside-btn{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;cursor:none;transition:var(--transition)}
+.faq-aside-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+
+/* ========== CONTACT ========== */
+#contact{background:var(--sand);padding:100px 40px}
+.contact-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
+.contact-left h2{font-family:'Playfair Display',serif;font-size:42px;color:var(--green-dark);line-height:1.2;margin-bottom:24px}
+.contact-left h2 em{font-style:italic;color:var(--green-sage)}
+.contact-left p{font-size:15px;color:var(--slate);line-height:1.7;margin-bottom:36px}
+.contact-items{display:flex;flex-direction:column;gap:20px;margin-bottom:36px}
+.contact-item{display:flex;align-items:center;gap:16px}
+.contact-icon{width:48px;height:48px;background:var(--green-pale);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:1px solid rgba(42,87,38,0.12);transition:var(--transition)}
+.contact-item:hover .contact-icon{background:var(--green-mid);transform:scale(1.05)}
+.contact-item-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:2px}
+.contact-item-value{font-size:15px;color:var(--green-dark);font-weight:500;text-decoration:none}
+.contact-item-value:hover{color:var(--green-rich);text-decoration:underline}
+.form-card{background:var(--white);border-radius:var(--radius-xl);padding:44px;box-shadow:var(--shadow-md);border:1px solid rgba(42,87,38,0.07);position:relative;overflow:hidden}
+.form-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:var(--green-pale);border-radius:50%;z-index:0}
+.form-inner{position:relative;z-index:1}
+.form-card h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--green-dark);margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:11px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border:1.5px solid rgba(42,87,38,0.12);border-radius:var(--radius);font-size:14px;font-family:'DM Sans',sans-serif;color:var(--charcoal);background:var(--sand);transition:var(--transition);outline:none;-webkit-appearance:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green-sage);background:var(--white);box-shadow:0 0 0 4px rgba(106,158,90,0.1)}
+.form-group textarea{height:110px;resize:none}
+.form-submit{width:100%;padding:16px;background:var(--green-mid);color:var(--white);border:none;border-radius:100px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:none;transition:var(--transition);display:flex;align-items:center;justify-content:center;gap:10px}
+.form-submit:hover{background:var(--green-rich);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.form-submit.loading{background:var(--green-sage)}
+.form-success{display:none;text-align:center;padding:40px 20px}
+.form-success-icon{font-size:56px;display:block;margin-bottom:16px;animation:bounce 0.6s ease}
+@keyframes bounce{0%{transform:scale(0)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
+.form-success h4{font-family:'Playfair Display',serif;font-size:22px;color:var(--green-dark);margin-bottom:8px}
+.form-success p{font-size:14px;color:var(--muted)}
+
+/* ========== FOOTER ========== */
+footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40px 32px}
+.footer-inner{max-width:1160px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .logo-name{color:var(--white);font-size:22px;display:block;margin-bottom:16px}
+.footer-brand p{font-size:13px;line-height:1.7;color:rgb(255, 255, 255);margin-bottom:20px}
+.footer-socials{display:flex;gap:10px;color:var(--white)}
+.social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgb(255, 255, 255);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:none;transition:var(--transition);text-decoration:none;color:var(--white)}
+.social-btn:hover{background:var(--green-sage);border-color:var(--green-sage);transform:translateY(-3px)}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.3s;cursor:none}
+.footer-col ul li a:hover{color:var(--green-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.35)}
+
+/* ========== WHATSAPP FLOAT ========== */
+#wa-float{position:fixed;bottom:28px;right:28px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+#wa-btn{width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:wa-pulse 2.5s ease-in-out infinite;transition:var(--transition)}
+@keyframes wa-pulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0.5)}50%{box-shadow:0 0 0 16px rgba(37,211,102,0)}}
+#wa-btn:hover{transform:scale(1.1)}
+#wa-bubble{background:var(--white);border-radius:14px 14px 0 14px;padding:12px 16px;font-size:13px;color:var(--charcoal);box-shadow:var(--shadow-md);max-width:200px;text-align:right;line-height:1.5;display:none;border:1px solid rgba(0,0,0,0.07);animation:bubble-in 0.2s ease}
+@keyframes bubble-in{from{opacity:0;transform:scale(0.8) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+#wa-bubble span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+#wa-float:hover #wa-bubble{display:block}
+
+/* ========== MOBILE ========== */
+@media(max-width:900px){
+  section{padding:60px 20px}
+  #quick-services{padding:0 20px}
+  .quick-cards-grid{grid-template-columns:1fr 1fr;margin-top:-30px}
+  .ba-wrapper,.about-grid,.faq-grid,.contact-grid{grid-template-columns:1fr;gap:36px}
+  .ba-slider-wrap{height:280px}
+  .about-photos{height:280px}
+  .ap-badge{right:0}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .masonry-grid{columns:2}
+  .footer-top{grid-template-columns:1fr 1fr;gap:28px}
+  nav{display:none}
+  nav.open{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--white);padding:24px;gap:16px;box-shadow:var(--shadow-md)}
+  nav.open a{color:var(--slate)!important}
+  .hamburger{display:flex}
+  #header{padding:0 20px}
+  .form-row{grid-template-columns:1fr}
+  .hero-title{font-size:32px}
+}
+@media(max-width:580px){
+  .quick-cards-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .masonry-grid{columns:1}
+  .footer-top{grid-template-columns:1fr}
+}
+
+/* Carousel Styles */
+.carousel {
+  overflow: hidden;
+  width: 100%;
+  margin: 20px 0;
+  position: relative;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--green-dark);
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.carousel-track {
+  display: flex;
+  width: calc(270px * 16); /* 8 items * 2 for duplicate * 270px (250px width + 20px margin) */
+  /* animation: slide 20s linear infinite; */
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.product-card {
+  flex: 0 0 250px;
+  margin: 0 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.product-card p {
+  margin: 0 10px 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.map-box{
+  height:180px;
+  border-radius:var(--radius-lg);
+  background:linear-gradient(145deg,var(--green-pale),var(--green-light));
+  border:1px solid rgba(42,87,38,0.12);
+  overflow:hidden;
+  position:relative;
+}
+
+.map-box::before{
+  display:none;
+}
+
+#map{
+  width:100%;
+  height:100%;
+  z-index:1;
+}
+</style>
+  </head>
+  <body>
+
+    <!-- CURSOR -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- LOADER -->
+    <div id="loader">
+      <div class="loader-plant">
+        <div class="loader-stem"></div>
+        <div class="loader-leaf-l"></div>
+        <div class="loader-leaf-r"></div>
+        <div class="loader-bloom"></div>
+      </div>
+      <p class="loader-text">Growing Your Garden</p>
+    </div>
+
+    <!-- HEADER -->
+    <header id="header">
+      <a class="logo" href="#">
+        <img class="logo-icon" src="images/logo.jpg"
+          alt="Sewa Subida Gardening Logo">
+        <span class="logo-name">Sewa Subida Gardening</span>
+      </a>
+      <nav id="main-nav">
+        <a href="index.html#hero">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="arrival.html">New Arrival</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#contact" class="nav-cta">Book Consultation</a>
+      </nav>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-animated-bg">
+        <div class="hero-circle c1"></div>
+        <div class="hero-circle c2"></div>
+        <div class="hero-circle c3"></div>
+      </div>
+      <div class="hero-leaves">
+        <div class="leaf-shadow"></div>
+        <div class="leaf-shadow"></div>
+        <div class="leaf-shadow"></div>
+        <div class="leaf-shadow"></div>
+      </div>
+      <div class="grid-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge"><span
+            class="hero-badge-dot"></span>Award-Winning Garden Design</div>
+        <h1 class="hero-title">
+          <span class="line"><span>We Design &amp; Build</span></span>
+          <span class="line"><span><em>Beautiful Gardens</em></span></span>
+          <span class="line"><span>That Last a Lifetime</span></span>
+        </h1>
+        <p class="hero-subtitle">Transforming ordinary spaces into extraordinary
+          outdoor sanctuaries — one garden at a time.</p>
+        <div class="hero-buttons">
+          <a href="index.html#contact" class="btn-primary"><i
+              class="fa-solid fa-leaf"></i> Get a Free Quote</a>
+          <a href="index.html#portfolio" class="btn-secondary">View Our Work →</a>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-leaf-wrap"><div
+            class="scroll-leaf-inner"></div></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- QUICK SERVICES -->
+    <div id="quick-services">
+      <div class="quick-cards-grid">
+        <div class="qcard reveal delay-1">
+          <div class="qcard-icon"><img src="images/service1.jpg"
+              alt="Garden Design" loading="lazy"></div>
+          <h4>Garden Design</h4>
+          <p>Full-concept landscape architecture tailored to your vision.</p>
+        </div>
+        <div class="qcard reveal delay-2">
+          <div class="qcard-icon"><img src="images/planting.jpg" alt="Planting"
+              loading="lazy"></div>
+          <h4>Planting</h4>
+          <p>Expert plant selection and seasonal planting services.</p>
+        </div>
+        <div class="qcard reveal delay-3">
+          <div class="qcard-icon"><img src="images/service4.jpg"
+              alt="Maintenance" loading="lazy"></div>
+          <h4>Maintenance</h4>
+          <p>Regular upkeep to keep your garden thriving year-round.</p>
+        </div>
+        <div class="qcard reveal delay-4">
+          <div class="qcard-icon"><img src="images/service5.png"
+              alt="Irrigation" loading="lazy"></div>
+          <h4>Irrigation</h4>
+          <p>Smart watering systems installed and calibrated for efficiency.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEFORE / AFTER -->
+    <section id="before-after">
+      <div class="section-inner">
+        <div class="ba-wrapper">
+          <div class="ba-text reveal-left">
+            <span class="tag">Transformation</span>
+            <h2 class="section-title">See the Difference We Make</h2>
+            <div class="divider"></div>
+            <p>From neglected yards to breathtaking gardens — our team has
+              transformed over 500 outdoor spaces across Nepal. Every project
+              tells a story of growth, care, and craft.</p>
+            <div class="ba-features">
+              <div class="ba-feature"><div
+                  class="ba-feature-dot"></div><span>Complete redesign from
+                  ground up</span></div>
+              <div class="ba-feature"><div
+                  class="ba-feature-dot"></div><span>Native & drought-resistant
+                  planting</span></div>
+              <div class="ba-feature"><div
+                  class="ba-feature-dot"></div><span>Smart irrigation
+                  integrated</span></div>
+              <div class="ba-feature"><div
+                  class="ba-feature-dot"></div><span>Delivered in under 3
+                  weeks</span></div>
+            </div>
+            <a href="index.html#portfolio" class="btn-primary"
+              style="display:inline-flex">View All Projects →</a>
+          </div>
+          <div class="reveal-right">
+            <div class="ba-slider-wrap" id="ba-slider">
+              <div class="ba-before"></div>
+              <div class="ba-after" id="ba-after"></div>
+              <div class="ba-divider-line" id="ba-divider">
+                <div class="ba-handle" id="ba-handle">⇔</div>
+              </div>
+              <span class="ba-label after">Before</span>
+              <span class="ba-label before">After</span>
+              <span class="ba-drag-hint">← Drag to compare →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-photos reveal-left">
+            <div class="ap-main">
+              <div class="ap-main-inner">
+                <span
+                  class="ap-main-text">"Every garden is a living work of art."</span>
+              </div>
+            </div>
+            <div class="ap-float">
+              <div class="ap-float-inner">
+                <p
+                  style="font-size:13px;color:var(--slate);font-family:'DM Sans',sans-serif;padding:0 16px">Our
+                  passionate team at work</p>
+              </div>
+            </div>
+            <div class="ap-badge">
+              <span class="ap-badge-num">500+</span>
+              Gardens Built
+            </div>
+          </div>
+          <div class="about-text reveal-right">
+            <span class="tag">Our Story</span>
+            <h2 class="section-title">Passionate People, Growing Beautiful
+              Things</h2>
+            <div class="divider"></div>
+            <p>What started as a small passion project in Bhaktapur has grown
+              into Nepal's most trusted full-service landscaping studio. We
+              believe every outdoor space holds untapped potential — and it is
+              our mission to unlock it.</p>
+            <p>Our team of certified horticulturists, landscape designers, and
+              skilled craftspeople bring skill, creativity, and genuine love for
+              the earth to every project we undertake.</p>
+            <div class="about-stats">
+              <div class="stat"><span class="stat-num">10+</span><span
+                  class="stat-label">Years Experience</span></div>
+              <div class="stat"><span class="stat-num">500+</span><span
+                  class="stat-label">Projects Done</span></div>
+              <div class="stat"><span class="stat-num">98%</span><span
+                  class="stat-label">Happy Clients</span></div>
+            </div>
+            <a href="index.html#contact" class="btn-primary"
+              style="display:inline-flex">Work With Us →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why">
+      <div class="why-header reveal">
+        <span class="tag">Why GreenScape</span>
+        <h2 class="section-title">Built on Trust, Grown with Passion</h2>
+        <p class="section-sub">Every garden is unique — so is our approach. Here
+          is what sets us apart from the rest.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal-scale delay-1">
+          <span class="why-card-num">01</span>
+          <span class="why-icon"><img src="images/sq1.jpg" alt="Skilled Team"
+              loading="lazy"></span>
+          <h3>Skilled Team</h3>
+          <p>Our certified horticulturists and landscape designers bring
+            world-class expertise to every project.</p>
+        </div>
+        <div class="why-card reveal-scale delay-2">
+          <span class="why-card-num">02</span>
+          <span class="why-icon"><img src="images/sq2.jpg"
+              alt="Transparent Pricing" loading="lazy"></span>
+          <h3>Transparent Pricing</h3>
+          <p>Detailed quotes with zero hidden fees. You always know exactly what
+            you are paying for.</p>
+        </div>
+        <div class="why-card reveal-scale delay-3">
+          <span class="why-card-num">03</span>
+          <span class="why-icon"><img src="images/sq3.jpg" alt="Custom Designs"
+              loading="lazy"></span>
+          <h3>Custom Designs</h3>
+          <p>No two gardens are the same. Every design is tailored to your
+            space, lifestyle, and budget.</p>
+        </div>
+        <div class="why-card reveal-scale delay-4">
+          <span class="why-card-num">04</span>
+          <span class="why-icon"><img src="images/sq4.jpg"
+              alt="On-Time Delivery" loading="lazy"></span>
+          <h3>On-Time Delivery</h3>
+          <p>We honour deadlines. Your project will be completed when we say it
+            will — no exceptions.</p>
+        </div>
+      </div>
+    </section>
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-inner">
+        <div class="services-header">
+          <div class="reveal-left">
+            <span class="tag">What We Offer</span>
+            <h2 class="section-title">Our Services</h2>
+          </div>
+          <a href="index.html#contact" class="btn-primary reveal-right"
+            style="display:inline-flex;text-decoration:none">Get a Quote →</a>
+        </div>
+        <div class="services-grid">
+          <div class="srv-card reveal delay-1">
+            <div class="srv-img s1"><img src="images/service1.jpg"
+                alt="Garden Design" class="srv-img-inner" loading="lazy"></div>
+            <div class="srv-learn">Learn More →</div>
+            <div class="srv-body">
+              <h3>Garden Design & Landscaping</h3>
+              <p>Full concept-to-completion landscape architecture. We design,
+                plan, and build your dream garden from scratch.</p>
+              <span class="srv-tag">Most Popular</span>
+            </div>
+          </div>
+          <div class="srv-card reveal delay-2">
+            <div class="srv-img s2"><img src="images/service2.jpg"
+                alt="Lawn Installation" class="srv-img-inner"
+                loading="lazy"></div>
+            <div class="srv-learn">Learn More →</div>
+            <div class="srv-body">
+              <h3>Lawn Installation</h3>
+              <p>Sodding, seeding, and complete lawn preparation. Thick, lush
+                green lawns that stay healthy all year.</p>
+              <span class="srv-tag">Quick Turnaround</span>
+            </div>
+          </div>
+          <div class="srv-card reveal delay-3">
+            <div class="srv-img s3"><img src="images/service3.webp"
+                alt="Plant Selection" class="srv-img-inner"
+                loading="lazy"></div>
+            <div class="srv-learn">Learn More →</div>
+            <div class="srv-body">
+              <h3>Plant Selection & Planting</h3>
+              <p>Expert curation of plants suited to your climate, soil, and
+                aesthetic preferences for lasting beauty.</p>
+              <span class="srv-tag">Expert Curated</span>
+            </div>
+          </div>
+          <div class="srv-card reveal delay-1">
+            <div class="srv-img s4"><img src="images/service4.jpg"
+                alt="Event Decor" class="srv-img-inner" loading="lazy"></div>
+            <div class="srv-learn">Learn More →</div>
+            <div class="srv-body">
+              <h3>Event & Wedding Decor</h3>
+              <p>Breathtaking floral garden arrangements for weddings,
+                receptions, and corporate events of any scale.</p>
+              <span class="srv-tag">Special Occasions</span>
+            </div>
+          </div>
+          <div class="srv-card reveal delay-2">
+            <div class="srv-img s5"><img src="images/service5.png"
+                alt="Maintenance" class="srv-img-inner" loading="lazy"></div>
+            <div class="srv-learn">Learn More →</div>
+            <div class="srv-body">
+              <h3>Routine Maintenance</h3>
+              <p>Weekly, fortnightly, and monthly maintenance plans. Mowing,
+                pruning, fertilising, and full garden care.</p>
+              <span class="srv-tag">Ongoing Plans</span>
+            </div>
+          </div>
+          <div class="srv-card reveal delay-3">
+            <div class="srv-img s6"><img src="images/service6.jpg"
+                alt="Irrigation" class="srv-img-inner" loading="lazy"></div>
+            <div class="srv-learn">Learn More →</div>
+            <div class="srv-body">
+              <h3>Irrigation & Sprinkler Setup</h3>
+              <p>Smart, water-efficient irrigation systems installed,
+                calibrated, and maintained for optimal garden health.</p>
+              <span class="srv-tag">Smart Tech</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="new-arrival">
+
+      <div class="section-inner">
+        <div class="services-header">
+          <div class="reveal-left">
+            <span class="tag">Just In</span>
+            <h2 class="section-title">New Arrivals</h2>
+          </div>
+          <a href="arrival.html" class="btn-primary reveal-right"
+            style="display:inline-flex;text-decoration:none">View all →</a>
+        </div>
+        <div class="carousel">
+          <button class="carousel-btn prev-btn" id="prevBtn">‹</button>
+          <div class="carousel-track" id="carouselTrack">
+            <div class="product-card">
+              <img src="images/garden.jpg" alt="Product 1">
+              <h3>Product 1</h3>
+              <p>Description 1</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new2.jpg" alt="Product 2">
+              <h3>Product 2</h3>
+              <p>Description 2</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new3.jpg" alt="Product 3">
+              <h3>Product 3</h3>
+              <p>Description 3</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new4.jpg" alt="Product 4">
+              <h3>Product 4</h3>
+              <p>Description 4</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new5.jpg" alt="Product 5">
+              <h3>Product 5</h3>
+              <p>Description 5</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new6.jpg" alt="Product 6">
+              <h3>Product 6</h3>
+              <p>Description 6</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new7.jpg" alt="Product 7">
+              <h3>Product 7</h3>
+              <p>Description 7</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new8.jpg" alt="Product 8">
+              <h3>Product 8</h3>
+              <p>Description 8</p>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="product-card">
+              <img src="images/new1.jpg" alt="Product 1">
+              <h3>Product 1</h3>
+              <p>Description 1</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new2.jpg" alt="Product 2">
+              <h3>Product 2</h3>
+              <p>Description 2</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new3.jpg" alt="Product 3">
+              <h3>Product 3</h3>
+              <p>Description 3</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new4.jpg" alt="Product 4">
+              <h3>Product 4</h3>
+              <p>Description 4</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new5.jpg" alt="Product 5">
+              <h3>Product 5</h3>
+              <p>Description 5</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new6.jpg" alt="Product 6">
+              <h3>Product 6</h3>
+              <p>Description 6</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new7.jpg" alt="Product 7">
+              <h3>Product 7</h3>
+              <p>Description 7</p>
+            </div>
+            <div class="product-card">
+              <img src="images/new8.jpg" alt="Product 8">
+              <h3>Product 8</h3>
+              <p>Description 8</p>
+            </div>
+          </div>
+          <button class="carousel-btn next-btn" id="nextBtn">›</button>
+        </div>
+      </div>
+      <!-- PORTFOLIO -->
+      <section id="portfolio">
+        <div class="section-inner">
+          <div class="portfolio-header">
+            <div class="reveal-left">
+              <span class="tag">Our Work</span>
+              <h2 class="section-title">Project Gallery</h2>
+            </div>
+            <div class="filter-tabs reveal-right" id="filter-tabs">
+              <button class="filter-tab active" data-filter="all">All</button>
+              <button class="filter-tab" data-filter="modern">Modern</button>
+              <button class="filter-tab"
+                data-filter="tropical">Tropical</button>
+              <button class="filter-tab" data-filter="lawn">Lawns</button>
+              <button class="filter-tab" data-filter="patio">Patios</button>
+              <a href="portfolio.html" class="btn-primary reveal-right"
+                style="display:inline-flex;font-size:13px;padding:12px 22px;text-decoration:none">Gallery
+                →</a>
+
+            </div>
+          </div>
+          <div class="masonry-grid" id="masonry">
+            <div class="masonry-item reveal" data-cat="modern">
+              <div class="masonry-fake-img"
+                style="height:200px;background:linear-gradient(145deg,#c8e6b0,#4A7C40)"><img
+                  src="images/modern1.jpg" alt="Woodland Retreat"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div
+                  class="masonry-info"><h4>Woodland Retreat</h4><span>Modern ·
+                    Full Landscaping · $$$</span></div></div>
+            </div>
+            <div class="masonry-item reveal" data-cat="tropical">
+              <div class="masonry-fake-img"
+                style="height:140px;background:linear-gradient(145deg,#d4edda,#2D5A27)"><img
+                  src="images/tropical.jpeg" alt="Tropical Paradise"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div
+                  class="masonry-info"><h4>Tropical Paradise</h4><span>Tropical
+                    · Planting · $$</span></div></div>
+            </div>
+            <div class="masonry-item reveal" data-cat="patio">
+              <div class="masonry-fake-img"
+                style="height:170px;background:linear-gradient(145deg,#fce4b0,#C98B1A)"><img
+                  src="images/patio1.jpg" alt="Sunstone Patio"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div
+                  class="masonry-info"><h4>Sunstone Patio</h4><span>Patio ·
+                    Stone Work · $$$</span></div></div>
+            </div>
+            <div class="masonry-item reveal" data-cat="lawn">
+              <div class="masonry-fake-img"
+                style="height:130px;background:linear-gradient(145deg,#7BAE6A,#1E3D1A)"><img
+                  src="images/lawns.jpg" alt="Evergreen Lawn"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div
+                  class="masonry-info"><h4>Evergreen Lawn</h4><span>Lawn ·
+                    Sodding · $$</span></div></div>
+            </div>
+            <div class="masonry-item reveal" data-cat="tropical">
+              <div class="masonry-fake-img"
+                style="height:220px;background:linear-gradient(145deg,#c8f0b0,#5aaa40)"><img
+                  src="images/topical1.jpeg" alt="Bali Garden"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div class="masonry-info"><h4>Bali
+                    Garden</h4><span>Tropical · Design · $$$</span></div></div>
+            </div>
+            <div class="masonry-item reveal" data-cat="modern">
+              <div class="masonry-fake-img"
+                style="height:150px;background:linear-gradient(145deg,#dce8f0,#5a8aad)"><img
+                  src="images/modern2.webp" alt="Water Feature"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div class="masonry-info"><h4>Water
+                    Feature</h4><span>Modern · Water · $$$$</span></div></div>
+            </div>
+            <div class="masonry-item reveal" data-cat="patio">
+              <div class="masonry-fake-img"
+                style="height:190px;background:linear-gradient(145deg,#f0e0c0,#b8884a)"><img
+                  src="images/patio2.jpg" alt="Courtyard Design"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div
+                  class="masonry-info"><h4>Courtyard Design</h4><span>Patio ·
+                    Hardscape · $$$</span></div></div>
+            </div>
+            <div class="masonry-item reveal" data-cat="lawn">
+              <div class="masonry-fake-img"
+                style="height:130px;background:linear-gradient(145deg,#a8d890,#3a7a2a)"><img
+                  src="images/lawns1.jpg" alt="Meadow Lawn"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div class="masonry-info"><h4>Meadow
+                    Lawn</h4><span>Lawn · Wildflower · $$</span></div></div>
+            </div>
+            <div class="masonry-item reveal" data-cat="modern">
+              <div class="masonry-fake-img"
+                style="height:160px;background:linear-gradient(145deg,#e0d8f0,#7070b8)"><img
+                  src="images/moder3.webp" alt="Evening Garden"
+                  loading="lazy"></div>
+              <div class="masonry-overlay"><div class="masonry-info"><h4>Evening
+                    Garden</h4><span>Modern · Lighting · $$$$</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section id="testimonials">
+        <div class="testimonials-header reveal">
+          <span class="tag">Client Love</span>
+          <h2 class="section-title">What Our Clients Say</h2>
+        </div>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carousel">
+            <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+                class="rev-text">"They transformed my backyard into a resort. I could not be happier — the team exceeded every single expectation we had."</p><div
+                class="rev-person"><div class="rev-avatar">RK</div><div><div
+                    class="rev-name">Riya Kapoor</div><div
+                    class="rev-location">📍 Kathmandu</div></div></div></div>
+            <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+                class="rev-text">"Professional, punctual, and incredibly creative. Our garden is now the envy of the entire neighbourhood — worth every penny."</p><div
+                class="rev-person"><div class="rev-avatar">SP</div><div><div
+                    class="rev-name">Santosh Pradhan</div><div
+                    class="rev-location">📍 Lalitpur</div></div></div></div>
+            <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+                class="rev-text">"The irrigation system works flawlessly. My lawn stays lush green all year round with zero effort from me. Pure magic!"</p><div
+                class="rev-person"><div class="rev-avatar">AM</div><div><div
+                    class="rev-name">Anita Maharjan</div><div
+                    class="rev-location">📍 Bhaktapur</div></div></div></div>
+            <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+                class="rev-text">"Fantastic wedding garden decoration. Our guests kept complimenting the floral arrangements all evening. Truly breathtaking."</p><div
+                class="rev-person"><div class="rev-avatar">BT</div><div><div
+                    class="rev-name">Bikash Tamang</div><div
+                    class="rev-location">📍 Pokhara</div></div></div></div>
+            <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+                class="rev-text">"GreenScape redesigned our office courtyard. Employees love it and it has genuinely improved morale. Highly recommend."</p><div
+                class="rev-person"><div class="rev-avatar">NR</div><div><div
+                    class="rev-name">Nisha Rana</div><div
+                    class="rev-location">📍 Kathmandu</div></div></div></div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn"
+            onclick="moveTestimonialCarousel(-1)">←</button>
+          <div class="carousel-dots" id="carousel-dots"></div>
+          <button class="carousel-btn"
+            onclick="moveTestimonialCarousel(1)">→</button>
+        </div>
+      </section>
+
+      <!-- BLOG -->
+      <section id="blog">
+        <div class="section-inner">
+          <div
+            style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px">
+            <div class="reveal-left">
+              <span class="tag">The Garden Guide</span>
+              <h2 class="section-title">Latest Articles</h2>
+            </div>
+            <a href="#" class="btn-primary reveal-right"
+              style="display:inline-flex;font-size:13px;padding:12px 22px;text-decoration:none">All
+              Articles →</a>
+          </div>
+          <div class="blog-scroll-wrap">
+            <div class="blog-scroll" id="blogScroll">
+              <div class="blog-card reveal delay-1">
+                <div class="blog-thumb bt1"><div class="blog-thumb-inner"><img
+                      src="images/planting.jpg"
+                      alt="Drought-Resistant Plants"></div></div>
+                <div class="blog-body">
+                  <div class="blog-cat">Planting Tips</div>
+                  <h3>Top 5 Drought-Resistant Plants for Nepal's Climate</h3>
+                  <p>Beautiful plants that thrive with minimal water, perfect
+                    for Kathmandu Valley gardens.</p>
+                  <div class="blog-meta"><span class="blog-date">12 April
+                      2025</span><span class="blog-read">5 min read</span></div>
+                </div>
+              </div>
+              <div class="blog-card reveal delay-2">
+                <div class="blog-thumb bt2"><div class="blog-thumb-inner"><img
+                      src="images/seasonal (1).jpg"
+                      alt="Monsoon Lawn Prep"></div></div>
+                <div class="blog-body">
+                  <div class="blog-cat">Seasonal Care</div>
+                  <h3>How to Prep Your Lawn for the Monsoon Season</h3>
+                  <p>Essential steps to protect and prepare your garden before
+                    the rains arrive in June.</p>
+                  <div class="blog-meta"><span class="blog-date">3 March
+                      2025</span><span class="blog-read">7 min read</span></div>
+                </div>
+              </div>
+              <div class="blog-card reveal delay-3">
+                <div class="blog-thumb bt3"><div class="blog-thumb-inner"><img
+                      src="images/irregation (1).webp"
+                      alt="Smart Watering Systems"></div></div>
+                <div class="blog-body">
+                  <div class="blog-cat">Irrigation</div>
+                  <h3>Smart Watering: How to Save 40% on Water Bills</h3>
+                  <p>Modern drip irrigation and smart timers that pay for
+                    themselves within a season.</p>
+                  <div class="blog-meta"><span class="blog-date">18 Feb
+                      2025</span><span class="blog-read">6 min read</span></div>
+                </div>
+              </div>
+              <div class="blog-card reveal delay-4">
+                <div class="blog-thumb bt4"><div class="blog-thumb-inner"><img
+                      src="images/garden.jpg"
+                      alt="Cottage Garden Design"></div></div>
+                <div class="blog-body">
+                  <div class="blog-cat">Garden Design</div>
+                  <h3>Cottage Garden Style: A Complete Beginner's Guide</h3>
+                  <p>Create an effortlessly romantic cottage-style garden with
+                    our step-by-step guide.</p>
+                  <div class="blog-meta"><span class="blog-date">7 Jan
+                      2025</span><span class="blog-read">9 min read</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="faq-grid" style="max-width:1160px;margin:0 auto">
+          <div>
+            <div class="reveal">
+              <span class="tag">FAQ</span>
+              <h2 class="section-title">Got Questions?</h2>
+              <div class="divider"></div>
+            </div>
+            <div class="faq-list">
+              <div class="faq-item reveal delay-1" onclick="toggleFaq(this)">
+                <div class="faq-q"><span class="faq-q-text">How long does a
+                    garden project take?</span><div
+                    class="faq-icon">+</div></div>
+                <div class="faq-a"><p>Most residential garden projects take
+                    between 3 to 14 days depending on scope. We will give you a
+                    precise, written timeline during your free consultation
+                    before any work begins. Larger commercial projects are
+                    scoped individually.</p></div>
+              </div>
+              <div class="faq-item reveal delay-2" onclick="toggleFaq(this)">
+                <div class="faq-q"><span class="faq-q-text">Do you provide
+                    weekly maintenance plans?</span><div
+                    class="faq-icon">+</div></div>
+                <div class="faq-a"><p>Yes! We offer flexible weekly,
+                    fortnightly, and monthly maintenance plans. All plans
+                    include mowing, edging, pruning, and seasonal fertilisation.
+                    Plans can be customised and paused anytime.</p></div>
+              </div>
+              <div class="faq-item reveal delay-3" onclick="toggleFaq(this)">
+                <div class="faq-q"><span class="faq-q-text">Are your quotes
+                    really free?</span><div class="faq-icon">+</div></div>
+                <div class="faq-a"><p>Absolutely. All initial consultations and
+                    site visits are completely free with no obligation. We visit
+                    your space and provide a fully itemised quote within 48
+                    hours of the visit.</p></div>
+              </div>
+              <div class="faq-item reveal delay-4" onclick="toggleFaq(this)">
+                <div class="faq-q"><span class="faq-q-text">Do you work on
+                    commercial properties?</span><div
+                    class="faq-icon">+</div></div>
+                <div class="faq-a"><p>Yes — we handle both residential and
+                    commercial projects including office parks, hotels, wedding
+                    venues, restaurants, and corporate campuses. Our commercial
+                    team operates 6 days a week.</p></div>
+              </div>
+              <div class="faq-item reveal delay-5" onclick="toggleFaq(this)">
+                <div class="faq-q"><span class="faq-q-text">What areas of Nepal
+                    do you serve?</span><div class="faq-icon">+</div></div>
+                <div class="faq-a"><p>We primarily serve the Kathmandu Valley —
+                    Kathmandu, Lalitpur, Bhaktapur, and Madhyapur Thimi. We also
+                    take select projects in Pokhara and Chitwan. Contact us for
+                    availability outside these areas.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="faq-aside reveal-right">
+            <div class="faq-aside-box">
+              <h3>Still have questions?</h3>
+              <p>Our team is ready to answer anything — from plant selection
+                advice to full project quotes. Reach out today and we will
+                respond within 2 hours.</p>
+              <a href="#contact" class="faq-aside-btn"><i
+                  class="fa-solid fa-phone"></i> Talk to an Expert</a>
+            </div>
+            <div class="faq-aside-box"
+              style="background:var(--gold-pale);border:1px solid rgba(200,137,26,0.15)">
+              <h3 style="color:var(--green-dark)">Free Garden Consultation</h3>
+              <p style="color:var(--slate)">Book a 30-minute free site visit and
+                let our horticulturist walk through your space and outline the
+                possibilities.</p>
+              <a href="#contact" class="faq-aside-btn"
+                style="background:var(--green-mid)"><i
+                  class="fa-solid fa-calendar"></i> Book Free Visit →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="contact-grid">
+          <div class="reveal-left">
+            <span class="tag">Get in Touch</span>
+            <h2>Let's <em>Dig In.</em></h2>
+            <p>Ready to transform your outdoor space? Reach out for a free
+              consultation and we will help you design the garden you have
+              always dreamed of.</p>
+            <div class="contact-items">
+              <div class="contact-item">
+                <div class="contact-icon"><i
+                    class="fa-solid fa-phone"></i></div>
+                <div><div class="contact-item-label">Phone</div><a
+                    href="tel:+977 9851-206373" class="contact-item-value">+977
+                    9851-206373 </a></div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon"><i
+                    class="fa-solid fa-envelope"></i></div>
+                <div><div class="contact-item-label">Email</div><a
+                    href="mailto:hello@sewasubidagardening.com.np"
+                    class="contact-item-value">hello@sewasubidagardening.com.np</a></div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon"><i
+                    class="fa-solid fa-location-dot"></i></div>
+                <div><div class="contact-item-label">Location</div><div
+                    class="contact-item-value">Madhyapur Thimi, Bagmati
+                    Province</div></div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon"><i
+                    class="fa-solid fa-clock"></i></div>
+                <div><div class="contact-item-label">Working Hours</div><div
+                    class="contact-item-value">Sun – Fri: 7:00 AM – 6:00
+                    PM</div></div>
+              </div>
+            </div>
+            <div class="map-box">
+              <div id="map"></div>
+            </div>
+          </div>
+          <div class="reveal-right">
+            <div class="form-card">
+              <div class="form-inner" id="form-inner">
+                <h3>Request a Free Quote</h3>
+                <div class="form-row">
+                  <div class="form-group"><label>Full Name</label><input
+                      type="text" placeholder="e.g. Prabin Shrestha"
+                      id="f-name"></div>
+                  <div class="form-group"><label>Phone Number</label><input
+                      type="text" placeholder="+977 98XX-XXXXXX"
+                      id="f-phone"></div>
+                </div>
+                <div class="form-group"><label>Email Address</label><input
+                    type="email" placeholder="your@email.com"
+                    id="f-email"></div>
+                <div class="form-group">
+                  <label>Service Needed</label>
+                  <select id="f-service">
+                    <option value>Select a service...</option>
+                    <option>Garden Design & Landscaping</option>
+                    <option>Lawn Installation</option>
+                    <option>Plant Selection & Planting</option>
+                    <option>Event / Wedding Decor</option>
+                    <option>Routine Maintenance</option>
+                    <option>Irrigation & Sprinkler Setup</option>
+                    <option>Other / Not sure yet</option>
+                  </select>
+                </div>
+                <div class="form-group"><label>Message</label><textarea
+                    placeholder="Tell us about your space and what you are hoping to achieve..."
+                    id="f-message"></textarea></div>
+                <button class="form-submit" id="submit-btn"
+                  onclick="submitForm()"><i class="fa-solid fa-leaf"></i>
+                  Request a Free Quote</button>
+              </div>
+              <div class="form-success" id="form-success">
+                <span class="form-success-icon"><i
+                    class="fa-solid fa-flower"></i></span>
+                <h4>Thank You!</h4>
+                <p>We have received your request and will get back to you within
+                  2 hours. A lush garden awaits!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-inner">
+          <div class="footer-top">
+            <div class="footer-brand">
+              <span class="footer-brand-name"
+                style="font-family:'Playfair Display',serif;font-size:22px;color:var(--white);display:block;margin-bottom:12px"><i
+                  class="fa-solid fa-leaf"></i> Sewa Subida Gardening</span>
+              <p>Nepal's most trusted garden design and landscaping studio.
+                Transforming outdoor spaces since 2014.</p>
+              <div class="footer-socials">
+                <a class="social-btn" href="#" title="Facebook"><i
+                    class="fab fa-facebook"></i></a>
+                <a class="social-btn" href="#" title="Instagram"><i
+                    class="fab fa-instagram"></i></a>
+                <a class="social-btn" href="#" title="WhatsApp"><i
+                    class="fab fa-whatsapp"></i></a>
+                <a class="social-btn" href="#" title="YouTube"><i
+                    class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="#services">Garden Design</a></li>
+                <li><a href="#services">Lawn Installation</a></li>
+                <li><a href="#services">Plant & Planting</a></li>
+                <li><a href="#services">Event Decor</a></li>
+                <li><a href="#services">Maintenance</a></li>
+                <li><a href="#services">Irrigation</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Contact</h4>
+              <ul>
+                <li><a href="tel:+9779851206373"><i
+                      class="fa-solid fa-phone"></i> +977 9851-206373</a></li>
+                <li><a href="mailto:hello@sewasubidagardening.com.np"><i
+                      class="fa-solid fa-envelope"></i>
+                    hello@sewasubidagardening.com.np</a></li>
+                <li><a href="#contact"><i class="fa-solid fa-location-dot"></i>
+                    Madhyapur Thimi</a></li>
+                <li><a href="#contact"><i
+                      class="fa-solid fa-map-marker-alt"></i> Bagmati Province,
+                    Nepal</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© 2025 GreenScape. All rights reserved. Designed with <i
+                class="fa-solid fa-leaf"></i> in Nepal.</p>
+            <p>Privacy Policy · Terms of Service</p>
+          </div>
+        </div>
+      </footer>
+
+      <!-- WHATSAPP FLOAT -->
+      <div id="wa-float">
+        <div id="wa-btn" title="Chat on WhatsApp"><i
+            class="fa-brands fa-whatsapp"></i></div>
+        <div id="wa-bubble">Hi! Need a quick quote? Chat with us now!
+          <span>Usually replies in minutes</span></div>
+      </div>
+
+      <script>
+// ===== LOADER =====
+window.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{ document.getElementById('loader').classList.add('hidden') },2000)
+})
+
+// ===== CURSOR =====
+const dot=document.getElementById('cursor-dot')
+const ring=document.getElementById('cursor-ring')
+let mx=0,my=0,rx=0,ry=0
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px' })
+;(function animRing(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12
+  ring.style.left=rx+'px'; ring.style.top=ry+'px'
+  requestAnimationFrame(animRing)
+})()
+document.querySelectorAll('a,button,[onclick],[class*="card"],[class*="item"],[class*="tab"],[class*="btn"]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'))
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'))
+})
+
+// ===== HEADER SCROLL =====
+const header=document.getElementById('header')
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>60){ header.classList.add('scrolled') }
+  else{ header.classList.remove('scrolled') }
+})
+
+// ===== MOBILE NAV =====
+function toggleNav(){
+  document.getElementById('main-nav').classList.toggle('open')
+}
+
+// ===== SCROLL REVEAL =====
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target) }
+  })
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'})
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>observer.observe(el))
+
+// ===== BEFORE / AFTER SLIDER =====
+const slider=document.getElementById('ba-slider')
+const after=document.getElementById('ba-after')
+const divider=document.getElementById('ba-divider')
+let dragging=false, baPos=50
+function setBa(pct){
+  baPos=Math.max(10,Math.min(90,pct))
+  after.style.clipPath=`inset(0 ${100-baPos}% 0 0)`
+  divider.style.left=baPos+'%'
+}
+setBa(50)
+slider.addEventListener('mousedown',e=>{ dragging=true; e.preventDefault() })
+window.addEventListener('mouseup',()=>dragging=false)
+window.addEventListener('mousemove',e=>{
+  if(!dragging)return
+  const r=slider.getBoundingClientRect()
+  setBa(((e.clientX-r.left)/r.width)*100)
+})
+slider.addEventListener('touchstart',e=>dragging=true)
+window.addEventListener('touchend',()=>dragging=false)
+window.addEventListener('touchmove',e=>{
+  if(!dragging)return
+  const r=slider.getBoundingClientRect()
+  setBa(((e.touches[0].clientX-r.left)/r.width)*100)
+})
+
+// ===== PORTFOLIO FILTER =====
+document.getElementById('filter-tabs').addEventListener('click',e=>{
+  const btn=e.target.closest('.filter-tab')
+  if(!btn)return
+  document.querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  const f=btn.dataset.filter
+  document.querySelectorAll('.masonry-item').forEach(item=>{
+    if(f==='all'||item.dataset.cat===f){
+      item.style.display=''; item.style.opacity='1'; item.style.transform=''
+    } else {
+      item.style.opacity='0'; item.style.transform='scale(0.9)'
+      setTimeout(()=>{ if(btn.classList.contains('active')||document.querySelector('.filter-tab.active').dataset.filter!==f) item.style.display='none' },300)
+    }
+  })
+})
+
+// ===== TESTIMONIAL CAROUSEL =====
+const testimonialTrack=document.getElementById('carousel')
+const testimonialCards=testimonialTrack.querySelectorAll('.rev-card')
+const testimonialDotsWrap=document.getElementById('carousel-dots')
+let testimonialCurrent=0
+testimonialCards.forEach((_,i)=>{
+  const d=document.createElement('div')
+  d.className='carousel-dot'+(i===0?' active':'')
+  d.onclick=()=>goTestimonialCarousel(i)
+  testimonialDotsWrap.appendChild(d)
+})
+function goTestimonialCarousel(i){
+  testimonialCurrent=((i%testimonialCards.length)+testimonialCards.length)%testimonialCards.length
+  testimonialTrack.style.transform=`translateX(calc(-${testimonialCurrent}*(320px + 20px)))`
+  document.querySelectorAll('.carousel-dot').forEach((d,idx)=>d.classList.toggle('active',idx===testimonialCurrent))
+}
+function moveTestimonialCarousel(dir){ goTestimonialCarousel(testimonialCurrent+dir) }
+let testimonialAutoplay=setInterval(()=>moveTestimonialCarousel(1),4500)
+let testimonialTouchStartX = 0
+let testimonialTouchEndX = 0
+
+testimonialTrack.addEventListener('mouseenter',()=>clearInterval(testimonialAutoplay))
+testimonialTrack.addEventListener('mouseleave',()=>{ testimonialAutoplay=setInterval(()=>moveTestimonialCarousel(1),4500) })
+
+testimonialTrack.addEventListener('touchstart', e => {
+  testimonialTouchStartX = e.touches[0].clientX
+  testimonialTouchEndX = testimonialTouchStartX
+  clearInterval(testimonialAutoplay)
+})
+testimonialTrack.addEventListener('touchmove', e => {
+  testimonialTouchEndX = e.touches[0].clientX
+})
+testimonialTrack.addEventListener('touchend', () => {
+  const delta = testimonialTouchStartX - testimonialTouchEndX
+  if (Math.abs(delta) > 40) {
+    moveTestimonialCarousel(delta > 0 ? 1 : -1)
+  }
+  testimonialAutoplay = setInterval(()=>moveTestimonialCarousel(1),4500)
+})
+
+// ===== FAQ =====
+function toggleFaq(el){ el.classList.toggle('open') }
+
+// ===== FORM SUBMIT =====
+function submitForm(){
+  const btn=document.getElementById('submit-btn')
+  btn.textContent='Sending...'
+  btn.classList.add('loading')
+  setTimeout(()=>{
+    document.getElementById('form-inner').style.display='none'
+    document.getElementById('form-success').style.display='block'
+  },1800)
+}
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=document.querySelector(a.getAttribute('href'))
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}) }
+  })
+})
+
+// ===== CAROUSEL MANUAL CONTROL =====
+const carouselTrack = document.getElementById('carouselTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let currentIndex = 0;
+const totalItems = 8; // Number of unique items
+const itemWidth = 270; // Width of each item including margin
+let autoSlideInterval;
+
+function moveCarousel(direction) {
+  if (direction === 'next') {
+    currentIndex = (currentIndex + 1) % totalItems;
+  } else {
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+  }
+  updateCarousel();
+}
+
+function updateCarousel() {
+  const translateX = -currentIndex * itemWidth;
+  carouselTrack.style.transform = `translateX(${translateX}px)`;
+}
+
+function startAutoSlide() {
+  autoSlideInterval = setInterval(() => {
+    moveCarousel('next');
+  }, 3000); // Slide every 3 seconds
+}
+
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+}
+
+prevBtn.addEventListener('click', () => {
+  stopAutoSlide();
+  moveCarousel('prev');
+  startAutoSlide();
+});
+
+nextBtn.addEventListener('click', () => {
+  stopAutoSlide();
+  moveCarousel('next');
+  startAutoSlide();
+});
+
+// Pause auto-slide on hover
+carouselTrack.addEventListener('mouseenter', stopAutoSlide);
+carouselTrack.addEventListener('mouseleave', startAutoSlide);
+
+// ===== BLOG SCROLL =====
+function scrollBlog(direction) {
+  const blogScroll = document.querySelector('.blog-scroll');
+  const scrollAmount = 320; // Approximate width of one blog card
+  blogScroll.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
+
+// ===== BLOG TOUCH SLIDER =====
+const blogScroll = document.getElementById('blogScroll');
+let blogTouchStartX = 0;
+let blogTouchEndX = 0;
+
+blogScroll.addEventListener('touchstart', e => {
+  blogTouchStartX = e.touches[0].clientX;
+  blogTouchEndX = blogTouchStartX;
+});
+
+blogScroll.addEventListener('touchmove', e => {
+  blogTouchEndX = e.touches[0].clientX;
+});
+
+blogScroll.addEventListener('touchend', () => {
+  const delta = blogTouchStartX - blogTouchEndX;
+  if (Math.abs(delta) > 50) {
+    scrollBlog(delta > 0 ? 1 : -1);
+  }
+});
+
+blogScroll.addEventListener('wheel', e => {
+  e.preventDefault();
+  const direction = e.deltaY > 0 ? 1 : -1;
+  scrollBlog(direction);
+});
+
+// Start auto-slide on load
+startAutoSlide();
+</script>
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+      <script>
+window.onload = function () {
+
+  const map = L.map('map').setView([27.6710, 85.4298], 13);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  L.marker([27.6710, 85.4298])
+    .addTo(map)
+    .bindPopup('Sewa Subida Gardening');
+
+};
+</script>
+    </body>
+  </html>

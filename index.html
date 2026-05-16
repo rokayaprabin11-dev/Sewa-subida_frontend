@@ -133,7 +133,7 @@ nav a:hover{color:var(--white)}
 .btn-primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
 .btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:400;text-decoration:none;border:1.5px solid rgba(255,255,255,0.35);cursor:none;transition:var(--transition);backdrop-filter:blur(4px)}
 .btn-secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.7);transform:translateY(-3px)}
-.scroll-indicator{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:2px;text-transform:uppercase;animation:fade-up 0.8s 1.8s ease backwards}
+.scroll-indicator{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:2px;text-transform:uppercase;animation:fade-up 0.8s 1.8s ease backwards;pointer-events:none}
 .scroll-leaf-wrap{width:28px;height:44px;border:1.5px solid rgba(255,255,255,0.2);border-radius:100px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px}
 .scroll-leaf-inner{width:4px;height:8px;background:var(--gold-light);border-radius:2px;animation:scroll-drop 1.8s ease-in-out infinite}
 @keyframes scroll-drop{0%{transform:translateY(0);opacity:1}80%{transform:translateY(16px);opacity:0}100%{transform:translateY(0);opacity:0}}
@@ -285,13 +285,13 @@ img.srv-img-inner{width:100%;height:100%;object-fit:cover}
 /* ========== BLOG ========== */
 #blog{background:var(--sand)}
 .blog-scroll-wrap{overflow:hidden;position:relative;margin:0 -40px;padding:0 40px}
-.blog-scroll{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px;scrollbar-width:none;-ms-overflow-style:none}
+.blog-scroll{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px;scrollbar-width:none;-ms-overflow-style:none;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .blog-scroll::-webkit-scrollbar{display:none}
-.blog-card{min-width:280px;background:var(--white);border-radius:var(--radius-xl);overflow:hidden;border:1px solid rgba(42,87,38,0.07);box-shadow:var(--shadow-sm);flex-shrink:0;cursor:none;transition:var(--transition)}
-.blog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
-.blog-thumb{height:160px;position:relative;overflow:hidden;border-radius:var(--radius-lg)}
+.blog-card{min-width:300px;background:var(--white);border-radius:var(--radius-xl);overflow:hidden;border:1px solid rgba(42,87,38,0.07);box-shadow:var(--shadow-sm);flex-shrink:0;cursor:none;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1),box-shadow 0.4s cubic-bezier(0.4,0,0.2,1);scroll-snap-align:start}
+.blog-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.blog-thumb{height:180px;position:relative;overflow:hidden;border-radius:var(--radius-lg)}
 .blog-card:hover .blog-thumb-inner{transform:scale(1.08)}
-.blog-thumb-inner{width:100%;height:100%;position:relative;overflow:hidden;border-radius:inherit}
+.blog-thumb-inner{width:100%;height:100%;position:relative;overflow:hidden;border-radius:inherit;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1)}
 .blog-thumb-inner img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
 .bt1{background:linear-gradient(135deg,#c8e6b0,#4A7C40)}
 .bt2{background:linear-gradient(135deg,#fce4b0,#C98B1A)}
@@ -418,27 +418,6 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
   width: 100%;
   margin: 20px 0;
   position: relative;
-}
-
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 20px;
-  color: var(--green-dark);
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s;
-}
-
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .prev-btn {
@@ -583,11 +562,6 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
               class="fa-solid fa-leaf"></i> Get a Free Quote</a>
           <a href="index.html#portfolio" class="btn-secondary">View Our Work →</a>
         </div>
-      </div>
-      <div class="scroll-indicator">
-        <div class="scroll-leaf-wrap"><div
-            class="scroll-leaf-inner"></div></div>
-        <span>Scroll</span>
       </div>
     </section>
 
@@ -1102,7 +1076,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
           </div>
           <div class="blog-scroll-wrap">
             <div class="blog-scroll" id="blogScroll">
-              <div class="blog-card reveal delay-1">
+              <div class="blog-card">
                 <div class="blog-thumb bt1"><div class="blog-thumb-inner"><img
                       src="images/planting.jpg"
                       alt="Drought-Resistant Plants"></div></div>
@@ -1115,7 +1089,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                       2025</span><span class="blog-read">5 min read</span></div>
                 </div>
               </div>
-              <div class="blog-card reveal delay-2">
+              <div class="blog-card">
                 <div class="blog-thumb bt2"><div class="blog-thumb-inner"><img
                       src="images/seasonal (1).jpg"
                       alt="Monsoon Lawn Prep"></div></div>
@@ -1128,7 +1102,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                       2025</span><span class="blog-read">7 min read</span></div>
                 </div>
               </div>
-              <div class="blog-card reveal delay-3">
+              <div class="blog-card">
                 <div class="blog-thumb bt3"><div class="blog-thumb-inner"><img
                       src="images/irregation (1).webp"
                       alt="Smart Watering Systems"></div></div>
@@ -1141,7 +1115,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                       2025</span><span class="blog-read">6 min read</span></div>
                 </div>
               </div>
-              <div class="blog-card reveal delay-4">
+              <div class="blog-card">
                 <div class="blog-thumb bt4"><div class="blog-thumb-inner"><img
                       src="images/garden.jpg"
                       alt="Cottage Garden Design"></div></div>
@@ -1600,41 +1574,57 @@ carouselTrack.addEventListener('mouseenter', stopAutoSlide);
 carouselTrack.addEventListener('mouseleave', startAutoSlide);
 
 // ===== BLOG SCROLL =====
+const blogScroll = document.getElementById('blogScroll');
+let blogAutoPlay;
+let blogIsScrolling = false;
+
 function scrollBlog(direction) {
-  const blogScroll = document.querySelector('.blog-scroll');
-  const scrollAmount = 320; // Approximate width of one blog card
-  blogScroll.scrollBy({
-    left: direction * scrollAmount,
-    behavior: 'smooth'
-  });
+  const cardWidth = blogScroll.querySelector('.blog-card').offsetWidth + 24;
+  blogScroll.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
 }
 
-// ===== BLOG TOUCH SLIDER =====
-const blogScroll = document.getElementById('blogScroll');
-let blogTouchStartX = 0;
-let blogTouchEndX = 0;
+function startBlogAutoPlay() {
+  blogAutoPlay = setInterval(() => {
+    const maxScroll = blogScroll.scrollWidth - blogScroll.clientWidth;
+    if (blogScroll.scrollLeft >= maxScroll - 10) {
+      blogScroll.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      scrollBlog(1);
+    }
+  }, 3500);
+}
 
+function stopBlogAutoPlay() {
+  clearInterval(blogAutoPlay);
+}
+
+startBlogAutoPlay();
+
+// Pause on hover
+blogScroll.addEventListener('mouseenter', stopBlogAutoPlay);
+blogScroll.addEventListener('mouseleave', startBlogAutoPlay);
+
+// Touch support
+let blogTouchStartX = 0;
 blogScroll.addEventListener('touchstart', e => {
   blogTouchStartX = e.touches[0].clientX;
-  blogTouchEndX = blogTouchStartX;
-});
+  stopBlogAutoPlay();
+}, { passive: true });
 
-blogScroll.addEventListener('touchmove', e => {
-  blogTouchEndX = e.touches[0].clientX;
-});
+blogScroll.addEventListener('touchend', e => {
+  const delta = blogTouchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(delta) > 40) scrollBlog(delta > 0 ? 1 : -1);
+  startBlogAutoPlay();
+}, { passive: true });
 
-blogScroll.addEventListener('touchend', () => {
-  const delta = blogTouchStartX - blogTouchEndX;
-  if (Math.abs(delta) > 50) {
-    scrollBlog(delta > 0 ? 1 : -1);
-  }
-});
-
+// Smooth wheel scroll
 blogScroll.addEventListener('wheel', e => {
   e.preventDefault();
-  const direction = e.deltaY > 0 ? 1 : -1;
-  scrollBlog(direction);
-});
+  stopBlogAutoPlay();
+  blogScroll.scrollBy({ left: e.deltaY * 2, behavior: 'smooth' });
+  clearTimeout(blogScroll._wheelTimer);
+  blogScroll._wheelTimer = setTimeout(startBlogAutoPlay, 1500);
+}, { passive: false });
 
 // Start auto-slide on load
 startAutoSlide();

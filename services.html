@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Services — GreenScape Garden Design & Landscaping</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services — GreenScape Garden Design & Landscaping</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
 /* ========== RESET & ROOT ========== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -345,618 +348,923 @@ footer{background:var(--green-dark);padding:0}
   .page-hero-stats{gap:20px}
 }
   </style>
-</head>
-<body>
+  </head>
+  <body>
 
-<!-- CUSTOM CURSOR -->
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-plant">
-    <div class="loader-stem"></div>
-    <div class="loader-leaf-l"></div>
-    <div class="loader-leaf-r"></div>
-    <div class="loader-bloom"></div>
-  </div>
-  <div class="loader-text">Our Services</div>
-</div>
-
-<!-- HEADER -->
-<header id="header">
-  <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="GreenScape" class="logo-icon" onerror="this.style='display:none'">
-    <span class="logo-name"><i class="fa-solid fa-leaf" style="font-size:16px;margin-right:4px"></i> GreenScape</span>
-  </a>
-  <nav id="main-nav">
-    <a href="index.html">Home</a>
-    <a href="index.html#about">About</a>
-    <a href="services.html" class="active">Services</a>
-    <a href="index.html#new-arrival">New Arrival</a>
-    <a href="index.html#portfolio">Portfolio</a>
-    <a href="index.html#blog">Blog</a>
-    <a href="index.html#contact">Contact</a>
-    <a href="index.html#contact" class="nav-cta">Book Consultation</a>
-  </nav>
-  <div class="hamburger" id="hamburger" onclick="toggleNav()">
-    <span></span><span></span><span></span>
-  </div>
-</header>
-
-<!-- PAGE HERO -->
-<section id="page-hero">
-  <div class="page-hero-bg">
-    <div class="page-hero-circle c1"></div>
-    <div class="page-hero-circle c2"></div>
-    <div class="page-hero-circle c3"></div>
-  </div>
-  <div class="grid-overlay"></div>
-  <div class="page-hero-content">
-    <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-current">Services</span>
-    </div>
-    <div class="page-hero-badge"><span class="page-hero-badge-dot"></span>Full-Service Garden Studio</div>
-    <h1 class="page-hero-title">Everything Your Garden<br><em>Could Ever Need</em></h1>
-    <p class="page-hero-sub">From initial concept and design to installation, maintenance, and seasonal care — we handle every aspect of your outdoor space with skill and passion.</p>
-    <div class="page-hero-btns">
-      <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Get a Free Quote</a>
-      <a href="#services-detail" class="hero-btn-white">Explore Services →</a>
-    </div>
-    <div class="page-hero-stats">
-      <div class="ph-stat">
-        <span class="ph-stat-num">6</span>
-        <span class="ph-stat-label">Core Services</span>
+    <!-- LOADER -->
+    <div id="loader">
+      <div class="loader-plant">
+        <div class="loader-stem"></div>
+        <div class="loader-leaf-l"></div>
+        <div class="loader-leaf-r"></div>
+        <div class="loader-bloom"></div>
       </div>
-      <div class="ph-stat-div"></div>
-      <div class="ph-stat">
-        <span class="ph-stat-num">500+</span>
-        <span class="ph-stat-label">Projects Done</span>
-      </div>
-      <div class="ph-stat-div"></div>
-      <div class="ph-stat">
-        <span class="ph-stat-num">10+</span>
-        <span class="ph-stat-label">Years Experience</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICE NAV -->
-<div id="service-nav">
-  <div class="service-nav-inner">
-    <a href="#srv-design" class="snav-item active"><i class="fa-solid fa-drafting-compass"></i> Garden Design</a>
-    <a href="#srv-lawn" class="snav-item"><i class="fa-solid fa-seedling"></i> Lawn Installation</a>
-    <a href="#srv-planting" class="snav-item"><i class="fa-solid fa-leaf"></i> Plant & Planting</a>
-    <a href="#srv-events" class="snav-item"><i class="fa-solid fa-star"></i> Event Decor</a>
-    <a href="#srv-maintenance" class="snav-item"><i class="fa-solid fa-tools"></i> Maintenance</a>
-    <a href="#srv-irrigation" class="snav-item"><i class="fa-solid fa-droplet"></i> Irrigation</a>
-  </div>
-</div>
-
-<!-- SERVICES DETAIL -->
-<section id="services-detail">
-  <div class="section-inner">
-    <div class="services-intro reveal">
-      <span class="tag">What We Offer</span>
-      <h2 class="section-title">Crafted for Every<br>Outdoor Vision</h2>
-      <div class="divider"></div>
-      <p class="section-sub" style="margin:0 auto;text-align:center">Whether you need a full redesign or a simple maintenance plan, our team has the expertise and passion to deliver results that exceed expectations.</p>
+      <div class="loader-text">Our Services</div>
     </div>
 
-    <!-- SERVICE 1: Garden Design -->
-    <div class="srv-detail-block" id="srv-design">
-      <div class="srv-detail-visual reveal-left">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service1.jpg" alt="Garden Design & Landscaping" loading="lazy">
+    <!-- HEADER -->
+    <header id="header">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="GreenScape" class="logo-icon"
+          onerror="this.style='display:none'">
+        <span class="logo-name"><i class="fa-solid fa-leaf"
+            style="font-size:16px;margin-right:4px"></i> GreenScape</span>
+      </a>
+      <nav id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="index.html#new-arrival">New Arrival</a>
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#contact" class="nav-cta">Book Consultation</a>
+      </nav>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section id="page-hero">
+      <div class="page-hero-bg">
+        <div class="page-hero-circle c1"></div>
+        <div class="page-hero-circle c2"></div>
+        <div class="page-hero-circle c3"></div>
+      </div>
+      <div class="grid-overlay"></div>
+      <div class="page-hero-content">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="breadcrumb-current">Services</span>
         </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-award"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Most Popular</div>
-            <div class="srv-detail-badge-sub">Booked 3× a week</div>
+        <div class="page-hero-badge"><span
+            class="page-hero-badge-dot"></span>Full-Service Garden Studio</div>
+        <h1 class="page-hero-title">Everything Your Garden<br><em>Could Ever
+            Need</em></h1>
+        <p class="page-hero-sub">From initial concept and design to
+          installation, maintenance, and seasonal care — we handle every aspect
+          of your outdoor space with skill and passion.</p>
+        <div class="page-hero-btns">
+          <a href="index.html#contact" class="btn-primary"><i
+              class="fa-solid fa-leaf"></i> Get a Free Quote</a>
+          <a href="#services-detail" class="hero-btn-white">Explore Services
+            →</a>
+        </div>
+        <div class="page-hero-stats">
+          <div class="ph-stat">
+            <span class="ph-stat-num">6</span>
+            <span class="ph-stat-label">Core Services</span>
+          </div>
+          <div class="ph-stat-div"></div>
+          <div class="ph-stat">
+            <span class="ph-stat-num">500+</span>
+            <span class="ph-stat-label">Projects Done</span>
+          </div>
+          <div class="ph-stat-div"></div>
+          <div class="ph-stat">
+            <span class="ph-stat-num">10+</span>
+            <span class="ph-stat-label">Years Experience</span>
           </div>
         </div>
       </div>
-      <div class="srv-detail-info reveal-right">
-        <div class="srv-detail-tag"><i class="fa-solid fa-star"></i> Signature Service</div>
-        <h2>Garden Design &amp; Landscaping</h2>
-        <div class="divider"></div>
-        <p>Our flagship service takes your outdoor space from raw potential to a breathtaking, fully designed garden. We blend landscape architecture, horticultural expertise, and creative vision into a seamless experience from concept to completion.</p>
-        <p>Every design is unique — tailored to your plot's dimensions, soil type, sunlight, climate, and your personal aesthetic. We produce detailed 3D visualisations so you see the final result before a single spade goes in the ground.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Site analysis and soil assessment included</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">3D design visualisation before work begins</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Native & climate-appropriate plant selection</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Full project management, A–Z</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">12-month aftercare guarantee</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Timeline</div><strong>2–4 Weeks</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-users"></i><div><div class="srv-meta-label">Team</div><strong>4–8 Specialists</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-map"></i><div><div class="srv-meta-label">Min. Area</div><strong>50 sq.m.</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
+    </section>
+
+    <!-- SERVICE NAV -->
+    <div id="service-nav">
+      <div class="service-nav-inner">
+        <a href="#srv-design" class="snav-item active"><i
+            class="fa-solid fa-drafting-compass"></i> Garden Design</a>
+        <a href="#srv-lawn" class="snav-item"><i
+            class="fa-solid fa-seedling"></i> Lawn Installation</a>
+        <a href="#srv-planting" class="snav-item"><i
+            class="fa-solid fa-leaf"></i> Plant & Planting</a>
+        <a href="#srv-events" class="snav-item"><i class="fa-solid fa-star"></i>
+          Event Decor</a>
+        <a href="#srv-maintenance" class="snav-item"><i
+            class="fa-solid fa-tools"></i> Maintenance</a>
+        <a href="#srv-irrigation" class="snav-item"><i
+            class="fa-solid fa-droplet"></i> Irrigation</a>
       </div>
     </div>
 
-    <!-- SERVICE 2: Lawn Installation -->
-    <div class="srv-detail-block" id="srv-lawn">
-      <div class="srv-detail-visual reveal-right">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service2.jpg" alt="Lawn Installation" loading="lazy">
+    <!-- SERVICES DETAIL -->
+    <section id="services-detail">
+      <div class="section-inner">
+        <div class="services-intro reveal">
+          <span class="tag">What We Offer</span>
+          <h2 class="section-title">Crafted for Every<br>Outdoor Vision</h2>
+          <div class="divider"></div>
+          <p class="section-sub" style="margin:0 auto;text-align:center">Whether
+            you need a full redesign or a simple maintenance plan, our team has
+            the expertise and passion to deliver results that exceed
+            expectations.</p>
         </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Quick Turnaround</div>
-            <div class="srv-detail-badge-sub">Ready in 48 hours</div>
+
+        <!-- SERVICE 1: Garden Design -->
+        <div class="srv-detail-block" id="srv-design">
+          <div class="srv-detail-visual reveal-left">
+            <div class="srv-detail-img-wrap">
+              <img src="images/service1.jpg" alt="Garden Design & Landscaping"
+                loading="lazy">
+            </div>
+            <div class="srv-detail-badge">
+              <div class="srv-detail-badge-icon"><i
+                  class="fa-solid fa-award"></i></div>
+              <div>
+                <div class="srv-detail-badge-text">Most Popular</div>
+                <div class="srv-detail-badge-sub">Booked 3× a week</div>
+              </div>
+            </div>
+          </div>
+          <div class="srv-detail-info reveal-right">
+            <div class="srv-detail-tag"><i class="fa-solid fa-star"></i>
+              Signature Service</div>
+            <h2>Garden Design &amp; Landscaping</h2>
+            <div class="divider"></div>
+            <p>Our flagship service takes your outdoor space from raw potential
+              to a breathtaking, fully designed garden. We blend landscape
+              architecture, horticultural expertise, and creative vision into a
+              seamless experience from concept to completion.</p>
+            <p>Every design is unique — tailored to your plot's dimensions, soil
+              type, sunlight, climate, and your personal aesthetic. We produce
+              detailed 3D visualisations so you see the final result before a
+              single spade goes in the ground.</p>
+            <div class="srv-detail-features">
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Site analysis and soil assessment
+                  included</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">3D design visualisation before work
+                  begins</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Native & climate-appropriate plant
+                  selection</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Full project management,
+                  A–Z</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">12-month aftercare
+                  guarantee</span></div>
+            </div>
+            <div class="srv-detail-meta">
+              <div class="srv-meta-item"><i
+                  class="fa-regular fa-clock"></i><div><div
+                    class="srv-meta-label">Timeline</div><strong>2–4
+                    Weeks</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-users"></i><div><div
+                    class="srv-meta-label">Team</div><strong>4–8
+                    Specialists</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-map"></i><div><div
+                    class="srv-meta-label">Min. Area</div><strong>50
+                    sq.m.</strong></div></div>
+            </div>
+            <div class="srv-detail-actions">
+              <a href="index.html#contact" class="btn-primary"><i
+                  class="fa-solid fa-leaf"></i> Request a Quote</a>
+              <a href="index.html#portfolio" class="btn-secondary">See Portfolio
+                →</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="srv-detail-info reveal-left">
-        <div class="srv-detail-tag"><i class="fa-solid fa-bolt"></i> Fast Delivery</div>
-        <h2>Lawn Installation</h2>
-        <div class="divider"></div>
-        <p>A lush, thick green lawn is the foundation of any beautiful garden. We offer sodding, seeding, and complete lawn preparation tailored to Nepal's diverse soil and climate conditions — delivering results that stay healthy year-round.</p>
-        <p>Our team prepares the ground meticulously: removing debris, aerating, levelling, and enriching the soil before laying premium quality turf. The result is a flawless, even lawn you can enjoy within days.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Full ground preparation and levelling</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Premium quality sod or seed options</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Soil enrichment and fertilisation included</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">30-day establishment care plan</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Edging and border finishing</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Timeline</div><strong>1–3 Days</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-users"></i><div><div class="srv-meta-label">Team</div><strong>2–4 Workers</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-map"></i><div><div class="srv-meta-label">Any Size</div><strong>10+ sq.m.</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
-      </div>
-    </div>
 
-    <!-- SERVICE 3: Plant Selection -->
-    <div class="srv-detail-block" id="srv-planting">
-      <div class="srv-detail-visual reveal-left">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service3.webp" alt="Plant Selection & Planting" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-microscope"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Expert Curated</div>
-            <div class="srv-detail-badge-sub">200+ plant varieties</div>
+        <!-- SERVICE 2: Lawn Installation -->
+        <div class="srv-detail-block" id="srv-lawn">
+          <div class="srv-detail-visual reveal-right">
+            <div class="srv-detail-img-wrap">
+              <img src="images/service2.jpg" alt="Lawn Installation"
+                loading="lazy">
+            </div>
+            <div class="srv-detail-badge">
+              <div class="srv-detail-badge-icon"><i
+                  class="fa-solid fa-bolt"></i></div>
+              <div>
+                <div class="srv-detail-badge-text">Quick Turnaround</div>
+                <div class="srv-detail-badge-sub">Ready in 48 hours</div>
+              </div>
+            </div>
+          </div>
+          <div class="srv-detail-info reveal-left">
+            <div class="srv-detail-tag"><i class="fa-solid fa-bolt"></i> Fast
+              Delivery</div>
+            <h2>Lawn Installation</h2>
+            <div class="divider"></div>
+            <p>A lush, thick green lawn is the foundation of any beautiful
+              garden. We offer sodding, seeding, and complete lawn preparation
+              tailored to Nepal's diverse soil and climate conditions —
+              delivering results that stay healthy year-round.</p>
+            <p>Our team prepares the ground meticulously: removing debris,
+              aerating, levelling, and enriching the soil before laying premium
+              quality turf. The result is a flawless, even lawn you can enjoy
+              within days.</p>
+            <div class="srv-detail-features">
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Full ground preparation and
+                  levelling</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Premium quality sod or seed
+                  options</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Soil enrichment and fertilisation
+                  included</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">30-day establishment care
+                  plan</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Edging and border finishing</span></div>
+            </div>
+            <div class="srv-detail-meta">
+              <div class="srv-meta-item"><i
+                  class="fa-regular fa-clock"></i><div><div
+                    class="srv-meta-label">Timeline</div><strong>1–3
+                    Days</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-users"></i><div><div
+                    class="srv-meta-label">Team</div><strong>2–4
+                    Workers</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-map"></i><div><div
+                    class="srv-meta-label">Any Size</div><strong>10+
+                    sq.m.</strong></div></div>
+            </div>
+            <div class="srv-detail-actions">
+              <a href="index.html#contact" class="btn-primary"><i
+                  class="fa-solid fa-leaf"></i> Request a Quote</a>
+              <a href="index.html#portfolio" class="btn-secondary">See Portfolio
+                →</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="srv-detail-info reveal-right">
-        <div class="srv-detail-tag"><i class="fa-solid fa-seedling"></i> Botanical Expertise</div>
-        <h2>Plant Selection &amp; Planting</h2>
-        <div class="divider"></div>
-        <p>The right plant in the right place makes all the difference. Our certified horticulturists analyse your garden's microclimate, soil pH, drainage, and light levels to select plants that will genuinely thrive — not just survive.</p>
-        <p>We source from trusted local and regional nurseries, prioritising native and drought-resistant species that support Nepal's ecology and reduce long-term maintenance needs.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Full soil and microclimate analysis</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Native and drought-resistant options available</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Seasonal planting schedules for year-round colour</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Professional planting techniques for best establishment</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Care guide provided for every plant installed</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Timeline</div><strong>1–5 Days</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-leaf"></i><div><div class="srv-meta-label">Varieties</div><strong>200+ Plants</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-recycle"></i><div><div class="srv-meta-label">Approach</div><strong>Eco-First</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
-      </div>
-    </div>
 
-    <!-- SERVICE 4: Event & Wedding Decor -->
-    <div class="srv-detail-block" id="srv-events">
-      <div class="srv-detail-visual reveal-right">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service4.jpg" alt="Event & Wedding Decor" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-heart"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Special Occasions</div>
-            <div class="srv-detail-badge-sub">300+ events delivered</div>
+        <!-- SERVICE 3: Plant Selection -->
+        <div class="srv-detail-block" id="srv-planting">
+          <div class="srv-detail-visual reveal-left">
+            <div class="srv-detail-img-wrap">
+              <img src="images/service3.webp" alt="Plant Selection & Planting"
+                loading="lazy">
+            </div>
+            <div class="srv-detail-badge">
+              <div class="srv-detail-badge-icon"><i
+                  class="fa-solid fa-microscope"></i></div>
+              <div>
+                <div class="srv-detail-badge-text">Expert Curated</div>
+                <div class="srv-detail-badge-sub">200+ plant varieties</div>
+              </div>
+            </div>
+          </div>
+          <div class="srv-detail-info reveal-right">
+            <div class="srv-detail-tag"><i class="fa-solid fa-seedling"></i>
+              Botanical Expertise</div>
+            <h2>Plant Selection &amp; Planting</h2>
+            <div class="divider"></div>
+            <p>The right plant in the right place makes all the difference. Our
+              certified horticulturists analyse your garden's microclimate, soil
+              pH, drainage, and light levels to select plants that will
+              genuinely thrive — not just survive.</p>
+            <p>We source from trusted local and regional nurseries, prioritising
+              native and drought-resistant species that support Nepal's ecology
+              and reduce long-term maintenance needs.</p>
+            <div class="srv-detail-features">
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Full soil and microclimate
+                  analysis</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Native and drought-resistant options
+                  available</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Seasonal planting schedules for
+                  year-round colour</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Professional planting techniques for
+                  best establishment</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Care guide provided for every plant
+                  installed</span></div>
+            </div>
+            <div class="srv-detail-meta">
+              <div class="srv-meta-item"><i
+                  class="fa-regular fa-clock"></i><div><div
+                    class="srv-meta-label">Timeline</div><strong>1–5
+                    Days</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-leaf"></i><div><div
+                    class="srv-meta-label">Varieties</div><strong>200+
+                    Plants</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-recycle"></i><div><div
+                    class="srv-meta-label">Approach</div><strong>Eco-First</strong></div></div>
+            </div>
+            <div class="srv-detail-actions">
+              <a href="index.html#contact" class="btn-primary"><i
+                  class="fa-solid fa-leaf"></i> Request a Quote</a>
+              <a href="index.html#portfolio" class="btn-secondary">See Portfolio
+                →</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="srv-detail-info reveal-left">
-        <div class="srv-detail-tag"><i class="fa-solid fa-heart"></i> Special Occasions</div>
-        <h2>Event &amp; Wedding Decor</h2>
-        <div class="divider"></div>
-        <p>Transform your venue into an unforgettable floral paradise. We create breathtaking garden-inspired installations for weddings, receptions, corporate events, and celebrations of any scale — bringing nature's finest into your most cherished moments.</p>
-        <p>Our event team works closely with your planners and coordinators, ensuring seamless setup and striking results that photograph beautifully and leave lasting impressions.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Custom floral arches, mandaps & centrepieces</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Full venue installation and breakdown</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Indoor & outdoor event setups</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Coordination with event planners and photographers</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Same-day setup available</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Lead Time</div><strong>7–14 Days</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-users"></i><div><div class="srv-meta-label">Events Done</div><strong>300+</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-calendar"></i><div><div class="srv-meta-label">Availability</div><strong>7 Days/Week</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
-      </div>
-    </div>
 
-    <!-- SERVICE 5: Maintenance -->
-    <div class="srv-detail-block" id="srv-maintenance">
-      <div class="srv-detail-visual reveal-left">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service5.png" alt="Routine Maintenance" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-repeat"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Ongoing Plans</div>
-            <div class="srv-detail-badge-sub">Weekly to monthly</div>
+        <!-- SERVICE 4: Event & Wedding Decor -->
+        <div class="srv-detail-block" id="srv-events">
+          <div class="srv-detail-visual reveal-right">
+            <div class="srv-detail-img-wrap">
+              <img src="images/service4.jpg" alt="Event & Wedding Decor"
+                loading="lazy">
+            </div>
+            <div class="srv-detail-badge">
+              <div class="srv-detail-badge-icon"><i
+                  class="fa-solid fa-heart"></i></div>
+              <div>
+                <div class="srv-detail-badge-text">Special Occasions</div>
+                <div class="srv-detail-badge-sub">300+ events delivered</div>
+              </div>
+            </div>
+          </div>
+          <div class="srv-detail-info reveal-left">
+            <div class="srv-detail-tag"><i class="fa-solid fa-heart"></i>
+              Special Occasions</div>
+            <h2>Event &amp; Wedding Decor</h2>
+            <div class="divider"></div>
+            <p>Transform your venue into an unforgettable floral paradise. We
+              create breathtaking garden-inspired installations for weddings,
+              receptions, corporate events, and celebrations of any scale —
+              bringing nature's finest into your most cherished moments.</p>
+            <p>Our event team works closely with your planners and coordinators,
+              ensuring seamless setup and striking results that photograph
+              beautifully and leave lasting impressions.</p>
+            <div class="srv-detail-features">
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Custom floral arches, mandaps &
+                  centrepieces</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Full venue installation and
+                  breakdown</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Indoor & outdoor event
+                  setups</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Coordination with event planners and
+                  photographers</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Same-day setup available</span></div>
+            </div>
+            <div class="srv-detail-meta">
+              <div class="srv-meta-item"><i
+                  class="fa-regular fa-clock"></i><div><div
+                    class="srv-meta-label">Lead Time</div><strong>7–14
+                    Days</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-users"></i><div><div
+                    class="srv-meta-label">Events
+                    Done</div><strong>300+</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-calendar"></i><div><div
+                    class="srv-meta-label">Availability</div><strong>7
+                    Days/Week</strong></div></div>
+            </div>
+            <div class="srv-detail-actions">
+              <a href="index.html#contact" class="btn-primary"><i
+                  class="fa-solid fa-leaf"></i> Request a Quote</a>
+              <a href="index.html#portfolio" class="btn-secondary">See Portfolio
+                →</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="srv-detail-info reveal-right">
-        <div class="srv-detail-tag"><i class="fa-solid fa-repeat"></i> Ongoing Care</div>
-        <h2>Routine Maintenance</h2>
-        <div class="divider"></div>
-        <p>A beautiful garden requires consistent care. Our flexible maintenance plans keep your outdoor space thriving year-round — whether you need weekly attention or a monthly check-up.</p>
-        <p>Our trained maintenance teams handle everything: mowing, edging, pruning, deadheading, fertilising, pest control, and seasonal tidying — so your garden always looks its absolute best with zero effort from you.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Weekly, fortnightly & monthly plans available</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Mowing, pruning, edging & fertilising</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Pest & disease monitoring and treatment</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Seasonal planting and bed refreshes</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Monthly garden health report provided</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Frequency</div><strong>Weekly / Monthly</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-users"></i><div><div class="srv-meta-label">Team</div><strong>Dedicated Crew</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-file-lines"></i><div><div class="srv-meta-label">Reporting</div><strong>Monthly Report</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Get a Plan</a>
-          <a href="#pricing" class="btn-secondary">View Pricing →</a>
-        </div>
-      </div>
-    </div>
 
-    <!-- SERVICE 6: Irrigation -->
-    <div class="srv-detail-block" id="srv-irrigation">
-      <div class="srv-detail-visual reveal-right">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service6.jpg" alt="Irrigation & Sprinkler Setup" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-microchip"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Smart Tech</div>
-            <div class="srv-detail-badge-sub">Up to 40% water savings</div>
+        <!-- SERVICE 5: Maintenance -->
+        <div class="srv-detail-block" id="srv-maintenance">
+          <div class="srv-detail-visual reveal-left">
+            <div class="srv-detail-img-wrap">
+              <img src="images/service5.png" alt="Routine Maintenance"
+                loading="lazy">
+            </div>
+            <div class="srv-detail-badge">
+              <div class="srv-detail-badge-icon"><i
+                  class="fa-solid fa-repeat"></i></div>
+              <div>
+                <div class="srv-detail-badge-text">Ongoing Plans</div>
+                <div class="srv-detail-badge-sub">Weekly to monthly</div>
+              </div>
+            </div>
+          </div>
+          <div class="srv-detail-info reveal-right">
+            <div class="srv-detail-tag"><i class="fa-solid fa-repeat"></i>
+              Ongoing Care</div>
+            <h2>Routine Maintenance</h2>
+            <div class="divider"></div>
+            <p>A beautiful garden requires consistent care. Our flexible
+              maintenance plans keep your outdoor space thriving year-round —
+              whether you need weekly attention or a monthly check-up.</p>
+            <p>Our trained maintenance teams handle everything: mowing, edging,
+              pruning, deadheading, fertilising, pest control, and seasonal
+              tidying — so your garden always looks its absolute best with zero
+              effort from you.</p>
+            <div class="srv-detail-features">
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Weekly, fortnightly & monthly plans
+                  available</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Mowing, pruning, edging &
+                  fertilising</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Pest & disease monitoring and
+                  treatment</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Seasonal planting and bed
+                  refreshes</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Monthly garden health report
+                  provided</span></div>
+            </div>
+            <div class="srv-detail-meta">
+              <div class="srv-meta-item"><i
+                  class="fa-regular fa-clock"></i><div><div
+                    class="srv-meta-label">Frequency</div><strong>Weekly /
+                    Monthly</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-users"></i><div><div
+                    class="srv-meta-label">Team</div><strong>Dedicated
+                    Crew</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-file-lines"></i><div><div
+                    class="srv-meta-label">Reporting</div><strong>Monthly
+                    Report</strong></div></div>
+            </div>
+            <div class="srv-detail-actions">
+              <a href="index.html#contact" class="btn-primary"><i
+                  class="fa-solid fa-leaf"></i> Get a Plan</a>
+              <a href="#pricing" class="btn-secondary">View Pricing →</a>
+            </div>
           </div>
         </div>
+
+        <!-- SERVICE 6: Irrigation -->
+        <div class="srv-detail-block" id="srv-irrigation">
+          <div class="srv-detail-visual reveal-right">
+            <div class="srv-detail-img-wrap">
+              <img src="images/service6.jpg" alt="Irrigation & Sprinkler Setup"
+                loading="lazy">
+            </div>
+            <div class="srv-detail-badge">
+              <div class="srv-detail-badge-icon"><i
+                  class="fa-solid fa-microchip"></i></div>
+              <div>
+                <div class="srv-detail-badge-text">Smart Tech</div>
+                <div class="srv-detail-badge-sub">Up to 40% water savings</div>
+              </div>
+            </div>
+          </div>
+          <div class="srv-detail-info reveal-left">
+            <div class="srv-detail-tag"><i class="fa-solid fa-droplet"></i>
+              Smart Technology</div>
+            <h2>Irrigation &amp; Sprinkler Setup</h2>
+            <div class="divider"></div>
+            <p>Smart, efficient irrigation is the backbone of a healthy,
+              low-maintenance garden. We design, supply, and install
+              water-efficient systems — from simple drip lines to fully
+              automated smart sprinkler networks with app control.</p>
+            <p>Our systems are calibrated to your specific plants and soil type,
+              ensuring every drop reaches where it is needed most — reducing
+              water waste by up to 40% compared to manual watering.</p>
+            <div class="srv-detail-features">
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Drip, sprinkler & soaker hose
+                  systems</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Smart timer & app-controlled
+                  options</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Soil moisture sensor
+                  integration</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Annual system calibration &
+                  maintenance</span></div>
+              <div class="srv-feat"><div class="srv-feat-check"><i
+                    class="fa-solid fa-check"></i></div><span
+                  class="srv-feat-text">Up to 40% water consumption
+                  reduction</span></div>
+            </div>
+            <div class="srv-detail-meta">
+              <div class="srv-meta-item"><i
+                  class="fa-regular fa-clock"></i><div><div
+                    class="srv-meta-label">Install Time</div><strong>1–2
+                    Days</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-droplet"></i><div><div
+                    class="srv-meta-label">Water Saving</div><strong>Up to
+                    40%</strong></div></div>
+              <div class="srv-meta-item"><i
+                  class="fa-solid fa-mobile"></i><div><div
+                    class="srv-meta-label">Control</div><strong>App
+                    Ready</strong></div></div>
+            </div>
+            <div class="srv-detail-actions">
+              <a href="index.html#contact" class="btn-primary"><i
+                  class="fa-solid fa-leaf"></i> Request a Quote</a>
+              <a href="index.html#portfolio" class="btn-secondary">See Portfolio
+                →</a>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="srv-detail-info reveal-left">
-        <div class="srv-detail-tag"><i class="fa-solid fa-droplet"></i> Smart Technology</div>
-        <h2>Irrigation &amp; Sprinkler Setup</h2>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section id="process">
+      <div class="process-header reveal">
+        <span class="tag">How It Works</span>
+        <h2 class="section-title">Our Simple 5-Step Process</h2>
         <div class="divider"></div>
-        <p>Smart, efficient irrigation is the backbone of a healthy, low-maintenance garden. We design, supply, and install water-efficient systems — from simple drip lines to fully automated smart sprinkler networks with app control.</p>
-        <p>Our systems are calibrated to your specific plants and soil type, ensuring every drop reaches where it is needed most — reducing water waste by up to 40% compared to manual watering.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Drip, sprinkler & soaker hose systems</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Smart timer & app-controlled options</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Soil moisture sensor integration</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Annual system calibration & maintenance</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Up to 40% water consumption reduction</span></div>
+        <p class="section-sub" style="margin:0 auto;text-align:center">From your
+          first call to a finished garden — here is exactly what to expect when
+          you work with GreenScape.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal delay-1">
+          <div class="process-step-num">
+            <i class="fa-solid fa-phone"></i>
+            <span class="process-step-dot">1</span>
+          </div>
+          <h4>Free Consultation</h4>
+          <p>Call or message us. We'll discuss your vision, budget, and timeline
+            at no charge.</p>
         </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Install Time</div><strong>1–2 Days</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-droplet"></i><div><div class="srv-meta-label">Water Saving</div><strong>Up to 40%</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-mobile"></i><div><div class="srv-meta-label">Control</div><strong>App Ready</strong></div></div>
+        <div class="process-step reveal delay-2">
+          <div class="process-step-num">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span class="process-step-dot">2</span>
+          </div>
+          <h4>Site Visit</h4>
+          <p>Our horticulturist visits your space to assess soil, drainage,
+            sunlight, and dimensions.</p>
         </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
+        <div class="process-step reveal delay-3">
+          <div class="process-step-num">
+            <i class="fa-solid fa-drafting-compass"></i>
+            <span class="process-step-dot">3</span>
+          </div>
+          <h4>Design &amp; Quote</h4>
+          <p>We produce a tailored design plan and a detailed quote with
+            transparent pricing.</p>
         </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROCESS SECTION -->
-<section id="process">
-  <div class="process-header reveal">
-    <span class="tag">How It Works</span>
-    <h2 class="section-title">Our Simple 5-Step Process</h2>
-    <div class="divider"></div>
-    <p class="section-sub" style="margin:0 auto;text-align:center">From your first call to a finished garden — here is exactly what to expect when you work with GreenScape.</p>
-  </div>
-  <div class="process-steps">
-    <div class="process-step reveal delay-1">
-      <div class="process-step-num">
-        <i class="fa-solid fa-phone"></i>
-        <span class="process-step-dot">1</span>
-      </div>
-      <h4>Free Consultation</h4>
-      <p>Call or message us. We'll discuss your vision, budget, and timeline at no charge.</p>
-    </div>
-    <div class="process-step reveal delay-2">
-      <div class="process-step-num">
-        <i class="fa-solid fa-map-location-dot"></i>
-        <span class="process-step-dot">2</span>
-      </div>
-      <h4>Site Visit</h4>
-      <p>Our horticulturist visits your space to assess soil, drainage, sunlight, and dimensions.</p>
-    </div>
-    <div class="process-step reveal delay-3">
-      <div class="process-step-num">
-        <i class="fa-solid fa-drafting-compass"></i>
-        <span class="process-step-dot">3</span>
-      </div>
-      <h4>Design &amp; Quote</h4>
-      <p>We produce a tailored design plan and a detailed quote with transparent pricing.</p>
-    </div>
-    <div class="process-step reveal delay-4">
-      <div class="process-step-num">
-        <i class="fa-solid fa-person-digging"></i>
-        <span class="process-step-dot">4</span>
-      </div>
-      <h4>Installation</h4>
-      <p>Our skilled team brings the design to life — on schedule and to the highest standard.</p>
-    </div>
-    <div class="process-step reveal delay-5">
-      <div class="process-step-num">
-        <i class="fa-solid fa-star"></i>
-        <span class="process-step-dot">5</span>
-      </div>
-      <h4>Handover &amp; Care</h4>
-      <p>We walk you through your new garden and provide a full aftercare plan for lasting beauty.</p>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY STRIP -->
-<section id="gallery-strip">
-  <div class="gallery-strip-header reveal">
-    <span class="tag">Our Work</span>
-    <h2 class="section-title" style="color:var(--white)">Glimpses of What We Create</h2>
-  </div>
-  <div class="gallery-scroll-wrap">
-    <div class="gallery-scroll-track">
-      <div class="gallery-thumb">
-        <img src="images/service1.jpg" alt="Garden Design" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Garden Design</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service2.jpg" alt="Lawn Installation" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Lawn Installation</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service3.webp" alt="Planting" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Plant & Planting</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service4.jpg" alt="Event Decor" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Event Decor</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service5.png" alt="Maintenance" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Maintenance</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service6.jpg" alt="Irrigation" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Irrigation</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/before.png" alt="Before & After" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Transformation</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/after.jpg" alt="After" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Completed Project</span></div>
-      </div>
-      <!-- Duplicate for seamless loop -->
-      <div class="gallery-thumb"><img src="images/service1.jpg" alt="Garden Design" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Garden Design</span></div></div>
-      <div class="gallery-thumb"><img src="images/service2.jpg" alt="Lawn Installation" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Lawn Installation</span></div></div>
-      <div class="gallery-thumb"><img src="images/service3.webp" alt="Planting" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Plant & Planting</span></div></div>
-      <div class="gallery-thumb"><img src="images/service4.jpg" alt="Event Decor" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Event Decor</span></div></div>
-      <div class="gallery-thumb"><img src="images/service5.png" alt="Maintenance" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Maintenance</span></div></div>
-      <div class="gallery-thumb"><img src="images/service6.jpg" alt="Irrigation" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Irrigation</span></div></div>
-      <div class="gallery-thumb"><img src="images/before.png" alt="Before & After" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Transformation</span></div></div>
-      <div class="gallery-thumb"><img src="images/after.jpg" alt="After" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Completed Project</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- SPECIALTY SERVICES -->
-<section id="specialty">
-  <div class="specialty-header reveal">
-    <span class="tag">Also Available</span>
-    <h2 class="section-title">Specialty &amp; Add-On Services</h2>
-    <div class="divider"></div>
-    <p class="section-sub" style="text-align:center;margin:0 auto">Round out your project with our range of complementary services, available as standalone bookings or as part of a larger package.</p>
-  </div>
-  <div class="specialty-grid">
-    <div class="spec-card reveal-scale delay-1">
-      <div class="spec-icon"><i class="fa-solid fa-tree"></i></div>
-      <h4>Tree Surgery &amp; Pruning</h4>
-      <p>Professional crown reduction, shaping, and health treatments for mature trees and shrubs.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-2">
-      <div class="spec-icon"><i class="fa-solid fa-lightbulb"></i></div>
-      <h4>Garden Lighting</h4>
-      <p>Low-voltage LED path, accent, and feature lighting to extend your garden enjoyment into the evening.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-3">
-      <div class="spec-icon"><i class="fa-solid fa-fence"></i></div>
-      <h4>Fencing &amp; Edging</h4>
-      <p>Timber, bamboo, stone, and metal edging solutions to define boundaries and add structure.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-4">
-      <div class="spec-icon"><i class="fa-solid fa-cloud-rain"></i></div>
-      <h4>Rainwater Harvesting</h4>
-      <p>Sustainable water collection systems integrated into your garden for eco-conscious care.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-1">
-      <div class="spec-icon"><i class="fa-solid fa-seedling"></i></div>
-      <h4>Container Gardening</h4>
-      <p>Bespoke planted containers and pots for balconies, patios, and entrances — maintained quarterly.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-2">
-      <div class="spec-icon"><i class="fa-solid fa-bucket"></i></div>
-      <h4>Composting Systems</h4>
-      <p>Install and manage on-site composting to feed your garden naturally and reduce waste.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-3">
-      <div class="spec-icon"><i class="fa-solid fa-water"></i></div>
-      <h4>Water Features</h4>
-      <p>Ponds, fountains, and rill installations that bring tranquil sound and movement to your garden.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-4">
-      <div class="spec-icon"><i class="fa-solid fa-carrot"></i></div>
-      <h4>Kitchen Garden Design</h4>
-      <p>Raised bed vegetable and herb gardens designed for maximum yield and year-round harvest.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="pricing-header reveal">
-    <span class="tag">Maintenance Plans</span>
-    <h2 class="section-title">Transparent Pricing,<br>No Hidden Fees</h2>
-    <div class="divider" style="margin:16px auto"></div>
-    <p class="section-sub" style="text-align:center;margin:0 auto">Choose a maintenance plan that fits your garden and budget. All design and installation projects receive a custom quote — contact us for a free estimate.</p>
-  </div>
-  <div class="pricing-grid">
-    <!-- populated by render-pricing.js -->
-  </div>
-
-  </div>
-  <p style="text-align:center;margin-top:36px;font-size:14px;color:var(--muted)">All prices are indicative. Final pricing depends on garden size and condition. <a href="index.html#contact" style="color:var(--green-mid);font-weight:600;text-decoration:none;cursor:none">Contact us for a custom quote →</a></p>
-</section>
-
-<!-- CTA BANNER -->
-<section id="cta-banner">
-  <div class="cta-circle c1"></div>
-  <div class="cta-circle c2"></div>
-  <div class="cta-banner-inner reveal">
-    <span class="tag">Start Today</span>
-    <h2>Ready to <em>Transform</em><br>Your Outdoor Space?</h2>
-    <p>Book a free 30-minute consultation with our horticulturist — no obligation, no pressure. Just honest advice and a vision for what your garden could become.</p>
-    <div class="cta-banner-btns">
-      <a href="index.html#contact" class="cta-btn-gold"><i class="fa-solid fa-calendar"></i> Book a Free Visit</a>
-      <a href="tel:+9779851206373" class="cta-btn-ghost"><i class="fa-solid fa-phone"></i> Call Us Now</a>
-    </div>
-    <div class="cta-trust">
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">500+</span>
-        <span class="cta-trust-label">Projects Completed</span>
-      </div>
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">98%</span>
-        <span class="cta-trust-label">Client Satisfaction</span>
-      </div>
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">10+</span>
-        <span class="cta-trust-label">Years in Business</span>
-      </div>
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">Free</span>
-        <span class="cta-trust-label">Initial Consultation</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <span style="font-family:'Playfair Display',serif;font-size:22px;color:var(--white);display:block;margin-bottom:12px"><i class="fa-solid fa-leaf"></i> Sewa Subida Gardening</span>
-        <p>Nepal's most trusted garden design and landscaping studio. Transforming outdoor spaces since 2014.</p>
-        <div class="footer-socials">
-          <a class="social-btn" href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-          <a class="social-btn" href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a class="social-btn" href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a class="social-btn" href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <div class="process-step reveal delay-4">
+          <div class="process-step-num">
+            <i class="fa-solid fa-person-digging"></i>
+            <span class="process-step-dot">4</span>
+          </div>
+          <h4>Installation</h4>
+          <p>Our skilled team brings the design to life — on schedule and to the
+            highest standard.</p>
+        </div>
+        <div class="process-step reveal delay-5">
+          <div class="process-step-num">
+            <i class="fa-solid fa-star"></i>
+            <span class="process-step-dot">5</span>
+          </div>
+          <h4>Handover &amp; Care</h4>
+          <p>We walk you through your new garden and provide a full aftercare
+            plan for lasting beauty.</p>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#srv-design">Garden Design</a></li>
-          <li><a href="#srv-lawn">Lawn Installation</a></li>
-          <li><a href="#srv-planting">Plant & Planting</a></li>
-          <li><a href="#srv-events">Event Decor</a></li>
-          <li><a href="#srv-maintenance">Maintenance</a></li>
-          <li><a href="#srv-irrigation">Irrigation</a></li>
-        </ul>
+    </section>
+
+    <!-- GALLERY STRIP -->
+    <section id="gallery-strip">
+      <div class="gallery-strip-header reveal">
+        <span class="tag">Our Work</span>
+        <h2 class="section-title" style="color:var(--white)">Glimpses of What We
+          Create</h2>
       </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="index.html#about">About Us</a></li>
-          <li><a href="index.html#portfolio">Portfolio</a></li>
-          <li><a href="index.html#testimonials">Testimonials</a></li>
-          <li><a href="index.html#blog">Blog</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
+      <div class="gallery-scroll-wrap">
+        <div class="gallery-scroll-track">
+          <div class="gallery-thumb">
+            <img src="images/service1.jpg" alt="Garden Design" loading="lazy">
+            <div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Garden Design</span></div>
+          </div>
+          <div class="gallery-thumb">
+            <img src="images/service2.jpg" alt="Lawn Installation"
+              loading="lazy">
+            <div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Lawn Installation</span></div>
+          </div>
+          <div class="gallery-thumb">
+            <img src="images/service3.webp" alt="Planting" loading="lazy">
+            <div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Plant & Planting</span></div>
+          </div>
+          <div class="gallery-thumb">
+            <img src="images/service4.jpg" alt="Event Decor" loading="lazy">
+            <div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Event Decor</span></div>
+          </div>
+          <div class="gallery-thumb">
+            <img src="images/service5.png" alt="Maintenance" loading="lazy">
+            <div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Maintenance</span></div>
+          </div>
+          <div class="gallery-thumb">
+            <img src="images/service6.jpg" alt="Irrigation" loading="lazy">
+            <div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Irrigation</span></div>
+          </div>
+          <div class="gallery-thumb">
+            <img src="images/before.png" alt="Before & After" loading="lazy">
+            <div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Transformation</span></div>
+          </div>
+          <div class="gallery-thumb">
+            <img src="images/after.jpg" alt="After" loading="lazy">
+            <div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Completed Project</span></div>
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="gallery-thumb"><img src="images/service1.jpg"
+              alt="Garden Design" loading="lazy"><div
+              class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Garden Design</span></div></div>
+          <div class="gallery-thumb"><img src="images/service2.jpg"
+              alt="Lawn Installation" loading="lazy"><div
+              class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Lawn Installation</span></div></div>
+          <div class="gallery-thumb"><img src="images/service3.webp"
+              alt="Planting" loading="lazy"><div
+              class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Plant & Planting</span></div></div>
+          <div class="gallery-thumb"><img src="images/service4.jpg"
+              alt="Event Decor" loading="lazy"><div
+              class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Event Decor</span></div></div>
+          <div class="gallery-thumb"><img src="images/service5.png"
+              alt="Maintenance" loading="lazy"><div
+              class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Maintenance</span></div></div>
+          <div class="gallery-thumb"><img src="images/service6.jpg"
+              alt="Irrigation" loading="lazy"><div
+              class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Irrigation</span></div></div>
+          <div class="gallery-thumb"><img src="images/before.png"
+              alt="Before & After" loading="lazy"><div
+              class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Transformation</span></div></div>
+          <div class="gallery-thumb"><img src="images/after.jpg" alt="After"
+              loading="lazy"><div class="gallery-thumb-overlay"><span
+                class="gallery-thumb-label">Completed Project</span></div></div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+9779851206373"><i class="fa-solid fa-phone"></i> +977 9851-206373</a></li>
-          <li><a href="mailto:hello@sewasubidagardening.com.np"><i class="fa-solid fa-envelope"></i> hello@sewasubidagardening.com.np</a></li>
-          <li><a href="index.html#contact"><i class="fa-solid fa-location-dot"></i> Madhyapur Thimi</a></li>
-          <li><a href="index.html#contact"><i class="fa-solid fa-map-marker-alt"></i> Bagmati Province, Nepal</a></li>
-        </ul>
+    </section>
+
+    <!-- SPECIALTY SERVICES -->
+    <section id="specialty">
+      <div class="specialty-header reveal">
+        <span class="tag">Also Available</span>
+        <h2 class="section-title">Specialty &amp; Add-On Services</h2>
+        <div class="divider"></div>
+        <p class="section-sub" style="text-align:center;margin:0 auto">Round out
+          your project with our range of complementary services, available as
+          standalone bookings or as part of a larger package.</p>
+      </div>
+      <div class="specialty-grid">
+        <div class="spec-card reveal-scale delay-1">
+          <div class="spec-icon"><i class="fa-solid fa-tree"></i></div>
+          <h4>Tree Surgery &amp; Pruning</h4>
+          <p>Professional crown reduction, shaping, and health treatments for
+            mature trees and shrubs.</p>
+          <a href="index.html#contact" class="spec-link">Enquire <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="spec-card reveal-scale delay-2">
+          <div class="spec-icon"><i class="fa-solid fa-lightbulb"></i></div>
+          <h4>Garden Lighting</h4>
+          <p>Low-voltage LED path, accent, and feature lighting to extend your
+            garden enjoyment into the evening.</p>
+          <a href="index.html#contact" class="spec-link">Enquire <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="spec-card reveal-scale delay-3">
+          <div class="spec-icon"><i class="fa-solid fa-fence"></i></div>
+          <h4>Fencing &amp; Edging</h4>
+          <p>Timber, bamboo, stone, and metal edging solutions to define
+            boundaries and add structure.</p>
+          <a href="index.html#contact" class="spec-link">Enquire <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="spec-card reveal-scale delay-4">
+          <div class="spec-icon"><i class="fa-solid fa-cloud-rain"></i></div>
+          <h4>Rainwater Harvesting</h4>
+          <p>Sustainable water collection systems integrated into your garden
+            for eco-conscious care.</p>
+          <a href="index.html#contact" class="spec-link">Enquire <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="spec-card reveal-scale delay-1">
+          <div class="spec-icon"><i class="fa-solid fa-seedling"></i></div>
+          <h4>Container Gardening</h4>
+          <p>Bespoke planted containers and pots for balconies, patios, and
+            entrances — maintained quarterly.</p>
+          <a href="index.html#contact" class="spec-link">Enquire <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="spec-card reveal-scale delay-2">
+          <div class="spec-icon"><i class="fa-solid fa-bucket"></i></div>
+          <h4>Composting Systems</h4>
+          <p>Install and manage on-site composting to feed your garden naturally
+            and reduce waste.</p>
+          <a href="index.html#contact" class="spec-link">Enquire <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="spec-card reveal-scale delay-3">
+          <div class="spec-icon"><i class="fa-solid fa-water"></i></div>
+          <h4>Water Features</h4>
+          <p>Ponds, fountains, and rill installations that bring tranquil sound
+            and movement to your garden.</p>
+          <a href="index.html#contact" class="spec-link">Enquire <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="spec-card reveal-scale delay-4">
+          <div class="spec-icon"><i class="fa-solid fa-carrot"></i></div>
+          <h4>Kitchen Garden Design</h4>
+          <p>Raised bed vegetable and herb gardens designed for maximum yield
+            and year-round harvest.</p>
+          <a href="index.html#contact" class="spec-link">Enquire <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="pricing-header reveal">
+        <span class="tag">Maintenance Plans</span>
+        <h2 class="section-title">Transparent Pricing,<br>No Hidden Fees</h2>
+        <div class="divider" style="margin:16px auto"></div>
+        <p class="section-sub" style="text-align:center;margin:0 auto">Choose a
+          maintenance plan that fits your garden and budget. All design and
+          installation projects receive a custom quote — contact us for a free
+          estimate.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- populated by render-pricing.js -->
+      </div>
+
+    </div>
+    <p
+      style="text-align:center;margin-top:36px;font-size:14px;color:var(--muted)">All
+      prices are indicative. Final pricing depends on garden size and condition.
+      <a href="index.html#contact"
+        style="color:var(--green-mid);font-weight:600;text-decoration:none;cursor:none">Contact
+        us for a custom quote →</a></p>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section id="cta-banner">
+    <div class="cta-circle c1"></div>
+    <div class="cta-circle c2"></div>
+    <div class="cta-banner-inner reveal">
+      <span class="tag">Start Today</span>
+      <h2>Ready to <em>Transform</em><br>Your Outdoor Space?</h2>
+      <p>Book a free 30-minute consultation with our horticulturist — no
+        obligation, no pressure. Just honest advice and a vision for what your
+        garden could become.</p>
+      <div class="cta-banner-btns">
+        <a href="index.html#contact" class="cta-btn-gold"><i
+            class="fa-solid fa-calendar"></i> Book a Free Visit</a>
+        <a href="tel:+9779851206373" class="cta-btn-ghost"><i
+            class="fa-solid fa-phone"></i> Call Us Now</a>
+      </div>
+      <div class="cta-trust">
+        <div class="cta-trust-item">
+          <span class="cta-trust-num">500+</span>
+          <span class="cta-trust-label">Projects Completed</span>
+        </div>
+        <div class="cta-trust-item">
+          <span class="cta-trust-num">98%</span>
+          <span class="cta-trust-label">Client Satisfaction</span>
+        </div>
+        <div class="cta-trust-item">
+          <span class="cta-trust-num">10+</span>
+          <span class="cta-trust-label">Years in Business</span>
+        </div>
+        <div class="cta-trust-item">
+          <span class="cta-trust-num">Free</span>
+          <span class="cta-trust-label">Initial Consultation</span>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 GreenScape. All rights reserved. Designed with <i class="fa-solid fa-leaf"></i> in Nepal.</p>
-      <p>Privacy Policy · Terms of Service</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo" href="#">
+            <img class="logo-icon" src="images/logo.jpg"
+              alt="Sewa Subida Gardening Logo"><span class="logo-name">Sewa
+              Subida Gardening</span>
+            <p>Nepal's most trusted garden design and landscaping studio.
+              Transforming outdoor spaces since 2014.</p>
+            <div class="footer-socials">
+              <a class="social-btn" href="#" title="Facebook"><i
+                  class="fab fa-facebook"></i></a>
+              <a class="social-btn" href="#" title="Instagram"><i
+                  class="fab fa-instagram"></i></a>
+              <a class="social-btn" href="#" title="WhatsApp"><i
+                  class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#srv-design">Garden Design</a></li>
+              <li><a href="#srv-lawn">Lawn Installation</a></li>
+              <li><a href="#srv-planting">Plant & Planting</a></li>
+              <li><a href="#srv-events">Event Decor</a></li>
+              <li><a href="#srv-maintenance">Maintenance</a></li>
+              <li><a href="#srv-irrigation">Irrigation</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="index.html#about">About Us</a></li>
+              <li><a href="index.html#portfolio">Portfolio</a></li>
+              <li><a href="index.html#testimonials">Testimonials</a></li>
+              <li><a href="index.html#blog">Blog</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:+9779851206373"><i class="fa-solid fa-phone"></i>
+                  +977 9851-206373</a></li>
+              <li><a href="mailto:hello@sewasubidagardening.com.np"><i
+                    class="fa-solid fa-envelope"></i>
+                  hello@sewasubidagardening.com.np</a></li>
+              <li><a href="index.html#contact"><i
+                    class="fa-solid fa-location-dot"></i> Madhyapur
+                  Thimi</a></li>
+              <li><a href="index.html#contact"><i
+                    class="fa-solid fa-map-marker-alt"></i> Bagmati Province,
+                  Nepal</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 GreenScape. All rights reserved. Designed with <i
+              class="fa-solid fa-leaf"></i> in Nepal.</p>
+          <p>Privacy Policy · Terms of Service</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <div id="wa-float">
+      <div id="wa-bubble">Chat with us!<span>Typically replies in
+          minutes</span></div>
+      <a href="https://wa.me/9779851206373" id="wa-btn" title="Chat on WhatsApp"
+        target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
-  </div>
-</footer>
 
-<!-- WHATSAPP FLOAT -->
-<div id="wa-float">
-  <div id="wa-bubble">Chat with us!<span>Typically replies in minutes</span></div>
-  <a href="https://wa.me/9779851206373" id="wa-btn" title="Chat on WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-</div>
-
-<script>
+    <script>
 // ===== LOADER =====
 window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2200)
@@ -1035,7 +1343,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   })
 })
 </script>
-<script src="data-pricing.js"></script>
-<script src="render-pricing.js"></script>
-</body>
+    <script src="data-pricing.js"></script>
+    <script src="render-pricing.js"></script>
+  </body>
 </html>

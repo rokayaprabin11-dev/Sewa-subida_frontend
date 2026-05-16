@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio — GreenScape Garden Design & Landscaping</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — GreenScape Garden Design & Landscaping</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
 /* ========== RESET & ROOT ========== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -323,320 +326,410 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
   .ph-stat{padding:14px 18px}
 }
   </style>
-</head>
-<body>
+  </head>
+  <body>
 
-<!-- CUSTOM CURSOR -->
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-plant">
-    <div class="loader-stem"></div>
-    <div class="loader-leaf-l"></div>
-    <div class="loader-leaf-r"></div>
-    <div class="loader-bloom"></div>
-  </div>
-  <div class="loader-text">Portfolio</div>
-</div>
-
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <div class="lb-inner">
-    <button class="lb-close" onclick="closeLightbox()" title="Close">✕</button>
-    <div class="lb-img-wrap">
-      <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
-      <img id="lb-img" src="" alt="">
-      <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
-    </div>
-    <div class="lb-body">
-      <div class="lb-info">
-        <div class="lb-cat" id="lb-cat"></div>
-        <h3 id="lb-title"></h3>
-        <p id="lb-desc"></p>
-        <div class="lb-meta" id="lb-meta"></div>
+    <!-- LOADER -->
+    <div id="loader">
+      <div class="loader-plant">
+        <div class="loader-stem"></div>
+        <div class="loader-leaf-l"></div>
+        <div class="loader-leaf-r"></div>
+        <div class="loader-bloom"></div>
       </div>
-      <a href="index.html#contact" class="btn-primary" style="flex-shrink:0;font-size:13px;padding:12px 22px;white-space:nowrap"><i class="fa-solid fa-leaf"></i> Get a Quote</a>
+      <div class="loader-text">Portfolio</div>
     </div>
-  </div>
-</div>
 
-<!-- HEADER -->
-<header id="header">
-  <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="GreenScape" class="logo-icon" onerror="this.style='display:none'">
-    <span class="logo-name"><i class="fa-solid fa-leaf" style="font-size:16px;margin-right:4px"></i> GreenScape</span>
-  </a>
-  <nav id="main-nav">
-    <a href="index.html">Home</a>
-    <a href="index.html#about">About</a>
-    <a href="services.html">Services</a>
-    <a href="index.html#new-arrival">New Arrival</a>
-    <a href="portfolio.html" class="active">Portfolio</a>
-    <a href="index.html#blog">Blog</a>
-    <a href="index.html#contact">Contact</a>
-    <a href="index.html#contact" class="nav-cta">Book Consultation</a>
-  </nav>
-  <div class="hamburger" id="hamburger" onclick="toggleNav()">
-    <span></span><span></span><span></span>
-  </div>
-</header>
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+      <div class="lb-inner">
+        <button class="lb-close" onclick="closeLightbox()"
+          title="Close">✕</button>
+        <div class="lb-img-wrap">
+          <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
+          <img id="lb-img" src alt>
+          <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
+        </div>
+        <div class="lb-body">
+          <div class="lb-info">
+            <div class="lb-cat" id="lb-cat"></div>
+            <h3 id="lb-title"></h3>
+            <p id="lb-desc"></p>
+            <div class="lb-meta" id="lb-meta"></div>
+          </div>
+          <a href="index.html#contact" class="btn-primary"
+            style="flex-shrink:0;font-size:13px;padding:12px 22px;white-space:nowrap"><i
+              class="fa-solid fa-leaf"></i> Get a Quote</a>
+        </div>
+      </div>
+    </div>
 
-<!-- PAGE HERO -->
-<section id="page-hero">
-  <div class="page-hero-bg">
-    <div class="phc c1"></div>
-    <div class="phc c2"></div>
-    <div class="phc c3"></div>
-  </div>
-  <div class="grid-overlay"></div>
-  <div class="page-hero-content">
-    <div class="page-hero-left">
-      <div class="breadcrumb">
+    <!-- HEADER -->
+    <header id="header">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="GreenScape" class="logo-icon"
+          onerror="this.style='display:none'">
+        <span class="logo-name"><i class="fa-solid fa-leaf"
+            style="font-size:16px;margin-right:4px"></i> GreenScape</span>
+      </a>
+      <nav id="main-nav">
         <a href="index.html">Home</a>
-        <span class="breadcrumb-sep">/</span>
-        <span class="breadcrumb-current">Portfolio</span>
+        <a href="index.html#about">About</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#new-arrival">New Arrival</a>
+        <a href="portfolio.html" class="active">Portfolio</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#contact" class="nav-cta">Book Consultation</a>
+      </nav>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
       </div>
-      <div class="page-hero-badge"><span class="page-hero-badge-dot"></span>500+ Projects Completed</div>
-      <h1 class="page-hero-title">Every Garden<br>Tells a <em>Story</em></h1>
-      <p class="page-hero-sub">Browse our full collection of completed projects — from compact courtyard transformations to sprawling estate gardens across Nepal.</p>
-      <div class="page-hero-btns">
-        <a href="#gallery" class="btn-primary"><i class="fa-solid fa-images"></i> Browse All Work</a>
-        <a href="index.html#contact" class="hero-btn-white">Start Your Project →</a>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section id="page-hero">
+      <div class="page-hero-bg">
+        <div class="phc c1"></div>
+        <div class="phc c2"></div>
+        <div class="phc c3"></div>
       </div>
-    </div>
-    <div class="page-hero-right">
-      <div class="ph-stat">
-        <span class="ph-stat-num">500+</span>
-        <span class="ph-stat-label">Projects</span>
-      </div>
-      <div class="ph-stat">
-        <span class="ph-stat-num">98%</span>
-        <span class="ph-stat-label">Satisfaction</span>
-      </div>
-      <div class="ph-stat">
-        <span class="ph-stat-num">10+</span>
-        <span class="ph-stat-label">Years</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FILTER BAR -->
-<div id="filter-bar">
-  <div class="filter-bar-inner">
-    <div class="filter-tabs" id="filter-tabs">
-      <!-- populated by render-gallery.js -->
-    </div>
-    <div class="filter-count">Showing <span id="count-display">0</span> projects</div>
-  </div>
-</div>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="gallery-inner">
-    <div class="masonry-grid" id="masonry">
-      <!-- populated by render-gallery.js -->
-    </div>
-
-    <div class="empty-state" id="empty-state">
-      <i class="fa-solid fa-leaf"></i>
-      <p>No projects found in this category yet.<br>Check back soon — we update regularly!</p>
-    </div>
-  </div>
-</section>
-
-<!-- STATS BANNER -->
-<section id="stats-banner">
-  <div class="stats-inner">
-    <div class="stat-block reveal delay-1">
-      <span class="stat-block-icon"><i class="fa-solid fa-seedling"></i></span>
-      <span class="stat-block-num">500<em>+</em></span>
-      <span class="stat-block-label">Projects Completed</span>
-    </div>
-    <div class="stat-block reveal delay-2">
-      <span class="stat-block-icon"><i class="fa-solid fa-users"></i></span>
-      <span class="stat-block-num">480<em>+</em></span>
-      <span class="stat-block-label">Happy Clients</span>
-    </div>
-    <div class="stat-block reveal delay-3">
-      <span class="stat-block-icon"><i class="fa-solid fa-map-location-dot"></i></span>
-      <span class="stat-block-num">4</span>
-      <span class="stat-block-label">Cities Served</span>
-    </div>
-    <div class="stat-block reveal delay-4">
-      <span class="stat-block-icon"><i class="fa-solid fa-calendar"></i></span>
-      <span class="stat-block-num">10<em>+</em></span>
-      <span class="stat-block-label">Years Experience</span>
-    </div>
-    <div class="stat-block reveal delay-5">
-      <span class="stat-block-icon"><i class="fa-solid fa-star"></i></span>
-      <span class="stat-block-num">98<em>%</em></span>
-      <span class="stat-block-label">Satisfaction Rate</span>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED PROJECTS -->
-<section id="featured">
-  <div class="section-inner">
-    <div class="featured-header reveal">
-      <span class="tag">Case Studies</span>
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="divider"></div>
-      <p class="section-sub" style="text-align:center;margin:0 auto">A closer look at three of our most celebrated transformations — from brief to build to beautiful.</p>
-    </div>
-    <div class="featured-grid">
-      <div class="feat-card reveal delay-1">
-        <div class="feat-card-img">
-          <img src="images/modern1.jpg" alt="Woodland Retreat" loading="lazy">
-          <span class="feat-card-ribbon">Award Winner</span>
+      <div class="grid-overlay"></div>
+      <div class="page-hero-content">
+        <div class="page-hero-left">
+          <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">Portfolio</span>
+          </div>
+          <div class="page-hero-badge"><span
+              class="page-hero-badge-dot"></span>500+ Projects Completed</div>
+          <h1 class="page-hero-title">Every Garden<br>Tells a
+            <em>Story</em></h1>
+          <p class="page-hero-sub">Browse our full collection of completed
+            projects — from compact courtyard transformations to sprawling
+            estate gardens across Nepal.</p>
+          <div class="page-hero-btns">
+            <a href="#gallery" class="btn-primary"><i
+                class="fa-solid fa-images"></i> Browse All Work</a>
+            <a href="index.html#contact" class="hero-btn-white">Start Your
+              Project →</a>
+          </div>
         </div>
-        <div class="feat-card-body">
-          <div class="feat-card-cat">Modern · Full Landscape</div>
-          <h3>Woodland Retreat, Lalitpur</h3>
-          <p>A complete 800 sq.m. redesign — from compacted dirt to an award-winning woodland garden with native trees, stone pathways, and integrated lighting. Delivered in 21 days.</p>
-          <div class="feat-card-meta">
-            <div class="feat-meta-item"><span class="feat-meta-label">Duration</span><span class="feat-meta-value">3 Weeks</span></div>
-            <div class="feat-meta-item"><span class="feat-meta-label">Area</span><span class="feat-meta-value">800 sq.m.</span></div>
-            <div class="feat-meta-item"><span class="feat-meta-label">Budget</span><span class="feat-meta-value">$$$</span></div>
+        <div class="page-hero-right">
+          <div class="ph-stat">
+            <span class="ph-stat-num">500+</span>
+            <span class="ph-stat-label">Projects</span>
+          </div>
+          <div class="ph-stat">
+            <span class="ph-stat-num">98%</span>
+            <span class="ph-stat-label">Satisfaction</span>
+          </div>
+          <div class="ph-stat">
+            <span class="ph-stat-num">10+</span>
+            <span class="ph-stat-label">Years</span>
           </div>
         </div>
       </div>
-      <div class="feat-card reveal delay-2">
-        <div class="feat-card-img">
-          <img src="images/topical1.jpeg" alt="Bali Garden" loading="lazy">
-          <span class="feat-card-ribbon">Client Favourite</span>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div id="filter-bar">
+      <div class="filter-bar-inner">
+        <div class="filter-tabs" id="filter-tabs">
+          <!-- populated by render-gallery.js -->
         </div>
-        <div class="feat-card-body">
-          <div class="feat-card-cat">Tropical · Design</div>
-          <h3>Bali Garden, Lalitpur</h3>
-          <p>Inspired by the owner's travels through Indonesia — bamboo screens, a tiered water feature, Balinese stone carvings, and curated tropical planting. A genuine paradise in Lalitpur.</p>
-          <div class="feat-card-meta">
-            <div class="feat-meta-item"><span class="feat-meta-label">Duration</span><span class="feat-meta-value">4 Weeks</span></div>
-            <div class="feat-meta-item"><span class="feat-meta-label">Area</span><span class="feat-meta-value">350 sq.m.</span></div>
-            <div class="feat-meta-item"><span class="feat-meta-label">Budget</span><span class="feat-meta-value">$$$</span></div>
+        <div class="filter-count">Showing <span id="count-display">0</span>
+          projects</div>
+      </div>
+    </div>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="gallery-inner">
+        <div class="masonry-grid" id="masonry">
+          <!-- populated by render-gallery.js -->
+        </div>
+
+        <div class="empty-state" id="empty-state">
+          <i class="fa-solid fa-leaf"></i>
+          <p>No projects found in this category yet.<br>Check back soon — we
+            update regularly!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BANNER -->
+    <section id="stats-banner">
+      <div class="stats-inner">
+        <div class="stat-block reveal delay-1">
+          <span class="stat-block-icon"><i
+              class="fa-solid fa-seedling"></i></span>
+          <span class="stat-block-num">500<em>+</em></span>
+          <span class="stat-block-label">Projects Completed</span>
+        </div>
+        <div class="stat-block reveal delay-2">
+          <span class="stat-block-icon"><i class="fa-solid fa-users"></i></span>
+          <span class="stat-block-num">480<em>+</em></span>
+          <span class="stat-block-label">Happy Clients</span>
+        </div>
+        <div class="stat-block reveal delay-3">
+          <span class="stat-block-icon"><i
+              class="fa-solid fa-map-location-dot"></i></span>
+          <span class="stat-block-num">4</span>
+          <span class="stat-block-label">Cities Served</span>
+        </div>
+        <div class="stat-block reveal delay-4">
+          <span class="stat-block-icon"><i
+              class="fa-solid fa-calendar"></i></span>
+          <span class="stat-block-num">10<em>+</em></span>
+          <span class="stat-block-label">Years Experience</span>
+        </div>
+        <div class="stat-block reveal delay-5">
+          <span class="stat-block-icon"><i class="fa-solid fa-star"></i></span>
+          <span class="stat-block-num">98<em>%</em></span>
+          <span class="stat-block-label">Satisfaction Rate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section id="featured">
+      <div class="section-inner">
+        <div class="featured-header reveal">
+          <span class="tag">Case Studies</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="divider"></div>
+          <p class="section-sub" style="text-align:center;margin:0 auto">A
+            closer look at three of our most celebrated transformations — from
+            brief to build to beautiful.</p>
+        </div>
+        <div class="featured-grid">
+          <div class="feat-card reveal delay-1">
+            <div class="feat-card-img">
+              <img src="images/modern1.jpg" alt="Woodland Retreat"
+                loading="lazy">
+              <span class="feat-card-ribbon">Award Winner</span>
+            </div>
+            <div class="feat-card-body">
+              <div class="feat-card-cat">Modern · Full Landscape</div>
+              <h3>Woodland Retreat, Lalitpur</h3>
+              <p>A complete 800 sq.m. redesign — from compacted dirt to an
+                award-winning woodland garden with native trees, stone pathways,
+                and integrated lighting. Delivered in 21 days.</p>
+              <div class="feat-card-meta">
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Duration</span><span
+                    class="feat-meta-value">3 Weeks</span></div>
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Area</span><span
+                    class="feat-meta-value">800 sq.m.</span></div>
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Budget</span><span
+                    class="feat-meta-value">$$$</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="feat-card reveal delay-2">
+            <div class="feat-card-img">
+              <img src="images/topical1.jpeg" alt="Bali Garden" loading="lazy">
+              <span class="feat-card-ribbon">Client Favourite</span>
+            </div>
+            <div class="feat-card-body">
+              <div class="feat-card-cat">Tropical · Design</div>
+              <h3>Bali Garden, Lalitpur</h3>
+              <p>Inspired by the owner's travels through Indonesia — bamboo
+                screens, a tiered water feature, Balinese stone carvings, and
+                curated tropical planting. A genuine paradise in Lalitpur.</p>
+              <div class="feat-card-meta">
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Duration</span><span
+                    class="feat-meta-value">4 Weeks</span></div>
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Area</span><span
+                    class="feat-meta-value">350 sq.m.</span></div>
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Budget</span><span
+                    class="feat-meta-value">$$$</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="feat-card reveal delay-3">
+            <div class="feat-card-img">
+              <img src="images/community.png" alt="Community Garden"
+                loading="lazy">
+              <span class="feat-card-ribbon">Social Impact</span>
+            </div>
+            <div class="feat-card-body">
+              <div class="feat-card-cat">Community · Kitchen Garden</div>
+              <h3>Community Garden, Thimi</h3>
+              <p>A pro-bono community initiative in Madhyapur Thimi — 40 raised
+                vegetable beds, a shared orchard, composting bays, and a
+                rainwater harvesting system serving 40 local families.</p>
+              <div class="feat-card-meta">
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Duration</span><span
+                    class="feat-meta-value">5 Weeks</span></div>
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Families</span><span
+                    class="feat-meta-value">40 Homes</span></div>
+                <div class="feat-meta-item"><span
+                    class="feat-meta-label">Type</span><span
+                    class="feat-meta-value">Community</span></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="feat-card reveal delay-3">
-        <div class="feat-card-img">
-          <img src="images/community.png" alt="Community Garden" loading="lazy">
-          <span class="feat-card-ribbon">Social Impact</span>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="testimonials-header reveal">
+        <span class="tag">Client Love</span>
+        <h2 class="section-title">What Our Clients Say</h2>
+      </div>
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="carousel">
+          <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+              class="rev-text">"They transformed my backyard into a resort. I could not be happier — the team exceeded every single expectation we had."</p><div
+              class="rev-person"><div class="rev-avatar">RK</div><div><div
+                  class="rev-name">Riya Kapoor</div><div class="rev-location">📍
+                  Kathmandu</div></div></div></div>
+          <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+              class="rev-text">"Professional, punctual, and incredibly creative. Our garden is now the envy of the entire neighbourhood — worth every penny."</p><div
+              class="rev-person"><div class="rev-avatar">SP</div><div><div
+                  class="rev-name">Santosh Pradhan</div><div
+                  class="rev-location">📍 Lalitpur</div></div></div></div>
+          <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+              class="rev-text">"The irrigation system works flawlessly. My lawn stays lush green all year round with zero effort from me. Pure magic!"</p><div
+              class="rev-person"><div class="rev-avatar">AM</div><div><div
+                  class="rev-name">Anita Maharjan</div><div
+                  class="rev-location">📍 Bhaktapur</div></div></div></div>
+          <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+              class="rev-text">"Fantastic wedding garden decoration. Our guests kept complimenting the floral arrangements all evening. Truly breathtaking."</p><div
+              class="rev-person"><div class="rev-avatar">BT</div><div><div
+                  class="rev-name">Bikash Tamang</div><div
+                  class="rev-location">📍 Pokhara</div></div></div></div>
+          <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+              class="rev-text">"GreenScape redesigned our office courtyard. Employees love it and it has genuinely improved morale. Highly recommend."</p><div
+              class="rev-person"><div class="rev-avatar">NR</div><div><div
+                  class="rev-name">Nisha Rana</div><div class="rev-location">📍
+                  Kathmandu</div></div></div></div>
+          <div class="rev-card"><div class="rev-stars">★★★★★</div><p
+              class="rev-text">"Our Bali garden gets compliments from every visitor. I still can not believe it is in the middle of Lalitpur — absolute dream."</p><div
+              class="rev-person"><div class="rev-avatar">PK</div><div><div
+                  class="rev-name">Priya Khadka</div><div
+                  class="rev-location">📍 Lalitpur</div></div></div></div>
         </div>
-        <div class="feat-card-body">
-          <div class="feat-card-cat">Community · Kitchen Garden</div>
-          <h3>Community Garden, Thimi</h3>
-          <p>A pro-bono community initiative in Madhyapur Thimi — 40 raised vegetable beds, a shared orchard, composting bays, and a rainwater harvesting system serving 40 local families.</p>
-          <div class="feat-card-meta">
-            <div class="feat-meta-item"><span class="feat-meta-label">Duration</span><span class="feat-meta-value">5 Weeks</span></div>
-            <div class="feat-meta-item"><span class="feat-meta-label">Families</span><span class="feat-meta-value">40 Homes</span></div>
-            <div class="feat-meta-item"><span class="feat-meta-label">Type</span><span class="feat-meta-value">Community</span></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn-ctrl" onclick="moveCarousel(-1)">←</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <button class="carousel-btn-ctrl" onclick="moveCarousel(1)">→</button>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta-banner">
+      <div class="cta-bg-leaf"><i class="fa-solid fa-leaf"></i></div>
+      <div class="cta-inner reveal">
+        <span class="tag">Ready to Begin?</span>
+        <h2>Your Garden Could Be<br><em>Our Next Story</em></h2>
+        <p>Every project in this portfolio started with a single conversation.
+          Let's talk about what your outdoor space could become — free
+          consultation, zero pressure.</p>
+        <div class="cta-btns">
+          <a href="index.html#contact" class="btn-cta-dark"><i
+              class="fa-solid fa-leaf"></i> Get a Free Quote</a>
+          <a href="services.html" class="btn-outline">Explore Our Services →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a class="logo" href="#">
+              <img class="logo-icon" src="images/logo.jpg"
+                alt="Sewa Subida Gardening Logo"><span class="logo-name">Sewa
+                Subida Gardening</span>
+              <p>Nepal's most trusted garden design
+                and landscaping studio. Transforming outdoor spaces since
+                2014.</p>
+              <div class="footer-socials">
+                <a class="social-btn" href="#" title="Facebook"><i
+                    class="fab fa-facebook"></i></a>
+                <a class="social-btn" href="#" title="Instagram"><i
+                    class="fab fa-instagram"></i></a>
+                <a class="social-btn" href="#" title="WhatsApp"><i
+                    class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="services.html#srv-design">Garden Design</a></li>
+                <li><a href="services.html#srv-lawn">Lawn Installation</a></li>
+                <li><a href="services.html#srv-planting">Plant &
+                    Planting</a></li>
+                <li><a href="services.html#srv-events">Event Decor</a></li>
+                <li><a href="services.html#srv-maintenance">Maintenance</a></li>
+                <li><a href="services.html#srv-irrigation">Irrigation</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Contact</h4>
+              <ul>
+                <li><a href="tel:+9779851206373"><i
+                      class="fa-solid fa-phone"></i> +977 9851-206373</a></li>
+                <li><a href="mailto:hello@sewasubidagardening.com.np"><i
+                      class="fa-solid fa-envelope"></i>
+                    hello@sewasubida...</a></li>
+                <li><a href="index.html#contact"><i
+                      class="fa-solid fa-location-dot"></i> Madhyapur
+                    Thimi</a></li>
+                <li><a href="index.html#contact"><i
+                      class="fa-solid fa-map-marker-alt"></i> Bagmati Province,
+                    Nepal</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© 2025 GreenScape. All rights reserved. Designed with <i
+                class="fa-solid fa-leaf"></i> in Nepal.</p>
+            <p>Privacy Policy · Terms of Service</p>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </footer>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="testimonials-header reveal">
-    <span class="tag">Client Love</span>
-    <h2 class="section-title">What Our Clients Say</h2>
-  </div>
-  <div class="carousel-track-wrap">
-    <div class="carousel-track" id="carousel">
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"They transformed my backyard into a resort. I could not be happier — the team exceeded every single expectation we had."</p><div class="rev-person"><div class="rev-avatar">RK</div><div><div class="rev-name">Riya Kapoor</div><div class="rev-location">📍 Kathmandu</div></div></div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Professional, punctual, and incredibly creative. Our garden is now the envy of the entire neighbourhood — worth every penny."</p><div class="rev-person"><div class="rev-avatar">SP</div><div><div class="rev-name">Santosh Pradhan</div><div class="rev-location">📍 Lalitpur</div></div></div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"The irrigation system works flawlessly. My lawn stays lush green all year round with zero effort from me. Pure magic!"</p><div class="rev-person"><div class="rev-avatar">AM</div><div><div class="rev-name">Anita Maharjan</div><div class="rev-location">📍 Bhaktapur</div></div></div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Fantastic wedding garden decoration. Our guests kept complimenting the floral arrangements all evening. Truly breathtaking."</p><div class="rev-person"><div class="rev-avatar">BT</div><div><div class="rev-name">Bikash Tamang</div><div class="rev-location">📍 Pokhara</div></div></div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"GreenScape redesigned our office courtyard. Employees love it and it has genuinely improved morale. Highly recommend."</p><div class="rev-person"><div class="rev-avatar">NR</div><div><div class="rev-name">Nisha Rana</div><div class="rev-location">📍 Kathmandu</div></div></div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Our Bali garden gets compliments from every visitor. I still can not believe it is in the middle of Lalitpur — absolute dream."</p><div class="rev-person"><div class="rev-avatar">PK</div><div><div class="rev-name">Priya Khadka</div><div class="rev-location">📍 Lalitpur</div></div></div></div>
-    </div>
-  </div>
-  <div class="carousel-controls">
-    <button class="carousel-btn-ctrl" onclick="moveCarousel(-1)">←</button>
-    <div class="carousel-dots" id="carousel-dots"></div>
-    <button class="carousel-btn-ctrl" onclick="moveCarousel(1)">→</button>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta-banner">
-  <div class="cta-bg-leaf"><i class="fa-solid fa-leaf"></i></div>
-  <div class="cta-inner reveal">
-    <span class="tag">Ready to Begin?</span>
-    <h2>Your Garden Could Be<br><em>Our Next Story</em></h2>
-    <p>Every project in this portfolio started with a single conversation. Let's talk about what your outdoor space could become — free consultation, zero pressure.</p>
-    <div class="cta-btns">
-      <a href="index.html#contact" class="btn-cta-dark"><i class="fa-solid fa-leaf"></i> Get a Free Quote</a>
-      <a href="services.html" class="btn-outline">Explore Our Services →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <span style="font-family:'Playfair Display',serif;font-size:22px;color:var(--white);display:block"><i class="fa-solid fa-leaf"></i> Sewa Subida Gardening</span>
-        <p>Nepal's most trusted garden design and landscaping studio. Transforming outdoor spaces since 2014.</p>
-        <div class="footer-socials">
-          <a class="social-btn" href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-          <a class="social-btn" href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a class="social-btn" href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a class="social-btn" href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-        </div>
+      <!-- WHATSAPP FLOAT -->
+      <div id="wa-float">
+        <div id="wa-bubble">Chat with us!<span>Typically replies in
+            minutes</span></div>
+        <a href="https://wa.me/9779851206373" id="wa-btn"
+          title="Chat on WhatsApp" target="_blank"><i
+            class="fab fa-whatsapp"></i></a>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="services.html#srv-design">Garden Design</a></li>
-          <li><a href="services.html#srv-lawn">Lawn Installation</a></li>
-          <li><a href="services.html#srv-planting">Plant & Planting</a></li>
-          <li><a href="services.html#srv-events">Event Decor</a></li>
-          <li><a href="services.html#srv-maintenance">Maintenance</a></li>
-          <li><a href="services.html#srv-irrigation">Irrigation</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="index.html#about">About Us</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="index.html#testimonials">Testimonials</a></li>
-          <li><a href="index.html#blog">Blog</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+9779851206373"><i class="fa-solid fa-phone"></i> +977 9851-206373</a></li>
-          <li><a href="mailto:hello@sewasubidagardening.com.np"><i class="fa-solid fa-envelope"></i> hello@sewasubida...</a></li>
-          <li><a href="index.html#contact"><i class="fa-solid fa-location-dot"></i> Madhyapur Thimi</a></li>
-          <li><a href="index.html#contact"><i class="fa-solid fa-map-marker-alt"></i> Bagmati Province, Nepal</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 GreenScape. All rights reserved. Designed with <i class="fa-solid fa-leaf"></i> in Nepal.</p>
-      <p>Privacy Policy · Terms of Service</p>
-    </div>
-  </div>
-</footer>
 
-<!-- WHATSAPP FLOAT -->
-<div id="wa-float">
-  <div id="wa-bubble">Chat with us!<span>Typically replies in minutes</span></div>
-  <a href="https://wa.me/9779851206373" id="wa-btn" title="Chat on WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-</div>
-
-<script>
+      <script>
 // ===== LOADER =====
 window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2200)
@@ -776,7 +869,7 @@ carousel.addEventListener('touchend', e => {
   if (Math.abs(delta) > 40) moveCarousel(delta > 0 ? 1 : -1)
 })
 </script>
-<script src="data-gallery.js"></script>
-<script src="render-gallery.js"></script>
-</body>
-</html>
+      <script src="data-gallery.js"></script>
+      <script src="render-gallery.js"></script>
+    </body>
+  </html>

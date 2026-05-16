@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Arrivals — GreenScape Garden Design & Landscaping</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <linkrel="stylesheet" href="css/style.css">
-    <style>
+      <style>
 /* ========== RESET & ROOT ========== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -341,699 +344,698 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.7);padding:60px 40px
   .footer-top{grid-template-columns:1fr}
 }
     </style>
-  </head>
-  <body>
+    </head>
+    <body>
 
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
-    <div id="toast"><i class="fa-solid fa-check"></i> <span id="toast-msg">Added to cart!</span></div>
-
-    <!-- Loader -->
-    <div id="loader">
-      <div class="loader-plant">
-        <div class="loader-stem"></div>
-        <div class="loader-leaf-l"></div>
-        <div class="loader-leaf-r"></div>
-        <div class="loader-bloom"></div>
+      <div id="cursor-dot"></div>
+      <div id="cursor-ring"></div>
+      <!-- Loader -->
+      <div id="loader">
+        <div class="loader-plant">
+          <div class="loader-stem"></div>
+          <div class="loader-leaf-l"></div>
+          <div class="loader-leaf-r"></div>
+          <div class="loader-bloom"></div>
+        </div>
+        <p class="loader-text">New Arrivals</p>
       </div>
-      <p class="loader-text">New Arrivals</p>
-    </div>
 
-    <!-- Header -->
-    <header id="header">
-      <a class="logo" href="#">
-        <img class="logo-icon" src="images/logo.jpg"
-          alt="Sewa Subida Gardening Logo">
-        <span class="logo-name">Sewa Subida Gardening</span>
-      </a>
-      <nav id="main-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="arrival.html">New Arrival</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="blog.html">Blog</a>
-        <a href="#contact">Contact</a>
-        <a href="#contact" class="nav-cta">Book Consultation</a>
-      </nav>
-      <div class="hamburger" id="hamburger" onclick="toggleNav()">
-        <span></span><span></span><span></span>
-      </div>
-    </header>
-
-    <!-- Page Hero -->
-    <section id="page-hero">
-      <div class="ph-bg">
-        <div class="ph-circle c1"></div>
-        <div class="ph-circle c2"></div>
-        <div class="ph-circle c3"></div>
-        <div class="ph-grid"></div>
-      </div>
-      <!-- floating bubbles -->
-      <div class="ph-tag-float t1"><i class="fa-solid fa-droplet"></i> Low Maintenance</div>
-      <div class="ph-tag-float t2"><i class="fa-solid fa-sun"></i> Indoor Friendly</div>
-      <div class="ph-tag-float t3"><i class="fa-solid fa-seedling"></i> Monsoon Picks</div>
-
-      <div class="ph-content">
-        <div class="ph-breadcrumb">
+      <!-- Header -->
+      <header id="header">
+        <a class="logo" href="#">
+          <img class="logo-icon" src="images/logo.jpg"
+            alt="Sewa Subida Gardening Logo">
+          <span class="logo-name">Sewa Subida Gardening</span>
+        </a>
+        <nav id="main-nav">
           <a href="index.html">Home</a>
-          <span><i class="fa-solid fa-chevron-right" style="font-size:9px"></i></span>
-          <span class="current">New Arrivals</span>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="arrival.html">New Arrival</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="blog.html">Blog</a>
+          <a href="#contact">Contact</a>
+          <a href="#contact" class="nav-cta">Book Consultation</a>
+        </nav>
+        <div class="hamburger" id="hamburger" onclick="toggleNav()">
+          <span></span><span></span><span></span>
         </div>
-        <div class="ph-badge">
-          <span class="ph-badge-dot"></span>
-          Fresh Drop — May 2026
-        </div>
-        <h1 class="ph-title">Just Landed at<br><em>GreenScape Nursery</em></h1>
-        <p class="ph-sub">Hand-picked plants, premium tools, and seasonal collections — curated fresh every month for Nepal's climate and gardens.</p>
-        <div class="ph-actions">
-          <a href="#products" class="ph-btn-primary"><i class="fa-solid fa-seedling"></i> Shop New Arrivals</a>
-          <a href="#seasonal" class="ph-btn-secondary"><i class="fa-solid fa-cloud-rain"></i> Monsoon Collection</a>
-        </div>
-      </div>
-    </section>
+      </header>
 
-    <!-- Ticker -->
-    <div class="ticker-strip">
-      <div class="ticker-inner" id="tickerInner">
-        <span class="ticker-item"><span class="ticker-dot"></span> Free delivery on orders above Rs. 2,000</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> 24 new plants added this week</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> Monsoon collection now live</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> Expert care guides with every plant</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> Sustainably sourced from local nurseries</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> Free delivery on orders above Rs. 2,000</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> 24 new plants added this week</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> Monsoon collection now live</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> Expert care guides with every plant</span>
-        <span class="ticker-item"><span class="ticker-dot"></span> Sustainably sourced from local nurseries</span>
-      </div>
-    </div>
+      <!-- Page Hero -->
+      <section id="page-hero">
+        <div class="ph-bg">
+          <div class="ph-circle c1"></div>
+          <div class="ph-circle c2"></div>
+          <div class="ph-circle c3"></div>
+          <div class="ph-grid"></div>
+        </div>
+        <!-- floating bubbles -->
+        <div class="ph-tag-float t1"><i class="fa-solid fa-droplet"></i> Low
+          Maintenance</div>
+        <div class="ph-tag-float t2"><i class="fa-solid fa-sun"></i> Indoor
+          Friendly</div>
+        <div class="ph-tag-float t3"><i class="fa-solid fa-seedling"></i>
+          Monsoon Picks</div>
 
-    <!-- Featured Spotlight -->
-    <section id="featured">
-      <div class="featured-inner">
-        <div class="featured-card reveal">
-          <div class="featured-visual">
-            <div class="featured-visual-bg">
-              <div class="fv-circle c1"></div>
-              <div class="fv-circle c2"></div>
-              <div class="fv-grid"></div>
-            </div>
-            <div class="fv-badge-new">⭐ Staff Pick of the Month</div>
-            <span class="fv-emoji">🌺</span>
-            <div class="fv-badge-limited"><i class="fa-solid fa-fire"></i> Only 8 left in stock</div>
+        <div class="ph-content">
+          <div class="ph-breadcrumb">
+            <a href="index.html">Home</a>
+            <span><i class="fa-solid fa-chevron-right"
+                style="font-size:9px"></i></span>
+            <span class="current">New Arrivals</span>
           </div>
-          <div class="featured-info">
-            <div class="fi-cat">Featured Arrival · Indoor Flowering</div>
-            <h2 class="fi-name">Anthurium Crystallinum<br><em style="font-style:italic;font-size:70%;color:var(--muted)">Crystal Anthurium</em></h2>
-            <p class="fi-desc">A showstopping tropical beauty with velvety, deep-green leaves and striking white veining. Perfect for bright indoor spaces — naturally air-purifying and incredibly low-maintenance once established in Nepal's climate.</p>
-            <div class="fi-tags">
-              <span class="fi-tag"><i class="fa-solid fa-sun"></i> Bright Indirect Light</span>
-              <span class="fi-tag"><i class="fa-solid fa-droplet"></i> Moderate Water</span>
-              <span class="fi-tag"><i class="fa-solid fa-wind"></i> Air Purifier</span>
-              <span class="fi-tag"><i class="fa-solid fa-house"></i> Indoor</span>
-            </div>
-            <div class="fi-price-row">
-              <span class="fi-price">Rs. 3,200</span>
-              <span class="fi-price-old">Rs. 4,000</span>
-              <span class="fi-discount">20% OFF</span>
-            </div>
-            <div class="fi-actions">
-              <button class="fi-add-btn" onclick="addToCart('Anthurium Crystallinum')">
-                <i class="fa-solid fa-cart-plus"></i> Add to Cart
-              </button>
-              <button class="fi-wish-btn" onclick="toggleWish(this)" title="Wishlist">
-                <i class="fa-regular fa-heart"></i>
-              </button>
-            </div>
+          <div class="ph-badge">
+            <span class="ph-badge-dot"></span>
+            Fresh Drop — May 2026
+          </div>
+          <h1 class="ph-title">Just Landed at<br><em>GreenScape
+              Nursery</em></h1>
+          <p class="ph-sub">Hand-picked plants, premium tools, and seasonal
+            collections — curated fresh every month for Nepal's climate and
+            gardens.</p>
+          <div class="ph-actions">
+            <a href="#products" class="ph-btn-primary"><i
+                class="fa-solid fa-seedling"></i> Browse New Arrivals</a>
+            <a href="#seasonal" class="ph-btn-secondary"><i
+                class="fa-solid fa-cloud-rain"></i> Monsoon Collection</a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Filter Bar -->
-    <div id="filter-bar">
-      <div class="filter-inner">
-        <div class="filter-cats" id="filterCats">
-          <button class="filter-btn active" onclick="filterProducts(this,'all')">All</button>
-          <button class="filter-btn" onclick="filterProducts(this,'indoor')">🌿 Indoor Plants</button>
-          <button class="filter-btn" onclick="filterProducts(this,'outdoor')">🌳 Outdoor Plants</button>
-          <button class="filter-btn" onclick="filterProducts(this,'flowering')">🌸 Flowering</button>
-          <button class="filter-btn" onclick="filterProducts(this,'tools')">🪴 Tools & Pots</button>
-          <button class="filter-btn" onclick="filterProducts(this,'soil')">🌱 Soil & Nutrients</button>
+      <!-- Ticker -->
+      <div class="ticker-strip">
+        <div class="ticker-inner" id="tickerInner">
+          <span class="ticker-item"><span class="ticker-dot"></span> 24 new
+            plants added this week</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Monsoon
+            collection now live</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Expert care
+            guides with every plant</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Sustainably
+            sourced from local nurseries</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> 24 new
+            plants added this week</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Monsoon
+            collection now live</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Expert care
+            guides with every plant</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Sustainably
+            sourced from local nurseries</span>
         </div>
-        <div class="filter-right">
-          <span class="filter-count"><strong id="visibleCount">12</strong> items</span>
-          <select class="sort-select" onchange="sortProducts(this.value)">
-            <option value="newest">Newest First</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="popular">Most Popular</option>
-          </select>
-        </div>
       </div>
-    </div>
 
-    <!-- Products Grid -->
-    <section id="products">
-      <div class="products-grid" id="productsGrid">
-
-        <!-- 1 -->
-        <div class="prod-card reveal delay-1" data-cat="indoor" data-price="1800" data-popular="95">
-          <div class="prod-img sage">
-            <span class="prod-emoji">🌵</span>
-            <span class="prod-badge new">New</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Euphorbia Trigona')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn" title="Quick view"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Indoor · Succulent</div>
-            <div class="prod-name">Euphorbia Trigona</div>
-            <div class="prod-latin">African Milk Tree</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(42)</span>
-            </div>
-            <div class="prod-price-row">
-              <div>
-                <span class="prod-price">Rs. 1,800</span>
+      <!-- Featured Spotlight -->
+      <section id="featured">
+        <div class="featured-inner">
+          <div class="featured-card reveal">
+            <div class="featured-visual">
+              <div class="featured-visual-bg">
+                <div class="fv-circle c1"></div>
+                <div class="fv-circle c2"></div>
+                <div class="fv-grid"></div>
               </div>
-              <button class="prod-add-mini" onclick="addToCart('Euphorbia Trigona')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-sun"></i> Full sun</span>
-              <span class="care-dot"><i class="fa-solid fa-droplet"></i> Low water</span>
-            </div>
-          </div>
-        </div>
+              <div class="fv-badge-new">⭐ Staff Pick of the Month</div>
+              <span class="fv-emoji">🌺</span>
 
-        <!-- 2 -->
-        <div class="prod-card reveal delay-2" data-cat="indoor" data-price="2400" data-popular="88">
-          <div class="prod-img gold">
-            <span class="prod-emoji">🪴</span>
-            <span class="prod-badge hot">Hot</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Monstera Deliciosa')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
             </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Indoor · Tropical</div>
-            <div class="prod-name">Monstera Deliciosa</div>
-            <div class="prod-latin">Swiss Cheese Plant</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(118)</span>
-            </div>
-            <div class="prod-price-row">
-              <div>
-                <span class="prod-price">Rs. 2,400</span>
-                <span class="prod-price-old">Rs. 2,900</span>
+            <div class="featured-info">
+              <div class="fi-cat">Featured Arrival · Indoor Flowering</div>
+              <h2 class="fi-name">Anthurium Crystallinum<br><em
+                  style="font-style:italic;font-size:70%;color:var(--muted)">Crystal
+                  Anthurium</em></h2>
+              <p class="fi-desc">A showstopping tropical beauty with velvety,
+                deep-green leaves and striking white veining. Perfect for bright
+                indoor spaces — naturally air-purifying and incredibly
+                low-maintenance once established in Nepal's climate.</p>
+              <div class="fi-tags">
+                <span class="fi-tag"><i class="fa-solid fa-sun"></i> Bright
+                  Indirect Light</span>
+                <span class="fi-tag"><i class="fa-solid fa-droplet"></i>
+                  Moderate Water</span>
+                <span class="fi-tag"><i class="fa-solid fa-wind"></i> Air
+                  Purifier</span>
+                <span class="fi-tag"><i class="fa-solid fa-house"></i>
+                  Indoor</span>
               </div>
-              <button class="prod-add-mini" onclick="addToCart('Monstera Deliciosa')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-sun"></i> Indirect</span>
-              <span class="care-dot"><i class="fa-solid fa-droplet"></i> Moderate</span>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- 3 -->
-        <div class="prod-card reveal delay-3" data-cat="outdoor" data-price="950" data-popular="72">
-          <div class="prod-img">
-            <span class="prod-emoji">🌸</span>
-            <span class="prod-badge new">New</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Bougainvillea Spectabilis')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
+      <!-- Filter Bar -->
+      <div id="filter-bar">
+        <div class="filter-inner">
+          <div class="filter-cats" id="filterCats">
+            <button class="filter-btn active"
+              onclick="filterProducts(this,'all')">All</button>
+            <button class="filter-btn"
+              onclick="filterProducts(this,'indoor')">🌿 Indoor Plants</button>
+            <button class="filter-btn"
+              onclick="filterProducts(this,'outdoor')">🌳 Outdoor
+              Plants</button>
+            <button class="filter-btn"
+              onclick="filterProducts(this,'flowering')">🌸 Flowering</button>
+            <button class="filter-btn" onclick="filterProducts(this,'tools')">🪴
+              Tools & Pots</button>
+            <button class="filter-btn" onclick="filterProducts(this,'soil')">🌱
+              Soil & Nutrients</button>
           </div>
-          <div class="prod-info">
-            <div class="prod-cat">Outdoor · Flowering</div>
-            <div class="prod-name">Bougainvillea Spectabilis</div>
-            <div class="prod-latin">Great Bougainvillea</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★☆</span>
-              <span class="prod-review-count">(63)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 950</span>
-              <button class="prod-add-mini" onclick="addToCart('Bougainvillea Spectabilis')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-sun"></i> Full sun</span>
-              <span class="care-dot"><i class="fa-solid fa-droplet"></i> Low</span>
-            </div>
+          <div class="filter-right">
+            <span class="filter-count"><strong id="visibleCount">12</strong>
+              items</span>
+            <select class="sort-select" onchange="sortProducts(this.value)">
+              <option value="newest">Newest First</option>
+              <option value="popular">Most Popular</option>
+            </select>
           </div>
         </div>
+      </div>
 
-        <!-- 4 -->
-        <div class="prod-card reveal delay-4" data-cat="tools" data-price="4500" data-popular="60">
-          <div class="prod-img sand">
-            <span class="prod-emoji">🪣</span>
-            <span class="prod-badge best">Bestseller</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Terracotta Pot Set')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Tools &amp; Pots · Terracotta</div>
-            <div class="prod-name">Terracotta Pot Set</div>
-            <div class="prod-latin">Set of 3 — Handmade Nepal</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(204)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 4,500</span>
-              <button class="prod-add-mini" onclick="addToCart('Terracotta Pot Set')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-fire"></i> Kiln fired</span>
-              <span class="care-dot"><i class="fa-solid fa-recycle"></i> Eco</span>
-            </div>
-          </div>
-        </div>
+      <!-- Products Grid -->
+      <section id="products">
+        <div class="products-grid" id="productsGrid">
 
-        <!-- 5 -->
-        <div class="prod-card reveal delay-1" data-cat="flowering" data-price="1200" data-popular="80">
-          <div class="prod-img">
-            <span class="prod-emoji">🌻</span>
-            <span class="prod-badge sale">Sale</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Helianthus Annuus')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
+          <!-- 1 -->
+          <div class="prod-card reveal delay-1" data-cat="indoor"
+            data-price="1800" data-popular="95">
+            <div class="prod-img sage">
+              <span class="prod-emoji">🌵</span>
+              <span class="prod-badge new">New</span>
+
             </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Flowering · Annual</div>
-            <div class="prod-name">Helianthus Annuus</div>
-            <div class="prod-latin">Giant Sunflower</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(87)</span>
-            </div>
-            <div class="prod-price-row">
-              <div>
-                <span class="prod-price">Rs. 1,200</span>
-                <span class="prod-price-old">Rs. 1,600</span>
+            <div class="prod-info">
+              <div class="prod-cat">Indoor · Succulent</div>
+              <div class="prod-name">Euphorbia Trigona</div>
+              <div class="prod-latin">African Milk Tree</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(42)</span>
               </div>
-              <button class="prod-add-mini" onclick="addToCart('Helianthus Annuus')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-sun"></i> Full sun</span>
-              <span class="care-dot"><i class="fa-solid fa-droplet"></i> Regular</span>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
+                  sun</span>
+                <span class="care-dot"><i class="fa-solid fa-droplet"></i> Low
+                  water</span>
+              </div>
             </div>
           </div>
+
+          <!-- 2 -->
+          <div class="prod-card reveal delay-2" data-cat="indoor"
+            data-price="2400" data-popular="88">
+            <div class="prod-img gold">
+              <span class="prod-emoji">🪴</span>
+              <span class="prod-badge hot">Hot</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Indoor · Tropical</div>
+              <div class="prod-name">Monstera Deliciosa</div>
+              <div class="prod-latin">Swiss Cheese Plant</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(118)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-sun"></i>
+                  Indirect</span>
+                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
+                  Moderate</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="prod-card reveal delay-3" data-cat="outdoor"
+            data-price="950" data-popular="72">
+            <div class="prod-img">
+              <span class="prod-emoji">🌸</span>
+              <span class="prod-badge new">New</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Outdoor · Flowering</div>
+              <div class="prod-name">Bougainvillea Spectabilis</div>
+              <div class="prod-latin">Great Bougainvillea</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★☆</span>
+                <span class="prod-review-count">(63)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
+                  sun</span>
+                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
+                  Low</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="prod-card reveal delay-4" data-cat="tools"
+            data-price="4500" data-popular="60">
+            <div class="prod-img sand">
+              <span class="prod-emoji">🪣</span>
+              <span class="prod-badge best">Bestseller</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Tools &amp; Pots · Terracotta</div>
+              <div class="prod-name">Terracotta Pot Set</div>
+              <div class="prod-latin">Set of 3 — Handmade Nepal</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(204)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-fire"></i> Kiln
+                  fired</span>
+                <span class="care-dot"><i class="fa-solid fa-recycle"></i>
+                  Eco</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="prod-card reveal delay-1" data-cat="flowering"
+            data-price="1200" data-popular="80">
+            <div class="prod-img">
+              <span class="prod-emoji">🌻</span>
+              <span class="prod-badge sale">Sale</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Flowering · Annual</div>
+              <div class="prod-name">Helianthus Annuus</div>
+              <div class="prod-latin">Giant Sunflower</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(87)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
+                  sun</span>
+                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
+                  Regular</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="prod-card reveal delay-2" data-cat="soil" data-price="680"
+            data-popular="91">
+            <div class="prod-img sage">
+              <span class="prod-emoji">🌱</span>
+              <span class="prod-badge new">New</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Soil &amp; Nutrients · Organic</div>
+              <div class="prod-name">Organic Compost Mix</div>
+              <div class="prod-latin">5kg · Local Blend</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(312)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-recycle"></i>
+                  Organic</span>
+                <span class="care-dot"><i class="fa-solid fa-seedling"></i> All
+                  plants</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7 -->
+          <div class="prod-card reveal delay-3" data-cat="indoor"
+            data-price="3600" data-popular="76">
+            <div class="prod-img gold">
+              <span class="prod-emoji">🌿</span>
+              <span class="prod-badge limited">Limited</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Indoor · Statement Plant</div>
+              <div class="prod-name">Fiddle Leaf Fig</div>
+              <div class="prod-latin">Ficus Lyrata</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★☆</span>
+                <span class="prod-review-count">(55)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-sun"></i> Bright
+                  indirect</span>
+                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
+                  Weekly</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 -->
+          <div class="prod-card reveal delay-4" data-cat="outdoor"
+            data-price="2100" data-popular="68">
+            <div class="prod-img">
+              <span class="prod-emoji">🍃</span>
+              <span class="prod-badge new">New</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Outdoor · Privacy Screen</div>
+              <div class="prod-name">Clumping Bamboo</div>
+              <div class="prod-latin">Bambusa Multiplex</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(29)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
+                  sun</span>
+                <span class="care-dot"><i class="fa-solid fa-wind"></i> Wind
+                  tolerant</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9 -->
+          <div class="prod-card reveal delay-1" data-cat="tools"
+            data-price="1350" data-popular="83">
+            <div class="prod-img sand">
+              <span class="prod-emoji">🔧</span>
+              <span class="prod-badge best">Bestseller</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Tools · Garden Kit</div>
+              <div class="prod-name">Pro Pruning Kit</div>
+              <div class="prod-latin">Stainless Steel · 5-piece</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(176)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-shield"></i>
+                  Rust-proof</span>
+                <span class="care-dot"><i class="fa-solid fa-star"></i> Pro
+                  grade</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10 -->
+          <div class="prod-card reveal delay-2" data-cat="flowering"
+            data-price="760" data-popular="74">
+            <div class="prod-img">
+              <span class="prod-emoji">🌹</span>
+              <span class="prod-badge hot">Hot</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Flowering · Perennial</div>
+              <div class="prod-name">Hybrid Tea Rose</div>
+              <div class="prod-latin">Rosa × Hybrida</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(94)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
+                  sun</span>
+                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
+                  Regular</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 11 -->
+          <div class="prod-card reveal delay-3" data-cat="soil" data-price="890"
+            data-popular="85">
+            <div class="prod-img sage">
+              <span class="prod-emoji">💧</span>
+              <span class="prod-badge new">New</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Nutrients · Liquid</div>
+              <div class="prod-name">Liquid Seaweed Fertiliser</div>
+              <div class="prod-latin">500ml Concentrate</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(67)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-recycle"></i>
+                  Natural</span>
+                <span class="care-dot"><i class="fa-solid fa-seedling"></i>
+                  Fast-acting</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 12 -->
+          <div class="prod-card reveal delay-4" data-cat="indoor"
+            data-price="5200" data-popular="70">
+            <div class="prod-img gold">
+              <span class="prod-emoji">🪷</span>
+              <span class="prod-badge limited">Limited</span>
+
+            </div>
+            <div class="prod-info">
+              <div class="prod-cat">Indoor · Rare Find</div>
+              <div class="prod-name">Philodendron Gloriosum</div>
+              <div class="prod-latin">Velvet Leaf Philodendron</div>
+              <div class="prod-rating">
+                <span class="prod-stars">★★★★★</span>
+                <span class="prod-review-count">(18)</span>
+              </div>
+
+              <div class="prod-care">
+                <span class="care-dot"><i class="fa-solid fa-sun"></i> Low
+                  light</span>
+                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
+                  Moderate</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Seasonal Banner -->
+      <section id="seasonal">
+        <div class="seasonal-bg-circle c1"></div>
+        <div class="seasonal-bg-circle c2"></div>
+        <div class="seasonal-grid">
+          <div class="seasonal-text reveal-left">
+            <span class="tag">Curated By Season</span>
+            <h2 class="section-title">The Monsoon <em
+                style="font-style:italic;color:var(--green-light)">Collection</em></h2>
+            <div class="divider"></div>
+            <p>Nepal's monsoon season is a spectacular time for the garden.
+              We've handpicked 24 plants that thrive in heavy rainfall, high
+              humidity, and overcast skies — many with dramatic growth you can
+              watch day by day.</p>
+            <div class="seasonal-features">
+              <div class="seasonal-feat"><div
+                  class="seasonal-feat-icon">🌧️</div> Rain-resilient varieties
+                that drain well and resist rot</div>
+              <div class="seasonal-feat"><div
+                  class="seasonal-feat-icon">💚</div> Selected for Nepal's
+                mid-hills and valley climate</div>
+              <div class="seasonal-feat"><div
+                  class="seasonal-feat-icon">📦</div> Each plant ships with a
+                monsoon care guide</div>
+            </div>
+            <a href="#products" class="seasonal-btn"
+              onclick="filterProducts(document.querySelector('[onclick*=outdoor]'),'outdoor')">
+              <i class="fa-solid fa-cloud-rain"></i> Explore the Collection
+            </a>
+          </div>
+          <div class="seasonal-cards reveal-right">
+            <div class="season-card monsoon">
+              <span class="season-card-count">8 plants</span>
+              <span class="season-card-icon">🌊</span>
+              <h4>Rain-Hardy Tropicals</h4>
+              <p>Lush, fast-growing beauties that love heavy moisture and warm
+                temperatures.</p>
+            </div>
+            <div class="season-card spring">
+              <span class="season-card-count">6 plants</span>
+              <span class="season-card-icon">🌼</span>
+              <h4>Late Bloomers</h4>
+              <p>Flowering varieties that peak after the first rains — vibrant
+                colour all season long.</p>
+            </div>
+            <div class="season-card winter">
+              <span class="season-card-count">5 plants</span>
+              <span class="season-card-icon">🍂</span>
+              <h4>Ground Covers</h4>
+              <p>Spreading varieties that suppress weeds and protect soil during
+                heavy downpours.</p>
+            </div>
+            <div class="season-card summer">
+              <span class="season-card-count">5 plants</span>
+              <span class="season-card-icon">🌿</span>
+              <h4>Edible Greens</h4>
+              <p>Monsoon is the best time for leafy greens — harvest fresh from
+                your own garden.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Care Guide -->
+      <section id="care-guide">
+        <div class="care-inner">
+          <div class="care-header reveal">
+            <div>
+              <span class="tag">Plant Care 101</span>
+              <h2 class="section-title">Everything Your New Plant Needs</h2>
+            </div>
+            <a href="index.html#blog"
+              style="font-size:14px;color:var(--green-mid);text-decoration:none;font-weight:500;display:flex;align-items:center;gap:6px;cursor:none;">Full
+              Care Library <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="care-grid">
+            <div class="care-card reveal delay-1">
+              <div class="care-card-icon">☀️</div>
+              <h4>Light</h4>
+              <p>Each plant tag tells you exactly how much sun it needs — from
+                full shade to bright direct light.</p>
+            </div>
+            <div class="care-card reveal delay-2">
+              <div class="care-card-icon">💧</div>
+              <h4>Water</h4>
+              <p>We rate every plant's water needs from Low to High so you never
+                over or under-water again.</p>
+            </div>
+            <div class="care-card reveal delay-3">
+              <div class="care-card-icon">🌱</div>
+              <h4>Soil</h4>
+              <p>The right soil makes all the difference. Match our recommended
+                mix for guaranteed growth.</p>
+            </div>
+            <div class="care-card reveal delay-4">
+              <div class="care-card-icon">🌡️</div>
+              <h4>Climate</h4>
+              <p>All our plants are selected for Nepal's climate zones — from
+                Terai heat to hill-station cool.</p>
+            </div>
+            <div class="care-card reveal delay-5">
+              <div class="care-card-icon">✂️</div>
+              <h4>Pruning</h4>
+              <p>Shape and encourage growth with our seasonal pruning guides —
+                included with every order.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section id="newsletter">
+        <div class="nl-inner reveal">
+          <span class="tag">Stay in the Loop</span>
+          <h2>Get New Arrivals Before<br><em
+              style="font-style:italic;color:var(--green-rich)">Anyone
+              Else</em></h2>
+          <p>Join 4,200+ plant lovers who get early access to new drops,
+            seasonal picks, and exclusive member discounts delivered straight to
+            their inbox.</p>
+          <div class="nl-form">
+            <input type="email" class="nl-input" placeholder="your@email.com" />
+            <button class="nl-submit" onclick="subscribeNL()">Get Early
+              Access</button>
+          </div>
+          <div class="nl-perks">
+            <span class="nl-perk"><i class="fa-solid fa-check"></i> No spam,
+              ever</span>
+            <span class="nl-perk"><i class="fa-solid fa-check"></i> Unsubscribe
+              anytime</span>
+            <span class="nl-perk"><i class="fa-solid fa-check"></i> 10% off your
+              first order</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-inner">
+          <div class="footer-top">
+            <div class="footer-brand">
+              <a class="logo" href="#">
+                <img class="logo-icon" src="images/logo.jpg"
+                  alt="Sewa Subida Gardening Logo"><span class="logo-name">Sewa
+                  Subida Gardening</span> <p>Nepal's most trusted garden design
+                  and landscaping studio, crafting living spaces that inspire,
+                  restore, and endure since 2009.</p>
+                <div class="footer-socials">
+                  <a href="#" class="social-btn"><i
+                      class="fa-brands fa-facebook-f"></i></a>
+                  <a href="#" class="social-btn"><i
+                      class="fa-brands fa-instagram"></i></a>
+                  <a href="#" class="social-btn"><i
+                      class="fa-brands fa-tiktok"></i></a>
+                </div>
+              </div>
+              <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                  <li><a href="#">New Arrivals</a></li>
+                  <li><a href="#">Indoor Plants</a></li>
+                  <li><a href="#">Outdoor Plants</a></li>
+                  <li><a href="#">Tools &amp; Pots</a></li>
+                  <li><a href="#">Soil &amp; Nutrients</a></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">Portfolio</a></li>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>Help</h4>
+                <ul>
+                  <li><a href="#">Shipping Policy</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">Plant Care Guides</a></li>
+                  <li><a href="#">FAQ</a></li>
+                  <li><a href="index.html#contact">Get in Touch</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <p>© 2024 GreenScape Garden Design &amp; Landscaping. All rights
+                reserved.</p>
+              <p>Privacy Policy · Terms of Service · Sitemap</p>
+            </div>
+          </div>
+        </footer>
+
+        <!-- WhatsApp Float -->
+        <div id="wa-float">
+          <div id="wa-bubble">Chat with us on WhatsApp!<span
+              style="display:block;font-size:11px;color:var(--muted);margin-top:2px">Typically
+              replies within minutes</span></div>
+          <a href="https://wa.me/9779841234567" id="wa-btn" target="_blank"
+            rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
 
-        <!-- 6 -->
-        <div class="prod-card reveal delay-2" data-cat="soil" data-price="680" data-popular="91">
-          <div class="prod-img sage">
-            <span class="prod-emoji">🌱</span>
-            <span class="prod-badge new">New</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Organic Compost Mix')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Soil &amp; Nutrients · Organic</div>
-            <div class="prod-name">Organic Compost Mix</div>
-            <div class="prod-latin">5kg · Local Blend</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(312)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 680</span>
-              <button class="prod-add-mini" onclick="addToCart('Organic Compost Mix')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-recycle"></i> Organic</span>
-              <span class="care-dot"><i class="fa-solid fa-seedling"></i> All plants</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 7 -->
-        <div class="prod-card reveal delay-3" data-cat="indoor" data-price="3600" data-popular="76">
-          <div class="prod-img gold">
-            <span class="prod-emoji">🌿</span>
-            <span class="prod-badge limited">Limited</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Fiddle Leaf Fig')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Indoor · Statement Plant</div>
-            <div class="prod-name">Fiddle Leaf Fig</div>
-            <div class="prod-latin">Ficus Lyrata</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★☆</span>
-              <span class="prod-review-count">(55)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 3,600</span>
-              <button class="prod-add-mini" onclick="addToCart('Fiddle Leaf Fig')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-sun"></i> Bright indirect</span>
-              <span class="care-dot"><i class="fa-solid fa-droplet"></i> Weekly</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 8 -->
-        <div class="prod-card reveal delay-4" data-cat="outdoor" data-price="2100" data-popular="68">
-          <div class="prod-img">
-            <span class="prod-emoji">🍃</span>
-            <span class="prod-badge new">New</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Bamboo Clumping')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Outdoor · Privacy Screen</div>
-            <div class="prod-name">Clumping Bamboo</div>
-            <div class="prod-latin">Bambusa Multiplex</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(29)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 2,100</span>
-              <button class="prod-add-mini" onclick="addToCart('Clumping Bamboo')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-sun"></i> Full sun</span>
-              <span class="care-dot"><i class="fa-solid fa-wind"></i> Wind tolerant</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 9 -->
-        <div class="prod-card reveal delay-1" data-cat="tools" data-price="1350" data-popular="83">
-          <div class="prod-img sand">
-            <span class="prod-emoji">🔧</span>
-            <span class="prod-badge best">Bestseller</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Pruning Kit')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Tools · Garden Kit</div>
-            <div class="prod-name">Pro Pruning Kit</div>
-            <div class="prod-latin">Stainless Steel · 5-piece</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(176)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 1,350</span>
-              <button class="prod-add-mini" onclick="addToCart('Pruning Kit')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-shield"></i> Rust-proof</span>
-              <span class="care-dot"><i class="fa-solid fa-star"></i> Pro grade</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 10 -->
-        <div class="prod-card reveal delay-2" data-cat="flowering" data-price="760" data-popular="74">
-          <div class="prod-img">
-            <span class="prod-emoji">🌹</span>
-            <span class="prod-badge hot">Hot</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Hybrid Tea Rose')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Flowering · Perennial</div>
-            <div class="prod-name">Hybrid Tea Rose</div>
-            <div class="prod-latin">Rosa × Hybrida</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(94)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 760</span>
-              <button class="prod-add-mini" onclick="addToCart('Hybrid Tea Rose')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-sun"></i> Full sun</span>
-              <span class="care-dot"><i class="fa-solid fa-droplet"></i> Regular</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 11 -->
-        <div class="prod-card reveal delay-3" data-cat="soil" data-price="890" data-popular="85">
-          <div class="prod-img sage">
-            <span class="prod-emoji">💧</span>
-            <span class="prod-badge new">New</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Liquid Seaweed Fertiliser')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Nutrients · Liquid</div>
-            <div class="prod-name">Liquid Seaweed Fertiliser</div>
-            <div class="prod-latin">500ml Concentrate</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(67)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 890</span>
-              <button class="prod-add-mini" onclick="addToCart('Liquid Seaweed Fertiliser')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-recycle"></i> Natural</span>
-              <span class="care-dot"><i class="fa-solid fa-seedling"></i> Fast-acting</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 12 -->
-        <div class="prod-card reveal delay-4" data-cat="indoor" data-price="5200" data-popular="70">
-          <div class="prod-img gold">
-            <span class="prod-emoji">🪷</span>
-            <span class="prod-badge limited">Limited</span>
-            <div class="prod-actions">
-              <button class="prod-action-btn" onclick="toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
-              <button class="prod-action-btn cart" onclick="addToCart('Rare Philodendron')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-              <button class="prod-action-btn"><i class="fa-solid fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <div class="prod-cat">Indoor · Rare Find</div>
-            <div class="prod-name">Philodendron Gloriosum</div>
-            <div class="prod-latin">Velvet Leaf Philodendron</div>
-            <div class="prod-rating">
-              <span class="prod-stars">★★★★★</span>
-              <span class="prod-review-count">(18)</span>
-            </div>
-            <div class="prod-price-row">
-              <span class="prod-price">Rs. 5,200</span>
-              <button class="prod-add-mini" onclick="addToCart('Rare Philodendron')"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="prod-care">
-              <span class="care-dot"><i class="fa-solid fa-sun"></i> Low light</span>
-              <span class="care-dot"><i class="fa-solid fa-droplet"></i> Moderate</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Seasonal Banner -->
-    <section id="seasonal">
-      <div class="seasonal-bg-circle c1"></div>
-      <div class="seasonal-bg-circle c2"></div>
-      <div class="seasonal-grid">
-        <div class="seasonal-text reveal-left">
-          <span class="tag">Curated By Season</span>
-          <h2 class="section-title">The Monsoon <em style="font-style:italic;color:var(--green-light)">Collection</em></h2>
-          <div class="divider"></div>
-          <p>Nepal's monsoon season is a spectacular time for the garden. We've handpicked 24 plants that thrive in heavy rainfall, high humidity, and overcast skies — many with dramatic growth you can watch day by day.</p>
-          <div class="seasonal-features">
-            <div class="seasonal-feat"><div class="seasonal-feat-icon">🌧️</div> Rain-resilient varieties that drain well and resist rot</div>
-            <div class="seasonal-feat"><div class="seasonal-feat-icon">💚</div> Selected for Nepal's mid-hills and valley climate</div>
-            <div class="seasonal-feat"><div class="seasonal-feat-icon">📦</div> Each plant ships with a monsoon care guide</div>
-          </div>
-          <a href="#products" class="seasonal-btn" onclick="filterProducts(document.querySelector('[onclick*=outdoor]'),'outdoor')">
-            <i class="fa-solid fa-cloud-rain"></i> Explore the Collection
-          </a>
-        </div>
-        <div class="seasonal-cards reveal-right">
-          <div class="season-card monsoon">
-            <span class="season-card-count">8 plants</span>
-            <span class="season-card-icon">🌊</span>
-            <h4>Rain-Hardy Tropicals</h4>
-            <p>Lush, fast-growing beauties that love heavy moisture and warm temperatures.</p>
-          </div>
-          <div class="season-card spring">
-            <span class="season-card-count">6 plants</span>
-            <span class="season-card-icon">🌼</span>
-            <h4>Late Bloomers</h4>
-            <p>Flowering varieties that peak after the first rains — vibrant colour all season long.</p>
-          </div>
-          <div class="season-card winter">
-            <span class="season-card-count">5 plants</span>
-            <span class="season-card-icon">🍂</span>
-            <h4>Ground Covers</h4>
-            <p>Spreading varieties that suppress weeds and protect soil during heavy downpours.</p>
-          </div>
-          <div class="season-card summer">
-            <span class="season-card-count">5 plants</span>
-            <span class="season-card-icon">🌿</span>
-            <h4>Edible Greens</h4>
-            <p>Monsoon is the best time for leafy greens — harvest fresh from your own garden.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Care Guide -->
-    <section id="care-guide">
-      <div class="care-inner">
-        <div class="care-header reveal">
-          <div>
-            <span class="tag">Plant Care 101</span>
-            <h2 class="section-title">Everything Your New Plant Needs</h2>
-          </div>
-          <a href="index.html#blog" style="font-size:14px;color:var(--green-mid);text-decoration:none;font-weight:500;display:flex;align-items:center;gap:6px;cursor:none;">Full Care Library <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="care-grid">
-          <div class="care-card reveal delay-1">
-            <div class="care-card-icon">☀️</div>
-            <h4>Light</h4>
-            <p>Each plant tag tells you exactly how much sun it needs — from full shade to bright direct light.</p>
-          </div>
-          <div class="care-card reveal delay-2">
-            <div class="care-card-icon">💧</div>
-            <h4>Water</h4>
-            <p>We rate every plant's water needs from Low to High so you never over or under-water again.</p>
-          </div>
-          <div class="care-card reveal delay-3">
-            <div class="care-card-icon">🌱</div>
-            <h4>Soil</h4>
-            <p>The right soil makes all the difference. Match our recommended mix for guaranteed growth.</p>
-          </div>
-          <div class="care-card reveal delay-4">
-            <div class="care-card-icon">🌡️</div>
-            <h4>Climate</h4>
-            <p>All our plants are selected for Nepal's climate zones — from Terai heat to hill-station cool.</p>
-          </div>
-          <div class="care-card reveal delay-5">
-            <div class="care-card-icon">✂️</div>
-            <h4>Pruning</h4>
-            <p>Shape and encourage growth with our seasonal pruning guides — included with every order.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section id="newsletter">
-      <div class="nl-inner reveal">
-        <span class="tag">Stay in the Loop</span>
-        <h2>Get New Arrivals Before<br><em style="font-style:italic;color:var(--green-rich)">Anyone Else</em></h2>
-        <p>Join 4,200+ plant lovers who get early access to new drops, seasonal picks, and exclusive member discounts delivered straight to their inbox.</p>
-        <div class="nl-form">
-          <input type="email" class="nl-input" placeholder="your@email.com" />
-          <button class="nl-submit" onclick="subscribeNL()">Get Early Access</button>
-        </div>
-        <div class="nl-perks">
-          <span class="nl-perk"><i class="fa-solid fa-check"></i> No spam, ever</span>
-          <span class="nl-perk"><i class="fa-solid fa-check"></i> Unsubscribe anytime</span>
-          <span class="nl-perk"><i class="fa-solid fa-check"></i> 10% off your first order</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="footer-inner">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <span class="logo-name-f"><img src="images/logo.jpg" alt="Sewa Subida Gardening"></span>
-            <p>Nepal's most trusted garden design and landscaping studio, crafting living spaces that inspire, restore, and endure since 2009.</p>
-            <div class="footer-socials">
-              <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
-              <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
-            </div>
-          </div>
-          <div class="footer-col">
-            <h4>Shop</h4>
-            <ul>
-              <li><a href="#">New Arrivals</a></li>
-              <li><a href="#">Indoor Plants</a></li>
-              <li><a href="#">Outdoor Plants</a></li>
-              <li><a href="#">Tools &amp; Pots</a></li>
-              <li><a href="#">Soil &amp; Nutrients</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Company</h4>
-            <ul>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Portfolio</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Help</h4>
-            <ul>
-              <li><a href="#">Shipping Policy</a></li>
-              <li><a href="#">Returns</a></li>
-              <li><a href="#">Plant Care Guides</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="index.html#contact">Get in Touch</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2024 GreenScape Garden Design &amp; Landscaping. All rights reserved.</p>
-          <p>Privacy Policy · Terms of Service · Sitemap</p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- WhatsApp Float -->
-    <div id="wa-float">
-      <div id="wa-bubble">Chat with us on WhatsApp!<span style="display:block;font-size:11px;color:var(--muted);margin-top:2px">Typically replies within minutes</span></div>
-      <a href="https://wa.me/9779841234567" id="wa-btn" target="_blank" rel="noopener">💬</a>
-    </div>
-
-    <script>
+        <script>
 // ===== CURSOR =====
 const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
 document.addEventListener('mousemove',e=>{dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'});
@@ -1059,25 +1061,13 @@ revEls.forEach(el=>revObs.observe(el));
 
 // ===== TOAST =====
 let toastTimer;
-function showToast(msg){
-  const t=document.getElementById('toast');
-  document.getElementById('toast-msg').textContent=msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
-}
+function showToast(msg){}
 
 // ===== ADD TO CART =====
-function addToCart(name){ showToast('🌿 '+name+' added to cart!') }
+function addToCart(name){}
 
 // ===== WISHLIST =====
-function toggleWish(btn){
-  const icon=btn.querySelector('i');
-  if(!icon) return;
-  const on=icon.classList.contains('fa-solid');
-  if(on){ icon.classList.replace('fa-solid','fa-regular'); btn.classList.remove('active'); showToast('Removed from wishlist') }
-  else { icon.classList.replace('fa-regular','fa-solid'); btn.classList.add('active'); showToast('❤️ Saved to wishlist!') }
-}
+function toggleWish(btn){}
 
 // ===== FILTER =====
 function filterProducts(btn, cat){
@@ -1099,8 +1089,6 @@ function sortProducts(val){
   const grid=document.getElementById('productsGrid');
   const cards=[...grid.querySelectorAll('.prod-card')];
   cards.sort((a,b)=>{
-    if(val==='price-asc') return +a.dataset.price - +b.dataset.price;
-    if(val==='price-desc') return +b.dataset.price - +a.dataset.price;
     if(val==='popular') return +b.dataset.popular - +a.dataset.popular;
     return 0; // newest: original order
   });
@@ -1123,5 +1111,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
     </script>
-  </body>
-</html>
+      </body>
+    </html>

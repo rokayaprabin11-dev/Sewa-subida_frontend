@@ -261,6 +261,102 @@
       );
     }
 
+    // ─── ARRIVALS FORM ────────────────────────────────────────────────────────
+    const ARR_CATS   = ["indoor","outdoor","flowering","tools","soil"];
+    const ARR_BADGES = ["new","hot","sale","limited","best",""];
+    const ARR_BGS    = [{ value: "",      label: "Default (green-pale)" },
+                        { value: "sage",  label: "Sage (muted green)" },
+                        { value: "sand",  label: "Sand (warm tan)" },
+                        { value: "gold",  label: "Gold (pale amber)" }];
+
+    function ArrivalsForm({ item, onSave, onClose, loading, token }) {
+      const blank = {
+        name: "", latin_name: "", cat: "indoor", cat_label: "", badge: "new",
+        img_bg: "", emoji: "🌿", image: "",
+        stars: 5, review_count: 0, care_tags: [{ icon: "fa-solid fa-sun", label: "" }],
+        popular: 50,
+      };
+      const [form, setForm] = useState(item ? JSON.parse(JSON.stringify(item)) : blank);
+      const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+      const setTag  = (i, k, v) => setForm(f => { const t=[...f.care_tags]; t[i]={...t[i],[k]:v}; return {...f,care_tags:t}; });
+      const addTag  = () => setForm(f => ({ ...f, care_tags: [...f.care_tags, { icon: "fa-solid fa-leaf", label: "" }] }));
+      const rmTag   = i => setForm(f => ({ ...f, care_tags: f.care_tags.filter((_,idx)=>idx!==i) }));
+
+      return (
+        <>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            <Field label="Product Name">
+              <input style={inputStyle} value={form.name} onChange={e=>set("name",e.target.value)} placeholder="e.g. Monstera Deliciosa" />
+            </Field>
+            <Field label="Latin / Subtitle">
+              <input style={inputStyle} value={form.latin_name||""} onChange={e=>set("latin_name",e.target.value)} placeholder="e.g. Swiss Cheese Plant" />
+            </Field>
+            <Field label="Category (filter key)">
+              <select style={selectStyle} value={form.cat} onChange={e=>set("cat",e.target.value)}>
+                {ARR_CATS.map(c=><option key={c} value={c}>{c.charAt(0).toUpperCase()+c.slice(1)}</option>)}
+              </select>
+            </Field>
+            <Field label="Category Label (display)">
+              <input style={inputStyle} value={form.cat_label||""} onChange={e=>set("cat_label",e.target.value)} placeholder="e.g. Indoor · Tropical" />
+            </Field>
+            <Field label="Badge">
+              <select style={selectStyle} value={form.badge||""} onChange={e=>set("badge",e.target.value)}>
+                {ARR_BADGES.map(b=><option key={b} value={b}>{b||"(none)"}</option>)}
+              </select>
+            </Field>
+            <Field label="Card Background">
+              <select style={selectStyle} value={form.img_bg||""} onChange={e=>set("img_bg",e.target.value)}>
+                {ARR_BGS.map(b=><option key={b.value} value={b.value}>{b.label}</option>)}
+              </select>
+            </Field>
+            <Field label="Emoji (if no photo)">
+              <input style={inputStyle} value={form.emoji||"🌿"} onChange={e=>set("emoji",e.target.value)} placeholder="🌿" />
+            </Field>
+            <Field label="Popularity (0–100)">
+              <input style={inputStyle} type="number" min="0" max="100" value={form.popular||50} onChange={e=>set("popular",+e.target.value)} />
+            </Field>
+            <Field label="Stars (1–5)">
+              <select style={selectStyle} value={form.stars||5} onChange={e=>set("stars",+e.target.value)}>
+                {[5,4,3,2,1].map(n=><option key={n} value={n}>{"★".repeat(n)+"☆".repeat(5-n)}</option>)}
+              </select>
+            </Field>
+            <Field label="Review Count">
+              <input style={inputStyle} type="number" min="0" value={form.review_count||0} onChange={e=>set("review_count",+e.target.value)} placeholder="42" />
+            </Field>
+          </div>
+
+          <Field label="Product Photo (optional)">
+            <ImageUploader token={token} value={form.image||""} onChange={url=>set("image",url)} />
+          </Field>
+
+          <div style={{ marginBottom: 8 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, color: "#4A4A44", textTransform: "uppercase", letterSpacing: 1 }}>Care Tags</label>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
+            {(form.care_tags||[]).map((ct, i) => (
+              <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                <input style={{ ...inputStyle, flex: "0 0 220px", fontSize: 12 }} value={ct.icon} onChange={e=>setTag(i,"icon",e.target.value)} placeholder="fa-solid fa-sun" />
+                <input style={{ ...inputStyle, flex: 1, fontSize: 12 }} value={ct.label} onChange={e=>setTag(i,"label",e.target.value)} placeholder="Label (e.g. Full sun)" />
+                <button onClick={()=>rmTag(i)} style={{ background:"#fee2e2",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",color:"#dc2626",fontWeight:"bold",flexShrink:0 }}>×</button>
+              </div>
+            ))}
+            <button onClick={addTag} style={{ alignSelf:"flex-start",background:"#e8f4e0",border:"1.5px solid #a8c89a",borderRadius:100,padding:"6px 16px",fontSize:13,cursor:"pointer",color:"#2A5726" }}>+ Add Care Tag</button>
+          </div>
+
+          <div style={{ background: "#f8fdf6", borderRadius: 12, padding: "12px 16px", marginBottom: 16, fontSize: 12, color: "#4A4A44", lineHeight: 1.6 }}>
+            <strong>Common icons:</strong> fa-solid fa-sun · fa-solid fa-droplet · fa-solid fa-wind · fa-solid fa-seedling · fa-solid fa-recycle · fa-solid fa-fire · fa-solid fa-star · fa-solid fa-shield
+          </div>
+
+          <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
+            <button onClick={onClose} style={{ padding: "10px 22px", border: "1.5px solid #cce0c8", borderRadius: 100, background: "transparent", cursor: "pointer", fontSize: 14 }}>Cancel</button>
+            <button onClick={() => onSave(form)} disabled={loading || !form.name} style={{ padding: "10px 22px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading||!form.name ? "not-allowed" : "pointer", fontSize: 14, fontWeight: 600, opacity: loading||!form.name ? 0.7 : 1 }}>
+              {loading ? "Saving…" : "Save Product"}
+            </button>
+          </div>
+        </>
+      );
+    }
+
     // ─── LOGIN ────────────────────────────────────────────────────────────────
     function LoginScreen({ onLogin }) {
       const [password, setPassword] = useState("");
@@ -296,15 +392,16 @@
 
     // ─── MAIN APP ─────────────────────────────────────────────────────────────
     function App() {
-      const [token, setToken]     = useState(() => sessionStorage.getItem("gs_token") || null);
-      const [tab, setTab]         = useState("gallery");
-      const [gallery, setGallery] = useState([]);
-      const [pricing, setPricing] = useState([]);
-      const [modal, setModal]     = useState(null);
-      const [toast, setToast]     = useState(null);
-      const [loading, setLoading] = useState(true);
-      const [saving, setSaving]   = useState(false);
-      const [error, setError]     = useState(null);
+      const [token, setToken]       = useState(() => sessionStorage.getItem("gs_token") || null);
+      const [tab, setTab]           = useState("gallery");
+      const [gallery, setGallery]   = useState([]);
+      const [pricing, setPricing]   = useState([]);
+      const [arrivals, setArrivals] = useState([]);
+      const [modal, setModal]       = useState(null);
+      const [toast, setToast]       = useState(null);
+      const [loading, setLoading]   = useState(true);
+      const [saving, setSaving]     = useState(false);
+      const [error, setError]       = useState(null);
 
       const showToast  = msg => setToast(msg);
       const handleLogin  = t => { sessionStorage.setItem("gs_token", t); setToken(t); };
@@ -316,9 +413,14 @@
       async function loadAll() {
         setLoading(true); setError(null);
         try {
-          const [gRows, pRows] = await Promise.all([api("/api/gallery"), api("/api/pricing")]);
+          const [gRows, pRows, aRows] = await Promise.all([
+            api("/api/gallery"),
+            api("/api/pricing"),
+            api("/api/arrivals"),
+          ]);
           setGallery(gRows.map(galleryFromDb));
           setPricing(pRows.map(pricingFromDb));
+          setArrivals(aRows);
         } catch (e) {
           if (e.message?.includes("Invalid") || e.message?.includes("token")) handleLogout();
           else setError("Could not connect to the API: " + e.message);
@@ -395,6 +497,42 @@
         catch (e) { showToast("Reorder failed: " + e.message); }
       };
 
+      // ── Arrivals CRUD ────────────────────────────────────────────────────────
+      const saveArrival = async (item) => {
+        setSaving(true);
+        try {
+          const payload = { ...item };
+          if (item.id) {
+            const { id, created_at, ...fields } = payload;
+            await api(`/api/arrivals/${item.id}`, { method: "PATCH", body: JSON.stringify(fields) });
+            setArrivals(a => a.map(x => x.id === item.id ? { ...item } : x));
+            showToast("Product updated!");
+          } else {
+            const row = await api("/api/arrivals", { method: "POST", body: JSON.stringify({ ...payload, sort_order: arrivals.length }) });
+            setArrivals(a => [...a, row]);
+            showToast("Product added!");
+          }
+          setModal(null);
+        } catch (e) { showToast("Error: " + e.message); }
+        finally { setSaving(false); }
+      };
+
+      const deleteArrival = async (id) => {
+        if (!window.confirm("Delete this product?")) return;
+        setSaving(true);
+        try { await api(`/api/arrivals/${id}`, { method: "DELETE" }); setArrivals(a => a.filter(x => x.id !== id)); showToast("Product deleted."); }
+        catch (e) { showToast("Error: " + e.message); }
+        finally { setSaving(false); }
+      };
+
+      const moveArrival = async (id, dir) => {
+        const arr = [...arrivals]; const i = arr.findIndex(x => x.id === id); const j = i + dir;
+        if (j < 0 || j >= arr.length) return;
+        [arr[i], arr[j]] = [arr[j], arr[i]]; setArrivals(arr);
+        try { await Promise.all([api(`/api/arrivals/${arr[i].id}`, { method: "PATCH", body: JSON.stringify({ sort_order: i }) }), api(`/api/arrivals/${arr[j].id}`, { method: "PATCH", body: JSON.stringify({ sort_order: j }) })]); }
+        catch (e) { showToast("Reorder failed: " + e.message); }
+      };
+
       if (!token) return <LoginScreen onLogin={handleLogin} />;
 
       return (
@@ -412,9 +550,9 @@
               </div>
             </div>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              {["gallery", "pricing"].map(t => (
+              {["gallery", "pricing", "arrivals"].map(t => (
                 <button key={t} onClick={() => setTab(t)} style={{ padding: "8px 20px", borderRadius: 100, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 600, background: tab === t ? "#C8891A" : "rgba(255,255,255,0.1)", color: tab === t ? "#fff" : "rgba(255,255,255,0.7)", transition: "all 0.2s" }}>
-                  {t === "gallery" ? "🖼 Gallery" : "💰 Pricing"}
+                  {t === "gallery" ? "🖼 Gallery" : t === "pricing" ? "💰 Pricing" : "🌿 Arrivals"}
                 </button>
               ))}
               <button onClick={handleLogout} style={{ marginLeft: 8, padding: "8px 16px", borderRadius: 100, border: "1.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "rgba(255,255,255,0.65)", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>Sign Out</button>
@@ -520,13 +658,64 @@
                 </div>
               </>
             )}
+
+            {/* ── ARRIVALS TAB ── */}
+            {!loading && tab === "arrivals" && (
+              <>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
+                  <div>
+                    <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, color: "#1A3D18", margin: 0 }}>New Arrivals</h2>
+                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{arrivals.length} products · shown on arrival.html</p>
+                  </div>
+                  <button onClick={() => setModal({ type: "arrivals-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Product</button>
+                </div>
+                <div style={{ display: "grid", gap: 12 }}>
+                  {arrivals.map((item, idx) => {
+                    const badgeColors = { new: "#2A5726", hot: "#E85D35", sale: "#C8891A", limited: "#262622", best: "#6A9E5A" };
+                    return (
+                      <div key={item.id} style={{ background: "#fff", borderRadius: 16, padding: "16px 20px", border: "1.5px solid rgba(42,87,38,0.1)", display: "flex", gap: 16, alignItems: "center", boxShadow: "0 2px 8px rgba(26,61,24,0.06)" }}>
+                        {/* Thumbnail */}
+                        <div style={{ width: 64, height: 64, borderRadius: 12, overflow: "hidden", flexShrink: 0, border: "1.5px solid #e0e8dc", background: "#e8f4e0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28 }}>
+                          {item.image ? <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <span>{item.emoji || "🌿"}</span>}
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                            <span style={{ fontWeight: 700, fontSize: 15, color: "#1A3D18" }}>{item.name}</span>
+                            {item.latin_name && <span style={{ fontSize: 12, color: "#7A7A72", fontStyle: "italic" }}>{item.latin_name}</span>}
+                            {item.badge && <span style={{ background: badgeColors[item.badge] || "#6A9E5A", color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", padding: "2px 8px", borderRadius: 100 }}>{item.badge}</span>}
+                          </div>
+                          <div style={{ fontSize: 12, color: "#7A7A72" }}>
+                            <span style={{ marginRight: 12 }}>{item.cat_label || item.cat}</span>
+                            {"★".repeat(Math.min(5, item.stars || 5))} <span style={{ color: "#bbb" }}>({item.review_count || 0})</span>
+                          </div>
+                        </div>
+                        <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
+                          <button onClick={() => moveArrival(item.id, -1)} disabled={idx === 0 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === 0 ? "not-allowed" : "pointer", opacity: idx === 0 ? 0.4 : 1, fontSize: 14 }}>↑</button>
+                          <button onClick={() => moveArrival(item.id, 1)} disabled={idx === arrivals.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === arrivals.length - 1 ? "not-allowed" : "pointer", opacity: idx === arrivals.length - 1 ? 0.4 : 1, fontSize: 14 }}>↓</button>
+                          <button onClick={() => setModal({ type: "arrivals-edit", item })} style={{ padding: "6px 14px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>Edit</button>
+                          <button onClick={() => deleteArrival(item.id)} disabled={saving} style={{ padding: "6px 14px", background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#dc2626", fontWeight: 600 }}>Delete</button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {arrivals.length === 0 && (
+                    <div style={{ textAlign: "center", padding: 60, color: "#7A7A72", fontSize: 14 }}>
+                      No products yet.{" "}
+                      <button onClick={() => setModal({ type: "arrivals-new" })} style={{ color: "#2A5726", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>Add your first →</button>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Modals */}
-          {modal?.type === "gallery-new"  && <Modal title="Add Gallery Item"  onClose={() => setModal(null)}><GalleryForm token={token} onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
-          {modal?.type === "gallery-edit" && <Modal title="Edit Gallery Item" onClose={() => setModal(null)}><GalleryForm token={token} item={modal.item} onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
-          {modal?.type === "pricing-new"  && <Modal title="Add Pricing Plan"  onClose={() => setModal(null)}><PricingForm onSave={savePricing} onClose={() => setModal(null)} loading={saving} /></Modal>}
-          {modal?.type === "pricing-edit" && <Modal title="Edit Pricing Plan" onClose={() => setModal(null)}><PricingForm plan={modal.item} onSave={savePricing} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "gallery-new"    && <Modal title="Add Gallery Item"  onClose={() => setModal(null)}><GalleryForm token={token} onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "gallery-edit"   && <Modal title="Edit Gallery Item" onClose={() => setModal(null)}><GalleryForm token={token} item={modal.item} onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "pricing-new"    && <Modal title="Add Pricing Plan"  onClose={() => setModal(null)}><PricingForm onSave={savePricing} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "pricing-edit"   && <Modal title="Edit Pricing Plan" onClose={() => setModal(null)}><PricingForm plan={modal.item} onSave={savePricing} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "arrivals-new"   && <Modal title="Add New Arrival"   onClose={() => setModal(null)}><ArrivalsForm token={token} onSave={saveArrival} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "arrivals-edit"  && <Modal title="Edit Arrival"      onClose={() => setModal(null)}><ArrivalsForm token={token} item={modal.item} onSave={saveArrival} onClose={() => setModal(null)} loading={saving} /></Modal>}
           {toast && <Toast msg={toast} onClose={() => setToast(null)} />}
         </div>
       );

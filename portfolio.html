@@ -427,15 +427,9 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
 <div id="filter-bar">
   <div class="filter-bar-inner">
     <div class="filter-tabs" id="filter-tabs">
-      <button class="filter-tab active" data-filter="all">All Work</button>
-      <button class="filter-tab" data-filter="modern">Modern</button>
-      <button class="filter-tab" data-filter="tropical">Tropical</button>
-      <button class="filter-tab" data-filter="lawn">Lawns</button>
-      <button class="filter-tab" data-filter="patio">Patios</button>
-      <button class="filter-tab" data-filter="events">Events</button>
-      <button class="filter-tab" data-filter="irrigation">Irrigation</button>
+      <!-- populated by render-gallery.js -->
     </div>
-    <div class="filter-count">Showing <span id="count-display">18</span> of <span>18</span> projects</div>
+    <div class="filter-count">Showing <span id="count-display">0</span> projects</div>
   </div>
 </div>
 
@@ -443,115 +437,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
 <section id="gallery">
   <div class="gallery-inner">
     <div class="masonry-grid" id="masonry">
-
-      <div class="masonry-item reveal delay-1" data-cat="modern" data-title="Woodland Retreat" data-desc="A stunning full-landscape transformation in Lalitpur — merging structured modern lines with organic planting beds and a custom stone pathway." data-service="Garden Design & Landscaping" data-duration="3 Weeks" data-location="Lalitpur" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:210px;background:linear-gradient(145deg,#c8e6b0,#4A7C40)"><img src="images/modern1.jpg" alt="Woodland Retreat" loading="lazy"></div>
-        <span class="masonry-cat-badge">Modern</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Woodland Retreat</h4><span>Modern · Full Landscaping · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-2" data-cat="tropical" data-title="Tropical Paradise" data-desc="A lush tropical garden in Bhaktapur featuring banana palms, bird-of-paradise, and a gravel pathway winding through dense planting." data-service="Plant Selection & Planting" data-duration="10 Days" data-location="Bhaktapur" data-budget="$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:145px;background:linear-gradient(145deg,#d4edda,#2D5A27)"><img src="images/tropical.jpeg" alt="Tropical Paradise" loading="lazy"></div>
-        <span class="masonry-cat-badge">Tropical</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Tropical Paradise</h4><span>Tropical · Planting · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-3" data-cat="patio" data-title="Sunstone Patio" data-desc="Hand-laid sandstone patio with integrated seating walls, raised planters, and a pergola draped in climbing jasmine — Kathmandu residence." data-service="Garden Design & Landscaping" data-duration="2 Weeks" data-location="Kathmandu" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:175px;background:linear-gradient(145deg,#fce4b0,#C98B1A)"><img src="images/patio1.jpg" alt="Sunstone Patio" loading="lazy"></div>
-        <span class="masonry-cat-badge">Patio</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Sunstone Patio</h4><span>Patio · Stone Work · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-1" data-cat="lawn" data-title="Evergreen Lawn" data-desc="Premium sod installation with full ground preparation, edging, and a smart drip irrigation setup — lush result achieved in under 48 hours." data-service="Lawn Installation" data-duration="2 Days" data-location="Madhyapur Thimi" data-budget="$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:135px;background:linear-gradient(145deg,#7BAE6A,#1E3D1A)"><img src="images/lawns.jpg" alt="Evergreen Lawn" loading="lazy"></div>
-        <span class="masonry-cat-badge">Lawn</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Evergreen Lawn</h4><span>Lawn · Sodding · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-2" data-cat="tropical" data-title="Bali Garden" data-desc="A Bali-inspired sanctuary complete with bamboo screens, a tiered water feature, and hand-selected tropical foliage for year-round density." data-service="Garden Design & Landscaping" data-duration="4 Weeks" data-location="Lalitpur" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:220px;background:linear-gradient(145deg,#c8f0b0,#5aaa40)"><img src="images/topical1.jpeg" alt="Bali Garden" loading="lazy"></div>
-        <span class="masonry-cat-badge">Tropical</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Bali Garden</h4><span>Tropical · Design · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-3" data-cat="modern" data-title="Water Feature Garden" data-desc="A sleek contemporary garden centred around a rill water feature flanked by ornamental grasses and polished concrete edging." data-service="Garden Design & Landscaping" data-duration="3 Weeks" data-location="Kathmandu" data-budget="$$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:155px;background:linear-gradient(145deg,#dce8f0,#5a8aad)"><img src="images/modern2.webp" alt="Water Feature Garden" loading="lazy"></div>
-        <span class="masonry-cat-badge">Modern</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Water Feature</h4><span>Modern · Water · $$$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-1" data-cat="patio" data-title="Courtyard Design" data-desc="A walled urban courtyard transformed with raised beds, mixed stone and brick paving, and an overhead shade structure trailing wisteria." data-service="Garden Design & Landscaping" data-duration="2.5 Weeks" data-location="Bhaktapur" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:190px;background:linear-gradient(145deg,#f0e0c0,#b8884a)"><img src="images/patio2.jpg" alt="Courtyard Design" loading="lazy"></div>
-        <span class="masonry-cat-badge">Patio</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Courtyard Design</h4><span>Patio · Hardscape · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-2" data-cat="lawn" data-title="Meadow Lawn" data-desc="A naturalistic wildflower meadow lawn seeded with native Nepali species, bordered by dry stone walling and low-growing native shrubs." data-service="Lawn Installation" data-duration="3 Days" data-location="Pokhara" data-budget="$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:130px;background:linear-gradient(145deg,#a8d890,#3a7a2a)"><img src="images/lawns1.jpg" alt="Meadow Lawn" loading="lazy"></div>
-        <span class="masonry-cat-badge">Lawn</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Meadow Lawn</h4><span>Lawn · Wildflower · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-3" data-cat="modern" data-title="Evening Garden" data-desc="A minimal night-garden with architectural lighting, clipped box hedging, and lit stepping stones creating a dramatic dusk ambiance." data-service="Garden Lighting & Design" data-duration="2 Weeks" data-location="Lalitpur" data-budget="$$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:165px;background:linear-gradient(145deg,#e0d8f0,#7070b8)"><img src="images/moder3.webp" alt="Evening Garden" loading="lazy"></div>
-        <span class="masonry-cat-badge">Modern</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Evening Garden</h4><span>Modern · Lighting · $$$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-1" data-cat="events" data-title="Royal Wedding Arch" data-desc="A 5-metre floral arch woven with fresh white roses, eucalyptus, and cascading orchids for a grand Kathmandu wedding reception." data-service="Event & Wedding Decor" data-duration="1 Day" data-location="Kathmandu" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:200px;background:linear-gradient(145deg,#f5e0f0,#c07898)"><img src="images/service4.jpg" alt="Wedding Decor" loading="lazy"></div>
-        <span class="masonry-cat-badge">Event</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Royal Wedding Arch</h4><span>Event · Floral · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-2" data-cat="irrigation" data-title="Smart Drip System" data-desc="A fully automated drip irrigation system installed across a 1200 sq.m. commercial garden — app-controlled with soil moisture sensors." data-service="Irrigation & Sprinkler Setup" data-duration="2 Days" data-location="Bhaktapur" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:145px;background:linear-gradient(145deg,#c0e8f8,#4a98c8)"><img src="images/service6.jpg" alt="Smart Irrigation" loading="lazy"></div>
-        <span class="masonry-cat-badge">Irrigation</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Smart Drip System</h4><span>Irrigation · Smart Tech · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-3" data-cat="tropical" data-title="Zen Tropical Corner" data-desc="A meditative corner garden featuring bamboo, black river stones, a small koi pond, and a cinnamon tree as the central focal point." data-service="Garden Design & Planting" data-duration="12 Days" data-location="Kathmandu" data-budget="$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:185px;background:linear-gradient(145deg,#b8e8c0,#2a8040)"><img src="images/service3.webp" alt="Zen Garden" loading="lazy"></div>
-        <span class="masonry-cat-badge">Tropical</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Zen Tropical Corner</h4><span>Tropical · Zen · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-1" data-cat="patio" data-title="Heritage Terrace" data-desc="A traditional Newari-inspired terraced garden with brick edging, marigold borders, and a central raised lawn at a Bhaktapur heritage home." data-service="Garden Design & Landscaping" data-duration="3 Weeks" data-location="Bhaktapur" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:165px;background:linear-gradient(145deg,#f8e8c0,#d4a030)"><img src="images/garden.jpg" alt="Heritage Terrace" loading="lazy"></div>
-        <span class="masonry-cat-badge">Patio</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Heritage Terrace</h4><span>Patio · Traditional · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-2" data-cat="events" data-title="Corporate Bloom Display" data-desc="A full-venue floral transformation for a corporate gala — 80+ arrangements, foliage runners, and a 3-metre statement installation at the entrance." data-service="Event & Wedding Decor" data-duration="1 Day" data-location="Lalitpur" data-budget="$$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:150px;background:linear-gradient(145deg,#f0f0c8,#a8a830)"><img src="images/planting.jpg" alt="Corporate Event" loading="lazy"></div>
-        <span class="masonry-cat-badge">Event</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Corporate Bloom Display</h4><span>Event · Corporate · $$$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-3" data-cat="lawn" data-title="Villa Lawn Renovation" data-desc="Complete lawn renovation for a 600 sq.m. villa garden — full excavation, levelling, soil enrichment and premium sod installation." data-service="Lawn Installation" data-duration="4 Days" data-location="Kathmandu" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:180px;background:linear-gradient(145deg,#90d870,#1a6020)"><img src="images/service2.jpg" alt="Villa Lawn" loading="lazy"></div>
-        <span class="masonry-cat-badge">Lawn</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Villa Lawn Renovation</h4><span>Lawn · Premium · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-1" data-cat="modern" data-title="Minimalist Rooftop" data-desc="A minimalist rooftop garden in central Kathmandu with clipped ornamental grasses, glazed planters, and a wooden deck seating area." data-service="Garden Design & Landscaping" data-duration="2 Weeks" data-location="Kathmandu" data-budget="$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:200px;background:linear-gradient(145deg,#e8e8d8,#808068)"><img src="images/service1.jpg" alt="Rooftop Garden" loading="lazy"></div>
-        <span class="masonry-cat-badge">Modern</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Minimalist Rooftop</h4><span>Modern · Rooftop · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-2" data-cat="irrigation" data-title="Estate Sprinkler Network" data-desc="A 16-zone automated sprinkler network for a 2-acre estate, with weather compensation and a central control unit linked to a smartphone." data-service="Irrigation & Sprinkler Setup" data-duration="3 Days" data-location="Bhaktapur" data-budget="$$$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:140px;background:linear-gradient(145deg,#b8d8f0,#3870a8)"><img src="images/service5.png" alt="Irrigation Network" loading="lazy"></div>
-        <span class="masonry-cat-badge">Irrigation</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Estate Sprinkler Network</h4><span>Irrigation · Automated · $$$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
-      <div class="masonry-item reveal delay-3" data-cat="tropical" data-title="Community Garden" data-desc="A community garden project in Madhyapur Thimi — raised vegetable beds, herb spirals, fruit trees, and composting bays for 40 households." data-service="Kitchen Garden Design" data-duration="5 Weeks" data-location="Madhyapur Thimi" data-budget="$$" onclick="openLightbox(this)">
-        <div class="masonry-fake-img" style="height:170px;background:linear-gradient(145deg,#d8f0b8,#58a038)"><img src="images/community.png" alt="Community Garden" loading="lazy"></div>
-        <span class="masonry-cat-badge">Tropical</span>
-        <div class="masonry-overlay"><div class="masonry-info"><h4>Community Garden</h4><span>Tropical · Community · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
-      </div>
-
+      <!-- populated by render-gallery.js -->
     </div>
 
     <div class="empty-state" id="empty-state">
@@ -785,45 +671,18 @@ function toggleNav() {
 
 // ===== SCROLL REVEAL =====
 const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale')
-const obs = new IntersectionObserver(entries => {
+window._revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') })
 }, { threshold: 0.1 })
-revealEls.forEach(el => obs.observe(el))
+revealEls.forEach(el => window._revealObserver.observe(el))
 
-// ===== FILTER =====
-const tabs = document.querySelectorAll('.filter-tab')
-const items = document.querySelectorAll('.masonry-item')
-const countDisplay = document.getElementById('count-display')
-const emptyState = document.getElementById('empty-state')
-
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'))
-    tab.classList.add('active')
-    const filter = tab.dataset.filter
-    let visible = 0
-    items.forEach(item => {
-      const match = filter === 'all' || item.dataset.cat === filter
-      if (match) {
-        item.classList.remove('hidden-item')
-        item.style.display = 'block'
-        visible++
-      } else {
-        item.classList.add('hidden-item')
-        item.style.display = 'none'
-      }
-    })
-    countDisplay.textContent = visible
-    emptyState.style.display = visible === 0 ? 'block' : 'none'
-  })
-})
+// Filter handled by render-gallery.js
 
 // ===== LIGHTBOX =====
-const allItems = Array.from(document.querySelectorAll('.masonry-item'))
 let currentLbIndex = 0
 
 function getVisibleItems() {
-  return allItems.filter(i => i.style.display !== 'none' && !i.classList.contains('hidden-item'))
+  return Array.from(document.querySelectorAll('.masonry-item'))
 }
 
 function openLightbox(el) {
@@ -917,5 +776,7 @@ carousel.addEventListener('touchend', e => {
   if (Math.abs(delta) > 40) moveCarousel(delta > 0 ? 1 : -1)
 })
 </script>
+<script src="data-gallery.js"></script>
+<script src="render-gallery.js"></script>
 </body>
 </html>

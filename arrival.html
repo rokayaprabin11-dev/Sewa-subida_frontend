@@ -182,6 +182,7 @@ section{padding:100px 40px}
 #products{background:var(--sand);padding:20px 40px 100px}
 .products-header{max-width:1200px;margin:0 auto 36px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .products-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@keyframes spin-loader{to{transform:rotate(360deg)}}
 
 /* Product Card */
 .prod-card{background:var(--white);border-radius:var(--radius-xl);overflow:hidden;border:1px solid rgba(42,87,38,.07);box-shadow:var(--shadow-sm);transition:var(--transition);cursor:none;position:relative}
@@ -213,9 +214,7 @@ section{padding:100px 40px}
 .prod-rating{display:flex;align-items:center;gap:6px;margin-bottom:12px}
 .prod-stars{color:var(--gold);font-size:12px;letter-spacing:1px}
 .prod-review-count{font-size:11px;color:var(--muted)}
-.prod-price-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.prod-price{font-family:'Playfair Display',serif;font-size:20px;color:var(--green-dark);font-weight:700}
-.prod-price-old{font-size:13px;color:var(--muted);text-decoration:line-through}
+.prod-price-row{display:none}
 .prod-add-mini{width:36px;height:36px;border-radius:50%;background:var(--green-pale);border:1px solid rgba(42,87,38,.15);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:none;transition:var(--transition);color:var(--green-mid)}
 .prod-add-mini:hover{background:var(--green-mid);color:var(--white)}
 /* care tags */
@@ -514,321 +513,19 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.7);padding:60px 40px
 
       <!-- Products Grid -->
       <section id="products">
-        <div class="products-grid" id="productsGrid">
-
-          <!-- 1 -->
-          <div class="prod-card reveal delay-1" data-cat="indoor"
-            data-price="1800" data-popular="95">
-            <div class="prod-img sage">
-              <span class="prod-emoji">🌵</span>
-              <span class="prod-badge new">New</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Indoor · Succulent</div>
-              <div class="prod-name">Euphorbia Trigona</div>
-              <div class="prod-latin">African Milk Tree</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(42)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
-                  sun</span>
-                <span class="care-dot"><i class="fa-solid fa-droplet"></i> Low
-                  water</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2 -->
-          <div class="prod-card reveal delay-2" data-cat="indoor"
-            data-price="2400" data-popular="88">
-            <div class="prod-img gold">
-              <span class="prod-emoji">🪴</span>
-              <span class="prod-badge hot">Hot</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Indoor · Tropical</div>
-              <div class="prod-name">Monstera Deliciosa</div>
-              <div class="prod-latin">Swiss Cheese Plant</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(118)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-sun"></i>
-                  Indirect</span>
-                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
-                  Moderate</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3 -->
-          <div class="prod-card reveal delay-3" data-cat="outdoor"
-            data-price="950" data-popular="72">
-            <div class="prod-img">
-              <span class="prod-emoji">🌸</span>
-              <span class="prod-badge new">New</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Outdoor · Flowering</div>
-              <div class="prod-name">Bougainvillea Spectabilis</div>
-              <div class="prod-latin">Great Bougainvillea</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★☆</span>
-                <span class="prod-review-count">(63)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
-                  sun</span>
-                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
-                  Low</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4 -->
-          <div class="prod-card reveal delay-4" data-cat="tools"
-            data-price="4500" data-popular="60">
-            <div class="prod-img sand">
-              <span class="prod-emoji">🪣</span>
-              <span class="prod-badge best">Bestseller</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Tools &amp; Pots · Terracotta</div>
-              <div class="prod-name">Terracotta Pot Set</div>
-              <div class="prod-latin">Set of 3 — Handmade Nepal</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(204)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-fire"></i> Kiln
-                  fired</span>
-                <span class="care-dot"><i class="fa-solid fa-recycle"></i>
-                  Eco</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5 -->
-          <div class="prod-card reveal delay-1" data-cat="flowering"
-            data-price="1200" data-popular="80">
-            <div class="prod-img">
-              <span class="prod-emoji">🌻</span>
-              <span class="prod-badge sale">Sale</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Flowering · Annual</div>
-              <div class="prod-name">Helianthus Annuus</div>
-              <div class="prod-latin">Giant Sunflower</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(87)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
-                  sun</span>
-                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
-                  Regular</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 6 -->
-          <div class="prod-card reveal delay-2" data-cat="soil" data-price="680"
-            data-popular="91">
-            <div class="prod-img sage">
-              <span class="prod-emoji">🌱</span>
-              <span class="prod-badge new">New</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Soil &amp; Nutrients · Organic</div>
-              <div class="prod-name">Organic Compost Mix</div>
-              <div class="prod-latin">5kg · Local Blend</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(312)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-recycle"></i>
-                  Organic</span>
-                <span class="care-dot"><i class="fa-solid fa-seedling"></i> All
-                  plants</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 7 -->
-          <div class="prod-card reveal delay-3" data-cat="indoor"
-            data-price="3600" data-popular="76">
-            <div class="prod-img gold">
-              <span class="prod-emoji">🌿</span>
-              <span class="prod-badge limited">Limited</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Indoor · Statement Plant</div>
-              <div class="prod-name">Fiddle Leaf Fig</div>
-              <div class="prod-latin">Ficus Lyrata</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★☆</span>
-                <span class="prod-review-count">(55)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-sun"></i> Bright
-                  indirect</span>
-                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
-                  Weekly</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 8 -->
-          <div class="prod-card reveal delay-4" data-cat="outdoor"
-            data-price="2100" data-popular="68">
-            <div class="prod-img">
-              <span class="prod-emoji">🍃</span>
-              <span class="prod-badge new">New</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Outdoor · Privacy Screen</div>
-              <div class="prod-name">Clumping Bamboo</div>
-              <div class="prod-latin">Bambusa Multiplex</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(29)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
-                  sun</span>
-                <span class="care-dot"><i class="fa-solid fa-wind"></i> Wind
-                  tolerant</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 9 -->
-          <div class="prod-card reveal delay-1" data-cat="tools"
-            data-price="1350" data-popular="83">
-            <div class="prod-img sand">
-              <span class="prod-emoji">🔧</span>
-              <span class="prod-badge best">Bestseller</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Tools · Garden Kit</div>
-              <div class="prod-name">Pro Pruning Kit</div>
-              <div class="prod-latin">Stainless Steel · 5-piece</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(176)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-shield"></i>
-                  Rust-proof</span>
-                <span class="care-dot"><i class="fa-solid fa-star"></i> Pro
-                  grade</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 10 -->
-          <div class="prod-card reveal delay-2" data-cat="flowering"
-            data-price="760" data-popular="74">
-            <div class="prod-img">
-              <span class="prod-emoji">🌹</span>
-              <span class="prod-badge hot">Hot</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Flowering · Perennial</div>
-              <div class="prod-name">Hybrid Tea Rose</div>
-              <div class="prod-latin">Rosa × Hybrida</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(94)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-sun"></i> Full
-                  sun</span>
-                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
-                  Regular</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 11 -->
-          <div class="prod-card reveal delay-3" data-cat="soil" data-price="890"
-            data-popular="85">
-            <div class="prod-img sage">
-              <span class="prod-emoji">💧</span>
-              <span class="prod-badge new">New</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Nutrients · Liquid</div>
-              <div class="prod-name">Liquid Seaweed Fertiliser</div>
-              <div class="prod-latin">500ml Concentrate</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(67)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-recycle"></i>
-                  Natural</span>
-                <span class="care-dot"><i class="fa-solid fa-seedling"></i>
-                  Fast-acting</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 12 -->
-          <div class="prod-card reveal delay-4" data-cat="indoor"
-            data-price="5200" data-popular="70">
-            <div class="prod-img gold">
-              <span class="prod-emoji">🪷</span>
-              <span class="prod-badge limited">Limited</span>
-
-            </div>
-            <div class="prod-info">
-              <div class="prod-cat">Indoor · Rare Find</div>
-              <div class="prod-name">Philodendron Gloriosum</div>
-              <div class="prod-latin">Velvet Leaf Philodendron</div>
-              <div class="prod-rating">
-                <span class="prod-stars">★★★★★</span>
-                <span class="prod-review-count">(18)</span>
-              </div>
-
-              <div class="prod-care">
-                <span class="care-dot"><i class="fa-solid fa-sun"></i> Low
-                  light</span>
-                <span class="care-dot"><i class="fa-solid fa-droplet"></i>
-                  Moderate</span>
-              </div>
-            </div>
-          </div>
-
+        <!-- Loading skeleton -->
+        <div id="productsLoading" style="max-width:1200px;margin:0 auto;padding:60px 0;text-align:center;color:var(--muted);font-size:14px;display:flex;flex-direction:column;align-items:center;gap:16px">
+          <div style="width:40px;height:40px;border:3px solid var(--green-pale);border-top:3px solid var(--green-mid);border-radius:50%;animation:spin-loader .8s linear infinite"></div>
+          Loading arrivals…
         </div>
+        <!-- Empty state -->
+        <div id="productsEmpty" style="display:none;max-width:1200px;margin:0 auto;padding:80px 0;text-align:center">
+          <div style="font-size:52px;margin-bottom:16px">🌱</div>
+          <h3 style="font-family:'Playfair Display',serif;color:var(--green-dark);margin-bottom:8px">No products yet</h3>
+          <p style="color:var(--muted);font-size:14px">Check back soon — new arrivals are coming!</p>
+        </div>
+        <!-- Dynamic grid -->
+        <div class="products-grid" id="productsGrid"></div>
       </section>
 
       <!-- Seasonal Banner -->
@@ -1026,6 +723,9 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.7);padding:60px 40px
           </div>
         </footer>
 
+        <!-- Toast -->
+        <div id="toast"><i class="fa-solid fa-check"></i></div>
+
         <!-- WhatsApp Float -->
         <div id="wa-float">
           <div id="wa-bubble">Chat with us on WhatsApp!<span
@@ -1036,13 +736,20 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.7);padding:60px 40px
         </div>
 
         <script>
+// ===== CONFIG =====
+const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
+
 // ===== CURSOR =====
 const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
 document.addEventListener('mousemove',e=>{dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'});
-document.querySelectorAll('a,button,select,.prod-card,.season-card,.care-card,.filter-btn').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
-});
+
+function bindHover(){
+  document.querySelectorAll('a,button,select,.prod-card,.season-card,.care-card,.filter-btn').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
+  });
+}
+bindHover();
 
 // ===== LOADER =====
 window.addEventListener('load',()=>{ setTimeout(()=>document.getElementById('loader').classList.add('hidden'),2200) });
@@ -1052,22 +759,85 @@ const header=document.getElementById('header');
 window.addEventListener('scroll',()=>{ header.classList.toggle('scrolled',window.scrollY>40) });
 
 // ===== NAV TOGGLE =====
-function toggleNav(){ document.getElementById('nav').classList.toggle('open') }
+function toggleNav(){ document.getElementById('main-nav').classList.toggle('open') }
 
 // ===== SCROLL REVEAL =====
-const revEls=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
 const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible') })},{threshold:.12});
-revEls.forEach(el=>revObs.observe(el));
+function observeReveal(){
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>revObs.observe(el));
+}
+observeReveal();
 
 // ===== TOAST =====
 let toastTimer;
-function showToast(msg){}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  if(!t) return;
+  t.innerHTML='<i class="fa-solid fa-check"></i> '+msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),3000);
+}
 
 // ===== ADD TO CART =====
-function addToCart(name){}
+function addToCart(name){ showToast(name+' added to cart!') }
 
 // ===== WISHLIST =====
-function toggleWish(btn){}
+function toggleWish(btn){ btn.classList.toggle('active'); showToast(btn.classList.contains('active')?'Added to wishlist':'Removed from wishlist') }
+
+// ===== PRODUCTS — BUILD A CARD =====
+function starsHtml(n){
+  const s=Math.max(0,Math.min(5,Math.round(n)));
+  return '★'.repeat(s)+'☆'.repeat(5-s);
+}
+
+function buildCard(p, idx){
+  const delayClass='delay-'+((idx%4)+1);
+  const badgeHtml=p.badge?`<span class="prod-badge ${p.badge}">${p.badge==='best'?'Bestseller':p.badge.charAt(0).toUpperCase()+p.badge.slice(1)}</span>`:'';
+  const imgBgClass=p.img_bg?` ${p.img_bg}`:'';
+  const careHtml=(Array.isArray(p.care_tags)?p.care_tags:[]).map(ct=>
+    `<span class="care-dot"><i class="${ct.icon}"></i> ${ct.label}</span>`).join('');
+  const latin=p.latin_name?`<div class="prod-latin">${p.latin_name}</div>`:'';
+  const reviewHtml=p.review_count?`<span class="prod-review-count">(${p.review_count})</span>`:'';
+
+  return `<div class="prod-card reveal ${delayClass}" data-cat="${p.cat}" data-popular="${p.popular||0}" data-id="${p.id}">
+    <div class="prod-img${imgBgClass}">
+      ${p.image?`<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">`:`<span class="prod-emoji">${p.emoji||'🌿'}</span>`}
+      ${badgeHtml}
+    </div>
+    <div class="prod-info">
+      <div class="prod-cat">${p.cat_label||p.cat}</div>
+      <div class="prod-name">${p.name}</div>
+      ${latin}
+      ${(p.stars||p.review_count)?`<div class="prod-rating"><span class="prod-stars">${starsHtml(p.stars||5)}</span>${reviewHtml}</div>`:''}
+      ${careHtml?`<div class="prod-care">${careHtml}</div>`:''}
+    </div>
+  </div>`;
+}
+
+// ===== LOAD PRODUCTS FROM API =====
+let allProducts=[];
+async function loadProducts(){
+  const grid=document.getElementById('productsGrid');
+  const loadingEl=document.getElementById('productsLoading');
+  const emptyEl=document.getElementById('productsEmpty');
+  try {
+    const res=await fetch(`${API_BASE}/api/arrivals`);
+    if(!res.ok) throw new Error('Failed to load');
+    const rows=await res.json();
+    allProducts=rows;
+    loadingEl.style.display='none';
+    if(rows.length===0){ emptyEl.style.display='block'; document.getElementById('visibleCount').textContent='0'; return; }
+    grid.innerHTML=rows.map((p,i)=>buildCard(p,i)).join('');
+    document.getElementById('visibleCount').textContent=rows.length;
+    observeReveal();
+    bindHover();
+  } catch(e){
+    loadingEl.innerHTML='<p style="color:var(--muted)">Could not load products. Please try again later.</p>';
+    console.error('Arrivals fetch error:',e);
+  }
+}
+loadProducts();
 
 // ===== FILTER =====
 function filterProducts(btn, cat){
@@ -1076,8 +846,7 @@ function filterProducts(btn, cat){
   const cards=document.querySelectorAll('.prod-card');
   let visible=0;
   cards.forEach(card=>{
-    const cardCat=card.dataset.cat;
-    const show=(cat==='all'||cardCat===cat);
+    const show=(cat==='all'||card.dataset.cat===cat);
     card.style.display=show?'':'none';
     if(show) visible++;
   });
@@ -1088,10 +857,8 @@ function filterProducts(btn, cat){
 function sortProducts(val){
   const grid=document.getElementById('productsGrid');
   const cards=[...grid.querySelectorAll('.prod-card')];
-  cards.sort((a,b)=>{
-    if(val==='popular') return +b.dataset.popular - +a.dataset.popular;
-    return 0; // newest: original order
-  });
+  if(val==='popular') cards.sort((a,b)=>+b.dataset.popular - +a.dataset.popular);
+  else cards.sort((a,b)=>+a.dataset.id - +b.dataset.id);
   cards.forEach(c=>grid.appendChild(c));
 }
 

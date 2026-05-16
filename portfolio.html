@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Services — GreenScape Garden Design & Landscaping</title>
+  <title>Portfolio — GreenScape Garden Design & Landscaping</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,15 +43,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--charcoa
 body.hovering #cursor-ring{width:50px;height:50px;border-color:var(--gold);opacity:1}
 body.hovering #cursor-dot{background:var(--gold);width:10px;height:10px}
 
-/* ========== LOADING SCREEN ========== */
+/* ========== LOADER ========== */
 #loader{position:fixed;inset:0;background:var(--green-dark);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:10000;transition:opacity 0.8s,visibility 0.8s}
 #loader.hidden{opacity:0;visibility:hidden}
 .loader-plant{width:80px;height:80px;position:relative}
 .loader-stem{position:absolute;bottom:0;left:50%;width:3px;background:var(--green-sage);transform:translateX(-50%);animation:grow-stem 1.8s ease-out forwards}
 @keyframes grow-stem{0%{height:0}100%{height:60px}}
-.loader-leaf-l{position:absolute;bottom:20px;left:50%;width:0;height:0;border-radius:50% 0 50% 50%;background:var(--green-light);transform-origin:right center;animation:grow-leaf-l 0.6s 0.8s ease-out forwards;opacity:0}
+.loader-leaf-l{position:absolute;bottom:20px;left:50%;border-radius:50% 0 50% 50%;background:var(--green-light);transform-origin:right center;animation:grow-leaf-l 0.6s 0.8s ease-out forwards;opacity:0}
 @keyframes grow-leaf-l{0%{width:0;height:0;opacity:0}100%{width:28px;height:18px;opacity:1;transform:translateX(-100%) rotate(-30deg)}}
-.loader-leaf-r{position:absolute;bottom:32px;left:50%;width:0;height:0;border-radius:0 50% 50% 50%;background:var(--green-sage);transform-origin:left center;animation:grow-leaf-r 0.6s 1.1s ease-out forwards;opacity:0}
+.loader-leaf-r{position:absolute;bottom:32px;left:50%;border-radius:0 50% 50% 50%;background:var(--green-sage);transform-origin:left center;animation:grow-leaf-r 0.6s 1.1s ease-out forwards;opacity:0}
 @keyframes grow-leaf-r{0%{width:0;height:0;opacity:0}100%{width:28px;height:18px;opacity:1;transform:rotate(30deg)}}
 .loader-bloom{position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:24px;background:var(--gold-light);border-radius:50%;animation:bloom 0.5s 1.5s ease-out forwards;opacity:0;scale:0}
 @keyframes bloom{0%{opacity:0;scale:0}100%{opacity:1;scale:1}}
@@ -71,26 +71,25 @@ body.hovering #cursor-dot{background:var(--gold);width:10px;height:10px}
 
 /* ========== HEADER ========== */
 #header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between;transition:var(--transition)}
-#header.scrolled{background:rgba(247,242,234,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(42,87,38,0.1);box-shadow:var(--shadow-sm)}
+#header.scrolled{background:rgba(247,242,234,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(42,87,38,0.1);box-shadow:var(--shadow-sm)}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .logo-icon{width:42px;height:42px;border-radius:12px;object-fit:cover;flex-shrink:0;transition:var(--transition);display:block}
-.logo:hover .logo-icon{background:var(--green-rich);transform:rotate(-5deg) scale(1.05)}
+.logo:hover .logo-icon{transform:rotate(-5deg) scale(1.05)}
 .logo-name{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);font-weight:700;transition:color 0.3s}
 #header.scrolled .logo-name{color:var(--green-dark)}
 nav{display:flex;align-items:center;gap:32px}
 nav a{font-size:14px;color:rgba(255,255,255,0.85);text-decoration:none;font-weight:400;letter-spacing:0.2px;position:relative;transition:color 0.3s;cursor:none}
 nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold-light);transition:width 0.3s}
-nav a:hover::after{width:100%}
+nav a:hover::after,nav a.active::after{width:100%}
 nav a:hover{color:var(--white)}
+nav a.active{color:var(--gold-light)!important}
 #header.scrolled nav a{color:var(--slate)}
 #header.scrolled nav a:hover{color:var(--green-dark)}
-nav a.active{color:var(--gold-light) !important}
-#header.scrolled nav a.active{color:var(--gold) !important}
-nav a.active::after{width:100%}
+#header.scrolled nav a.active{color:var(--gold)!important}
 .nav-cta{background:var(--gold);color:var(--white)!important;padding:10px 22px;border-radius:100px;font-weight:500;font-size:13px;border:none;cursor:none;transition:var(--transition);text-decoration:none;animation:gold-glow 2.5s ease-in-out infinite}
 .nav-cta::after{display:none!important}
 @keyframes gold-glow{0%,100%{box-shadow:0 0 0 0 rgba(200,137,26,0.4)}50%{box-shadow:0 0 0 10px rgba(200,137,26,0)}}
-.nav-cta:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.nav-cta:hover{background:var(--gold-light);transform:translateY(-2px)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:none;padding:6px}
 .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:var(--transition)}
 #header.scrolled .hamburger span{background:var(--charcoal)}
@@ -104,18 +103,16 @@ section{padding:100px 40px}
 .divider{width:56px;height:3px;background:linear-gradient(90deg,var(--green-mid),var(--green-sage));border-radius:2px;margin:20px 0}
 .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--white);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;border:none;cursor:none;transition:var(--transition)}
 .btn-primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--green-dark);padding:14px 28px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;border:1.5px solid rgba(42,87,38,0.3);cursor:none;transition:var(--transition)}
-.btn-secondary:hover{background:var(--green-pale);border-color:var(--green-sage);transform:translateY(-2px)}
 
 /* ========== PAGE HERO ========== */
-#page-hero{position:relative;padding-top:72px;min-height:480px;display:flex;align-items:center;overflow:hidden;background:var(--green-dark)}
-.page-hero-bg{position:absolute;inset:0}
-.page-hero-circle{position:absolute;border-radius:50%;filter:blur(70px)}
-.page-hero-circle.c1{width:520px;height:520px;background:rgba(58,112,51,0.4);top:-180px;right:-80px}
-.page-hero-circle.c2{width:360px;height:360px;background:rgba(200,137,26,0.1);bottom:-80px;left:-60px}
-.page-hero-circle.c3{width:240px;height:240px;background:rgba(106,158,90,0.18);top:30%;left:28%}
+#page-hero{position:relative;padding-top:72px;min-height:460px;display:flex;align-items:center;overflow:hidden;background:var(--green-dark)}
+.page-hero-bg .phc{position:absolute;border-radius:50%;filter:blur(70px)}
+.phc.c1{width:540px;height:540px;background:rgba(58,112,51,0.38);top:-180px;right:-80px}
+.phc.c2{width:380px;height:380px;background:rgba(200,137,26,0.1);bottom:-90px;left:-70px}
+.phc.c3{width:260px;height:260px;background:rgba(106,158,90,0.16);top:28%;left:26%}
 .grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px}
-.page-hero-content{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:80px 40px;width:100%}
+.page-hero-content{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:80px 40px;width:100%;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:40px}
+.page-hero-left{max-width:620px}
 .breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;margin-bottom:28px;animation:fade-up 0.7s 0.2s ease backwards}
 .breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.3s;cursor:none}
 .breadcrumb a:hover{color:var(--gold-light)}
@@ -124,181 +121,162 @@ section{padding:100px 40px}
 .page-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--gold-light);font-size:11px;padding:6px 16px;border-radius:100px;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(8px);animation:fade-up 0.7s 0.3s ease backwards}
 .page-hero-badge-dot{width:6px;height:6px;background:var(--gold-light);border-radius:50%;animation:blink 1.5s ease infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.page-hero-title{font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,68px);color:var(--white);line-height:1.12;font-weight:700;margin-bottom:20px;animation:fade-up 0.8s 0.4s ease backwards}
+.page-hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);color:var(--white);line-height:1.12;font-weight:700;margin-bottom:18px;animation:fade-up 0.8s 0.4s ease backwards}
 .page-hero-title em{font-style:italic;color:var(--green-light)}
-.page-hero-sub{color:rgba(255,255,255,0.65);font-size:18px;font-weight:300;max-width:560px;line-height:1.65;margin-bottom:36px;animation:fade-up 0.8s 0.55s ease backwards}
+.page-hero-sub{color:rgba(255,255,255,0.65);font-size:17px;font-weight:300;line-height:1.65;margin-bottom:36px;animation:fade-up 0.8s 0.55s ease backwards}
 .page-hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fade-up 0.8s 0.7s ease backwards}
-.hero-btn-white{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);color:var(--white);padding:14px 28px;border-radius:100px;font-size:14px;font-weight:400;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);cursor:none;transition:var(--transition);backdrop-filter:blur(4px)}
+.hero-btn-white{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);color:var(--white);padding:14px 28px;border-radius:100px;font-size:14px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);cursor:none;transition:var(--transition);backdrop-filter:blur(4px)}
 .hero-btn-white:hover{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.6);transform:translateY(-2px)}
-.page-hero-stats{position:absolute;right:40px;bottom:40px;display:flex;gap:32px;animation:fade-up 0.8s 0.9s ease backwards;z-index:2}
-.ph-stat{text-align:center}
-.ph-stat-num{font-family:'Playfair Display',serif;font-size:32px;color:var(--white);display:block;line-height:1}
-.ph-stat-label{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.2px;margin-top:4px}
-.ph-stat-div{width:1px;background:rgba(255,255,255,0.12);align-self:stretch}
+.page-hero-right{display:flex;gap:28px;animation:fade-up 0.8s 0.85s ease backwards}
+.ph-stat{text-align:center;padding:20px 24px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);backdrop-filter:blur(8px)}
+.ph-stat-num{font-family:'Playfair Display',serif;font-size:34px;color:var(--white);display:block;line-height:1}
+.ph-stat-label{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.2px;margin-top:6px;display:block}
 @keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-/* ========== SERVICES OVERVIEW NAV ========== */
-#service-nav{background:var(--white);border-bottom:1px solid rgba(42,87,38,0.1);position:sticky;top:72px;z-index:900;padding:0 40px;box-shadow:var(--shadow-sm)}
-.service-nav-inner{max-width:1160px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-.service-nav-inner::-webkit-scrollbar{display:none}
-.snav-item{flex-shrink:0;padding:18px 20px;font-size:13px;font-weight:500;color:var(--slate);text-decoration:none;border-bottom:2.5px solid transparent;transition:var(--transition);cursor:none;white-space:nowrap;display:flex;align-items:center;gap:8px}
-.snav-item:hover{color:var(--green-dark);border-bottom-color:var(--green-sage)}
-.snav-item.active{color:var(--green-dark);border-bottom-color:var(--green-mid);font-weight:600}
-.snav-item i{font-size:14px;color:var(--green-sage)}
+/* ========== FILTER BAR ========== */
+#filter-bar{background:var(--white);border-bottom:1px solid rgba(42,87,38,0.08);position:sticky;top:72px;z-index:900;padding:0 40px;box-shadow:var(--shadow-sm)}
+.filter-bar-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 0}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.filter-tab{padding:8px 20px;border-radius:100px;border:1.5px solid rgba(42,87,38,0.15);font-size:13px;font-weight:500;color:var(--slate);cursor:none;transition:var(--transition);background:transparent}
+.filter-tab.active,.filter-tab:hover{background:var(--green-mid);color:var(--white);border-color:var(--green-mid)}
+.filter-count{font-size:13px;color:var(--muted);white-space:nowrap}
+.filter-count span{color:var(--green-dark);font-weight:600}
 
-/* ========== SERVICE DETAIL CARDS ========== */
-#services-detail{background:var(--sand)}
-.services-intro{text-align:center;max-width:680px;margin:0 auto 72px;padding-top:0}
-.services-intro .divider{margin:20px auto}
+/* ========== PORTFOLIO GRID ========== */
+#gallery{background:var(--sand);padding:60px 40px 100px}
+.gallery-inner{max-width:1160px;margin:0 auto}
+.masonry-grid{columns:3;gap:18px;column-gap:18px}
+.masonry-item{break-inside:avoid;margin-bottom:18px;border-radius:var(--radius-lg);overflow:hidden;position:relative;cursor:none;transition:var(--transition);display:block}
+.masonry-item.hidden-item{display:none}
+.masonry-item:hover{transform:scale(1.02);box-shadow:var(--shadow-lg)}
+.masonry-fake-img{position:relative;overflow:hidden;border-radius:var(--radius-lg)}
+.masonry-fake-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.55s ease;border-radius:inherit}
+.masonry-item:hover .masonry-fake-img img{transform:scale(1.07)}
+.masonry-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,61,24,0.88) 0%,transparent 55%);opacity:0;transition:opacity 0.3s;border-radius:var(--radius-lg);display:flex;align-items:flex-end;padding:20px}
+.masonry-item:hover .masonry-overlay{opacity:1}
+.masonry-info{color:var(--white);flex:1}
+.masonry-info h4{font-family:'Playfair Display',serif;font-size:15px;margin-bottom:4px}
+.masonry-info span{font-size:11px;color:rgba(255,255,255,0.65);letter-spacing:1px;text-transform:uppercase}
+.masonry-open-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.4);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:var(--transition)}
+.masonry-item:hover .masonry-open-btn{background:var(--gold);border-color:var(--gold)}
+.masonry-cat-badge{position:absolute;top:14px;left:14px;background:rgba(26,61,24,0.65);color:var(--white);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:100px;backdrop-filter:blur(4px);opacity:0;transition:opacity 0.3s}
+.masonry-item:hover .masonry-cat-badge{opacity:1}
 
-.srv-detail-block{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-bottom:100px}
-.srv-detail-block:nth-child(even){direction:rtl}
-.srv-detail-block:nth-child(even) > *{direction:ltr}
-.srv-detail-block:last-child{margin-bottom:0}
+/* Load more */
+.load-more-wrap{text-align:center;margin-top:48px}
+.load-more-btn{display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--green-dark);padding:14px 32px;border-radius:100px;font-size:14px;font-weight:500;border:1.5px solid rgba(42,87,38,0.2);cursor:none;transition:var(--transition)}
+.load-more-btn:hover{background:var(--green-pale);border-color:var(--green-sage);transform:translateY(-2px)}
 
-.srv-detail-visual{position:relative;border-radius:var(--radius-xl);overflow:visible}
-.srv-detail-img-wrap{border-radius:var(--radius-xl);overflow:hidden;height:420px;box-shadow:var(--shadow-lg)}
-.srv-detail-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;display:block}
-.srv-detail-img-wrap:hover img{transform:scale(1.05)}
-.srv-detail-badge{position:absolute;bottom:-20px;left:32px;background:var(--white);border-radius:var(--radius);padding:14px 20px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:12px;border:1px solid rgba(42,87,38,0.08)}
-.srv-detail-badge-icon{width:40px;height:40px;border-radius:10px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;color:var(--green-rich);font-size:18px}
-.srv-detail-badge-text{font-size:13px;font-weight:600;color:var(--green-dark)}
-.srv-detail-badge-sub{font-size:11px;color:var(--muted)}
-.srv-detail-tag{display:inline-flex;align-items:center;gap:6px;background:var(--gold-pale);color:var(--gold);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:16px;border:1px solid rgba(200,137,26,0.2)}
+/* Empty state */
+.empty-state{text-align:center;padding:80px 20px;display:none}
+.empty-state i{font-size:48px;color:var(--green-light);margin-bottom:20px;display:block}
+.empty-state p{font-size:15px;color:var(--muted)}
 
-.srv-detail-info h2{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);color:var(--green-dark);line-height:1.25;margin-bottom:12px}
-.srv-detail-info p{font-size:15px;color:var(--slate);line-height:1.75;margin-bottom:20px}
-.srv-detail-features{display:flex;flex-direction:column;gap:10px;margin:24px 0 32px}
-.srv-feat{display:flex;align-items:flex-start;gap:12px}
-.srv-feat-check{width:22px;height:22px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--green-rich);font-size:10px;flex-shrink:0;margin-top:2px}
-.srv-feat-text{font-size:14px;color:var(--slate);line-height:1.5}
-.srv-detail-meta{display:flex;gap:24px;padding:20px 0;border-top:1px solid var(--sand-dark);margin-bottom:28px;flex-wrap:wrap}
-.srv-meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--slate)}
-.srv-meta-item i{color:var(--green-sage);font-size:14px}
-.srv-meta-label{color:var(--muted);font-size:12px}
-.srv-detail-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* ========== FEATURED PROJECTS ========== */
+#featured{background:var(--white);padding:100px 40px}
+.featured-header{text-align:center;margin-bottom:64px}
+.featured-header .divider{margin:16px auto}
+.featured-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.feat-card{border-radius:var(--radius-xl);overflow:hidden;background:var(--sand);border:1px solid rgba(42,87,38,0.07);box-shadow:var(--shadow-sm);transition:var(--transition);cursor:none;position:relative}
+.feat-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.feat-card-img{height:240px;position:relative;overflow:hidden}
+.feat-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.55s ease}
+.feat-card:hover .feat-card-img img{transform:scale(1.06)}
+.feat-card-ribbon{position:absolute;top:16px;left:16px;background:var(--gold);color:var(--white);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:100px;z-index:2}
+.feat-card-body{padding:24px}
+.feat-card-cat{font-size:10px;font-weight:700;color:var(--green-sage);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.feat-card-body h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--green-dark);margin-bottom:10px;line-height:1.35}
+.feat-card-body p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px}
+.feat-card-meta{display:flex;gap:20px;padding-top:16px;border-top:1px solid var(--sand-dark)}
+.feat-meta-item{display:flex;flex-direction:column;gap:3px}
+.feat-meta-label{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);font-weight:600}
+.feat-meta-value{font-size:13px;color:var(--slate);font-weight:500}
 
-/* ========== PROCESS SECTION ========== */
-#process{background:var(--white);padding:100px 40px}
-.process-header{text-align:center;margin-bottom:72px}
-.process-header .divider{margin:16px auto}
-.process-steps{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
-.process-steps::before{content:'';position:absolute;top:44px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--green-pale),var(--green-sage),var(--green-pale));z-index:0}
-.process-step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 16px}
-.process-step-num{width:88px;height:88px;border-radius:50%;background:var(--white);border:2px solid var(--green-pale);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;transition:var(--transition);box-shadow:var(--shadow-sm)}
-.process-step:hover .process-step-num{border-color:var(--green-sage);box-shadow:var(--shadow-md);transform:translateY(-4px)}
-.process-step-num i{font-size:28px;color:var(--green-rich)}
-.process-step-dot{position:absolute;top:-4px;right:-4px;width:22px;height:22px;background:var(--gold);border-radius:50%;border:2px solid var(--white);font-size:10px;font-weight:700;color:var(--white);display:flex;align-items:center;justify-content:center}
-.process-step h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--green-dark);margin-bottom:8px}
-.process-step p{font-size:13px;color:var(--muted);line-height:1.6}
+/* ========== STATS BANNER ========== */
+#stats-banner{background:var(--green-dark);padding:60px 40px}
+.stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.stats-inner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent calc(20% - 1px),rgba(255,255,255,0.06) calc(20% - 1px),rgba(255,255,255,0.06) 20%)}
+.stat-block{text-align:center;padding:32px 20px;position:relative;z-index:1}
+.stat-block-num{font-family:'Playfair Display',serif;font-size:48px;color:var(--white);line-height:1;display:block}
+.stat-block-num em{font-style:normal;color:var(--gold-light)}
+.stat-block-label{font-size:12px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.5px;margin-top:8px;display:block}
+.stat-block-icon{font-size:20px;color:var(--green-sage);margin-bottom:14px;display:block}
 
-/* ========== PRICING ========== */
-#pricing{background:var(--sand-dark);padding:100px 40px}
-.pricing-header{text-align:center;margin-bottom:60px}
-.pricing-header .divider{margin:16px auto}
-.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px;font-size:14px;color:var(--slate)}
-.toggle-switch{position:relative;width:48px;height:26px;cursor:none}
-.toggle-switch input{opacity:0;width:0;height:0}
-.toggle-slider{position:absolute;inset:0;background:var(--green-pale);border-radius:26px;transition:var(--transition);border:1.5px solid var(--green-light)}
-.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:var(--green-mid);left:3px;top:50%;transform:translateY(-50%);transition:var(--transition)}
-.toggle-switch input:checked + .toggle-slider{background:var(--green-pale)}
-.toggle-switch input:checked + .toggle-slider::before{transform:translateY(-50%) translateX(22px)}
-.toggle-save{background:var(--gold);color:var(--white);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:100px}
-.pricing-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.price-card{background:var(--white);border-radius:var(--radius-xl);padding:36px 32px;border:1.5px solid rgba(42,87,38,0.08);position:relative;transition:var(--transition);overflow:hidden}
-.price-card::before{content:'';position:absolute;inset:0;background:linear-gradient(145deg,var(--green-pale),transparent 50%);opacity:0;transition:opacity 0.4s}
-.price-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--green-light)}
-.price-card:hover::before{opacity:1}
-.price-card.popular{border-color:var(--green-mid);box-shadow:var(--shadow-md)}
-.popular-badge{position:absolute;top:20px;right:20px;background:var(--green-mid);color:var(--white);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:100px}
-.price-icon{width:56px;height:56px;background:var(--green-pale);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--green-rich);margin-bottom:20px;transition:var(--transition)}
-.price-card:hover .price-icon{background:var(--green-mid);color:var(--white);transform:scale(1.1) rotate(-5deg)}
-.price-card h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--green-dark);margin-bottom:6px}
-.price-card .price-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:24px}
-.price-amount{display:flex;align-items:baseline;gap:4px;margin-bottom:4px}
-.price-currency{font-size:18px;color:var(--green-dark);font-weight:600}
-.price-num{font-family:'Playfair Display',serif;font-size:42px;color:var(--green-dark);font-weight:700;line-height:1}
-.price-per{font-size:13px;color:var(--muted)}
-.price-note{font-size:11px;color:var(--muted);margin-bottom:28px}
-.price-divider{height:1px;background:var(--sand-dark);margin:24px 0}
-.price-features{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
-.price-feat{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--slate)}
-.price-feat i{color:var(--green-sage);font-size:12px;flex-shrink:0}
-.price-feat.disabled{color:var(--muted);opacity:0.6}
-.price-feat.disabled i{color:var(--muted)}
-.price-cta{display:block;text-align:center;padding:14px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;transition:var(--transition);cursor:none}
-.price-cta-primary{background:var(--green-mid);color:var(--white)}
-.price-cta-primary:hover{background:var(--green-rich);transform:translateY(-2px);box-shadow:var(--shadow-md)}
-.price-cta-outline{background:transparent;color:var(--green-dark);border:1.5px solid rgba(42,87,38,0.25)}
-.price-cta-outline:hover{background:var(--green-pale);border-color:var(--green-sage)}
-
-/* ========== GALLERY STRIP ========== */
-#gallery-strip{background:var(--green-dark);padding:80px 0;overflow:hidden}
-.gallery-strip-header{text-align:center;padding:0 40px;margin-bottom:48px}
-.gallery-strip-header .tag{color:var(--gold-light)}
-.gallery-strip-header .section-title{color:var(--white)}
-.gallery-scroll-wrap{overflow:hidden;position:relative}
-.gallery-scroll-track{display:flex;gap:16px;animation:scroll-gallery 30s linear infinite;width:max-content;padding:0 8px}
-.gallery-scroll-track:hover{animation-play-state:paused}
-@keyframes scroll-gallery{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.gallery-thumb{width:260px;height:200px;border-radius:var(--radius-lg);overflow:hidden;flex-shrink:0;position:relative}
-.gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block}
-.gallery-thumb:hover img{transform:scale(1.08)}
-.gallery-thumb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,61,24,0.7),transparent);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;padding:16px;border-radius:var(--radius-lg)}
-.gallery-thumb:hover .gallery-thumb-overlay{opacity:1}
-.gallery-thumb-label{color:var(--white);font-size:12px;font-weight:500;letter-spacing:0.5px}
-
-/* ========== SPECIALTY SERVICES ========== */
-#specialty{background:var(--sand);padding:100px 40px}
-.specialty-header{text-align:center;max-width:600px;margin:0 auto 60px}
-.specialty-header .divider{margin:16px auto}
-.specialty-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.spec-card{background:var(--white);border-radius:var(--radius-lg);padding:32px 24px;border:1px solid rgba(42,87,38,0.07);box-shadow:var(--shadow-sm);transition:var(--transition);text-align:center;cursor:none;position:relative;overflow:hidden}
-.spec-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green-mid),var(--green-sage));transform:scaleX(0);transition:transform 0.3s;transform-origin:left}
-.spec-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--green-light)}
-.spec-card:hover::after{transform:scaleX(1)}
-.spec-icon{width:64px;height:64px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--green-rich);margin:0 auto 20px;transition:var(--transition)}
-.spec-card:hover .spec-icon{background:var(--green-mid);color:var(--white);transform:scale(1.1)}
-.spec-card h4{font-family:'Playfair Display',serif;font-size:17px;color:var(--green-dark);margin-bottom:10px}
-.spec-card p{font-size:13px;color:var(--muted);line-height:1.6}
-.spec-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:12px;font-weight:600;color:var(--green-sage);text-decoration:none;transition:color 0.3s;cursor:none}
-.spec-link:hover{color:var(--green-mid)}
+/* ========== TESTIMONIALS ========== */
+#testimonials{background:var(--green-dark);padding:80px 40px;overflow:hidden}
+.testimonials-header{text-align:center;margin-bottom:52px}
+.testimonials-header .tag{color:var(--gold-light)}
+.testimonials-header .section-title{color:var(--white)}
+.carousel-track-wrap{overflow:hidden;position:relative;touch-action:pan-y}
+.carousel-track-wrap::before,.carousel-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.carousel-track-wrap::before{left:0;background:linear-gradient(to right,var(--green-dark),transparent)}
+.carousel-track-wrap::after{right:0;background:linear-gradient(to left,var(--green-dark),transparent)}
+.carousel-track{display:flex;gap:20px;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1)}
+.rev-card{min-width:320px;max-width:320px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl);padding:28px;flex-shrink:0;transition:var(--transition)}
+.rev-card:hover{background:rgba(255,255,255,0.1);transform:translateY(-4px)}
+.rev-stars{color:var(--gold-light);font-size:16px;letter-spacing:2px;margin-bottom:16px}
+.rev-text{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:20px}
+.rev-person{display:flex;align-items:center;gap:12px}
+.rev-avatar{width:44px;height:44px;border-radius:50%;background:var(--green-sage);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--white);flex-shrink:0}
+.rev-name{font-weight:600;color:var(--white);font-size:14px}
+.rev-location{font-size:12px;color:rgba(255,255,255,0.45)}
+.carousel-controls{display:flex;justify-content:center;gap:12px;margin-top:36px}
+.carousel-btn-ctrl{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.7);cursor:none;display:flex;align-items:center;justify-content:center;font-size:20px;transition:var(--transition)}
+.carousel-btn-ctrl:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.5);color:var(--white)}
+.carousel-dots{display:flex;align-items:center;gap:8px}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:none;transition:var(--transition)}
+.carousel-dot.active{background:var(--gold-light);width:24px;border-radius:4px}
 
 /* ========== CTA BANNER ========== */
-#cta-banner{background:var(--green-dark);padding:100px 40px;position:relative;overflow:hidden;text-align:center}
-.cta-circle{position:absolute;border-radius:50%;filter:blur(80px)}
-.cta-circle.c1{width:400px;height:400px;background:rgba(58,112,51,0.3);top:-100px;left:-100px}
-.cta-circle.c2{width:300px;height:300px;background:rgba(200,137,26,0.12);bottom:-80px;right:-60px}
-.cta-banner-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
-.cta-banner-inner .tag{color:var(--gold-light)}
-.cta-banner-inner h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,52px);color:var(--white);margin-bottom:16px;line-height:1.2}
-.cta-banner-inner h2 em{font-style:italic;color:var(--green-light)}
-.cta-banner-inner p{color:rgba(255,255,255,0.65);font-size:17px;font-weight:300;line-height:1.6;margin-bottom:40px}
-.cta-banner-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.cta-btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--white);padding:16px 34px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;cursor:none;transition:var(--transition);animation:pulse-gold 2.5s ease-in-out infinite}
-@keyframes pulse-gold{0%,100%{box-shadow:0 0 0 0 rgba(200,137,26,0.5)}50%{box-shadow:0 0 0 14px rgba(200,137,26,0)}}
-.cta-btn-gold:hover{background:var(--gold-light);transform:translateY(-3px)}
-.cta-btn-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:400;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);cursor:none;transition:var(--transition)}
-.cta-btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.6);transform:translateY(-2px)}
-.cta-trust{display:flex;justify-content:center;gap:40px;margin-top:56px;flex-wrap:wrap}
-.cta-trust-item{display:flex;flex-direction:column;align-items:center;gap:6px}
-.cta-trust-num{font-family:'Playfair Display',serif;font-size:30px;color:var(--white)}
-.cta-trust-label{font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:1.5px}
+#cta-banner{background:var(--sand-dark);padding:100px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-bg-leaf{position:absolute;font-size:300px;color:rgba(42,87,38,0.04);top:-40px;right:-40px;transform:rotate(20deg);pointer-events:none;line-height:1}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.cta-inner .tag{color:var(--green-sage)}
+.cta-inner h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);color:var(--green-dark);margin-bottom:16px;line-height:1.2}
+.cta-inner h2 em{font-style:italic;color:var(--green-rich)}
+.cta-inner p{color:var(--muted);font-size:16px;font-weight:300;line-height:1.65;margin-bottom:40px}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-cta-dark{display:inline-flex;align-items:center;gap:10px;background:var(--green-dark);color:var(--white);padding:16px 34px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;cursor:none;transition:var(--transition)}
+.btn-cta-dark:hover{background:var(--green-mid);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--green-dark);padding:15px 30px;border-radius:100px;font-size:15px;font-weight:400;text-decoration:none;border:1.5px solid rgba(42,87,38,0.25);cursor:none;transition:var(--transition)}
+.btn-outline:hover{background:var(--green-pale);border-color:var(--green-sage);transform:translateY(-2px)}
+
+/* ========== LIGHTBOX ========== */
+#lightbox{position:fixed;inset:0;background:rgba(10,28,10,0.94);z-index:9000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);animation:lb-in 0.25s ease}
+@keyframes lb-in{from{opacity:0}to{opacity:1}}
+#lightbox.open{display:flex}
+.lb-inner{position:relative;max-width:880px;width:100%;background:var(--white);border-radius:var(--radius-xl);overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.5);animation:lb-scale 0.3s cubic-bezier(0.16,1,0.3,1)}
+@keyframes lb-scale{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
+.lb-img-wrap{height:420px;overflow:hidden;position:relative;background:var(--green-pale)}
+.lb-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.lb-body{padding:28px 32px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.lb-info h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--green-dark);margin-bottom:6px}
+.lb-info .lb-cat{font-size:11px;font-weight:700;color:var(--green-sage);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.lb-info p{font-size:14px;color:var(--slate);line-height:1.65}
+.lb-meta{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap}
+.lb-meta-item{display:flex;flex-direction:column;gap:3px}
+.lb-meta-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600}
+.lb-meta-value{font-size:13px;color:var(--green-dark);font-weight:500}
+.lb-close{position:absolute;top:16px;right:16px;width:40px;height:40px;background:rgba(0,0,0,0.55);border:none;border-radius:50%;color:var(--white);font-size:18px;cursor:none;display:flex;align-items:center;justify-content:center;transition:var(--transition);z-index:2}
+.lb-close:hover{background:rgba(0,0,0,0.85);transform:rotate(90deg)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);border:none;width:44px;height:44px;border-radius:50%;font-size:18px;color:var(--green-dark);cursor:none;display:flex;align-items:center;justify-content:center;transition:var(--transition);box-shadow:var(--shadow-md)}
+.lb-nav:hover{background:var(--white);transform:translateY(-50%) scale(1.1)}
+.lb-prev{left:14px}
+.lb-next{right:14px}
 
 /* ========== FOOTER ========== */
-footer{background:var(--green-dark);padding:0}
-.footer-inner{max-width:1160px;margin:0 auto;padding:72px 40px 32px}
-.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-top:12px;max-width:280px}
-.footer-socials{display:flex;gap:10px;margin-top:20px}
-.social-btn{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);text-decoration:none;transition:var(--transition);font-size:15px;cursor:none}
-.social-btn:hover{background:var(--green-mid);color:var(--white);transform:translateY(-3px)}
-.footer-col h4{font-size:13px;font-weight:600;color:var(--white);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
-.footer-col ul{list-style:none}
-.footer-col li{margin-bottom:10px}
-.footer-col a{font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.3s;cursor:none;display:flex;align-items:center;gap:8px}
-.footer-col a:hover{color:var(--white)}
-.footer-col a i{font-size:12px;color:var(--green-sage)}
+footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40px 32px}
+.footer-inner{max-width:1160px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.5);margin-bottom:20px;margin-top:12px;max-width:260px}
+.footer-socials{display:flex;gap:10px}
+.social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:none;transition:var(--transition);text-decoration:none;color:rgba(255,255,255,0.6)}
+.social-btn:hover{background:var(--green-sage);border-color:var(--green-sage);color:var(--white);transform:translateY(-3px)}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.3s;cursor:none;display:flex;align-items:center;gap:8px}
+.footer-col ul li a:hover{color:var(--green-light)}
+.footer-col ul li a i{font-size:12px;color:var(--green-sage)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .footer-bottom p{font-size:12px;color:rgba(255,255,255,0.35)}
 
@@ -314,35 +292,35 @@ footer{background:var(--green-dark);padding:0}
 
 /* ========== MOBILE ========== */
 @media(max-width:1024px){
-  .process-steps{grid-template-columns:repeat(3,1fr);gap:40px}
-  .process-steps::before{display:none}
-  .specialty-grid{grid-template-columns:1fr 1fr}
+  .masonry-grid{columns:2}
+  .featured-grid{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:repeat(3,1fr)}
+  .stats-inner::before{background:none}
 }
 @media(max-width:900px){
   section{padding:60px 20px}
-  #process,#pricing,#specialty,#cta-banner{padding:60px 20px}
-  #page-hero{min-height:380px}
+  #gallery{padding:40px 20px 70px}
+  #filter-bar{padding:0 20px}
+  #stats-banner{padding:40px 20px}
   .page-hero-content{padding:60px 20px}
-  .page-hero-stats{position:static;margin-top:40px;justify-content:flex-start}
-  .srv-detail-block{grid-template-columns:1fr;gap:40px;margin-bottom:60px}
-  .srv-detail-block:nth-child(even){direction:ltr}
-  .srv-detail-img-wrap{height:280px}
-  .pricing-grid{grid-template-columns:1fr}
+  .page-hero-right{justify-content:flex-start}
   .footer-top{grid-template-columns:1fr 1fr;gap:28px}
+  .featured-grid{grid-template-columns:1fr}
   nav{display:none}
   nav.open{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--white);padding:24px;gap:16px;box-shadow:var(--shadow-md)}
   nav.open a{color:var(--slate)!important}
   .hamburger{display:flex}
   #header{padding:0 20px}
-  #service-nav{padding:0 20px}
-  .process-steps{grid-template-columns:1fr 1fr}
+  .lb-img-wrap{height:260px}
+  .lb-body{flex-direction:column}
+  .stats-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:580px){
-  .specialty-grid{grid-template-columns:1fr}
+  .masonry-grid{columns:1}
+  .stats-inner{grid-template-columns:1fr}
   .footer-top{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:1fr}
-  .cta-trust{gap:24px}
-  .page-hero-stats{gap:20px}
+  .page-hero-right{gap:14px}
+  .ph-stat{padding:14px 18px}
 }
   </style>
 </head>
@@ -360,7 +338,28 @@ footer{background:var(--green-dark);padding:0}
     <div class="loader-leaf-r"></div>
     <div class="loader-bloom"></div>
   </div>
-  <div class="loader-text">Our Services</div>
+  <div class="loader-text">Portfolio</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()" title="Close">✕</button>
+    <div class="lb-img-wrap">
+      <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
+      <img id="lb-img" src="" alt="">
+      <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
+    </div>
+    <div class="lb-body">
+      <div class="lb-info">
+        <div class="lb-cat" id="lb-cat"></div>
+        <h3 id="lb-title"></h3>
+        <p id="lb-desc"></p>
+        <div class="lb-meta" id="lb-meta"></div>
+      </div>
+      <a href="index.html#contact" class="btn-primary" style="flex-shrink:0;font-size:13px;padding:12px 22px;white-space:nowrap"><i class="fa-solid fa-leaf"></i> Get a Quote</a>
+    </div>
+  </div>
 </div>
 
 <!-- HEADER -->
@@ -372,9 +371,9 @@ footer{background:var(--green-dark);padding:0}
   <nav id="main-nav">
     <a href="index.html">Home</a>
     <a href="index.html#about">About</a>
-    <a href="services.html" class="active">Services</a>
+    <a href="services.html">Services</a>
     <a href="index.html#new-arrival">New Arrival</a>
-    <a href="index.html#portfolio">Portfolio</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
     <a href="index.html#blog">Blog</a>
     <a href="index.html#contact">Contact</a>
     <a href="index.html#contact" class="nav-cta">Book Consultation</a>
@@ -387,512 +386,307 @@ footer{background:var(--green-dark);padding:0}
 <!-- PAGE HERO -->
 <section id="page-hero">
   <div class="page-hero-bg">
-    <div class="page-hero-circle c1"></div>
-    <div class="page-hero-circle c2"></div>
-    <div class="page-hero-circle c3"></div>
+    <div class="phc c1"></div>
+    <div class="phc c2"></div>
+    <div class="phc c3"></div>
   </div>
   <div class="grid-overlay"></div>
   <div class="page-hero-content">
-    <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-current">Services</span>
-    </div>
-    <div class="page-hero-badge"><span class="page-hero-badge-dot"></span>Full-Service Garden Studio</div>
-    <h1 class="page-hero-title">Everything Your Garden<br><em>Could Ever Need</em></h1>
-    <p class="page-hero-sub">From initial concept and design to installation, maintenance, and seasonal care — we handle every aspect of your outdoor space with skill and passion.</p>
-    <div class="page-hero-btns">
-      <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Get a Free Quote</a>
-      <a href="#services-detail" class="hero-btn-white">Explore Services →</a>
-    </div>
-    <div class="page-hero-stats">
-      <div class="ph-stat">
-        <span class="ph-stat-num">6</span>
-        <span class="ph-stat-label">Core Services</span>
+    <div class="page-hero-left">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Portfolio</span>
       </div>
-      <div class="ph-stat-div"></div>
+      <div class="page-hero-badge"><span class="page-hero-badge-dot"></span>500+ Projects Completed</div>
+      <h1 class="page-hero-title">Every Garden<br>Tells a <em>Story</em></h1>
+      <p class="page-hero-sub">Browse our full collection of completed projects — from compact courtyard transformations to sprawling estate gardens across Nepal.</p>
+      <div class="page-hero-btns">
+        <a href="#gallery" class="btn-primary"><i class="fa-solid fa-images"></i> Browse All Work</a>
+        <a href="index.html#contact" class="hero-btn-white">Start Your Project →</a>
+      </div>
+    </div>
+    <div class="page-hero-right">
       <div class="ph-stat">
         <span class="ph-stat-num">500+</span>
-        <span class="ph-stat-label">Projects Done</span>
+        <span class="ph-stat-label">Projects</span>
       </div>
-      <div class="ph-stat-div"></div>
+      <div class="ph-stat">
+        <span class="ph-stat-num">98%</span>
+        <span class="ph-stat-label">Satisfaction</span>
+      </div>
       <div class="ph-stat">
         <span class="ph-stat-num">10+</span>
-        <span class="ph-stat-label">Years Experience</span>
+        <span class="ph-stat-label">Years</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICE NAV -->
-<div id="service-nav">
-  <div class="service-nav-inner">
-    <a href="#srv-design" class="snav-item active"><i class="fa-solid fa-drafting-compass"></i> Garden Design</a>
-    <a href="#srv-lawn" class="snav-item"><i class="fa-solid fa-seedling"></i> Lawn Installation</a>
-    <a href="#srv-planting" class="snav-item"><i class="fa-solid fa-leaf"></i> Plant & Planting</a>
-    <a href="#srv-events" class="snav-item"><i class="fa-solid fa-star"></i> Event Decor</a>
-    <a href="#srv-maintenance" class="snav-item"><i class="fa-solid fa-tools"></i> Maintenance</a>
-    <a href="#srv-irrigation" class="snav-item"><i class="fa-solid fa-droplet"></i> Irrigation</a>
+<!-- FILTER BAR -->
+<div id="filter-bar">
+  <div class="filter-bar-inner">
+    <div class="filter-tabs" id="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All Work</button>
+      <button class="filter-tab" data-filter="modern">Modern</button>
+      <button class="filter-tab" data-filter="tropical">Tropical</button>
+      <button class="filter-tab" data-filter="lawn">Lawns</button>
+      <button class="filter-tab" data-filter="patio">Patios</button>
+      <button class="filter-tab" data-filter="events">Events</button>
+      <button class="filter-tab" data-filter="irrigation">Irrigation</button>
+    </div>
+    <div class="filter-count">Showing <span id="count-display">18</span> of <span>18</span> projects</div>
   </div>
 </div>
 
-<!-- SERVICES DETAIL -->
-<section id="services-detail">
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-inner">
+    <div class="masonry-grid" id="masonry">
+
+      <div class="masonry-item reveal delay-1" data-cat="modern" data-title="Woodland Retreat" data-desc="A stunning full-landscape transformation in Lalitpur — merging structured modern lines with organic planting beds and a custom stone pathway." data-service="Garden Design & Landscaping" data-duration="3 Weeks" data-location="Lalitpur" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:210px;background:linear-gradient(145deg,#c8e6b0,#4A7C40)"><img src="images/modern1.jpg" alt="Woodland Retreat" loading="lazy"></div>
+        <span class="masonry-cat-badge">Modern</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Woodland Retreat</h4><span>Modern · Full Landscaping · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-2" data-cat="tropical" data-title="Tropical Paradise" data-desc="A lush tropical garden in Bhaktapur featuring banana palms, bird-of-paradise, and a gravel pathway winding through dense planting." data-service="Plant Selection & Planting" data-duration="10 Days" data-location="Bhaktapur" data-budget="$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:145px;background:linear-gradient(145deg,#d4edda,#2D5A27)"><img src="images/tropical.jpeg" alt="Tropical Paradise" loading="lazy"></div>
+        <span class="masonry-cat-badge">Tropical</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Tropical Paradise</h4><span>Tropical · Planting · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-3" data-cat="patio" data-title="Sunstone Patio" data-desc="Hand-laid sandstone patio with integrated seating walls, raised planters, and a pergola draped in climbing jasmine — Kathmandu residence." data-service="Garden Design & Landscaping" data-duration="2 Weeks" data-location="Kathmandu" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:175px;background:linear-gradient(145deg,#fce4b0,#C98B1A)"><img src="images/patio1.jpg" alt="Sunstone Patio" loading="lazy"></div>
+        <span class="masonry-cat-badge">Patio</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Sunstone Patio</h4><span>Patio · Stone Work · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-1" data-cat="lawn" data-title="Evergreen Lawn" data-desc="Premium sod installation with full ground preparation, edging, and a smart drip irrigation setup — lush result achieved in under 48 hours." data-service="Lawn Installation" data-duration="2 Days" data-location="Madhyapur Thimi" data-budget="$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:135px;background:linear-gradient(145deg,#7BAE6A,#1E3D1A)"><img src="images/lawns.jpg" alt="Evergreen Lawn" loading="lazy"></div>
+        <span class="masonry-cat-badge">Lawn</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Evergreen Lawn</h4><span>Lawn · Sodding · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-2" data-cat="tropical" data-title="Bali Garden" data-desc="A Bali-inspired sanctuary complete with bamboo screens, a tiered water feature, and hand-selected tropical foliage for year-round density." data-service="Garden Design & Landscaping" data-duration="4 Weeks" data-location="Lalitpur" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:220px;background:linear-gradient(145deg,#c8f0b0,#5aaa40)"><img src="images/topical1.jpeg" alt="Bali Garden" loading="lazy"></div>
+        <span class="masonry-cat-badge">Tropical</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Bali Garden</h4><span>Tropical · Design · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-3" data-cat="modern" data-title="Water Feature Garden" data-desc="A sleek contemporary garden centred around a rill water feature flanked by ornamental grasses and polished concrete edging." data-service="Garden Design & Landscaping" data-duration="3 Weeks" data-location="Kathmandu" data-budget="$$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:155px;background:linear-gradient(145deg,#dce8f0,#5a8aad)"><img src="images/modern2.webp" alt="Water Feature Garden" loading="lazy"></div>
+        <span class="masonry-cat-badge">Modern</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Water Feature</h4><span>Modern · Water · $$$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-1" data-cat="patio" data-title="Courtyard Design" data-desc="A walled urban courtyard transformed with raised beds, mixed stone and brick paving, and an overhead shade structure trailing wisteria." data-service="Garden Design & Landscaping" data-duration="2.5 Weeks" data-location="Bhaktapur" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:190px;background:linear-gradient(145deg,#f0e0c0,#b8884a)"><img src="images/patio2.jpg" alt="Courtyard Design" loading="lazy"></div>
+        <span class="masonry-cat-badge">Patio</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Courtyard Design</h4><span>Patio · Hardscape · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-2" data-cat="lawn" data-title="Meadow Lawn" data-desc="A naturalistic wildflower meadow lawn seeded with native Nepali species, bordered by dry stone walling and low-growing native shrubs." data-service="Lawn Installation" data-duration="3 Days" data-location="Pokhara" data-budget="$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:130px;background:linear-gradient(145deg,#a8d890,#3a7a2a)"><img src="images/lawns1.jpg" alt="Meadow Lawn" loading="lazy"></div>
+        <span class="masonry-cat-badge">Lawn</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Meadow Lawn</h4><span>Lawn · Wildflower · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-3" data-cat="modern" data-title="Evening Garden" data-desc="A minimal night-garden with architectural lighting, clipped box hedging, and lit stepping stones creating a dramatic dusk ambiance." data-service="Garden Lighting & Design" data-duration="2 Weeks" data-location="Lalitpur" data-budget="$$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:165px;background:linear-gradient(145deg,#e0d8f0,#7070b8)"><img src="images/moder3.webp" alt="Evening Garden" loading="lazy"></div>
+        <span class="masonry-cat-badge">Modern</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Evening Garden</h4><span>Modern · Lighting · $$$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-1" data-cat="events" data-title="Royal Wedding Arch" data-desc="A 5-metre floral arch woven with fresh white roses, eucalyptus, and cascading orchids for a grand Kathmandu wedding reception." data-service="Event & Wedding Decor" data-duration="1 Day" data-location="Kathmandu" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:200px;background:linear-gradient(145deg,#f5e0f0,#c07898)"><img src="images/service4.jpg" alt="Wedding Decor" loading="lazy"></div>
+        <span class="masonry-cat-badge">Event</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Royal Wedding Arch</h4><span>Event · Floral · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-2" data-cat="irrigation" data-title="Smart Drip System" data-desc="A fully automated drip irrigation system installed across a 1200 sq.m. commercial garden — app-controlled with soil moisture sensors." data-service="Irrigation & Sprinkler Setup" data-duration="2 Days" data-location="Bhaktapur" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:145px;background:linear-gradient(145deg,#c0e8f8,#4a98c8)"><img src="images/service6.jpg" alt="Smart Irrigation" loading="lazy"></div>
+        <span class="masonry-cat-badge">Irrigation</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Smart Drip System</h4><span>Irrigation · Smart Tech · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-3" data-cat="tropical" data-title="Zen Tropical Corner" data-desc="A meditative corner garden featuring bamboo, black river stones, a small koi pond, and a cinnamon tree as the central focal point." data-service="Garden Design & Planting" data-duration="12 Days" data-location="Kathmandu" data-budget="$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:185px;background:linear-gradient(145deg,#b8e8c0,#2a8040)"><img src="images/service3.webp" alt="Zen Garden" loading="lazy"></div>
+        <span class="masonry-cat-badge">Tropical</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Zen Tropical Corner</h4><span>Tropical · Zen · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-1" data-cat="patio" data-title="Heritage Terrace" data-desc="A traditional Newari-inspired terraced garden with brick edging, marigold borders, and a central raised lawn at a Bhaktapur heritage home." data-service="Garden Design & Landscaping" data-duration="3 Weeks" data-location="Bhaktapur" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:165px;background:linear-gradient(145deg,#f8e8c0,#d4a030)"><img src="images/garden.jpg" alt="Heritage Terrace" loading="lazy"></div>
+        <span class="masonry-cat-badge">Patio</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Heritage Terrace</h4><span>Patio · Traditional · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-2" data-cat="events" data-title="Corporate Bloom Display" data-desc="A full-venue floral transformation for a corporate gala — 80+ arrangements, foliage runners, and a 3-metre statement installation at the entrance." data-service="Event & Wedding Decor" data-duration="1 Day" data-location="Lalitpur" data-budget="$$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:150px;background:linear-gradient(145deg,#f0f0c8,#a8a830)"><img src="images/planting.jpg" alt="Corporate Event" loading="lazy"></div>
+        <span class="masonry-cat-badge">Event</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Corporate Bloom Display</h4><span>Event · Corporate · $$$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-3" data-cat="lawn" data-title="Villa Lawn Renovation" data-desc="Complete lawn renovation for a 600 sq.m. villa garden — full excavation, levelling, soil enrichment and premium sod installation." data-service="Lawn Installation" data-duration="4 Days" data-location="Kathmandu" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:180px;background:linear-gradient(145deg,#90d870,#1a6020)"><img src="images/service2.jpg" alt="Villa Lawn" loading="lazy"></div>
+        <span class="masonry-cat-badge">Lawn</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Villa Lawn Renovation</h4><span>Lawn · Premium · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-1" data-cat="modern" data-title="Minimalist Rooftop" data-desc="A minimalist rooftop garden in central Kathmandu with clipped ornamental grasses, glazed planters, and a wooden deck seating area." data-service="Garden Design & Landscaping" data-duration="2 Weeks" data-location="Kathmandu" data-budget="$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:200px;background:linear-gradient(145deg,#e8e8d8,#808068)"><img src="images/service1.jpg" alt="Rooftop Garden" loading="lazy"></div>
+        <span class="masonry-cat-badge">Modern</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Minimalist Rooftop</h4><span>Modern · Rooftop · $$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-2" data-cat="irrigation" data-title="Estate Sprinkler Network" data-desc="A 16-zone automated sprinkler network for a 2-acre estate, with weather compensation and a central control unit linked to a smartphone." data-service="Irrigation & Sprinkler Setup" data-duration="3 Days" data-location="Bhaktapur" data-budget="$$$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:140px;background:linear-gradient(145deg,#b8d8f0,#3870a8)"><img src="images/service5.png" alt="Irrigation Network" loading="lazy"></div>
+        <span class="masonry-cat-badge">Irrigation</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Estate Sprinkler Network</h4><span>Irrigation · Automated · $$$$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+      <div class="masonry-item reveal delay-3" data-cat="tropical" data-title="Community Garden" data-desc="A community garden project in Madhyapur Thimi — raised vegetable beds, herb spirals, fruit trees, and composting bays for 40 households." data-service="Kitchen Garden Design" data-duration="5 Weeks" data-location="Madhyapur Thimi" data-budget="$$" onclick="openLightbox(this)">
+        <div class="masonry-fake-img" style="height:170px;background:linear-gradient(145deg,#d8f0b8,#58a038)"><img src="images/community.png" alt="Community Garden" loading="lazy"></div>
+        <span class="masonry-cat-badge">Tropical</span>
+        <div class="masonry-overlay"><div class="masonry-info"><h4>Community Garden</h4><span>Tropical · Community · $$</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+
+    </div>
+
+    <div class="empty-state" id="empty-state">
+      <i class="fa-solid fa-leaf"></i>
+      <p>No projects found in this category yet.<br>Check back soon — we update regularly!</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BANNER -->
+<section id="stats-banner">
+  <div class="stats-inner">
+    <div class="stat-block reveal delay-1">
+      <span class="stat-block-icon"><i class="fa-solid fa-seedling"></i></span>
+      <span class="stat-block-num">500<em>+</em></span>
+      <span class="stat-block-label">Projects Completed</span>
+    </div>
+    <div class="stat-block reveal delay-2">
+      <span class="stat-block-icon"><i class="fa-solid fa-users"></i></span>
+      <span class="stat-block-num">480<em>+</em></span>
+      <span class="stat-block-label">Happy Clients</span>
+    </div>
+    <div class="stat-block reveal delay-3">
+      <span class="stat-block-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+      <span class="stat-block-num">4</span>
+      <span class="stat-block-label">Cities Served</span>
+    </div>
+    <div class="stat-block reveal delay-4">
+      <span class="stat-block-icon"><i class="fa-solid fa-calendar"></i></span>
+      <span class="stat-block-num">10<em>+</em></span>
+      <span class="stat-block-label">Years Experience</span>
+    </div>
+    <div class="stat-block reveal delay-5">
+      <span class="stat-block-icon"><i class="fa-solid fa-star"></i></span>
+      <span class="stat-block-num">98<em>%</em></span>
+      <span class="stat-block-label">Satisfaction Rate</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section id="featured">
   <div class="section-inner">
-    <div class="services-intro reveal">
-      <span class="tag">What We Offer</span>
-      <h2 class="section-title">Crafted for Every<br>Outdoor Vision</h2>
+    <div class="featured-header reveal">
+      <span class="tag">Case Studies</span>
+      <h2 class="section-title">Featured Projects</h2>
       <div class="divider"></div>
-      <p class="section-sub" style="margin:0 auto;text-align:center">Whether you need a full redesign or a simple maintenance plan, our team has the expertise and passion to deliver results that exceed expectations.</p>
+      <p class="section-sub" style="text-align:center;margin:0 auto">A closer look at three of our most celebrated transformations — from brief to build to beautiful.</p>
     </div>
-
-    <!-- SERVICE 1: Garden Design -->
-    <div class="srv-detail-block" id="srv-design">
-      <div class="srv-detail-visual reveal-left">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service1.jpg" alt="Garden Design & Landscaping" loading="lazy">
+    <div class="featured-grid">
+      <div class="feat-card reveal delay-1">
+        <div class="feat-card-img">
+          <img src="images/modern1.jpg" alt="Woodland Retreat" loading="lazy">
+          <span class="feat-card-ribbon">Award Winner</span>
         </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-award"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Most Popular</div>
-            <div class="srv-detail-badge-sub">Booked 3× a week</div>
+        <div class="feat-card-body">
+          <div class="feat-card-cat">Modern · Full Landscape</div>
+          <h3>Woodland Retreat, Lalitpur</h3>
+          <p>A complete 800 sq.m. redesign — from compacted dirt to an award-winning woodland garden with native trees, stone pathways, and integrated lighting. Delivered in 21 days.</p>
+          <div class="feat-card-meta">
+            <div class="feat-meta-item"><span class="feat-meta-label">Duration</span><span class="feat-meta-value">3 Weeks</span></div>
+            <div class="feat-meta-item"><span class="feat-meta-label">Area</span><span class="feat-meta-value">800 sq.m.</span></div>
+            <div class="feat-meta-item"><span class="feat-meta-label">Budget</span><span class="feat-meta-value">$$$</span></div>
           </div>
         </div>
       </div>
-      <div class="srv-detail-info reveal-right">
-        <div class="srv-detail-tag"><i class="fa-solid fa-star"></i> Signature Service</div>
-        <h2>Garden Design &amp; Landscaping</h2>
-        <div class="divider"></div>
-        <p>Our flagship service takes your outdoor space from raw potential to a breathtaking, fully designed garden. We blend landscape architecture, horticultural expertise, and creative vision into a seamless experience from concept to completion.</p>
-        <p>Every design is unique — tailored to your plot's dimensions, soil type, sunlight, climate, and your personal aesthetic. We produce detailed 3D visualisations so you see the final result before a single spade goes in the ground.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Site analysis and soil assessment included</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">3D design visualisation before work begins</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Native & climate-appropriate plant selection</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Full project management, A–Z</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">12-month aftercare guarantee</span></div>
+      <div class="feat-card reveal delay-2">
+        <div class="feat-card-img">
+          <img src="images/topical1.jpeg" alt="Bali Garden" loading="lazy">
+          <span class="feat-card-ribbon">Client Favourite</span>
         </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Timeline</div><strong>2–4 Weeks</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-users"></i><div><div class="srv-meta-label">Team</div><strong>4–8 Specialists</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-map"></i><div><div class="srv-meta-label">Min. Area</div><strong>50 sq.m.</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SERVICE 2: Lawn Installation -->
-    <div class="srv-detail-block" id="srv-lawn">
-      <div class="srv-detail-visual reveal-right">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service2.jpg" alt="Lawn Installation" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Quick Turnaround</div>
-            <div class="srv-detail-badge-sub">Ready in 48 hours</div>
+        <div class="feat-card-body">
+          <div class="feat-card-cat">Tropical · Design</div>
+          <h3>Bali Garden, Lalitpur</h3>
+          <p>Inspired by the owner's travels through Indonesia — bamboo screens, a tiered water feature, Balinese stone carvings, and curated tropical planting. A genuine paradise in Lalitpur.</p>
+          <div class="feat-card-meta">
+            <div class="feat-meta-item"><span class="feat-meta-label">Duration</span><span class="feat-meta-value">4 Weeks</span></div>
+            <div class="feat-meta-item"><span class="feat-meta-label">Area</span><span class="feat-meta-value">350 sq.m.</span></div>
+            <div class="feat-meta-item"><span class="feat-meta-label">Budget</span><span class="feat-meta-value">$$$</span></div>
           </div>
         </div>
       </div>
-      <div class="srv-detail-info reveal-left">
-        <div class="srv-detail-tag"><i class="fa-solid fa-bolt"></i> Fast Delivery</div>
-        <h2>Lawn Installation</h2>
-        <div class="divider"></div>
-        <p>A lush, thick green lawn is the foundation of any beautiful garden. We offer sodding, seeding, and complete lawn preparation tailored to Nepal's diverse soil and climate conditions — delivering results that stay healthy year-round.</p>
-        <p>Our team prepares the ground meticulously: removing debris, aerating, levelling, and enriching the soil before laying premium quality turf. The result is a flawless, even lawn you can enjoy within days.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Full ground preparation and levelling</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Premium quality sod or seed options</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Soil enrichment and fertilisation included</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">30-day establishment care plan</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Edging and border finishing</span></div>
+      <div class="feat-card reveal delay-3">
+        <div class="feat-card-img">
+          <img src="images/community.png" alt="Community Garden" loading="lazy">
+          <span class="feat-card-ribbon">Social Impact</span>
         </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Timeline</div><strong>1–3 Days</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-users"></i><div><div class="srv-meta-label">Team</div><strong>2–4 Workers</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-map"></i><div><div class="srv-meta-label">Any Size</div><strong>10+ sq.m.</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SERVICE 3: Plant Selection -->
-    <div class="srv-detail-block" id="srv-planting">
-      <div class="srv-detail-visual reveal-left">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service3.webp" alt="Plant Selection & Planting" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-microscope"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Expert Curated</div>
-            <div class="srv-detail-badge-sub">200+ plant varieties</div>
+        <div class="feat-card-body">
+          <div class="feat-card-cat">Community · Kitchen Garden</div>
+          <h3>Community Garden, Thimi</h3>
+          <p>A pro-bono community initiative in Madhyapur Thimi — 40 raised vegetable beds, a shared orchard, composting bays, and a rainwater harvesting system serving 40 local families.</p>
+          <div class="feat-card-meta">
+            <div class="feat-meta-item"><span class="feat-meta-label">Duration</span><span class="feat-meta-value">5 Weeks</span></div>
+            <div class="feat-meta-item"><span class="feat-meta-label">Families</span><span class="feat-meta-value">40 Homes</span></div>
+            <div class="feat-meta-item"><span class="feat-meta-label">Type</span><span class="feat-meta-value">Community</span></div>
           </div>
         </div>
       </div>
-      <div class="srv-detail-info reveal-right">
-        <div class="srv-detail-tag"><i class="fa-solid fa-seedling"></i> Botanical Expertise</div>
-        <h2>Plant Selection &amp; Planting</h2>
-        <div class="divider"></div>
-        <p>The right plant in the right place makes all the difference. Our certified horticulturists analyse your garden's microclimate, soil pH, drainage, and light levels to select plants that will genuinely thrive — not just survive.</p>
-        <p>We source from trusted local and regional nurseries, prioritising native and drought-resistant species that support Nepal's ecology and reduce long-term maintenance needs.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Full soil and microclimate analysis</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Native and drought-resistant options available</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Seasonal planting schedules for year-round colour</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Professional planting techniques for best establishment</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Care guide provided for every plant installed</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Timeline</div><strong>1–5 Days</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-leaf"></i><div><div class="srv-meta-label">Varieties</div><strong>200+ Plants</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-recycle"></i><div><div class="srv-meta-label">Approach</div><strong>Eco-First</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SERVICE 4: Event & Wedding Decor -->
-    <div class="srv-detail-block" id="srv-events">
-      <div class="srv-detail-visual reveal-right">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service4.jpg" alt="Event & Wedding Decor" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-heart"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Special Occasions</div>
-            <div class="srv-detail-badge-sub">300+ events delivered</div>
-          </div>
-        </div>
-      </div>
-      <div class="srv-detail-info reveal-left">
-        <div class="srv-detail-tag"><i class="fa-solid fa-heart"></i> Special Occasions</div>
-        <h2>Event &amp; Wedding Decor</h2>
-        <div class="divider"></div>
-        <p>Transform your venue into an unforgettable floral paradise. We create breathtaking garden-inspired installations for weddings, receptions, corporate events, and celebrations of any scale — bringing nature's finest into your most cherished moments.</p>
-        <p>Our event team works closely with your planners and coordinators, ensuring seamless setup and striking results that photograph beautifully and leave lasting impressions.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Custom floral arches, mandaps & centrepieces</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Full venue installation and breakdown</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Indoor & outdoor event setups</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Coordination with event planners and photographers</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Same-day setup available</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Lead Time</div><strong>7–14 Days</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-users"></i><div><div class="srv-meta-label">Events Done</div><strong>300+</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-calendar"></i><div><div class="srv-meta-label">Availability</div><strong>7 Days/Week</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SERVICE 5: Maintenance -->
-    <div class="srv-detail-block" id="srv-maintenance">
-      <div class="srv-detail-visual reveal-left">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service5.png" alt="Routine Maintenance" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-repeat"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Ongoing Plans</div>
-            <div class="srv-detail-badge-sub">Weekly to monthly</div>
-          </div>
-        </div>
-      </div>
-      <div class="srv-detail-info reveal-right">
-        <div class="srv-detail-tag"><i class="fa-solid fa-repeat"></i> Ongoing Care</div>
-        <h2>Routine Maintenance</h2>
-        <div class="divider"></div>
-        <p>A beautiful garden requires consistent care. Our flexible maintenance plans keep your outdoor space thriving year-round — whether you need weekly attention or a monthly check-up.</p>
-        <p>Our trained maintenance teams handle everything: mowing, edging, pruning, deadheading, fertilising, pest control, and seasonal tidying — so your garden always looks its absolute best with zero effort from you.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Weekly, fortnightly & monthly plans available</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Mowing, pruning, edging & fertilising</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Pest & disease monitoring and treatment</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Seasonal planting and bed refreshes</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Monthly garden health report provided</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Frequency</div><strong>Weekly / Monthly</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-users"></i><div><div class="srv-meta-label">Team</div><strong>Dedicated Crew</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-file-lines"></i><div><div class="srv-meta-label">Reporting</div><strong>Monthly Report</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Get a Plan</a>
-          <a href="#pricing" class="btn-secondary">View Pricing →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SERVICE 6: Irrigation -->
-    <div class="srv-detail-block" id="srv-irrigation">
-      <div class="srv-detail-visual reveal-right">
-        <div class="srv-detail-img-wrap">
-          <img src="images/service6.jpg" alt="Irrigation & Sprinkler Setup" loading="lazy">
-        </div>
-        <div class="srv-detail-badge">
-          <div class="srv-detail-badge-icon"><i class="fa-solid fa-microchip"></i></div>
-          <div>
-            <div class="srv-detail-badge-text">Smart Tech</div>
-            <div class="srv-detail-badge-sub">Up to 40% water savings</div>
-          </div>
-        </div>
-      </div>
-      <div class="srv-detail-info reveal-left">
-        <div class="srv-detail-tag"><i class="fa-solid fa-droplet"></i> Smart Technology</div>
-        <h2>Irrigation &amp; Sprinkler Setup</h2>
-        <div class="divider"></div>
-        <p>Smart, efficient irrigation is the backbone of a healthy, low-maintenance garden. We design, supply, and install water-efficient systems — from simple drip lines to fully automated smart sprinkler networks with app control.</p>
-        <p>Our systems are calibrated to your specific plants and soil type, ensuring every drop reaches where it is needed most — reducing water waste by up to 40% compared to manual watering.</p>
-        <div class="srv-detail-features">
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Drip, sprinkler & soaker hose systems</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Smart timer & app-controlled options</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Soil moisture sensor integration</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Annual system calibration & maintenance</span></div>
-          <div class="srv-feat"><div class="srv-feat-check"><i class="fa-solid fa-check"></i></div><span class="srv-feat-text">Up to 40% water consumption reduction</span></div>
-        </div>
-        <div class="srv-detail-meta">
-          <div class="srv-meta-item"><i class="fa-regular fa-clock"></i><div><div class="srv-meta-label">Install Time</div><strong>1–2 Days</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-droplet"></i><div><div class="srv-meta-label">Water Saving</div><strong>Up to 40%</strong></div></div>
-          <div class="srv-meta-item"><i class="fa-solid fa-mobile"></i><div><div class="srv-meta-label">Control</div><strong>App Ready</strong></div></div>
-        </div>
-        <div class="srv-detail-actions">
-          <a href="index.html#contact" class="btn-primary"><i class="fa-solid fa-leaf"></i> Request a Quote</a>
-          <a href="index.html#portfolio" class="btn-secondary">See Portfolio →</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROCESS SECTION -->
-<section id="process">
-  <div class="process-header reveal">
-    <span class="tag">How It Works</span>
-    <h2 class="section-title">Our Simple 5-Step Process</h2>
-    <div class="divider"></div>
-    <p class="section-sub" style="margin:0 auto;text-align:center">From your first call to a finished garden — here is exactly what to expect when you work with GreenScape.</p>
-  </div>
-  <div class="process-steps">
-    <div class="process-step reveal delay-1">
-      <div class="process-step-num">
-        <i class="fa-solid fa-phone"></i>
-        <span class="process-step-dot">1</span>
-      </div>
-      <h4>Free Consultation</h4>
-      <p>Call or message us. We'll discuss your vision, budget, and timeline at no charge.</p>
-    </div>
-    <div class="process-step reveal delay-2">
-      <div class="process-step-num">
-        <i class="fa-solid fa-map-location-dot"></i>
-        <span class="process-step-dot">2</span>
-      </div>
-      <h4>Site Visit</h4>
-      <p>Our horticulturist visits your space to assess soil, drainage, sunlight, and dimensions.</p>
-    </div>
-    <div class="process-step reveal delay-3">
-      <div class="process-step-num">
-        <i class="fa-solid fa-drafting-compass"></i>
-        <span class="process-step-dot">3</span>
-      </div>
-      <h4>Design &amp; Quote</h4>
-      <p>We produce a tailored design plan and a detailed quote with transparent pricing.</p>
-    </div>
-    <div class="process-step reveal delay-4">
-      <div class="process-step-num">
-        <i class="fa-solid fa-person-digging"></i>
-        <span class="process-step-dot">4</span>
-      </div>
-      <h4>Installation</h4>
-      <p>Our skilled team brings the design to life — on schedule and to the highest standard.</p>
-    </div>
-    <div class="process-step reveal delay-5">
-      <div class="process-step-num">
-        <i class="fa-solid fa-star"></i>
-        <span class="process-step-dot">5</span>
-      </div>
-      <h4>Handover &amp; Care</h4>
-      <p>We walk you through your new garden and provide a full aftercare plan for lasting beauty.</p>
     </div>
   </div>
 </section>
 
-<!-- GALLERY STRIP -->
-<section id="gallery-strip">
-  <div class="gallery-strip-header reveal">
-    <span class="tag">Our Work</span>
-    <h2 class="section-title" style="color:var(--white)">Glimpses of What We Create</h2>
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header reveal">
+    <span class="tag">Client Love</span>
+    <h2 class="section-title">What Our Clients Say</h2>
   </div>
-  <div class="gallery-scroll-wrap">
-    <div class="gallery-scroll-track">
-      <div class="gallery-thumb">
-        <img src="images/service1.jpg" alt="Garden Design" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Garden Design</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service2.jpg" alt="Lawn Installation" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Lawn Installation</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service3.webp" alt="Planting" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Plant & Planting</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service4.jpg" alt="Event Decor" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Event Decor</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service5.png" alt="Maintenance" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Maintenance</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/service6.jpg" alt="Irrigation" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Irrigation</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/before.png" alt="Before & After" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Transformation</span></div>
-      </div>
-      <div class="gallery-thumb">
-        <img src="images/after.jpg" alt="After" loading="lazy">
-        <div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Completed Project</span></div>
-      </div>
-      <!-- Duplicate for seamless loop -->
-      <div class="gallery-thumb"><img src="images/service1.jpg" alt="Garden Design" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Garden Design</span></div></div>
-      <div class="gallery-thumb"><img src="images/service2.jpg" alt="Lawn Installation" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Lawn Installation</span></div></div>
-      <div class="gallery-thumb"><img src="images/service3.webp" alt="Planting" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Plant & Planting</span></div></div>
-      <div class="gallery-thumb"><img src="images/service4.jpg" alt="Event Decor" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Event Decor</span></div></div>
-      <div class="gallery-thumb"><img src="images/service5.png" alt="Maintenance" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Maintenance</span></div></div>
-      <div class="gallery-thumb"><img src="images/service6.jpg" alt="Irrigation" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Irrigation</span></div></div>
-      <div class="gallery-thumb"><img src="images/before.png" alt="Before & After" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Transformation</span></div></div>
-      <div class="gallery-thumb"><img src="images/after.jpg" alt="After" loading="lazy"><div class="gallery-thumb-overlay"><span class="gallery-thumb-label">Completed Project</span></div></div>
+  <div class="carousel-track-wrap">
+    <div class="carousel-track" id="carousel">
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"They transformed my backyard into a resort. I could not be happier — the team exceeded every single expectation we had."</p><div class="rev-person"><div class="rev-avatar">RK</div><div><div class="rev-name">Riya Kapoor</div><div class="rev-location">📍 Kathmandu</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Professional, punctual, and incredibly creative. Our garden is now the envy of the entire neighbourhood — worth every penny."</p><div class="rev-person"><div class="rev-avatar">SP</div><div><div class="rev-name">Santosh Pradhan</div><div class="rev-location">📍 Lalitpur</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"The irrigation system works flawlessly. My lawn stays lush green all year round with zero effort from me. Pure magic!"</p><div class="rev-person"><div class="rev-avatar">AM</div><div><div class="rev-name">Anita Maharjan</div><div class="rev-location">📍 Bhaktapur</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Fantastic wedding garden decoration. Our guests kept complimenting the floral arrangements all evening. Truly breathtaking."</p><div class="rev-person"><div class="rev-avatar">BT</div><div><div class="rev-name">Bikash Tamang</div><div class="rev-location">📍 Pokhara</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"GreenScape redesigned our office courtyard. Employees love it and it has genuinely improved morale. Highly recommend."</p><div class="rev-person"><div class="rev-avatar">NR</div><div><div class="rev-name">Nisha Rana</div><div class="rev-location">📍 Kathmandu</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Our Bali garden gets compliments from every visitor. I still can not believe it is in the middle of Lalitpur — absolute dream."</p><div class="rev-person"><div class="rev-avatar">PK</div><div><div class="rev-name">Priya Khadka</div><div class="rev-location">📍 Lalitpur</div></div></div></div>
     </div>
+  </div>
+  <div class="carousel-controls">
+    <button class="carousel-btn-ctrl" onclick="moveCarousel(-1)">←</button>
+    <div class="carousel-dots" id="carousel-dots"></div>
+    <button class="carousel-btn-ctrl" onclick="moveCarousel(1)">→</button>
   </div>
 </section>
 
-<!-- SPECIALTY SERVICES -->
-<section id="specialty">
-  <div class="specialty-header reveal">
-    <span class="tag">Also Available</span>
-    <h2 class="section-title">Specialty &amp; Add-On Services</h2>
-    <div class="divider"></div>
-    <p class="section-sub" style="text-align:center;margin:0 auto">Round out your project with our range of complementary services, available as standalone bookings or as part of a larger package.</p>
-  </div>
-  <div class="specialty-grid">
-    <div class="spec-card reveal-scale delay-1">
-      <div class="spec-icon"><i class="fa-solid fa-tree"></i></div>
-      <h4>Tree Surgery &amp; Pruning</h4>
-      <p>Professional crown reduction, shaping, and health treatments for mature trees and shrubs.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-2">
-      <div class="spec-icon"><i class="fa-solid fa-lightbulb"></i></div>
-      <h4>Garden Lighting</h4>
-      <p>Low-voltage LED path, accent, and feature lighting to extend your garden enjoyment into the evening.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-3">
-      <div class="spec-icon"><i class="fa-solid fa-fence"></i></div>
-      <h4>Fencing &amp; Edging</h4>
-      <p>Timber, bamboo, stone, and metal edging solutions to define boundaries and add structure.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-4">
-      <div class="spec-icon"><i class="fa-solid fa-cloud-rain"></i></div>
-      <h4>Rainwater Harvesting</h4>
-      <p>Sustainable water collection systems integrated into your garden for eco-conscious care.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-1">
-      <div class="spec-icon"><i class="fa-solid fa-seedling"></i></div>
-      <h4>Container Gardening</h4>
-      <p>Bespoke planted containers and pots for balconies, patios, and entrances — maintained quarterly.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-2">
-      <div class="spec-icon"><i class="fa-solid fa-bucket"></i></div>
-      <h4>Composting Systems</h4>
-      <p>Install and manage on-site composting to feed your garden naturally and reduce waste.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-3">
-      <div class="spec-icon"><i class="fa-solid fa-water"></i></div>
-      <h4>Water Features</h4>
-      <p>Ponds, fountains, and rill installations that bring tranquil sound and movement to your garden.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="spec-card reveal-scale delay-4">
-      <div class="spec-icon"><i class="fa-solid fa-carrot"></i></div>
-      <h4>Kitchen Garden Design</h4>
-      <p>Raised bed vegetable and herb gardens designed for maximum yield and year-round harvest.</p>
-      <a href="index.html#contact" class="spec-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="pricing-header reveal">
-    <span class="tag">Maintenance Plans</span>
-    <h2 class="section-title">Transparent Pricing,<br>No Hidden Fees</h2>
-    <div class="divider" style="margin:16px auto"></div>
-    <p class="section-sub" style="text-align:center;margin:0 auto">Choose a maintenance plan that fits your garden and budget. All design and installation projects receive a custom quote — contact us for a free estimate.</p>
-  </div>
-  <div class="pricing-grid">
-    <!-- populated by render-pricing.js -->
-  </div>
-
-  </div>
-  <p style="text-align:center;margin-top:36px;font-size:14px;color:var(--muted)">All prices are indicative. Final pricing depends on garden size and condition. <a href="index.html#contact" style="color:var(--green-mid);font-weight:600;text-decoration:none;cursor:none">Contact us for a custom quote →</a></p>
-</section>
-
-<!-- CTA BANNER -->
+<!-- CTA -->
 <section id="cta-banner">
-  <div class="cta-circle c1"></div>
-  <div class="cta-circle c2"></div>
-  <div class="cta-banner-inner reveal">
-    <span class="tag">Start Today</span>
-    <h2>Ready to <em>Transform</em><br>Your Outdoor Space?</h2>
-    <p>Book a free 30-minute consultation with our horticulturist — no obligation, no pressure. Just honest advice and a vision for what your garden could become.</p>
-    <div class="cta-banner-btns">
-      <a href="index.html#contact" class="cta-btn-gold"><i class="fa-solid fa-calendar"></i> Book a Free Visit</a>
-      <a href="tel:+9779851206373" class="cta-btn-ghost"><i class="fa-solid fa-phone"></i> Call Us Now</a>
-    </div>
-    <div class="cta-trust">
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">500+</span>
-        <span class="cta-trust-label">Projects Completed</span>
-      </div>
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">98%</span>
-        <span class="cta-trust-label">Client Satisfaction</span>
-      </div>
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">10+</span>
-        <span class="cta-trust-label">Years in Business</span>
-      </div>
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">Free</span>
-        <span class="cta-trust-label">Initial Consultation</span>
-      </div>
+  <div class="cta-bg-leaf"><i class="fa-solid fa-leaf"></i></div>
+  <div class="cta-inner reveal">
+    <span class="tag">Ready to Begin?</span>
+    <h2>Your Garden Could Be<br><em>Our Next Story</em></h2>
+    <p>Every project in this portfolio started with a single conversation. Let's talk about what your outdoor space could become — free consultation, zero pressure.</p>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="btn-cta-dark"><i class="fa-solid fa-leaf"></i> Get a Free Quote</a>
+      <a href="services.html" class="btn-outline">Explore Our Services →</a>
     </div>
   </div>
 </section>
@@ -902,7 +696,7 @@ footer{background:var(--green-dark);padding:0}
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <span style="font-family:'Playfair Display',serif;font-size:22px;color:var(--white);display:block;margin-bottom:12px"><i class="fa-solid fa-leaf"></i> Sewa Subida Gardening</span>
+        <span style="font-family:'Playfair Display',serif;font-size:22px;color:var(--white);display:block"><i class="fa-solid fa-leaf"></i> Sewa Subida Gardening</span>
         <p>Nepal's most trusted garden design and landscaping studio. Transforming outdoor spaces since 2014.</p>
         <div class="footer-socials">
           <a class="social-btn" href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
@@ -914,19 +708,19 @@ footer{background:var(--green-dark);padding:0}
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="#srv-design">Garden Design</a></li>
-          <li><a href="#srv-lawn">Lawn Installation</a></li>
-          <li><a href="#srv-planting">Plant & Planting</a></li>
-          <li><a href="#srv-events">Event Decor</a></li>
-          <li><a href="#srv-maintenance">Maintenance</a></li>
-          <li><a href="#srv-irrigation">Irrigation</a></li>
+          <li><a href="services.html#srv-design">Garden Design</a></li>
+          <li><a href="services.html#srv-lawn">Lawn Installation</a></li>
+          <li><a href="services.html#srv-planting">Plant & Planting</a></li>
+          <li><a href="services.html#srv-events">Event Decor</a></li>
+          <li><a href="services.html#srv-maintenance">Maintenance</a></li>
+          <li><a href="services.html#srv-irrigation">Irrigation</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
           <li><a href="index.html#about">About Us</a></li>
-          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="index.html#testimonials">Testimonials</a></li>
           <li><a href="index.html#blog">Blog</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
@@ -937,7 +731,7 @@ footer{background:var(--green-dark);padding:0}
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:+9779851206373"><i class="fa-solid fa-phone"></i> +977 9851-206373</a></li>
-          <li><a href="mailto:hello@sewasubidagardening.com.np"><i class="fa-solid fa-envelope"></i> hello@sewasubidagardening.com.np</a></li>
+          <li><a href="mailto:hello@sewasubidagardening.com.np"><i class="fa-solid fa-envelope"></i> hello@sewasubida...</a></li>
           <li><a href="index.html#contact"><i class="fa-solid fa-location-dot"></i> Madhyapur Thimi</a></li>
           <li><a href="index.html#contact"><i class="fa-solid fa-map-marker-alt"></i> Bagmati Province, Nepal</a></li>
         </ul>
@@ -974,18 +768,15 @@ function animateCursor() {
   requestAnimationFrame(animateCursor)
 }
 animateCursor()
-document.querySelectorAll('a,button,.spec-card,.price-card,.srv-detail-img-wrap,.gallery-thumb').forEach(el => {
+document.querySelectorAll('a,button,.masonry-item,.feat-card,.rev-card').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('hovering'))
   el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'))
 })
 
 // ===== HEADER =====
-const header = document.getElementById('header')
-function handleScroll() {
-  header.classList.toggle('scrolled', window.scrollY > 40)
-  updateServiceNav()
-}
-window.addEventListener('scroll', handleScroll)
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40)
+})
 
 // ===== HAMBURGER =====
 function toggleNav() {
@@ -994,48 +785,137 @@ function toggleNav() {
 
 // ===== SCROLL REVEAL =====
 const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale')
-const revealObs = new IntersectionObserver((entries) => {
+const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') })
-}, { threshold: 0.12 })
-revealEls.forEach(el => revealObs.observe(el))
+}, { threshold: 0.1 })
+revealEls.forEach(el => obs.observe(el))
 
-// ===== SERVICE NAV SCROLL SYNC =====
-const snavItems = document.querySelectorAll('.snav-item')
-const srvSections = ['srv-design','srv-lawn','srv-planting','srv-events','srv-maintenance','srv-irrigation']
-function updateServiceNav() {
-  const scrollY = window.scrollY + 160
-  let current = ''
-  srvSections.forEach(id => {
-    const el = document.getElementById(id)
-    if (el && el.offsetTop <= scrollY) current = id
+// ===== FILTER =====
+const tabs = document.querySelectorAll('.filter-tab')
+const items = document.querySelectorAll('.masonry-item')
+const countDisplay = document.getElementById('count-display')
+const emptyState = document.getElementById('empty-state')
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'))
+    tab.classList.add('active')
+    const filter = tab.dataset.filter
+    let visible = 0
+    items.forEach(item => {
+      const match = filter === 'all' || item.dataset.cat === filter
+      if (match) {
+        item.classList.remove('hidden-item')
+        item.style.display = 'block'
+        visible++
+      } else {
+        item.classList.add('hidden-item')
+        item.style.display = 'none'
+      }
+    })
+    countDisplay.textContent = visible
+    emptyState.style.display = visible === 0 ? 'block' : 'none'
   })
-  snavItems.forEach(item => {
-    item.classList.remove('active')
-    if (item.getAttribute('href') === '#' + current) item.classList.add('active')
+})
+
+// ===== LIGHTBOX =====
+const allItems = Array.from(document.querySelectorAll('.masonry-item'))
+let currentLbIndex = 0
+
+function getVisibleItems() {
+  return allItems.filter(i => i.style.display !== 'none' && !i.classList.contains('hidden-item'))
+}
+
+function openLightbox(el) {
+  const visibleItems = getVisibleItems()
+  currentLbIndex = visibleItems.indexOf(el)
+  loadLightbox(el)
+  document.getElementById('lightbox').classList.add('open')
+  document.body.style.overflow = 'hidden'
+}
+
+function loadLightbox(el) {
+  const img = el.querySelector('img')
+  document.getElementById('lb-img').src = img ? img.src : ''
+  document.getElementById('lb-img').alt = img ? img.alt : ''
+  document.getElementById('lb-title').textContent = el.dataset.title || ''
+  document.getElementById('lb-cat').textContent = el.dataset.cat ? el.dataset.cat.charAt(0).toUpperCase() + el.dataset.cat.slice(1) : ''
+  document.getElementById('lb-desc').textContent = el.dataset.desc || ''
+  const meta = document.getElementById('lb-meta')
+  meta.innerHTML = `
+    <div class="lb-meta-item"><div class="lb-meta-label">Service</div><div class="lb-meta-value">${el.dataset.service || '—'}</div></div>
+    <div class="lb-meta-item"><div class="lb-meta-label">Duration</div><div class="lb-meta-value">${el.dataset.duration || '—'}</div></div>
+    <div class="lb-meta-item"><div class="lb-meta-label">Location</div><div class="lb-meta-value">${el.dataset.location || '—'}</div></div>
+    <div class="lb-meta-item"><div class="lb-meta-label">Budget</div><div class="lb-meta-value">${el.dataset.budget || '—'}</div></div>
+  `
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open')
+  document.body.style.overflow = ''
+}
+
+function lbNav(dir) {
+  const visibleItems = getVisibleItems()
+  if (!visibleItems.length) return
+  currentLbIndex = (currentLbIndex + dir + visibleItems.length) % visibleItems.length
+  loadLightbox(visibleItems[currentLbIndex])
+}
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox()
+})
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox()
+  if (e.key === 'ArrowLeft') lbNav(-1)
+  if (e.key === 'ArrowRight') lbNav(1)
+})
+
+// ===== TESTIMONIAL CAROUSEL =====
+const carousel = document.getElementById('carousel')
+const dotsWrap = document.getElementById('carousel-dots')
+const cards = carousel.querySelectorAll('.rev-card')
+let carouselIndex = 0
+let autoplay
+
+function buildDots() {
+  dotsWrap.innerHTML = ''
+  cards.forEach((_, i) => {
+    const d = document.createElement('div')
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '')
+    d.onclick = () => goToSlide(i)
+    dotsWrap.appendChild(d)
   })
 }
-snavItems.forEach(item => {
-  item.addEventListener('click', e => {
-    const target = document.querySelector(item.getAttribute('href'))
-    if (target) {
-      e.preventDefault()
-      const offset = target.getBoundingClientRect().top + window.scrollY - 140
-      window.scrollTo({ top: offset, behavior: 'smooth' })
-    }
-  })
-})
+buildDots()
 
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const href = a.getAttribute('href')
-    if (href === '#') return
-    const target = document.querySelector(href)
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }) }
-  })
+function goToSlide(i) {
+  carouselIndex = i
+  const card = cards[0]
+  const w = card.offsetWidth + 20
+  carousel.style.transform = `translateX(-${i * w}px)`
+  document.querySelectorAll('.carousel-dot').forEach((d, idx) => d.classList.toggle('active', idx === i))
+}
+
+function moveCarousel(dir) {
+  carouselIndex = (carouselIndex + dir + cards.length) % cards.length
+  goToSlide(carouselIndex)
+  resetAutoplay()
+}
+
+function resetAutoplay() {
+  clearInterval(autoplay)
+  autoplay = setInterval(() => moveCarousel(1), 4500)
+}
+resetAutoplay()
+
+// touch support
+let tStartX = 0
+carousel.addEventListener('touchstart', e => { tStartX = e.touches[0].clientX })
+carousel.addEventListener('touchend', e => {
+  const delta = tStartX - e.changedTouches[0].clientX
+  if (Math.abs(delta) > 40) moveCarousel(delta > 0 ? 1 : -1)
 })
 </script>
-<script src="data-pricing.js"></script>
-<script src="render-pricing.js"></script>
 </body>
 </html>

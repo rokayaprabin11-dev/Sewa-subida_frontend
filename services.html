@@ -857,73 +857,9 @@ footer{background:var(--green-dark);padding:0}
     <p class="section-sub" style="text-align:center;margin:0 auto">Choose a maintenance plan that fits your garden and budget. All design and installation projects receive a custom quote — contact us for a free estimate.</p>
   </div>
   <div class="pricing-grid">
-    <div class="price-card reveal-scale delay-1">
-      <div class="price-icon"><i class="fa-solid fa-seedling"></i></div>
-      <h3>Starter</h3>
-      <p class="price-desc">Perfect for small gardens that need a light monthly touch.</p>
-      <div class="price-amount">
-        <span class="price-currency">Rs.</span>
-        <span class="price-num">2,500</span>
-        <span class="price-per">/month</span>
-      </div>
-      <p class="price-note">Billed monthly · Cancel anytime</p>
-      <div class="price-divider"></div>
-      <div class="price-features">
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Monthly site visit (1× per month)</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Mowing and edging</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Debris and leaf clearance</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Basic pruning</div>
-        <div class="price-feat disabled"><i class="fa-solid fa-xmark"></i> Fertilising included</div>
-        <div class="price-feat disabled"><i class="fa-solid fa-xmark"></i> Pest & disease treatment</div>
-        <div class="price-feat disabled"><i class="fa-solid fa-xmark"></i> Monthly health report</div>
-      </div>
-      <a href="index.html#contact" class="price-cta price-cta-outline">Get Started →</a>
-    </div>
-    <div class="price-card popular reveal-scale delay-2">
-      <span class="popular-badge">Most Popular</span>
-      <div class="price-icon"><i class="fa-solid fa-leaf"></i></div>
-      <h3>Garden Care</h3>
-      <p class="price-desc">Our most popular plan — complete fortnightly garden care.</p>
-      <div class="price-amount">
-        <span class="price-currency">Rs.</span>
-        <span class="price-num">5,500</span>
-        <span class="price-per">/month</span>
-      </div>
-      <p class="price-note">Billed monthly · Cancel anytime</p>
-      <div class="price-divider"></div>
-      <div class="price-features">
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Fortnightly visits (2× per month)</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Mowing, edging & trimming</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Debris and leaf clearance</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Pruning and deadheading</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Seasonal fertilising</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Basic pest monitoring</div>
-        <div class="price-feat disabled"><i class="fa-solid fa-xmark"></i> Monthly health report</div>
-      </div>
-      <a href="index.html#contact" class="price-cta price-cta-primary">Get Started →</a>
-    </div>
-    <div class="price-card reveal-scale delay-3">
-      <div class="price-icon"><i class="fa-solid fa-star"></i></div>
-      <h3>Premium</h3>
-      <p class="price-desc">Weekly full-service care for gardens that demand the best.</p>
-      <div class="price-amount">
-        <span class="price-currency">Rs.</span>
-        <span class="price-num">9,500</span>
-        <span class="price-per">/month</span>
-      </div>
-      <p class="price-note">Billed monthly · Cancel anytime</p>
-      <div class="price-divider"></div>
-      <div class="price-features">
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Weekly visits (4× per month)</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Full mowing, edging & trimming</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Debris clearance every visit</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Expert pruning & shaping</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Fertilising & soil treatment</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Pest & disease treatment</div>
-        <div class="price-feat"><i class="fa-solid fa-check"></i> Monthly garden health report</div>
-      </div>
-      <a href="index.html#contact" class="price-cta price-cta-outline">Get Started →</a>
-    </div>
+    <!-- populated by render-pricing.js -->
+  </div>
+
   </div>
   <p style="text-align:center;margin-top:36px;font-size:14px;color:var(--muted)">All prices are indicative. Final pricing depends on garden size and condition. <a href="index.html#contact" style="color:var(--green-mid);font-weight:600;text-decoration:none;cursor:none">Contact us for a custom quote →</a></p>
 </section>
@@ -1058,10 +994,10 @@ function toggleNav() {
 
 // ===== SCROLL REVEAL =====
 const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale')
-const revealObs = new IntersectionObserver((entries) => {
+window._revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') })
 }, { threshold: 0.12 })
-revealEls.forEach(el => revealObs.observe(el))
+revealEls.forEach(el => window._revealObserver.observe(el))
 
 // ===== SERVICE NAV SCROLL SYNC =====
 const snavItems = document.querySelectorAll('.snav-item')
@@ -1099,5 +1035,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   })
 })
 </script>
+<script src="data-pricing.js"></script>
+<script src="render-pricing.js"></script>
 </body>
 </html>

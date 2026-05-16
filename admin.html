@@ -21,27 +21,22 @@
 </head>
 <body>
   <div id="root"></div>
-
-  <!-- 1. React UMD globals -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-  <!-- 2. Babel to transform JSX in the browser -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- 3. Full app — inline JSX, no ES module imports needed -->
   <script type="text/babel" data-presets="react">
     const { useState, useEffect, useCallback } = React;
 
-    // ─── API CONFIG ────────────────────────────────────────────────────────────
-    // For local dev:  "http://localhost:8080"
-    // For production: "https://your-do-app.ondigitalocean.app"
-const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
+    // ─── CONFIG ───────────────────────────────────────────────────────────────
+    const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
+
     async function apiFetch(path, options = {}, token = null) {
+      const isFormData = options.body instanceof FormData;
       const res = await fetch(`${API_BASE}${path}`, {
         ...options,
         headers: {
-          "Content-Type": "application/json",
+          ...(isFormData ? {} : { "Content-Type": "application/json" }),
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
           ...options.headers,
         },
@@ -54,44 +49,11 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
       return text ? JSON.parse(text) : null;
     }
 
-    // ─── DB MAPPERS ────────────────────────────────────────────────────────────
+    // ─── DB MAPPERS ───────────────────────────────────────────────────────────
     function galleryFromDb(r) { return { ...r, desc: r.description }; }
     function galleryToDb(item) { const { desc, ...rest } = item; return { ...rest, description: desc }; }
     function pricingFromDb(r) { return { ...r, desc: r.description, ctaStyle: r.cta_style }; }
     function pricingToDb(plan) { const { desc, ctaStyle, ...rest } = plan; return { ...rest, description: desc, cta_style: ctaStyle }; }
-
-    // ─── SEED DATA ─────────────────────────────────────────────────────────────
-    const SEED_GALLERY = [
-      { title: "Woodland Retreat",     cat: "modern",   description: "A stunning full-landscape transformation in Lalitpur — merging structured modern lines with organic planting beds and a custom stone pathway.",  service: "Garden Design & Landscaping", duration: "3 Weeks",   location: "Lalitpur",        budget: "$$$",  height: 210, bg: "linear-gradient(145deg,#c8e6b0,#4A7C40)", image: "images/modern1.jpg",   sort_order: 0 },
-      { title: "Tropical Paradise",    cat: "tropical", description: "A lush tropical garden in Bhaktapur featuring banana palms, bird-of-paradise, and a gravel pathway winding through dense planting.",           service: "Plant Selection & Planting",  duration: "10 Days",  location: "Bhaktapur",       budget: "$$",   height: 145, bg: "linear-gradient(145deg,#d4edda,#2D5A27)", image: "images/tropical.jpeg", sort_order: 1 },
-      { title: "Sunstone Patio",       cat: "patio",    description: "Hand-laid sandstone patio with integrated seating walls, raised planters, and a pergola draped in climbing jasmine — Kathmandu residence.",   service: "Garden Design & Landscaping", duration: "2 Weeks",   location: "Kathmandu",       budget: "$$$",  height: 175, bg: "linear-gradient(145deg,#fce4b0,#C98B1A)", image: "images/patio1.jpg",    sort_order: 2 },
-      { title: "Evergreen Lawn",       cat: "lawn",     description: "Premium sod installation with full ground preparation, edging, and a smart drip irrigation setup — lush result achieved in under 48 hours.", service: "Lawn Installation",            duration: "2 Days",    location: "Madhyapur Thimi", budget: "$$",   height: 135, bg: "linear-gradient(145deg,#7BAE6A,#1E3D1A)", image: "images/lawns.jpg",     sort_order: 3 },
-      { title: "Bali Garden",          cat: "tropical", description: "A Bali-inspired sanctuary complete with bamboo screens, a tiered water feature, and hand-selected tropical foliage for year-round density.",  service: "Garden Design & Landscaping", duration: "4 Weeks",   location: "Lalitpur",        budget: "$$$",  height: 220, bg: "linear-gradient(145deg,#c8f0b0,#5aaa40)", image: "images/topical1.jpeg", sort_order: 4 },
-      { title: "Water Feature Garden", cat: "modern",   description: "A sleek contemporary garden centred around a rill water feature flanked by ornamental grasses and polished concrete edging.",                  service: "Garden Design & Landscaping", duration: "3 Weeks",   location: "Kathmandu",       budget: "$$$$", height: 155, bg: "linear-gradient(145deg,#dce8f0,#5a8aad)", image: "images/modern2.webp",  sort_order: 5 },
-      { title: "Courtyard Design",     cat: "patio",    description: "A walled urban courtyard transformed with raised beds, mixed stone and brick paving, and an overhead shade structure trailing wisteria.",      service: "Garden Design & Landscaping", duration: "2.5 Weeks", location: "Bhaktapur",       budget: "$$$",  height: 190, bg: "linear-gradient(145deg,#f0e0c0,#b8884a)", image: "images/patio2.jpg",    sort_order: 6 },
-      { title: "Meadow Lawn",          cat: "lawn",     description: "A naturalistic wildflower meadow lawn seeded with native Nepali species, bordered by dry stone walling and low-growing native shrubs.",        service: "Lawn Installation",            duration: "3 Days",    location: "Pokhara",         budget: "$$",   height: 130, bg: "linear-gradient(145deg,#a8d890,#3a7a2a)", image: "images/lawns1.jpg",    sort_order: 7 },
-      { title: "Evening Garden",       cat: "modern",   description: "A minimal night-garden with architectural lighting, clipped box hedging, and lit stepping stones creating a dramatic dusk ambiance.",          service: "Garden Lighting & Design",    duration: "2 Weeks",   location: "Lalitpur",        budget: "$$$$", height: 165, bg: "linear-gradient(145deg,#e0d8f0,#7070b8)", image: "images/moder3.webp",   sort_order: 8 },
-    ];
-
-    const SEED_PRICING = [
-      { name: "Starter",     icon: "fa-seedling", description: "Perfect for small gardens that need a light monthly touch.",          price: "2,500", period: "/month", note: "Billed monthly · Cancel anytime", popular: false, cta_style: "outline",  features: [{ text: "Monthly site visit (1× per month)", enabled: true }, { text: "Mowing and edging", enabled: true }, { text: "Debris and leaf clearance", enabled: true }, { text: "Basic pruning", enabled: true }, { text: "Fertilising included", enabled: false }, { text: "Pest & disease treatment", enabled: false }, { text: "Monthly health report", enabled: false }], sort_order: 0 },
-      { name: "Garden Care", icon: "fa-leaf",     description: "Our most popular plan — complete fortnightly garden care.",           price: "5,500", period: "/month", note: "Billed monthly · Cancel anytime", popular: true,  cta_style: "primary",  features: [{ text: "Fortnightly visits (2× per month)", enabled: true }, { text: "Mowing, edging & trimming", enabled: true }, { text: "Debris and leaf clearance", enabled: true }, { text: "Pruning and deadheading", enabled: true }, { text: "Seasonal fertilising", enabled: true }, { text: "Basic pest monitoring", enabled: true }, { text: "Monthly health report", enabled: false }], sort_order: 1 },
-      { name: "Premium",     icon: "fa-star",     description: "Weekly full-service care for gardens that demand the best.",          price: "9,500", period: "/month", note: "Billed monthly · Cancel anytime", popular: false, cta_style: "outline",  features: [{ text: "Weekly visits (4× per month)", enabled: true }, { text: "Full mowing, edging & trimming", enabled: true }, { text: "Debris clearance every visit", enabled: true }, { text: "Expert pruning & shaping", enabled: true }, { text: "Fertilising & soil treatment", enabled: true }, { text: "Pest & disease treatment", enabled: true }, { text: "Monthly garden health report", enabled: true }], sort_order: 2 },
-    ];
-
-    // ─── EXPORT BUILDERS ──────────────────────────────────────────────────────
-    function buildGalleryJS(items) {
-      return `// GreenScape Gallery Data — auto-generated\nwindow.GALLERY_DATA = ${JSON.stringify(items, null, 2)};\n`;
-    }
-    function buildPricingJS(items) {
-      return `// GreenScape Pricing Data — auto-generated\nwindow.PRICING_DATA = ${JSON.stringify(items, null, 2)};\n`;
-    }
-    function buildRenderGalleryJS() {
-      return `// render-gallery.js\n(function() {\n  const data = window.GALLERY_DATA;\n  if (!data) return;\n  const grid = document.getElementById('masonry');\n  if (!grid) return;\n  const tabs = document.getElementById('filter-tabs');\n  const cats = [...new Set(data.map(d => d.cat))];\n  if (tabs) {\n    tabs.innerHTML = '<button class="filter-tab active" data-filter="all">All Work</button>' +\n      cats.map(c => \`<button class="filter-tab" data-filter="\${c}">\${c.charAt(0).toUpperCase()+c.slice(1)}</button>\`).join('');\n  }\n  function renderItems(filter) {\n    grid.innerHTML = '';\n    let visible = 0;\n    data.forEach((item) => {\n      if (filter !== 'all' && item.cat !== filter) return;\n      visible++;\n      const div = document.createElement('div');\n      div.className = 'masonry-item reveal delay-' + ((visible - 1) % 3 + 1);\n      div.dataset.cat = item.cat;\n      div.dataset.title = item.title;\n      div.dataset.desc = item.description || item.desc || '';\n      div.dataset.service = item.service;\n      div.dataset.duration = item.duration;\n      div.dataset.location = item.location;\n      div.dataset.budget = item.budget;\n      div.setAttribute('onclick', 'openLightbox(this)');\n      div.innerHTML = \`<div class="masonry-fake-img" style="height:\${item.height}px;background:\${item.bg}"><img src="\${item.image}" alt="\${item.title}" loading="lazy"></div><span class="masonry-cat-badge">\${item.cat.charAt(0).toUpperCase()+item.cat.slice(1)}</span><div class="masonry-overlay"><div class="masonry-info"><h4>\${item.title}</h4><span>\${item.cat.charAt(0).toUpperCase()+item.cat.slice(1)} \xb7 \${item.service} \xb7 \${item.budget}</span></div><div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div></div>\`;\n      grid.appendChild(div);\n    });\n    const cd = document.getElementById('count-display');\n    if (cd) cd.textContent = visible;\n    const empty = document.getElementById('empty-state');\n    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';\n    document.querySelectorAll('.reveal').forEach(el => { if (window._revealObserver) window._revealObserver.observe(el); });\n  }\n  renderItems('all');\n  document.addEventListener('click', e => {\n    const tab = e.target.closest('.filter-tab');\n    if (!tab) return;\n    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));\n    tab.classList.add('active');\n    renderItems(tab.dataset.filter);\n  });\n  window.getVisibleItems = function() { return Array.from(document.querySelectorAll('.masonry-item')); };\n})();\n`;
-    }
-    function buildRenderPricingJS() {
-      return `// render-pricing.js\n(function() {\n  const data = window.PRICING_DATA;\n  if (!data) return;\n  const grid = document.querySelector('.pricing-grid');\n  if (!grid) return;\n  grid.innerHTML = data.map((plan, i) => {\n    const featHtml = plan.features.map(f => \`<div class="price-feat\${f.enabled ? '' : ' disabled'}"><i class="fa-solid \${f.enabled ? 'fa-check' : 'fa-xmark'}"></i> \${f.text}</div>\`).join('');\n    return \`<div class="price-card\${plan.popular ? ' popular' : ''} reveal-scale delay-\${i+1}">\${plan.popular ? '<span class="popular-badge">Most Popular</span>' : ''}<div class="price-icon"><i class="fa-solid \${plan.icon}"></i></div><h3>\${plan.name}</h3><p class="price-desc">\${plan.description || plan.desc || ''}</p><div class="price-amount"><span class="price-currency">Rs.</span><span class="price-num">\${plan.price}</span><span class="price-per">\${plan.period}</span></div><p class="price-note">\${plan.note}</p><div class="price-divider"></div><div class="price-features">\${featHtml}</div><a href="index.html#contact" class="price-cta price-cta-\${plan.cta_style || plan.ctaStyle}">Get Started \u2192</a></div>\`;\n  }).join('');\n  document.querySelectorAll('.reveal-scale').forEach(el => { if (window._revealObserver) window._revealObserver.observe(el); });\n})();\n`;
-    }
 
     // ─── STYLES ───────────────────────────────────────────────────────────────
     const inputStyle  = { width: "100%", padding: "10px 14px", border: "1.5px solid #d8e8d0", borderRadius: 10, fontSize: 14, color: "#262622", background: "#fafdf8", outline: "none", fontFamily: "inherit", boxSizing: "border-box" };
@@ -100,7 +62,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
     const BUDGETS     = ["$", "$$", "$$$", "$$$$"];
     const catColors   = { modern: "#5a8aad", tropical: "#2D5A27", lawn: "#3a7a2a", patio: "#b8884a", events: "#9b5ea3", irrigation: "#1a6b8a" };
 
-    // ─── COMPONENTS ──────────────────────────────────────────────────────────
+    // ─── TOAST ────────────────────────────────────────────────────────────────
     function Toast({ msg, onClose }) {
       useEffect(() => { const t = setTimeout(onClose, 3000); return () => clearTimeout(t); }, []);
       return (
@@ -110,6 +72,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
       );
     }
 
+    // ─── MODAL ────────────────────────────────────────────────────────────────
     function Modal({ title, onClose, children }) {
       return (
         <div style={{ position: "fixed", inset: 0, background: "rgba(26,61,24,0.55)", backdropFilter: "blur(4px)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }} onClick={e => e.target === e.currentTarget && onClose()}>
@@ -133,7 +96,77 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
       );
     }
 
-    function GalleryForm({ item, onSave, onClose, loading }) {
+    // ─── IMAGE UPLOADER ───────────────────────────────────────────────────────
+    function ImageUploader({ token, value, onChange }) {
+      const [uploading, setUploading] = useState(false);
+      const [preview,   setPreview]   = useState(value || "");
+      const [error,     setError]     = useState("");
+
+      const handleFile = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        setUploading(true); setError("");
+
+        // Local preview
+        const reader = new FileReader();
+        reader.onload = ev => setPreview(ev.target.result);
+        reader.readAsDataURL(file);
+
+        try {
+          const formData = new FormData();
+          formData.append("image", file);
+          const data = await apiFetch("/api/upload", { method: "POST", body: formData }, token);
+          onChange(data.url);
+          setPreview(data.url);
+        } catch (err) {
+          setError("Upload failed: " + err.message);
+          setPreview(value || "");
+        } finally {
+          setUploading(false);
+        }
+      };
+
+      return (
+        <div>
+          {/* Upload button */}
+          <label style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 16px", border: "1.5px dashed #a8c89a", borderRadius: 10, cursor: "pointer", background: "#f8fdf6", transition: "all 0.2s" }}>
+            <input type="file" accept="image/*" onChange={handleFile} style={{ display: "none" }} disabled={uploading} />
+            {uploading ? (
+              <>
+                <div style={{ width: 18, height: 18, border: "2px solid #e8f4e0", borderTop: "2px solid #2A5726", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+                <span style={{ fontSize: 13, color: "#2A5726" }}>Uploading to Cloudinary…</span>
+              </>
+            ) : (
+              <>
+                <span style={{ fontSize: 18 }}>📷</span>
+                <span style={{ fontSize: 13, color: "#2A5726", fontWeight: 600 }}>
+                  {preview ? "Change Image" : "Upload Image"}
+                </span>
+                <span style={{ fontSize: 11, color: "#7A7A72", marginLeft: "auto" }}>JPG, PNG, WebP · max 10MB</span>
+              </>
+            )}
+          </label>
+
+          {error && <p style={{ fontSize: 12, color: "#dc2626", marginTop: 6 }}>{error}</p>}
+
+          {/* Preview */}
+          {preview && (
+            <div style={{ marginTop: 10, position: "relative", borderRadius: 10, overflow: "hidden", border: "1.5px solid #e0e8dc" }}>
+              <img src={preview} alt="preview" style={{ width: "100%", height: 140, objectFit: "cover", display: "block" }} />
+              <button onClick={() => { setPreview(""); onChange(""); }} style={{ position: "absolute", top: 8, right: 8, background: "rgba(220,38,38,0.85)", color: "#fff", border: "none", borderRadius: "50%", width: 26, height: 26, cursor: "pointer", fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
+            </div>
+          )}
+
+          {/* Manual URL fallback */}
+          <div style={{ marginTop: 8 }}>
+            <input style={{ ...inputStyle, fontSize: 12, color: "#7A7A72" }} value={value} onChange={e => { onChange(e.target.value); setPreview(e.target.value); }} placeholder="Or paste image URL manually" />
+          </div>
+        </div>
+      );
+    }
+
+    // ─── GALLERY FORM ─────────────────────────────────────────────────────────
+    function GalleryForm({ item, onSave, onClose, loading, token }) {
       const blank = { title: "", cat: "modern", desc: "", service: "", duration: "", location: "", budget: "$$", height: 180, bg: "linear-gradient(145deg,#c8e6b0,#4A7C40)", image: "" };
       const [form, setForm] = useState(item || blank);
       const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
@@ -152,15 +185,21 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
               </select>
             </Field>
           </div>
-          <Field label="Description"><textarea style={{ ...inputStyle, minHeight: 80, resize: "vertical" }} value={form.desc} onChange={e => set("desc", e.target.value)} /></Field>
+          <Field label="Description">
+            <textarea style={{ ...inputStyle, minHeight: 80, resize: "vertical" }} value={form.desc} onChange={e => set("desc", e.target.value)} />
+          </Field>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
             <Field label="Service"><input style={inputStyle} value={form.service} onChange={e => set("service", e.target.value)} placeholder="e.g. Garden Design" /></Field>
             <Field label="Duration"><input style={inputStyle} value={form.duration} onChange={e => set("duration", e.target.value)} placeholder="e.g. 2 Weeks" /></Field>
             <Field label="Location"><input style={inputStyle} value={form.location} onChange={e => set("location", e.target.value)} placeholder="e.g. Kathmandu" /></Field>
             <Field label="Card Height (px)"><input style={inputStyle} type="number" value={form.height} onChange={e => set("height", +e.target.value)} /></Field>
           </div>
-          <Field label="Image Path"><input style={inputStyle} value={form.image} onChange={e => set("image", e.target.value)} placeholder="images/photo.jpg" /></Field>
-          <Field label="Fallback Background Gradient"><input style={inputStyle} value={form.bg} onChange={e => set("bg", e.target.value)} /></Field>
+          <Field label="Project Image">
+            <ImageUploader token={token} value={form.image} onChange={url => set("image", url)} />
+          </Field>
+          <Field label="Fallback Background Gradient">
+            <input style={inputStyle} value={form.bg} onChange={e => set("bg", e.target.value)} />
+          </Field>
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: form.bg, height: 48, border: "1.5px solid #e0e8dc" }} />
           <div style={{ display: "flex", gap: 10, marginTop: 24, justifyContent: "flex-end" }}>
             <button onClick={onClose} style={{ padding: "10px 22px", border: "1.5px solid #cce0c8", borderRadius: 100, background: "transparent", cursor: "pointer", fontSize: 14 }}>Cancel</button>
@@ -172,13 +211,14 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
       );
     }
 
+    // ─── PRICING FORM ─────────────────────────────────────────────────────────
     function PricingForm({ plan, onSave, onClose, loading }) {
       const blank = { name: "", icon: "fa-leaf", desc: "", price: "", period: "/month", note: "Billed monthly · Cancel anytime", popular: false, ctaStyle: "outline", features: [{ text: "", enabled: true }] };
       const [form, setForm] = useState(plan ? JSON.parse(JSON.stringify(plan)) : blank);
-      const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
-      const setFeat    = (i, k, v) => setForm(f => { const feats = [...f.features]; feats[i] = { ...feats[i], [k]: v }; return { ...f, features: feats }; });
-      const addFeat    = () => setForm(f => ({ ...f, features: [...f.features, { text: "", enabled: true }] }));
-      const removeFeat = i  => setForm(f => ({ ...f, features: f.features.filter((_, idx) => idx !== i) }));
+      const set      = (k, v) => setForm(f => ({ ...f, [k]: v }));
+      const setFeat  = (i, k, v) => setForm(f => { const feats = [...f.features]; feats[i] = { ...feats[i], [k]: v }; return { ...f, features: feats }; });
+      const addFeat  = () => setForm(f => ({ ...f, features: [...f.features, { text: "", enabled: true }] }));
+      const removeFeat = i => setForm(f => ({ ...f, features: f.features.filter((_, idx) => idx !== i) }));
       return (
         <>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
@@ -235,9 +275,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
           onLogin(data.token);
         } catch (e) {
           setError(e.message || "Incorrect password");
-        } finally {
-          setLoading(false);
-        }
+        } finally { setLoading(false); }
       };
 
       return (
@@ -251,9 +289,6 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
             <button onClick={submit} disabled={loading || !password} style={{ width: "100%", padding: "12px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading || !password ? "not-allowed" : "pointer", fontSize: 15, fontWeight: 600, opacity: loading || !password ? 0.7 : 1 }}>
               {loading ? "Checking…" : "Sign In →"}
             </button>
-            <p style={{ fontSize: 12, color: "#bbb", marginTop: 20 }}>
-              Make sure your API server is running at <code>{API_BASE}</code>
-            </p>
           </div>
         </div>
       );
@@ -261,23 +296,20 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
 
     // ─── MAIN APP ─────────────────────────────────────────────────────────────
     function App() {
-      const [token, setToken]           = useState(() => sessionStorage.getItem("gs_token") || null);
-      const [tab, setTab]               = useState("gallery");
-      const [gallery, setGallery]       = useState([]);
-      const [pricing, setPricing]       = useState([]);
-      const [modal, setModal]           = useState(null);
-      const [exportModal, setExportModal] = useState(null);
-      const [toast, setToast]           = useState(null);
-      const [loading, setLoading]       = useState(true);
-      const [saving, setSaving]         = useState(false);
-      const [error, setError]           = useState(null);
+      const [token, setToken]     = useState(() => sessionStorage.getItem("gs_token") || null);
+      const [tab, setTab]         = useState("gallery");
+      const [gallery, setGallery] = useState([]);
+      const [pricing, setPricing] = useState([]);
+      const [modal, setModal]     = useState(null);
+      const [toast, setToast]     = useState(null);
+      const [loading, setLoading] = useState(true);
+      const [saving, setSaving]   = useState(false);
+      const [error, setError]     = useState(null);
 
-      const showToast = msg => setToast(msg);
-
-      const handleLogin = (newToken) => { sessionStorage.setItem("gs_token", newToken); setToken(newToken); };
+      const showToast  = msg => setToast(msg);
+      const handleLogin  = t => { sessionStorage.setItem("gs_token", t); setToken(t); };
       const handleLogout = () => { sessionStorage.removeItem("gs_token"); setToken(null); };
-
-      const api = useCallback((path, options) => apiFetch(path, options, token), [token]);
+      const api = useCallback((path, opts) => apiFetch(path, opts, token), [token]);
 
       useEffect(() => { if (token) loadAll(); }, [token]);
 
@@ -285,21 +317,15 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
         setLoading(true); setError(null);
         try {
           const [gRows, pRows] = await Promise.all([api("/api/gallery"), api("/api/pricing")]);
-          if (gRows.length === 0) {
-            await Promise.all(SEED_GALLERY.map(item => api("/api/gallery", { method: "POST", body: JSON.stringify(item) })));
-            setGallery((await api("/api/gallery")).map(galleryFromDb));
-          } else { setGallery(gRows.map(galleryFromDb)); }
-          if (pRows.length === 0) {
-            await Promise.all(SEED_PRICING.map(plan => api("/api/pricing", { method: "POST", body: JSON.stringify(plan) })));
-            setPricing((await api("/api/pricing")).map(pricingFromDb));
-          } else { setPricing(pRows.map(pricingFromDb)); }
+          setGallery(gRows.map(galleryFromDb));
+          setPricing(pRows.map(pricingFromDb));
         } catch (e) {
           if (e.message?.includes("Invalid") || e.message?.includes("token")) handleLogout();
           else setError("Could not connect to the API: " + e.message);
         } finally { setLoading(false); }
       }
 
-      // Gallery CRUD
+      // ── Gallery CRUD ─────────────────────────────────────────────────────────
       const saveGalleryItem = async (item) => {
         setSaving(true);
         try {
@@ -334,7 +360,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
         catch (e) { showToast("Reorder failed: " + e.message); }
       };
 
-      // Pricing CRUD
+      // ── Pricing CRUD ─────────────────────────────────────────────────────────
       const savePricing = async (plan) => {
         setSaving(true);
         try {
@@ -343,11 +369,11 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
             const { id, created_at, ...fields } = dbPlan;
             await api(`/api/pricing/${plan.id}`, { method: "PATCH", body: JSON.stringify(fields) });
             setPricing(p => p.map(x => x.id === plan.id ? { ...plan } : x));
-            showToast("Pricing plan updated!");
+            showToast("Plan updated!");
           } else {
             const row = await api("/api/pricing", { method: "POST", body: JSON.stringify({ ...dbPlan, sort_order: pricing.length }) });
             setPricing(p => [...p, pricingFromDb(row)]);
-            showToast("Pricing plan added!");
+            showToast("Plan added!");
           }
           setModal(null);
         } catch (e) { showToast("Error: " + e.message); }
@@ -369,12 +395,6 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
         catch (e) { showToast("Reorder failed: " + e.message); }
       };
 
-      // Export
-      const exportGallery       = () => setExportModal({ title: "data-gallery.js",   content: buildGalleryJS(gallery) });
-      const exportPricing       = () => setExportModal({ title: "data-pricing.js",   content: buildPricingJS(pricing) });
-      const exportRenderGallery = () => setExportModal({ title: "render-gallery.js", content: buildRenderGalleryJS() });
-      const exportRenderPricing = () => setExportModal({ title: "render-pricing.js", content: buildRenderPricingJS() });
-
       if (!token) return <LoginScreen onLogin={handleLogin} />;
 
       return (
@@ -387,7 +407,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
               <div>
                 <div style={{ color: "#fff", fontFamily: "Georgia,serif", fontSize: 17, fontWeight: 700, lineHeight: 1 }}>GreenScape Admin</div>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase" }}>
-                  {loading ? "Connecting…" : "☁ Live — DigitalOcean PostgreSQL"}
+                  {loading ? "Connecting…" : "☁ Live — Railway PostgreSQL"}
                 </div>
               </div>
             </div>
@@ -397,9 +417,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
                   {t === "gallery" ? "🖼 Gallery" : "💰 Pricing"}
                 </button>
               ))}
-              <button onClick={handleLogout} style={{ marginLeft: 8, padding: "8px 16px", borderRadius: 100, border: "1.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "rgba(255,255,255,0.65)", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>
-                Sign Out
-              </button>
+              <button onClick={handleLogout} style={{ marginLeft: 8, padding: "8px 16px", borderRadius: 100, border: "1.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "rgba(255,255,255,0.65)", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>Sign Out</button>
             </div>
           </div>
 
@@ -417,7 +435,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
             {loading && (
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "80px 0", gap: 16 }}>
                 <div style={{ width: 48, height: 48, border: "4px solid #e8f4e0", borderTop: "4px solid #2A5726", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
-                <p style={{ color: "#7A7A72", fontSize: 14 }}>Loading from DigitalOcean PostgreSQL…</p>
+                <p style={{ color: "#7A7A72", fontSize: 14 }}>Loading…</p>
               </div>
             )}
 
@@ -427,21 +445,17 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
                   <div>
                     <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, color: "#1A3D18", margin: 0 }}>Portfolio Gallery</h2>
-                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{gallery.length} items · saved to PostgreSQL</p>
+                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{gallery.length} items · images hosted on Cloudinary</p>
                   </div>
-                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                    <button onClick={exportRenderGallery} style={{ padding: "9px 18px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>⬇ render-gallery.js</button>
-                    <button onClick={exportGallery}       style={{ padding: "9px 18px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>⬇ data-gallery.js</button>
-                    <button onClick={() => setModal({ type: "gallery-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Item</button>
-                  </div>
-                </div>
-                <div style={{ background: "#fffbe8", border: "1.5px solid #e8d08a", borderRadius: 14, padding: "14px 18px", marginBottom: 24, fontSize: 13, color: "#7a5c00" }}>
-                  <strong>How to wire this up:</strong> Export <code>data-gallery.js</code> and <code>render-gallery.js</code>, place in your project root. In <code>portfolio.html</code> empty <code>#masonry</code> and <code>#filter-tabs</code>, then add before <code>&lt;/body&gt;</code>: <code style={{ background: "#fef3c7", padding: "2px 6px", borderRadius: 4 }}>&lt;script src="data-gallery.js"&gt;&lt;/script&gt;&lt;script src="render-gallery.js"&gt;&lt;/script&gt;</code>
+                  <button onClick={() => setModal({ type: "gallery-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Item</button>
                 </div>
                 <div style={{ display: "grid", gap: 12 }}>
                   {gallery.map((item, idx) => (
                     <div key={item.id} style={{ background: "#fff", borderRadius: 16, padding: "16px 20px", border: "1.5px solid rgba(42,87,38,0.1)", display: "flex", gap: 16, alignItems: "center", boxShadow: "0 2px 8px rgba(26,61,24,0.06)" }}>
-                      <div style={{ width: 64, height: 52, borderRadius: 10, background: item.bg, flexShrink: 0, border: "1.5px solid #e0e8dc" }} />
+                      {/* Thumbnail */}
+                      <div style={{ width: 64, height: 52, borderRadius: 10, overflow: "hidden", flexShrink: 0, border: "1.5px solid #e0e8dc", background: item.bg }}>
+                        {item.image && <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
+                      </div>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
                           <span style={{ fontWeight: 700, fontSize: 15, color: "#1A3D18" }}>{item.title}</span>
@@ -452,7 +466,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
                       </div>
                       <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
                         <button onClick={() => moveGallery(item.id, -1)} disabled={idx === 0 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === 0 ? "not-allowed" : "pointer", opacity: idx === 0 ? 0.4 : 1, fontSize: 14 }}>↑</button>
-                        <button onClick={() => moveGallery(item.id, 1)}  disabled={idx === gallery.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === gallery.length - 1 ? "not-allowed" : "pointer", opacity: idx === gallery.length - 1 ? 0.4 : 1, fontSize: 14 }}>↓</button>
+                        <button onClick={() => moveGallery(item.id, 1)} disabled={idx === gallery.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === gallery.length - 1 ? "not-allowed" : "pointer", opacity: idx === gallery.length - 1 ? 0.4 : 1, fontSize: 14 }}>↓</button>
                         <button onClick={() => setModal({ type: "gallery-edit", item })} style={{ padding: "6px 14px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>Edit</button>
                         <button onClick={() => deleteGallery(item.id)} disabled={saving} style={{ padding: "6px 14px", background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#dc2626", fontWeight: 600 }}>Delete</button>
                       </div>
@@ -469,16 +483,9 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
                   <div>
                     <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, color: "#1A3D18", margin: 0 }}>Pricing Plans</h2>
-                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{pricing.length} plans · saved to PostgreSQL</p>
+                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{pricing.length} plans</p>
                   </div>
-                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                    <button onClick={exportRenderPricing} style={{ padding: "9px 18px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>⬇ render-pricing.js</button>
-                    <button onClick={exportPricing}       style={{ padding: "9px 18px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>⬇ data-pricing.js</button>
-                    <button onClick={() => setModal({ type: "pricing-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Plan</button>
-                  </div>
-                </div>
-                <div style={{ background: "#fffbe8", border: "1.5px solid #e8d08a", borderRadius: 14, padding: "14px 18px", marginBottom: 24, fontSize: 13, color: "#7a5c00" }}>
-                  <strong>How to wire this up:</strong> Export <code>data-pricing.js</code> and <code>render-pricing.js</code>, place in your project root. In <code>services.html</code> empty <code>.pricing-grid</code>, then add before <code>&lt;/body&gt;</code>: <code style={{ background: "#fef3c7", padding: "2px 6px", borderRadius: 4 }}>&lt;script src="data-pricing.js"&gt;&lt;/script&gt;&lt;script src="render-pricing.js"&gt;&lt;/script&gt;</code>
+                  <button onClick={() => setModal({ type: "pricing-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Plan</button>
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
                   {pricing.map((plan, idx) => (
@@ -503,7 +510,7 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
                       </div>
                       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                         <button onClick={() => movePricing(plan.id, -1)} disabled={idx === 0 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === 0 ? "not-allowed" : "pointer", opacity: idx === 0 ? 0.4 : 1 }}>↑</button>
-                        <button onClick={() => movePricing(plan.id, 1)}  disabled={idx === pricing.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === pricing.length - 1 ? "not-allowed" : "pointer", opacity: idx === pricing.length - 1 ? 0.4 : 1 }}>↓</button>
+                        <button onClick={() => movePricing(plan.id, 1)} disabled={idx === pricing.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === pricing.length - 1 ? "not-allowed" : "pointer", opacity: idx === pricing.length - 1 ? 0.4 : 1 }}>↓</button>
                         <button onClick={() => setModal({ type: "pricing-edit", item: plan })} style={{ padding: "6px 14px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>Edit</button>
                         <button onClick={() => deletePricing(plan.id)} disabled={saving} style={{ padding: "6px 14px", background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#dc2626", fontWeight: 600 }}>Delete</button>
                       </div>
@@ -516,28 +523,15 @@ const API_BASE = "https://sewa-subidabackend-production.up.railway.app";
           </div>
 
           {/* Modals */}
-          {modal?.type === "gallery-new"  && <Modal title="Add Gallery Item"  onClose={() => setModal(null)}><GalleryForm onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
-          {modal?.type === "gallery-edit" && <Modal title="Edit Gallery Item" onClose={() => setModal(null)}><GalleryForm item={modal.item} onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "gallery-new"  && <Modal title="Add Gallery Item"  onClose={() => setModal(null)}><GalleryForm token={token} onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
+          {modal?.type === "gallery-edit" && <Modal title="Edit Gallery Item" onClose={() => setModal(null)}><GalleryForm token={token} item={modal.item} onSave={saveGalleryItem} onClose={() => setModal(null)} loading={saving} /></Modal>}
           {modal?.type === "pricing-new"  && <Modal title="Add Pricing Plan"  onClose={() => setModal(null)}><PricingForm onSave={savePricing} onClose={() => setModal(null)} loading={saving} /></Modal>}
           {modal?.type === "pricing-edit" && <Modal title="Edit Pricing Plan" onClose={() => setModal(null)}><PricingForm plan={modal.item} onSave={savePricing} onClose={() => setModal(null)} loading={saving} /></Modal>}
-
-          {/* Export modal */}
-          {exportModal && (
-            <Modal title={`Export: ${exportModal.title}`} onClose={() => setExportModal(null)}>
-              <p style={{ fontSize: 13, color: "#7A7A72", marginBottom: 12 }}>Copy the code below and save as <strong>{exportModal.title}</strong> in your project root.</p>
-              <textarea readOnly value={exportModal.content} onClick={e => e.target.select()} style={{ width: "100%", height: 280, fontFamily: "monospace", fontSize: 11, padding: 14, borderRadius: 10, border: "1.5px solid #d8e8d0", background: "#f8fdf6", resize: "vertical", color: "#262622", boxSizing: "border-box" }} />
-              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 16 }}>
-                <button onClick={() => { navigator.clipboard.writeText(exportModal.content); showToast("Copied to clipboard!"); }} style={{ padding: "10px 22px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 14, fontWeight: 600 }}>Copy to Clipboard</button>
-              </div>
-            </Modal>
-          )}
-
           {toast && <Toast msg={toast} onClose={() => setToast(null)} />}
         </div>
       );
     }
 
-    // Mount
     const root = ReactDOM.createRoot(document.getElementById("root"));
     root.render(<App />);
   </script>

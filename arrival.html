@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Arrivals — Sewa Subidha Garden Design & Landscaping</title>
+    <title> New Plant Arrivals & Garden Products | Sewa Subidha Gardening </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
@@ -11,6 +11,29 @@
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <linkrel="stylesheet" href="css/style.css">
+      <!--meta tags for SEO and social sharing -->
+      <meta name="description"
+        content="Discover the latest plant arrivals and garden products at Sewa Subidha Gardening. Native Nepali species, drought-resistant plants, and seasonal picks" />
+      <link rel="canonical" href="https://sewasubidagardening.com.np/arrival.html" />
+      <meta property="og:title"
+        content="New Plant Arrivals & Garden Products | Sewa Subidha Gardening" />
+      <meta property="og:description"
+        content="Discover the latest plant arrivals and garden products at Sewa Subidha Gardening. Native Nepali species, drought-resistant plants, and seasonal picks." />
+      <meta property="og:url" content="https://sewasubidagardening.com.np/arrival.html" />
+      <!-- 2. Canonical URL — prevents duplicate content -->
+      <link rel="canonical" href="{{https://sewasubidagardening.com.np/arrival.html}}" />
+
+      <!-- 3. Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Sewa Subidha Gardening" />
+      <meta property="og:title" content="{{OG_TITLE}}" />
+      <meta property="og:description" content="{{META_DESCRIPTION}}" />
+      <meta property="og:image"
+        content="https://sewasubidagardening.com.np/images/logo.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:url" content="{{CANONICAL_URL}}" />
+      <meta property="og:locale" content="en_NP" />
       <style>
 /* ========== RESET & ROOT ========== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -455,7 +478,8 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.7);padding:60px 40px
                 <div class="fv-grid"></div>
               </div>
               <div class="fv-badge-new">⭐ Staff Pick of the Month</div>
-              <div><img src="images/Anthurium_crystallinum.jpg" alt="Anthurium Crystallinum" loading="lazy"></div>
+              <div><img src="images/Anthurium_crystallinum.jpg"
+                  alt="Anthurium Crystallinum" loading="lazy"></div>
 
             </div>
             <div class="featured-info">
@@ -514,15 +538,21 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.7);padding:60px 40px
       <!-- Products Grid -->
       <section id="products">
         <!-- Loading skeleton -->
-        <div id="productsLoading" style="max-width:1200px;margin:0 auto;padding:60px 0;text-align:center;color:var(--muted);font-size:14px;display:flex;flex-direction:column;align-items:center;gap:16px">
-          <div style="width:40px;height:40px;border:3px solid var(--green-pale);border-top:3px solid var(--green-mid);border-radius:50%;animation:spin-loader .8s linear infinite"></div>
+        <div id="productsLoading"
+          style="max-width:1200px;margin:0 auto;padding:60px 0;text-align:center;color:var(--muted);font-size:14px;display:flex;flex-direction:column;align-items:center;gap:16px">
+          <div
+            style="width:40px;height:40px;border:3px solid var(--green-pale);border-top:3px solid var(--green-mid);border-radius:50%;animation:spin-loader .8s linear infinite"></div>
           Loading arrivals…
         </div>
         <!-- Empty state -->
-        <div id="productsEmpty" style="display:none;max-width:1200px;margin:0 auto;padding:80px 0;text-align:center">
+        <div id="productsEmpty"
+          style="display:none;max-width:1200px;margin:0 auto;padding:80px 0;text-align:center">
           <div style="font-size:52px;margin-bottom:16px">🌱</div>
-          <h3 style="font-family:'Playfair Display',serif;color:var(--green-dark);margin-bottom:8px">No products yet</h3>
-          <p style="color:var(--muted);font-size:14px">Check back soon — new arrivals are coming!</p>
+          <h3
+            style="font-family:'Playfair Display',serif;color:var(--green-dark);margin-bottom:8px">No
+            products yet</h3>
+          <p style="color:var(--muted);font-size:14px">Check back soon — new
+            arrivals are coming!</p>
         </div>
         <!-- Dynamic grid -->
         <div class="products-grid" id="productsGrid"></div>

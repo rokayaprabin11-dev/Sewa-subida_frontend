@@ -4,7 +4,7 @@
 // Place at project ROOT (same folder as services.html)
 
 (function () {
-var API = "https://sewa-subidabackend-production.up.railway.app";
+var API = "https://sewa-subida-backend.onrender.com";
 
   fetch(API + "/api/pricing")
     .then(function (res) {

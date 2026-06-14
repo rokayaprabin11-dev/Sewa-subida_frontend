@@ -1625,10 +1625,17 @@ window.addEventListener('DOMContentLoaded',()=>{
 
 // ===== HEADER SCROLL =====
 const header=document.getElementById('header')
+let headerTicking = false;
 window.addEventListener('scroll',()=>{
-  if(window.scrollY>60){ header.classList.add('scrolled') }
-  else{ header.classList.remove('scrolled') }
-})
+  if (!headerTicking) {
+    window.requestAnimationFrame(() => {
+      if(window.scrollY>60){ header.classList.add('scrolled') }
+      else{ header.classList.remove('scrolled') }
+      headerTicking = false;
+    });
+    headerTicking = true;
+  }
+}, { passive: true })
 
 // ===== MOBILE NAV =====
 function toggleNav(){

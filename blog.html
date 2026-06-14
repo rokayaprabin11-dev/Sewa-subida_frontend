@@ -1162,13 +1162,30 @@ reveals.forEach(el => observer.observe(el));
 // ===== READ PROGRESS =====
 const progressBar = document.getElementById('readProgress');
 const articleBody = document.getElementById('article-body');
+let articleTop = 0;
+let articleHeight = 0;
+let isTicking = false;
+
+function calculateArticleMetrics() {
+  if (articleBody) {
+    articleTop = articleBody.offsetTop;
+    articleHeight = articleBody.offsetHeight;
+  }
+}
+window.addEventListener('load', calculateArticleMetrics);
+window.addEventListener('resize', calculateArticleMetrics);
+
 window.addEventListener('scroll', () => {
-  const articleTop = articleBody.offsetTop;
-  const articleHeight = articleBody.offsetHeight;
-  const scrolled = window.scrollY - articleTop;
-  const progress = Math.min(Math.max(scrolled / (articleHeight - window.innerHeight) * 100, 0), 100);
-  if (progressBar) progressBar.style.width = progress + '%';
-});
+  if (!isTicking) {
+    window.requestAnimationFrame(() => {
+      const scrolled = window.scrollY - articleTop;
+      const progress = Math.min(Math.max(scrolled / (articleHeight - window.innerHeight) * 100, 0), 100);
+      if (progressBar) progressBar.style.width = progress + '%';
+      isTicking = false;
+    });
+    isTicking = true;
+  }
+}, { passive: true });
 
 // ===== TOC ACTIVE =====
 const headings = document.querySelectorAll('.article-content h2[id]');

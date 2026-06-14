@@ -779,23 +779,36 @@ function starsHtml(n){
   return '★'.repeat(s)+'☆'.repeat(5-s);
 }
 
+function escapeHTML(str) {
+  if (typeof str !== 'string') return String(str);
+  return str.replace(/[&<>'"]/g, 
+    tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag)
+  );
+}
+
 function buildCard(p, idx){
   const delayClass='delay-'+((idx%4)+1);
-  const badgeHtml=p.badge?`<span class="prod-badge ${p.badge}">${p.badge==='best'?'Bestseller':p.badge.charAt(0).toUpperCase()+p.badge.slice(1)}</span>`:'';
+  const badgeHtml=p.badge?`<span class="prod-badge ${escapeHTML(p.badge)}">${escapeHTML(p.badge==='best'?'Bestseller':p.badge.charAt(0).toUpperCase()+p.badge.slice(1))}</span>`:'';
   const imgBgClass=p.img_bg?` ${p.img_bg}`:'';
   const careHtml=(Array.isArray(p.care_tags)?p.care_tags:[]).map(ct=>
-    `<span class="care-dot"><i class="${ct.icon}"></i> ${ct.label}</span>`).join('');
-  const latin=p.latin_name?`<div class="prod-latin">${p.latin_name}</div>`:'';
+    `<span class="care-dot"><i class="${escapeHTML(ct.icon)}"></i> ${escapeHTML(ct.label)}</span>`).join('');
+  const latin=p.latin_name?`<div class="prod-latin">${escapeHTML(p.latin_name)}</div>`:'';
   const reviewHtml=p.review_count?`<span class="prod-review-count">(${p.review_count})</span>`:'';
 
-  return `<div class="prod-card reveal ${delayClass}" data-cat="${p.cat}" data-popular="${p.popular||0}" data-id="${p.id}">
+  return `<div class="prod-card reveal ${delayClass}" data-cat="${escapeHTML(p.cat)}" data-popular="${escapeHTML(String(p.popular||0))}" data-id="${escapeHTML(String(p.id))}">
     <div class="prod-img${imgBgClass}">
-      ${p.image?`<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">`:`<i class="${p.emoji||'fa-solid fa-leaf'} prod-emoji" style="color:var(--green-mid)"></i>`}
+      ${p.image?`<img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">`:`<i class="${escapeHTML(p.emoji||'fa-solid fa-leaf')} prod-emoji" style="color:var(--green-mid)"></i>`}
       ${badgeHtml}
     </div>
     <div class="prod-info">
-      <div class="prod-cat">${p.cat_label||p.cat}</div>
-      <div class="prod-name">${p.name}</div>
+      <div class="prod-cat">${escapeHTML(p.cat_label||p.cat)}</div>
+      <div class="prod-name">${escapeHTML(p.name)}</div>
       ${latin}
       ${(p.stars||p.review_count)?`<div class="prod-rating"><span class="prod-stars">${starsHtml(p.stars||5)}</span>${reviewHtml}</div>`:''}
       ${careHtml?`<div class="prod-care">${careHtml}</div>`:''}

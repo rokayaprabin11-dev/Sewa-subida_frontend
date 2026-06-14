@@ -13,6 +13,19 @@ document.addEventListener("pricingReady", function () {
   var data = window.PRICING_DATA || [];
   var grid = document.querySelector(".pricing-grid");
 
+  function escapeHTML(str) {
+    if (str === null || str === undefined) return '';
+    return String(str).replace(/[&<>'"]/g, function(tag) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag;
+    });
+  }
+
   if (!grid) {
     console.error("[render-pricing.js] .pricing-grid element not found in DOM");
     return;
@@ -26,9 +39,9 @@ document.addEventListener("pricingReady", function () {
   }
 
   grid.innerHTML = data.map(function (plan, i) {
-    var desc     = plan.description || plan.desc || "";
-    var ctaStyle = plan.cta_style   || plan.ctaStyle || "outline";
-    var icon     = plan.icon        || "fa-leaf";
+    var desc     = escapeHTML(plan.description || plan.desc || "");
+    var ctaStyle = escapeHTML(plan.cta_style   || plan.ctaStyle || "outline");
+    var icon     = escapeHTML(plan.icon        || "fa-leaf");
     var features = Array.isArray(plan.features) ? plan.features : [];
     var delay    = "delay-" + (i + 1);
 
@@ -38,7 +51,7 @@ document.addEventListener("pricingReady", function () {
       return (
         '<div class="price-feat' + disabledClass + '">' +
           '<i class="fa-solid ' + iconClass + '"></i> ' +
-          (f.text || "") +
+          escapeHTML(f.text || "") +
         "</div>"
       );
     }).join("");
@@ -58,17 +71,17 @@ document.addEventListener("pricingReady", function () {
           '<i class="fa-solid ' + icon + '"></i>' +
         "</div>" +
 
-        "<h3>" + (plan.name || "") + "</h3>" +
+        "<h3>" + escapeHTML(plan.name || "") + "</h3>" +
 
         '<p class="price-desc">' + desc + "</p>" +
 
         '<div class="price-amount">' +
           '<span class="price-currency">Rs.</span>' +
-          '<span class="price-num">'  + (plan.price  || "") + "</span>" +
-          '<span class="price-per">'  + (plan.period || "/month") + "</span>" +
+          '<span class="price-num">'  + escapeHTML(plan.price  || "") + "</span>" +
+          '<span class="price-per">'  + escapeHTML(plan.period || "/month") + "</span>" +
         "</div>" +
 
-        '<p class="price-note">' + (plan.note || "") + "</p>" +
+        '<p class="price-note">' + escapeHTML(plan.note || "") + "</p>" +
 
         '<div class="price-divider"></div>' +
 

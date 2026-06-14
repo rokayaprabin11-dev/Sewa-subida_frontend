@@ -7,9 +7,5 @@ Allow: /
 # Block form confirmation pages if any exist
 Disallow: /thank-you.html
 
-# Block any future admin or private paths
-Disallow: /admin/
-Disallow: /private/
-
 # Sitemap location
 Sitemap: https://sewasubidhagardening.com/sitemap.xml

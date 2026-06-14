@@ -9,6 +9,20 @@
 
 document.addEventListener("galleryReady", function () {
   var data         = window.GALLERY_DATA || [];
+
+  function escapeHTML(str) {
+    if (str === null || str === undefined) return '';
+    return String(str).replace(/[&<>'"]/g, function(tag) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag;
+    });
+  }
+
   var grid         = document.getElementById("masonry");
   var tabsWrap     = document.getElementById("filter-tabs");
   var countDisplay = document.getElementById("count-display");
@@ -30,8 +44,8 @@ document.addEventListener("galleryReady", function () {
       '<button class="filter-tab active" data-filter="all">All Work</button>' +
       cats.map(function (c) {
         return (
-          '<button class="filter-tab" data-filter="' + c + '">' +
-          c.charAt(0).toUpperCase() + c.slice(1) +
+          '<button class="filter-tab" data-filter="' + escapeHTML(c) + '">' +
+          escapeHTML(c.charAt(0).toUpperCase() + c.slice(1)) +
           "</button>"
         );
       }).join("");
@@ -46,31 +60,31 @@ document.addEventListener("galleryReady", function () {
       if (filter !== "all" && item.cat !== filter) return;
       visible++;
 
-      var desc      = item.description || item.desc || "";
-      var catLabel  = item.cat ? item.cat.charAt(0).toUpperCase() + item.cat.slice(1) : "";
+      var desc      = escapeHTML(item.description || item.desc || "");
+      var catLabel  = escapeHTML(item.cat ? item.cat.charAt(0).toUpperCase() + item.cat.slice(1) : "");
       var delay     = "delay-" + (((visible - 1) % 3) + 1);
 
       var div = document.createElement("div");
       div.className           = "masonry-item reveal " + delay;
-      div.dataset.cat         = item.cat      || "";
-      div.dataset.title       = item.title    || "";
+      div.dataset.cat         = escapeHTML(item.cat      || "");
+      div.dataset.title       = escapeHTML(item.title    || "");
       div.dataset.desc        = desc;
-      div.dataset.service     = item.service  || "";
-      div.dataset.duration    = item.duration || "";
-      div.dataset.location    = item.location || "";
-      div.dataset.budget      = item.budget   || "";
+      div.dataset.service     = escapeHTML(item.service  || "");
+      div.dataset.duration    = escapeHTML(item.duration || "");
+      div.dataset.location    = escapeHTML(item.location || "");
+      div.dataset.budget      = escapeHTML(item.budget   || "");
       div.setAttribute("onclick", "openLightbox(this)");
 
       div.innerHTML =
         '<div class="masonry-fake-img" style="height:' +
-          (item.height || 180) + "px;background:" + (item.bg || "#c8e6b0") + '">' +
-          '<img src="' + (item.image || "") + '" alt="' + (item.title || "") + '" loading="lazy">' +
+          escapeHTML(String(item.height || 180)) + "px;background:" + escapeHTML(item.bg || "#c8e6b0") + '">' +
+          '<img src="' + escapeHTML(item.image || "") + '" alt="' + escapeHTML(item.title || "") + '" loading="lazy">' +
         "</div>" +
         '<span class="masonry-cat-badge">' + catLabel + "</span>" +
         '<div class="masonry-overlay">' +
           '<div class="masonry-info">' +
-            "<h4>" + (item.title || "") + "</h4>" +
-            "<span>" + catLabel + " \xb7 " + (item.service || "") + " \xb7 " + (item.budget || "") + "</span>" +
+            "<h4>" + escapeHTML(item.title || "") + "</h4>" +
+            "<span>" + catLabel + " \xb7 " + escapeHTML(item.service || "") + " \xb7 " + escapeHTML(item.budget || "") + "</span>" +
           "</div>" +
           '<div class="masonry-open-btn"><i class="fa-solid fa-expand"></i></div>' +
         "</div>";

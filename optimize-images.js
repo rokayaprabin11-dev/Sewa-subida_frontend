@@ -6,7 +6,7 @@ const path = require('path');
 const imagesToOptimize = [
   { name: 'planting.webp', width: 460, height: 350, quality: 70 },
   { name: 'dream.webp', width: 800, height: null, quality: 70 },
-  { name: 'community.webp', width: 800, height: null, quality: 70 },
+  { name: 'community.webp', width: 600, height: null, quality: 70 },
   { name: 'service1.webp', width: 648, height: 486, quality: 70 },
   { name: 'service4.webp', width: 648, height: 486, quality: 70 },
   { name: 'service5.webp', width: 648, height: 436, quality: 70 }
@@ -22,7 +22,9 @@ async function processImages() {
     if (fs.existsSync(inputPath)) {
       console.log(`Optimizing ${img.name}...`);
       try {
-        await sharp(inputPath)
+        // Read into buffer first to release the file lock on Windows
+        const inputBuffer = fs.readFileSync(inputPath);
+        await sharp(inputBuffer)
           .resize({ width: img.width, height: img.height, fit: 'cover' })
           .webp({ quality: img.quality, effort: 6 })
           .toFile(outputPath);

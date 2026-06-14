@@ -7,6 +7,8 @@
       Gardening</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://tile.openstreetmap.org">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
@@ -276,9 +278,9 @@ nav a:hover{color:var(--white)}
 .hero-title .line:nth-child(3) span{animation-delay:0.8s}
 @keyframes line-in{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .hero-title em{font-style:italic;color:var(--green-light)}
-.hero-subtitle{color:rgba(255,255,255,0.65);font-size:18px;font-weight:300;margin-bottom:40px;line-height:1.6;animation:fade-up 0.8s 1.1s ease backwards}
+.hero-subtitle{color:rgba(255,255,255,0.65);font-size:18px;font-weight:300;margin-bottom:40px;line-height:1.6;animation:fade-up 0.8s 0.2s ease backwards}
 @keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fade-up 0.8s 1.3s ease backwards}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fade-up 0.8s 0.4s ease backwards}
 .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--white);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;border:none;cursor:pointer;transition:var(--transition);animation:pulse-gold 2.5s 2s ease-in-out infinite}
 @keyframes pulse-gold{0%,100%{box-shadow:0 0 0 0 rgba(200,137,26,0.5)}50%{box-shadow:0 0 0 14px rgba(200,137,26,0)}}
 .btn-primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
@@ -660,7 +662,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
     <!-- HEADER -->
     <header id="header">
       <a class="logo" href="#">
-        <img class="logo-icon" src="images/logo.jpg"
+        <img class="logo-icon" src="images/logo.jpg" width="42" height="42"
           alt="Sewa Subidha Gardening Logo">
         <span class="logo-name">Sewa Subidha Gardening</span>
       </a>
@@ -725,7 +727,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
           <p>Full-concept landscape architecture tailored to your vision.</p>
         </div>
         <div class="qcard reveal delay-2">
-          <div class="qcard-icon"><img src="images/planting.webp" alt="Planting"
+        <div class="qcard-icon"><img src="images/planting.webp" alt="Planting" width="100" height="100"
               loading="lazy"></div>
           <h4>Planting</h4>
           <p>Expert plant selection and seasonal planting services.</p>
@@ -850,7 +852,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
       <div class="why-grid">
         <div class="why-card reveal-scale delay-1">
           <span class="why-card-num">01</span>
-          <span class="why-icon"><img src="images/sq1.webp" alt="Skilled Team"
+        <span class="why-icon"><img src="images/sq1.webp" alt="Skilled Team" width="72" height="72"
               loading="lazy"></span>
           <h3>Skilled Team</h3>
           <p>Our certified horticulturists and landscape designers bring
@@ -858,15 +860,15 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
         </div>
         <div class="why-card reveal-scale delay-2">
           <span class="why-card-num">02</span>
-          <span class="why-icon"><img src="images/sq2.webp"
-              alt="Transparent Pricing" loading="lazy"></span>
+        <span class="why-icon"><img src="images/sq2.webp" alt="Transparent Pricing" width="72" height="72"
+            loading="lazy"></span>
           <h3>Transparent Pricing</h3>
           <p>Detailed quotes with zero hidden fees. You always know exactly what
             you are paying for.</p>
         </div>
         <div class="why-card reveal-scale delay-3">
           <span class="why-card-num">03</span>
-          <span class="why-icon"><img src="images/sq3.webp" alt="Custom Designs"
+        <span class="why-icon"><img src="images/sq3.webp" alt="Custom Designs" width="72" height="72"
               loading="lazy"></span>
           <h3>Custom Designs</h3>
           <p>No two gardens are the same. Every design is tailored to your
@@ -874,8 +876,8 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
         </div>
         <div class="why-card reveal-scale delay-4">
           <span class="why-card-num">04</span>
-          <span class="why-icon"><img src="images/sq4.webp"
-              alt="On-Time Delivery" loading="lazy"></span>
+        <span class="why-icon"><img src="images/sq4.webp" alt="On-Time Delivery" width="72" height="72"
+            loading="lazy"></span>
           <h3>On-Time Delivery</h3>
           <p>We honour deadlines. Your project will be completed when we say it
             will — no exceptions.</p>
@@ -897,7 +899,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
         <div class="services-grid">
           <!-- Service 1: Garden Design & Landscaping -->
           <div class="srv-card reveal delay-1">
-            <div class="srv-img s1"><img src="images/service1.webp"
+            <div class="srv-img s1"><img src="images/service1.webp" width="648" height="486"
                 alt="Garden Design" class="srv-img-inner" loading="lazy"></div>
             <a href="services.html" class="srv-learn"
               style="text-decoration:none;">Learn More →</a>
@@ -941,7 +943,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
 
           <!-- Service 4: Event Decor -->
           <div class="srv-card reveal delay-1">
-            <div class="srv-img s4"><img src="images/service4.webp"
+            <div class="srv-img s4"><img src="images/service4.webp" width="648" height="486"
                 alt="Event Decor" class="srv-img-inner" loading="lazy"></div>
             <a href="services.html" class="srv-learn"
               style="text-decoration:none;">Learn More →</a>
@@ -955,7 +957,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
 
           <!-- Service 5: Maintenance -->
           <div class="srv-card reveal delay-2">
-            <div class="srv-img s5"><img src="images/service5.webp"
+            <div class="srv-img s5"><img src="images/service5.webp" width="648" height="436"
                 alt="Maintenance" class="srv-img-inner" loading="lazy"></div>
             <a href="services.html" class="srv-learn"
               style="text-decoration:none;">Learn More →</a>
@@ -1535,7 +1537,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
             <div class="footer-top">
               <div class="footer-brand">
                 <a class="logo" href="#">
-                  <img class="logo-icon" src="images/logo.jpg"
+          <img class="logo-icon" src="images/logo.jpg" width="42" height="42"
                     alt="Sewa Subidha Gardening Logo"><span
                     class="logo-name">Sewa
                     Subidha Gardening</span>
@@ -1618,7 +1620,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
           <script>
 // ===== LOADER =====
 window.addEventListener('DOMContentLoaded',()=>{
-  setTimeout(()=>{ document.getElementById('loader').classList.add('hidden') },2000)
+  setTimeout(()=>{ document.getElementById('loader').classList.add('hidden') },400)
 })
 
 // ===== HEADER SCROLL =====

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultimate Gardening Guide: Expert Tips for a Thriving Garden | Sewa Subidha Gardening</title>
+  <meta name="description" content="Discover expert gardening tips, soil preparation techniques, watering strategies, pest control methods, and seasonal gardening advice to grow a healthy, productive, and beautiful garden." />
+  <meta name="keywords" content="gardening guide, expert gardening tips, soil preparation, watering strategies, pest control, seasonal gardening, Sewa Subidha Gardening" />
+  <meta property="og:title" content="Ultimate Gardening Guide: Expert Tips for a Thriving Garden" />
+  <meta property="og:description" content="Discover expert gardening tips, soil preparation techniques, watering strategies, pest control methods, and seasonal gardening advice." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://sewasubidagardening.com/images/logo.png" />
+  <meta property="og:url" content="https://sewasubidagardening.com/blog-ultimate-guide-gardening.html" />
+  <link rel="canonical" href="https://sewasubidagardening.com/blog-ultimate-guide-gardening.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green-dark: #1a3c2e;
+      --green-mid: #2d6a4f;
+      --green-light: #52b788;
+      --green-pale: #d8f3dc;
+      --earth: #8b5e3c;
+      --earth-light: #f4ede4;
+      --gold: #c9a84c;
+      --text-main: #1c2b1e;
+      --text-body: #3d4f42;
+      --text-muted: #6b7c6f;
+      --bg: #f9f7f4;
+      --white: #ffffff;
+      --border: #dde8de;
+      --radius: 8px;
+      --radius-lg: 14px;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-body); line-height: 1.75; font-size: 16px; }
+    a { color: var(--green-mid); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* NAV */
+    .site-nav { background: var(--green-dark); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .site-nav .logo { color: var(--white); font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.01em; text-decoration: none; }
+    .site-nav .nav-links { display: flex; gap: 1.5rem; }
+    .site-nav .nav-links a { color: rgba(255,255,255,0.82); font-size: 0.875rem; text-decoration: none; transition: color 0.2s; }
+    .site-nav .nav-links a:hover { color: var(--green-light); }
+    .nav-cta { background: var(--green-light); color: var(--green-dark) !important; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 600 !important; font-size: 0.8rem !important; }
+
+    /* HERO */
+    .hero { background: var(--green-dark); color: var(--white); padding: 4rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url('https://sewa-subida-frontend.vercel.app/images/service1.webp') center/cover no-repeat; opacity: 0.12; }
+    .hero-inner { position: relative; max-width: 780px; margin: 0 auto; }
+    .hero-eyebrow { display: inline-block; background: var(--green-light); color: var(--green-dark); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1.2rem; }
+    .hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; line-height: 1.25; margin-bottom: 1rem; }
+    .hero h1 em { font-style: italic; color: var(--green-light); }
+    .hero-meta { display: flex; justify-content: center; align-items: center; gap: 1.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.65); flex-wrap: wrap; margin-top: 1.5rem; }
+    .hero-meta span { display: flex; align-items: center; gap: 0.35rem; }
+
+    /* LAYOUT */
+    .container { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+    .layout { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; }
+    .article-body { min-width: 0; }
+    .sidebar { min-width: 0; }
+
+    /* ARTICLE */
+    .article-body h2 { font-family: 'Lora', serif; font-size: 1.55rem; font-weight: 600; color: var(--green-dark); margin: 2.5rem 0 0.85rem; line-height: 1.3; }
+    .article-body h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin: 1.75rem 0 0.6rem; }
+    .article-body p { margin-bottom: 1.2rem; color: var(--text-body); }
+    .article-body ul, .article-body ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    .article-body li { margin-bottom: 0.5rem; }
+    .article-body strong { color: var(--text-main); font-weight: 600; }
+
+    /* STAT STRIP */
+    .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin: 2rem 0; }
+    .stat-item { background: var(--white); padding: 1.25rem 1rem; text-align: center; }
+    .stat-num { font-family: 'Lora', serif; font-size: 2rem; font-weight: 600; color: var(--green-mid); display: block; }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* CALLOUT */
+    .callout { background: var(--green-pale); border-left: 4px solid var(--green-light); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.1rem 1.25rem; margin: 2rem 0; }
+    .callout p { margin: 0; font-size: 0.95rem; color: var(--green-dark); }
+    .callout strong { color: var(--green-dark); }
+
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .service-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.1rem 1.15rem; }
+    .service-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--green-dark); margin-bottom: 0.4rem; }
+    .service-card p { font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.55; }
+    .service-card .icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+
+    /* TESTIMONIAL */
+    .testimonial { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin: 2rem 0; position: relative; }
+    .testimonial::before { content: '\201C'; font-family: 'Lora', serif; font-size: 4rem; color: var(--green-pale); position: absolute; top: -0.5rem; left: 1rem; line-height: 1; }
+    .testimonial p { font-style: italic; color: var(--text-body); margin-bottom: 0.75rem; padding-top: 0.5rem; }
+    .testimonial cite { font-size: 0.82rem; color: var(--text-muted); font-style: normal; font-weight: 600; }
+
+    /* CTA BLOCK */
+    .cta-block { background: var(--green-dark); color: var(--white); border-radius: var(--radius-lg); padding: 2rem 1.75rem; margin: 2.5rem 0; text-align: center; }
+    .cta-block h3 { font-family: 'Lora', serif; font-size: 1.4rem; margin-bottom: 0.6rem; color: var(--white); }
+    .cta-block p { font-size: 0.9rem; color: rgba(255,255,255,0.75); margin-bottom: 1.25rem; }
+    .btn-primary { display: inline-block; background: var(--green-light); color: var(--green-dark); font-weight: 700; font-size: 0.9rem; padding: 0.7rem 1.6rem; border-radius: 30px; text-decoration: none; transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.88; text-decoration: none; }
+
+    /* SIDEBAR */
+    .sidebar-widget { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.5rem; }
+    .sidebar-widget h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+    .sidebar-widget ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar-widget li { padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+    .sidebar-widget li:last-child { border-bottom: none; }
+    .sidebar-widget a { color: var(--text-body); }
+    .sidebar-widget a:hover { color: var(--green-mid); }
+    .contact-btn { display: block; text-align: center; background: var(--green-mid); color: var(--white); padding: 0.75rem; border-radius: var(--radius); font-weight: 600; font-size: 0.9rem; margin-top: 1rem; }
+    .contact-btn:hover { background: var(--green-dark); text-decoration: none; color: var(--white); }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem; }
+    .tag { background: var(--green-pale); color: var(--green-mid); font-size: 0.78rem; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 500; }
+
+    /* BREADCRUMB */
+    .breadcrumb { font-size: 0.8rem; color: var(--text-muted); padding: 1rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .breadcrumb a { color: var(--text-muted); }
+    .breadcrumb span { margin: 0 0.4rem; }
+
+    /* FOOTER */
+    .site-footer { background: var(--green-dark); color: rgba(255,255,255,0.7); text-align: center; padding: 2rem 1.5rem; font-size: 0.82rem; margin-top: 4rem; }
+    .site-footer a { color: var(--green-light); }
+
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .card-grid { grid-template-columns: 1fr; }
+      .stat-strip { grid-template-columns: 1fr; }
+      .site-nav .nav-links { display: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Ultimate Guide to Gardening: Expert Tips for Growing a Healthy and Thriving Garden",
+    "description": "Discover expert gardening tips, soil preparation techniques, watering strategies, pest control methods, and seasonal gardening advice.",
+    "image": "https://sewasubidagardening.com/images/logo.png",
+    "author": { "@type": "Organization", "name": "Sewa Subidha Gardening" },
+    "publisher": { "@type": "Organization", "name": "Sewa Subidha Gardening", "logo": { "@type": "ImageObject", "url": "https://sewasubidagardening.com/images/logo.png" } },
+    "datePublished": "2025-07-15",
+    "dateModified": "2025-07-15"
+  }
+  </script>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="https://sewasubidagardening.com/" class="logo" style="display: flex; align-items: center; gap: 8px;">
+    <img src="images/logo.jpg" alt="Sewa Subidha Gardening" style="width: 32px; height: 32px; border-radius: 6px;">
+    Sewa Subidha Gardening
+  </a>
+  <div class="nav-links">
+    <a href="https://sewasubidagardening.com/services.html">Services</a>
+    <a href="https://sewasubidagardening.com/portfolio.html">Portfolio</a>
+    <a href="https://sewasubidagardening.com/blog.html">Blog</a>
+    <a href="https://sewasubidagardening.com/about.html">About</a>
+    <a href="https://wa.me/9779851206373" class="nav-cta">Free Consultation</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="https://sewasubidagardening.com/">Home</a><span>›</span>
+  <a href="https://sewasubidagardening.com/blog.html">Blog</a><span>›</span>
+  Ultimate Gardening Guide
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Gardening Guide</span>
+    <h1>The Ultimate Guide to Gardening: <em>Expert Tips</em> for a Thriving Garden</h1>
+    <div class="hero-meta">
+      <span>📅 July 15, 2025</span>
+      <span>⏱ 12 min read</span>
+      <span>✍️ Sewa Subidha Team</span>
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+  <article class="article-body">
+
+    <h2>Introduction</h2>
+    <p>Gardening is more than just planting seeds and watering plants. It is a rewarding practice that combines science, creativity, and patience to create beautiful outdoor spaces and productive vegetable gardens. Whether you are a beginner looking to grow your first plants or an experienced gardener seeking to improve your results, understanding the fundamentals of gardening can significantly increase your success.</p>
+    <p>A healthy garden provides numerous benefits, including fresh produce, improved mental well-being, increased biodiversity, and enhanced property value. However, achieving consistent gardening success requires proper planning, soil management, plant selection, and ongoing care.</p>
+    <p>This comprehensive guide covers everything you need to know to create and maintain a thriving garden throughout the year.</p>
+
+    <h2>Why Gardening Is More Important Than Ever</h2>
+    <p>In today's fast-paced world, gardening offers a valuable opportunity to reconnect with nature. More homeowners are turning to gardening as a sustainable way to grow food, reduce environmental impact, and create peaceful outdoor spaces.</p>
+    <p>Some of the key benefits of gardening include:</p>
+    <ul>
+      <li>Access to fresh and organic produce</li>
+      <li>Reduced grocery expenses</li>
+      <li>Improved physical health through regular activity</li>
+      <li>Enhanced mental health and stress reduction</li>
+      <li>Increased biodiversity and pollinator support</li>
+      <li>Better environmental sustainability</li>
+    </ul>
+    <p>Gardening is an investment that continues to provide rewards season after season.</p>
+
+    <h2>Understanding Your Garden Environment</h2>
+    <p>Before planting anything, it is essential to evaluate your garden's growing conditions.</p>
+    
+    <h3>Assess Sunlight Exposure</h3>
+    <p>Most vegetables and flowering plants require six to eight hours of direct sunlight daily. Observe your garden throughout the day and identify areas that receive:</p>
+    <ul>
+      <li><strong>Full Sun:</strong> 6+ hours of direct sunlight. Ideal for tomatoes, peppers, cucumbers, and roses.</li>
+      <li><strong>Partial Shade:</strong> 3–6 hours of sunlight. Suitable for lettuce, spinach, and many herbs.</li>
+      <li><strong>Full Shade:</strong> Less than 3 hours of sunlight. Best for shade-loving ornamental plants.</li>
+    </ul>
+    <p>Understanding sunlight patterns helps you select plants that will thrive in specific locations.</p>
+
+    <h3>Evaluate Soil Quality</h3>
+    <p>Healthy soil forms the foundation of every successful garden. Conduct a soil test to determine pH level, nutrient availability, organic matter content, and drainage capacity. Most garden plants prefer slightly acidic to neutral soil with a pH between 6.0 and 7.0.</p>
+
+    <h2>How to Prepare Soil for Gardening Success</h2>
+    <p>Professional gardeners often say, "Feed the soil, not the plant." Healthy soil supports root development, nutrient absorption, and water retention.</p>
+    
+    <h3>Add Organic Matter</h3>
+    <p>Organic materials improve soil structure and fertility. Recommended soil amendments include compost, aged manure, leaf mold, worm castings, and coconut coir. Adding compost annually improves microbial activity and nutrient availability.</p>
+
+    <h3>Improve Drainage & Mulch Regularly</h3>
+    <p>Poor drainage can lead to root rot and plant diseases. To improve drainage, add organic matter, create raised beds, avoid soil compaction, or install drainage channels if necessary.</p>
+    <p>Mulching provides numerous benefits: it conserverves moisture, prevents weed growth, stabilizes soil temperature, and improves soil quality over time. Apply a 2–3 inch layer of organic mulch around plants.</p>
+
+    <h2>Choosing the Right Plants for Your Garden</h2>
+    <p>Plant selection plays a major role in gardening success. Choose plants suited to your local growing conditions by considering temperature range, rainfall patterns, humidity levels, and frost dates. Native plants are often the easiest to maintain because they have adapted to local conditions.</p>
+    <p>Additionally, modern plant varieties are often bred for disease resistance. Benefits include reduced maintenance, higher yields, fewer chemical treatments, and better long-term performance.</p>
+
+    <div class="callout">
+      <p><strong>Expert Tip:</strong> Research seed catalogs and plant labels before purchasing to ensure you are picking the best disease-resistant variety for your zone.</p>
+    </div>
+
+    <h2>Essential Gardening Tools Every Gardener Needs</h2>
+    <p>Having the right tools makes gardening easier and more efficient.</p>
+    <ul>
+      <li><strong>Hand Trowel:</strong> Perfect for transplanting seedlings and planting flowers.</li>
+      <li><strong>Pruning Shears:</strong> Used for trimming branches and removing dead growth.</li>
+      <li><strong>Garden Fork:</strong> Excellent for loosening compacted soil.</li>
+      <li><strong>Watering Can or Hose:</strong> Essential for proper irrigation.</li>
+      <li><strong>Garden Gloves:</strong> Protect hands from thorns, insects, and rough materials.</li>
+    </ul>
+
+    <h2>Proper Watering Techniques</h2>
+    <p>Water management is one of the most important gardening skills.</p>
+    <ul>
+      <li><strong>Water Deeply:</strong> Deep watering encourages stronger root systems. Water thoroughly, water less frequently, and allow moisture to penetrate deeply.</li>
+      <li><strong>Water Early in the Morning:</strong> This reduces evaporation, prevents fungal diseases, and allows foliage to dry quickly before the hot afternoon sun.</li>
+      <li><strong>Use Drip Irrigation:</strong> Drip systems provide water directly to plant roots, reducing water waste and disease risk.</li>
+    </ul>
+
+    <h2>Natural Pest Control Methods</h2>
+    <p>Every gardener encounters pests eventually. The goal is not to eliminate every insect but to maintain ecological balance.</p>
+    <p><strong>Encourage Beneficial Insects:</strong> Ladybugs, lacewings, hoverflies, and parasitic wasps naturally control common garden pests.</p>
+    <p><strong>Companion Planting:</strong> Certain plants help protect neighboring crops. Examples include planting marigolds near tomatoes, basil near peppers, or nasturtiums near cucumbers.</p>
+    <p><strong>Regular Inspection:</strong> Inspect plants weekly for holes in leaves, yellowing foliage, wilting, or insect activity to prevent major infestations.</p>
+
+    <h2>Fertilizing for Maximum Plant Growth</h2>
+    <p>Plants require essential nutrients to grow and produce flowers or fruit. The three primary nutrients are Nitrogen (N) for leafy growth, Phosphorus (P) for root development and flowering, and Potassium (K) to improve overall plant health.</p>
+    <p>Popular organic choices include compost, fish emulsion, bone meal, seaweed extract, and worm castings. However, be careful to <strong>avoid over-fertilizing</strong>, as excess fertilizer can cause weak growth, reduced flowering, nutrient imbalances, and environmental pollution.</p>
+
+    <h2>Seasonal Gardening Guide</h2>
+    <div class="card-grid">
+      <div class="service-card"><h4>Spring Gardening</h4><p>Ideal time for soil preparation, seed starting, planting cool-season crops (lettuce, peas, carrots), and mulching.</p></div>
+      <div class="service-card"><h4>Summer Gardening</h4><p>Focus on consistent watering, pest monitoring, harvesting crops, and supporting climbing plants like tomatoes and cucumbers.</p></div>
+      <div class="service-card"><h4>Fall Gardening</h4><p>Tasks include planting cool-season vegetables, cleaning garden beds, adding compost, and preparing for winter.</p></div>
+      <div class="service-card"><h4>Winter Gardening</h4><p>Winter activities include planning next season, maintaining tools, starting indoor seedlings, and protecting vulnerable plants.</p></div>
+    </div>
+
+    <h2>Common Gardening Mistakes to Avoid</h2>
+    <ul>
+      <li><strong>Overwatering:</strong> Too much water can suffocate roots and promote disease.</li>
+      <li><strong>Planting Too Closely:</strong> Crowded plants compete for sunlight, nutrients, water, and air circulation.</li>
+      <li><strong>Ignoring Soil Health:</strong> Poor soil limits plant growth regardless of fertilizer use.</li>
+      <li><strong>Using Too Many Chemicals:</strong> Excessive pesticide and fertilizer use can harm beneficial organisms and damage ecosystems.</li>
+    </ul>
+
+    <h2>Sustainable Gardening Practices</h2>
+    <p>Modern gardeners are increasingly adopting eco-friendly techniques. Start by composting kitchen waste like fruit scraps, vegetable peels, coffee grounds, and dry leaves to reduce landfill waste. Collect rainwater to lower utility costs. Finally, plant pollinator gardens to attract bees, butterflies, and hummingbirds to support healthy ecosystems.</p>
+
+    <h2>Advanced Gardening Tips From Experts</h2>
+    <p>Experienced gardeners often use advanced techniques to maximize productivity:</p>
+    <ul>
+      <li><strong>Crop Rotation:</strong> Rotating crops reduces disease buildup and nutrient depletion.</li>
+      <li><strong>Succession Planting:</strong> Plant new crops every few weeks to ensure continuous harvests.</li>
+      <li><strong>Raised Bed Gardening:</strong> Offers better drainage, improved soil quality, and easier maintenance.</li>
+      <li><strong>Keep a Garden Journal:</strong> Track planting dates, weather conditions, fertilizer applications, and harvest yields to improve future decisions.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>Gardening is a lifelong learning experience that combines observation, knowledge, and consistent care. By focusing on soil health, proper watering, plant selection, pest management, and sustainable practices, gardeners can create thriving landscapes that produce beauty and abundance year after year.</p>
+    <p>Whether your goal is growing fresh vegetables, cultivating colorful flowers, or creating a peaceful outdoor retreat, the principles outlined in this guide provide a solid foundation for long-term success. Start small, stay consistent, and continue learning from each growing season. The rewards of gardening extend far beyond the harvest, enriching your home, health, and connection to nature.</p>
+
+    <div class="cta-block">
+      <h3>Ready to start your gardening journey?</h3>
+      <p>Our expert horticulturists are here to help you design, build, and maintain the garden of your dreams.</p>
+      <a href="https://wa.me/9779851206373?text=Hi!%20I%27d%20like%20to%20book%20a%20free%20garden%20consultation." class="btn-primary">💬 Chat on WhatsApp</a>
+    </div>
+
+    <div class="tag-list">
+      <span class="tag">Gardening Tips</span>
+      <span class="tag">Soil Preparation</span>
+      <span class="tag">Pest Control</span>
+      <span class="tag">Planting Guide</span>
+      <span class="tag">Sewa Subidha</span>
+    </div>
+
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-widget">
+      <h4>Contact us</h4>
+      <p style="font-size:0.87rem; color:var(--text-muted); margin-bottom:0.5rem;">📞 +977 9851-206373</p>
+      <p style="font-size:0.87rem; color:var(--text-muted); margin-bottom:0.5rem;">📧 sewasubidhagardening@gmail.com</p>
+      <p style="font-size:0.87rem; color:var(--text-muted);">📍 Godawari-7, Lalitpur, Bagmati Province</p>
+      <a href="https://wa.me/9779851206373" class="contact-btn">Get a Free Quote →</a>
+    </div>
+    <div class="sidebar-widget">
+      <h4>Our services</h4>
+      <ul>
+        <li><a href="https://sewasubidagardening.com/services.html">🌿 Garden Design & Landscaping</a></li>
+        <li><a href="https://sewasubidagardening.com/services.html">🌾 Lawn Installation</a></li>
+        <li><a href="https://sewasubidagardening.com/services.html">🌸 Plant Selection & Planting</a></li>
+        <li><a href="https://sewasubidagardening.com/services.html">✂️ Routine Maintenance</a></li>
+        <li><a href="https://sewasubidagardening.com/services.html">💧 Irrigation & Sprinklers</a></li>
+        <li><a href="https://sewasubidagardening.com/services.html">🎊 Event & Wedding Décor</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-widget">
+      <h4>Related articles</h4>
+      <ul>
+        <li><a href="blog-best-gardening-service-nepal.html">Why We Are Nepal's Most Trusted Studio</a></li>
+        <li><a href="blog-02-garden-design-guide-kathmandu.html">Complete Guide to Garden Design in Kathmandu</a></li>
+        <li><a href="blog-05-maintenance-calendar-nepal.html">Nepal Garden Maintenance Calendar</a></li>
+        <li><a href="blog-10-diy-vs-professional-gardening-nepal.html">DIY vs Hiring a Professional Gardener in Nepal</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>© 2025 Sewa Subidha Gardening. All rights reserved. | Godawari-7, Lalitpur, Bagmati Province, Nepal</p>
+  <p style="margin-top:0.5rem;"><a href="https://sewasubidagardening.com/">Home</a> · <a href="https://sewasubidagardening.com/services.html">Services</a> · <a href="https://sewasubidagardening.com/blog.html">Blog</a> · <a href="https://wa.me/9779851206373">WhatsApp</a></p>
+</footer>
+
+</body>
+</html>

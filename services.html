@@ -1327,8 +1327,9 @@ footer{background:var(--green-dark);padding:0}
 // ===== HEADER =====
 const header = document.getElementById('header')
 function handleScroll() {
-  header.classList.toggle('scrolled', window.scrollY > 40)
+  // Moving updateServiceNav before classList toggling stops layout thrashing (forced reflow)
   updateServiceNav()
+  header.classList.toggle('scrolled', window.scrollY > 40)
 }
 window.addEventListener('scroll', handleScroll)
 

@@ -1253,7 +1253,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                 style="text-decoration:none;color:inherit">
                 <div class="blog-thumb bt1"><div class="blog-thumb-inner"><img
                       src="images/planting.webp"
-                      alt="Drought-Resistant Plants"></div></div>
+                      alt="Drought-Resistant Plants" width="300" height="180" loading="lazy" decoding="async"></div></div>
                 <div class="blog-body">
                   <div class="blog-cat">Planting Tips</div>
                   <h3>Top 5 Drought-Resistant Plants for Nepal's Climate</h3>
@@ -1270,7 +1270,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                 style="text-decoration:none;color:inherit">
                 <div class="blog-thumb bt2"><div class="blog-thumb-inner"><img
                       src="images/seasonal (1).webp"
-                      alt="Monsoon Lawn Prep"></div></div>
+                      alt="Monsoon Lawn Prep" width="300" height="180" loading="lazy" decoding="async"></div></div>
                 <div class="blog-body">
                   <div class="blog-cat">Seasonal Care</div>
                   <h3>How to Prep Your Lawn for the Monsoon Season</h3>
@@ -1287,7 +1287,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                 style="text-decoration:none;color:inherit">
                 <div class="blog-thumb bt3"><div class="blog-thumb-inner"><img
                       src="images/irregation (1).webp"
-                      alt="Smart Watering Systems"></div></div>
+                      alt="Smart Watering Systems" width="300" height="180" loading="lazy" decoding="async"></div></div>
                 <div class="blog-body">
                   <div class="blog-cat">Irrigation</div>
                   <h3>Smart Watering: How to Save 40% on Water Bills</h3>
@@ -1304,7 +1304,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                 style="text-decoration:none;color:inherit">
                 <div class="blog-thumb bt4"><div class="blog-thumb-inner"><img
                       src="images/garden.webp"
-                      alt="Cottage Garden Design"></div></div>
+                      alt="Cottage Garden Design" width="300" height="180" loading="lazy" decoding="async"></div></div>
                 <div class="blog-body">
                   <div class="blog-cat">Garden Design</div>
                   <h3>Cottage Garden Style: A Complete Beginner's Guide</h3>
@@ -1647,26 +1647,26 @@ document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').fo
 const slider=document.getElementById('ba-slider')
 const after=document.getElementById('ba-after')
 const divider=document.getElementById('ba-divider')
-let dragging=false, baPos=50
+let dragging=false, baPos=50, sliderRect=null, rafId=null
 function setBa(pct){
   baPos=Math.max(10,Math.min(90,pct))
   after.style.clipPath=`inset(0 ${100-baPos}% 0 0)`
   divider.style.left=baPos+'%'
 }
 setBa(50)
-slider.addEventListener('mousedown',e=>{ dragging=true; e.preventDefault() })
+slider.addEventListener('mousedown',e=>{ dragging=true; sliderRect=slider.getBoundingClientRect(); e.preventDefault() })
 window.addEventListener('mouseup',()=>dragging=false)
 window.addEventListener('mousemove',e=>{
   if(!dragging)return
-  const r=slider.getBoundingClientRect()
-  setBa(((e.clientX-r.left)/r.width)*100)
+  if(rafId) cancelAnimationFrame(rafId)
+  rafId = requestAnimationFrame(() => setBa(((e.clientX-sliderRect.left)/sliderRect.width)*100))
 })
-slider.addEventListener('touchstart',e=>dragging=true)
+slider.addEventListener('touchstart',e=>{ dragging=true; sliderRect=slider.getBoundingClientRect() })
 window.addEventListener('touchend',()=>dragging=false)
 window.addEventListener('touchmove',e=>{
   if(!dragging)return
-  const r=slider.getBoundingClientRect()
-  setBa(((e.touches[0].clientX-r.left)/r.width)*100)
+  if(rafId) cancelAnimationFrame(rafId)
+  rafId = requestAnimationFrame(() => setBa(((e.touches[0].clientX-sliderRect.left)/sliderRect.width)*100))
 })
 
 // ===== PORTFOLIO FILTER =====
@@ -1911,22 +1911,30 @@ startAutoSlide();
           <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" media="print" onload="this.media='all'">
           <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"></noscript>
 
-          <script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
           <script>
-window.onload = function () {
-
-  const map = L.map('map').setView([27.6710, 85.4298], 13);
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  L.marker([27.6710, 85.4298])
-    .addTo(map)
-    .bindPopup('Sewa Subidha Gardening');
-
-};
+document.addEventListener("DOMContentLoaded", function () {
+  let mapLoaded = false;
+  const mapObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !mapLoaded) {
+        mapLoaded = true;
+        observer.disconnect();
+        const script = document.createElement('script');
+        script.src = "https://unpkg.com/leaflet/dist/leaflet.js";
+        script.onload = () => {
+          const map = L.map('map').setView([27.6710, 85.4298], 13);
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(map);
+          L.marker([27.6710, 85.4298]).addTo(map).bindPopup('Sewa Subidha Gardening');
+        };
+        document.body.appendChild(script);
+      }
+    });
+  }, { rootMargin: "200px" });
+  const mapEl = document.getElementById('map');
+  if (mapEl) mapObserver.observe(mapEl);
+});
 </script>
         </body>
       </html>

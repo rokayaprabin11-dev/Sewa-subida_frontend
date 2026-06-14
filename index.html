@@ -1906,11 +1906,12 @@ blogScroll.addEventListener('wheel', e => {
 // Start auto-slide on load
 startAutoSlide();
 </script>
-          <link
-            rel="stylesheet"
-            href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-          <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+          <link rel="preload" href="https://unpkg.com/leaflet/dist/leaflet.css" as="style">
+          <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" media="print" onload="this.media='all'">
+          <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"></noscript>
+
+          <script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
           <script>
 window.onload = function () {

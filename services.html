@@ -1348,13 +1348,19 @@ revealEls.forEach(el => window._revealObserver.observe(el))
 // ===== SERVICE NAV SCROLL SYNC =====
 const snavItems = document.querySelectorAll('.snav-item')
 const srvSections = ['srv-design','srv-lawn','srv-planting','srv-events','srv-maintenance','srv-irrigation']
-function updateServiceNav() {
-  const scrollY = window.scrollY + 160
+let sectionOffsets = [];
+function calculateOffsets() {
+  sectionOffsets = srvSections.map(id => ({ id, top: document.getElementById(id)?.offsetTop || 0 }));
+}
+window.addEventListener('load', calculateOffsets);
+window.addEventListener('resize', calculateOffsets);
+
+function updateServiceNav(currentScroll) {
+  const scrollThreshold = (currentScroll || window.scrollY) + 160;
   let current = ''
-  srvSections.forEach(id => {
-    const el = document.getElementById(id)
-    if (el && el.offsetTop <= scrollY) current = id
-  })
+  sectionOffsets.forEach(section => {
+    if (section.top <= scrollThreshold) current = section.id
+  });
   snavItems.forEach(item => {
     item.classList.remove('active')
     if (item.getAttribute('href') === '#' + current) item.classList.add('active')

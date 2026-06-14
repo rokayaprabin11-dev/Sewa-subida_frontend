@@ -176,7 +176,7 @@
   --green-dark:#1A3D18;
   --green-mid:#2A5726;
   --green-rich:#3A7033;
-  --green-sage:#6A9E5A;
+  --green-sage:#4F8041;
   --green-light:#A8C89A;
   --green-pale:#E8F4E0;
   --gold:#C8891A;
@@ -186,7 +186,7 @@
   --sand-dark:#EDE6D8;
   --charcoal:#262622;
   --slate:#4A4A44;
-  --muted:#7A7A72;
+  --muted:#5C5C54;
   --white:#FFFFFF;
   --shadow-sm:0 2px 8px rgba(26,61,24,0.08);
   --shadow-md:0 8px 28px rgba(26,61,24,0.14);
@@ -240,7 +240,7 @@ nav a:hover::after{width:100%}
 nav a:hover{color:var(--white)}
 #header.scrolled nav a{color:var(--slate)}
 #header.scrolled nav a:hover{color:var(--green-dark)}
-.nav-cta{background:var(--gold);color:var(--white)!important;padding:10px 22px;border-radius:100px;font-weight:500;font-size:13px;border:none;cursor:pointer;transition:var(--transition);text-decoration:none;animation:gold-glow 2.5s ease-in-out infinite}
+.nav-cta{background:var(--gold);color:var(--green-dark)!important;padding:10px 22px;border-radius:100px;font-weight:600;font-size:13px;border:none;cursor:pointer;transition:var(--transition);text-decoration:none;animation:gold-glow 2.5s ease-in-out infinite}
 .nav-cta::after{display:none!important}
 @keyframes gold-glow{0%,100%{box-shadow:0 0 0 0 rgba(200,137,26,0.4)}50%{box-shadow:0 0 0 10px rgba(200,137,26,0)}}
 .nav-cta:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:var(--shadow-md)}
@@ -281,7 +281,7 @@ nav a:hover{color:var(--white)}
 .hero-subtitle{color:rgba(255,255,255,0.65);font-size:18px;font-weight:300;margin-bottom:40px;line-height:1.6;animation:fade-up 0.8s 0.2s ease backwards}
 @keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fade-up 0.8s 0.4s ease backwards}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--white);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;border:none;cursor:pointer;transition:var(--transition);animation:pulse-gold 2.5s 2s ease-in-out infinite}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--green-dark);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:var(--transition);animation:pulse-gold 2.5s 2s ease-in-out infinite}
 @keyframes pulse-gold{0%,100%{box-shadow:0 0 0 0 rgba(200,137,26,0.5)}50%{box-shadow:0 0 0 14px rgba(200,137,26,0)}}
 .btn-primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
 .btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:400;text-decoration:none;border:1.5px solid rgba(255,255,255,0.35);cursor:pointer;transition:var(--transition);backdrop-filter:blur(4px)}
@@ -306,7 +306,7 @@ section{padding:100px 40px}
 .qcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--green-light)}
 .qcard-icon{width:52px;height:52px;background:var(--green-pale);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;transition:var(--transition)}
 .qcard:hover .qcard-icon{background:var(--green-mid);transform:scale(1.1) rotate(-5deg)}
-.qcard h4{font-size:15px;font-weight:600;color:var(--green-dark);margin-bottom:6px}
+.qcard h3{font-size:15px;font-weight:600;color:var(--green-dark);margin-bottom:6px}
 .qcard p{font-size:13px;color:var(--muted);line-height:1.5}
 .qcard-icon{background:none;overflow:visible;position:relative;margin:-10% 0 40px 10%}
 .qcard-icon img{width:100px;height:100px;object-fit:cover;display:block;border-radius:14px;position:absolute;top:-20px;left:50%;transform:translateX(-50%);z-index:2}
@@ -407,7 +407,7 @@ img.srv-img-inner{width:100%;height:100%;object-fit:cover}
 .masonry-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,61,24,0.85) 0%,transparent 50%);opacity:0;transition:opacity 0.3s;border-radius:var(--radius-lg);display:flex;align-items:flex-end;padding:20px}
 .masonry-item:hover .masonry-overlay{opacity:1}
 .masonry-info{color:var(--white)}
-.masonry-info h4{font-family:'Playfair Display',serif;font-size:15px;margin-bottom:4px}
+.masonry-info h3{font-family:'Playfair Display',serif;font-size:15px;margin-bottom:4px}
 .masonry-info span{font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase}
 
 /* ========== TESTIMONIALS ========== */
@@ -519,12 +519,12 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
 .footer-socials{display:flex;gap:10px;color:var(--white)}
 .social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgb(255, 255, 255);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:var(--transition);text-decoration:none;color:var(--white)}
 .social-btn:hover{background:var(--green-sage);border-color:var(--green-sage);transform:translateY(-3px)}
-.footer-col h4{font-size:13px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px}
+.footer-col h3{font-size:13px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px}
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
 .footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.3s;cursor:pointer}
 .footer-col ul li a:hover{color:var(--green-light)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.35)}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.7)}
 
 /* ========== WHATSAPP FLOAT ========== */
 #wa-float{position:fixed;bottom:28px;right:28px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
@@ -723,25 +723,25 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
         <div class="qcard reveal delay-1">
           <div class="qcard-icon"><img src="images/service1.webp" width="100" height="100"
               alt="Garden Design" loading="lazy" decoding="async"></div>
-          <h4>Garden Design</h4>
+              <h3>Garden Design</h3>
           <p>Full-concept landscape architecture tailored to your vision.</p>
         </div>
         <div class="qcard reveal delay-2">
         <div class="qcard-icon"><img src="images/planting.webp" alt="Planting" width="100" height="100"
               loading="lazy" decoding="async"></div>
-          <h4>Planting</h4>
+              <h3>Planting</h3>
           <p>Expert plant selection and seasonal planting services.</p>
         </div>
         <div class="qcard reveal delay-3">
           <div class="qcard-icon"><img src="images/service4.webp" width="100" height="100"
               alt="Maintenance" loading="lazy" decoding="async"></div>
-          <h4>Maintenance</h4>
+              <h3>Maintenance</h3>
           <p>Regular upkeep to keep your garden thriving year-round.</p>
         </div>
         <div class="qcard reveal delay-4">
           <div class="qcard-icon"><img src="images/service5.webp" width="100" height="100"
               alt="Irrigation" loading="lazy" decoding="async"></div>
-          <h4>Irrigation</h4>
+              <h3>Irrigation</h3>
           <p>Smart watering systems installed and calibrated for efficiency.</p>
         </div>
       </div>
@@ -1112,7 +1112,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                   src="images/modern1.webp" alt="Woodland Retreat"
                   loading="lazy"></div>
               <div class="masonry-overlay"><div
-                  class="masonry-info"><h4>Woodland Retreat</h4><span>Modern ·
+                  class="masonry-info"><h3>Woodland Retreat</h3><span>Modern ·
                     Full Landscaping · $$$</span></div></div>
             </div>
             <div class="masonry-item reveal" data-cat="tropical">
@@ -1121,7 +1121,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                   src="images/tropical.webp" alt="Tropical Paradise"
                   loading="lazy"></div>
               <div class="masonry-overlay"><div
-                  class="masonry-info"><h4>Tropical Paradise</h4><span>Tropical
+                  class="masonry-info"><h3>Tropical Paradise</h3><span>Tropical
                     · Planting · $$</span></div></div>
             </div>
             <div class="masonry-item reveal" data-cat="patio">
@@ -1130,7 +1130,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                   src="images/patio1.webp" alt="Sunstone Patio"
                   loading="lazy"></div>
               <div class="masonry-overlay"><div
-                  class="masonry-info"><h4>Sunstone Patio</h4><span>Patio ·
+                  class="masonry-info"><h3>Sunstone Patio</h3><span>Patio ·
                     Stone Work · $$$</span></div></div>
             </div>
             <div class="masonry-item reveal" data-cat="lawn">
@@ -1139,7 +1139,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                   src="images/lawns.webp" alt="Evergreen Lawn"
                   loading="lazy"></div>
               <div class="masonry-overlay"><div
-                  class="masonry-info"><h4>Evergreen Lawn</h4><span>Lawn ·
+                  class="masonry-info"><h3>Evergreen Lawn</h3><span>Lawn ·
                     Sodding · $$</span></div></div>
             </div>
             <div class="masonry-item reveal" data-cat="tropical">
@@ -1147,16 +1147,16 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                 style="height:220px;background:linear-gradient(145deg,#c8f0b0,#5aaa40)"><img
                   src="images/topical1.webp" alt="Bali Garden"
                   loading="lazy"></div>
-              <div class="masonry-overlay"><div class="masonry-info"><h4>Bali
-                    Garden</h4><span>Tropical · Design · $$$</span></div></div>
+              <div class="masonry-overlay"><div class="masonry-info"><h3>Bali
+                    Garden</h3><span>Tropical · Design · $$$</span></div></div>
             </div>
             <div class="masonry-item reveal" data-cat="modern">
               <div class="masonry-fake-img"
                 style="height:150px;background:linear-gradient(145deg,#dce8f0,#5a8aad)"><img
                   src="images/modern2.webp" alt="Water Feature"
                   loading="lazy"></div>
-              <div class="masonry-overlay"><div class="masonry-info"><h4>Water
-                    Feature</h4><span>Modern · Water · $$$$</span></div></div>
+              <div class="masonry-overlay"><div class="masonry-info"><h3>Water
+                    Feature</h3><span>Modern · Water · $$$$</span></div></div>
             </div>
             <div class="masonry-item reveal" data-cat="patio">
               <div class="masonry-fake-img"
@@ -1164,7 +1164,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                   src="images/patio2.webp" alt="Courtyard Design"
                   loading="lazy"></div>
               <div class="masonry-overlay"><div
-                  class="masonry-info"><h4>Courtyard Design</h4><span>Patio ·
+                  class="masonry-info"><h3>Courtyard Design</h3><span>Patio ·
                     Hardscape · $$$</span></div></div>
             </div>
             <div class="masonry-item reveal" data-cat="lawn">
@@ -1172,16 +1172,16 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                 style="height:130px;background:linear-gradient(145deg,#a8d890,#3a7a2a)"><img
                   src="images/lawns1.webp" alt="Meadow Lawn"
                   loading="lazy"></div>
-              <div class="masonry-overlay"><div class="masonry-info"><h4>Meadow
-                    Lawn</h4><span>Lawn · Wildflower · $$</span></div></div>
+              <div class="masonry-overlay"><div class="masonry-info"><h3>Meadow
+                    Lawn</h3><span>Lawn · Wildflower · $$</span></div></div>
             </div>
             <div class="masonry-item reveal" data-cat="modern">
               <div class="masonry-fake-img"
                 style="height:160px;background:linear-gradient(145deg,#e0d8f0,#7070b8)"><img
                   src="images/moder3.webp" alt="Evening Garden"
                   loading="lazy"></div>
-              <div class="masonry-overlay"><div class="masonry-info"><h4>Evening
-                    Garden</h4><span>Modern · Lighting · $$$$</span></div></div>
+              <div class="masonry-overlay"><div class="masonry-info"><h3>Evening
+                    Garden</h3><span>Modern · Lighting · $$$$</span></div></div>
             </div>
           </div>
         </div>
@@ -1541,6 +1541,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                     alt="Sewa Subidha Gardening Logo"><span
                     class="logo-name">Sewa
                     Subidha Gardening</span>
+              </a>
                   <p>Nepal's most trusted garden design and landscaping studio.
                     Transforming outdoor spaces since 2014.</p>
                   <div class="footer-socials">
@@ -1558,7 +1559,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                   </div>
                 </div>
                 <div class="footer-col">
-                  <h4>Services</h4>
+              <h3>Services</h3>
                   <ul>
                     <li><a href="#services">Garden Design</a></li>
                     <li><a href="#services">Lawn Installation</a></li>
@@ -1569,7 +1570,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                   </ul>
                 </div>
                 <div class="footer-col">
-                  <h4>Company</h4>
+              <h3>Company</h3>
                   <ul>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
@@ -1580,7 +1581,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
                   </ul>
                 </div>
                 <div class="footer-col">
-                  <h4>Contact</h4>
+              <h3>Contact</h3>
                   <ul>
                     <li><a href="tel:+9779851206373"><i
                           class="fa-solid fa-phone"></i> +977
@@ -1860,21 +1861,34 @@ carouselTrack.addEventListener('mouseleave', startAutoSlide);
 // ===== BLOG SCROLL =====
 const blogScroll = document.getElementById('blogScroll');
 let blogAutoPlay;
-let blogIsScrolling = false;
+let blogCardWidth = 0;
+let blogMaxScroll = 0;
+
+function calculateBlogMetrics() {
+  if (blogScroll) {
+    const card = blogScroll.querySelector('.blog-card');
+    if (card) blogCardWidth = card.offsetWidth + 24;
+    blogMaxScroll = blogScroll.scrollWidth - blogScroll.clientWidth;
+  }
+}
+window.addEventListener('load', calculateBlogMetrics);
+window.addEventListener('resize', calculateBlogMetrics);
 
 function scrollBlog(direction) {
-  const cardWidth = blogScroll.querySelector('.blog-card').offsetWidth + 24;
-  blogScroll.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  if (blogCardWidth === 0) calculateBlogMetrics();
+  blogScroll.scrollBy({ left: direction * blogCardWidth, behavior: 'smooth' });
 }
 
 function startBlogAutoPlay() {
   blogAutoPlay = setInterval(() => {
-    const maxScroll = blogScroll.scrollWidth - blogScroll.clientWidth;
-    if (blogScroll.scrollLeft >= maxScroll - 10) {
-      blogScroll.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      scrollBlog(1);
-    }
+    if (blogMaxScroll === 0) calculateBlogMetrics();
+    window.requestAnimationFrame(() => {
+      if (blogScroll.scrollLeft >= blogMaxScroll - 10) {
+        blogScroll.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        scrollBlog(1);
+      }
+    });
   }, 3500);
 }
 

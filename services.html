@@ -144,6 +144,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--charcoa
 #header.scrolled .logo-name{color:var(--green-dark)}
 nav{display:flex;align-items:center;gap:32px}
 nav a{font-size:14px;color:rgba(255,255,255,0.85);text-decoration:none;font-weight:400;letter-spacing:0.2px;position:relative;transition:color 0.3s;cursor:none}
+nav a{font-size:14px;color:rgba(255,255,255,0.85);text-decoration:none;font-weight:400;letter-spacing:0.2px;position:relative;transition:color 0.3s;cursor:pointer}
 nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold-light);transition:width 0.3s}
 nav a:hover::after{width:100%}
 nav a:hover{color:var(--white)}
@@ -418,7 +419,7 @@ footer{background:var(--green-dark);padding:0}
     <!-- HEADER -->
     <header id="header">
       <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="Sewa Subidha Gardening"
+        <img src="images/logo.jpg" alt="Sewa Subidha Gardening"
           class="logo-icon"
           onerror="this.style='display:none'">
         <span class="logo-name"><i class="fa-solid fa-leaf"
@@ -522,7 +523,7 @@ footer{background:var(--green-dark);padding:0}
         <div class="srv-detail-block" id="srv-design">
           <div class="srv-detail-visual reveal-left">
             <div class="srv-detail-img-wrap">
-              <img src="images/service1.jpg" alt="Garden Design & Landscaping"
+              <img src="images/service1.webp" alt="Garden Design & Landscaping"
                 loading="lazy">
             </div>
             <div class="srv-detail-badge">
@@ -596,7 +597,7 @@ footer{background:var(--green-dark);padding:0}
         <div class="srv-detail-block" id="srv-lawn">
           <div class="srv-detail-visual reveal-right">
             <div class="srv-detail-img-wrap">
-              <img src="images/service2.jpg" alt="Lawn Installation"
+              <img src="images/service2.webp" alt="Lawn Installation"
                 loading="lazy">
             </div>
             <div class="srv-detail-badge">
@@ -741,7 +742,7 @@ footer{background:var(--green-dark);padding:0}
         <div class="srv-detail-block" id="srv-events">
           <div class="srv-detail-visual reveal-right">
             <div class="srv-detail-img-wrap">
-              <img src="images/service4.jpg" alt="Event & Wedding Decor"
+              <img src="images/service4.webp" alt="Event & Wedding Decor"
                 loading="lazy">
             </div>
             <div class="srv-detail-badge">
@@ -813,7 +814,7 @@ footer{background:var(--green-dark);padding:0}
         <div class="srv-detail-block" id="srv-maintenance">
           <div class="srv-detail-visual reveal-left">
             <div class="srv-detail-img-wrap">
-              <img src="images/service5.png" alt="Routine Maintenance"
+              <img src="images/service5.webp" alt="Routine Maintenance"
                 loading="lazy">
             </div>
             <div class="srv-detail-badge">
@@ -885,7 +886,7 @@ footer{background:var(--green-dark);padding:0}
         <div class="srv-detail-block" id="srv-irrigation">
           <div class="srv-detail-visual reveal-right">
             <div class="srv-detail-img-wrap">
-              <img src="images/service6.jpg" alt="Irrigation & Sprinkler Setup"
+              <img src="images/service6.webp" alt="Irrigation & Sprinkler Setup"
                 loading="lazy">
             </div>
             <div class="srv-detail-badge">
@@ -1026,76 +1027,76 @@ footer{background:var(--green-dark);padding:0}
       <div class="gallery-scroll-wrap">
         <div class="gallery-scroll-track">
           <div class="gallery-thumb">
-            <img src="images/_glimsy1.png" alt="Garden Design" loading="lazy">
+            <img src="images/_glimsy1.webp" alt="Garden Design" loading="lazy">
             <div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Garden Design</span></div>
           </div>
           <div class="gallery-thumb">
-            <img src="images/glimsy2.png" alt="Lawn Installation"
+            <img src="images/glimsy2.webp" alt="Lawn Installation"
               loading="lazy">
             <div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Lawn Installation</span></div>
           </div>
           <div class="gallery-thumb">
-            <img src="images/glimsy3.png" alt="Planting" loading="lazy">
+            <img src="images/glimsy3.webp" alt="Planting" loading="lazy">
             <div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Plant & Planting</span></div>
           </div>
           <div class="gallery-thumb">
-            <img src="images/glimsy4.png" alt="Event Decor" loading="lazy">
+            <img src="images/glimsy4.webp" alt="Event Decor" loading="lazy">
             <div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Event Decor</span></div>
           </div>
           <div class="gallery-thumb">
-            <img src="images/service5.png" alt="Maintenance" loading="lazy">
+            <img src="images/service5.webp" alt="Maintenance" loading="lazy">
             <div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Maintenance</span></div>
           </div>
           <div class="gallery-thumb">
-            <img src="images/service6.jpg" alt="Irrigation" loading="lazy">
+            <img src="images/service6.webp" alt="Irrigation" loading="lazy">
             <div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Irrigation</span></div>
           </div>
           <div class="gallery-thumb">
-            <img src="images/after.jpg" alt="Before & After" loading="lazy">
+            <img src="images/after.webp" alt="Before & After" loading="lazy">
             <div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Transformation</span></div>
           </div>
           <div class="gallery-thumb">
-            <img src="images/glimsy3.png" alt="After" loading="lazy">
+            <img src="images/glimsy3.webp" alt="After" loading="lazy">
             <div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Completed Project</span></div>
           </div>
           <!-- Duplicate for seamless loop -->
-          <div class="gallery-thumb"><img src="images/_glimsy1.png"
+          <div class="gallery-thumb"><img src="images/_glimsy1.webp"
               alt="Garden Design" loading="lazy"><div
               class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Garden Design</span></div></div>
-          <div class="gallery-thumb"><img src="images/glimsy2.png"
+          <div class="gallery-thumb"><img src="images/glimsy2.webp"
               alt="Lawn Installation" loading="lazy"><div
               class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Lawn Installation</span></div></div>
-          <div class="gallery-thumb"><img src="images/glimsy3.png"
+          <div class="gallery-thumb"><img src="images/glimsy3.webp"
               alt="Planting" loading="lazy"><div
               class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Plant & Planting</span></div></div>
-          <div class="gallery-thumb"><img src="images/glimsy4.png"
+          <div class="gallery-thumb"><img src="images/glimsy4.webp"
               alt="Event Decor" loading="lazy"><div
               class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Event Decor</span></div></div>
-          <div class="gallery-thumb"><img src="images/service5.png"
+          <div class="gallery-thumb"><img src="images/service5.webp"
               alt="Maintenance" loading="lazy"><div
               class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Maintenance</span></div></div>
-          <div class="gallery-thumb"><img src="images/service6.jpg"
+          <div class="gallery-thumb"><img src="images/service6.webp"
               alt="Irrigation" loading="lazy"><div
               class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Irrigation</span></div></div>
-          <div class="gallery-thumb"><img src="images/glimsy3.png"
+          <div class="gallery-thumb"><img src="images/glimsy3.webp"
               alt="Before & After" loading="lazy"><div
               class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Transformation</span></div></div>
-          <div class="gallery-thumb"><img src="images/after.jpg" alt="After"
+          <div class="gallery-thumb"><img src="images/after.webp" alt="After"
               loading="lazy"><div class="gallery-thumb-overlay"><span
                 class="gallery-thumb-label">Completed Project</span></div></div>
         </div>

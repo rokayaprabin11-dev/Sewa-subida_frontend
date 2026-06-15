@@ -280,7 +280,7 @@ nav a:hover{color:var(--white)}
 .hero-title .line:nth-child(3) span{animation-delay:0.8s}
 @keyframes line-in{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .hero-title em{font-style:italic;color:var(--green-light)}
-.hero-subtitle{color:rgba(255,255,255,0.65);font-size:18px;font-weight:300;margin-bottom:40px;line-height:1.6;animation:fade-up 0.8s 0.2s ease backwards}
+.hero-subtitle{color:rgba(255,255,255,0.65);font-size:18px;font-weight:300;margin-bottom:40px;line-height:1.6}
 @keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fade-up 0.8s 0.4s ease backwards}
 .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--green-dark);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:var(--transition);animation:pulse-gold 2.5s 2s ease-in-out infinite}
@@ -651,7 +651,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
   <body>
 
     <!-- LOADER -->
-    <div id="loader">
+    <div id="loader" aria-hidden="true">
       <div class="loader-plant">
         <div class="loader-stem"></div>
         <div class="loader-leaf-l"></div>
@@ -1623,7 +1623,10 @@ footer{background:var(--green-dark);color:rgba(255,255,255,0.7);padding:60px 40p
           <script>
 // ===== LOADER =====
 window.addEventListener('DOMContentLoaded',()=>{
-  setTimeout(()=>{ document.getElementById('loader').classList.add('hidden') },400)
+  window.requestAnimationFrame(() => {
+    const loader = document.getElementById('loader');
+    if (loader) loader.classList.add('hidden');
+  });
 })
 
 // ===== HEADER SCROLL =====
@@ -1863,27 +1866,52 @@ carouselTrack.addEventListener('mouseleave', startAutoSlide);
 // ===== BLOG SCROLL =====
 const blogScroll = document.getElementById('blogScroll');
 let blogAutoPlay;
-let blogCardWidth = 0;
+const BLOG_CARD_WIDTH = 300;
+const BLOG_CARD_GAP = 24;
+let blogCardWidth = BLOG_CARD_WIDTH + BLOG_CARD_GAP;
 let blogMaxScroll = 0;
+let blogResizeFrame = 0;
+let blogMetricsReady = false;
+let blogViewportWidth = window.innerWidth;
 
 function calculateBlogMetrics() {
-  if (blogScroll) {
-    const card = blogScroll.querySelector('.blog-card');
-    if (card) blogCardWidth = card.offsetWidth + 24;
-    blogMaxScroll = blogScroll.scrollWidth - blogScroll.clientWidth;
-  }
+  if (!blogScroll) return;
+  const cards = blogScroll.querySelectorAll('.blog-card').length;
+  blogMaxScroll = Math.max(0, (cards * blogCardWidth) - BLOG_CARD_GAP - blogViewportWidth);
+  blogMetricsReady = true;
 }
-window.addEventListener('load', calculateBlogMetrics);
-window.addEventListener('resize', calculateBlogMetrics);
+
+function scheduleBlogMetrics() {
+  if (blogResizeFrame) cancelAnimationFrame(blogResizeFrame);
+  blogResizeFrame = requestAnimationFrame(() => {
+    calculateBlogMetrics();
+    blogResizeFrame = 0;
+  });
+}
+window.addEventListener('load', scheduleBlogMetrics);
+window.addEventListener('resize', () => {
+  blogViewportWidth = window.innerWidth;
+  blogMetricsReady = false;
+  scheduleBlogMetrics();
+}, { passive: true });
+if (blogScroll && 'ResizeObserver' in window) {
+  new ResizeObserver(entries => {
+    const entry = entries[0];
+    if (!entry) return;
+    blogViewportWidth = entry.contentRect.width;
+    blogMetricsReady = false;
+    scheduleBlogMetrics();
+  }).observe(blogScroll);
+}
 
 function scrollBlog(direction) {
-  if (blogCardWidth === 0) calculateBlogMetrics();
+  if (!blogMetricsReady) calculateBlogMetrics();
   blogScroll.scrollBy({ left: direction * blogCardWidth, behavior: 'smooth' });
 }
 
 function startBlogAutoPlay() {
   blogAutoPlay = setInterval(() => {
-    if (blogMaxScroll === 0) calculateBlogMetrics();
+    if (!blogMetricsReady) calculateBlogMetrics();
     window.requestAnimationFrame(() => {
       if (blogScroll.scrollLeft >= blogMaxScroll - 10) {
         blogScroll.scrollTo({ left: 0, behavior: 'smooth' });

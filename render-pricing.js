@@ -60,6 +60,11 @@ document.addEventListener("pricingReady", function () {
       ? '<span class="popular-badge">Most Popular</span>'
       : "";
 
+    var waMessage = "Hi! I'm interested in the \"" + (plan.name || "") + "\" plan" +
+      (plan.price ? " (Rs. " + plan.price + (plan.period || "/month") + ")" : "") +
+      ". Can we get started?";
+    var waLink = "https://wa.me/9779851206373?text=" + encodeURIComponent(waMessage);
+
     return (
       '<div class="price-card' +
         (plan.popular ? " popular" : "") +
@@ -87,7 +92,7 @@ document.addEventListener("pricingReady", function () {
 
         '<div class="price-features">' + featuresHtml + "</div>" +
 
-        '<a href="index.html#contact" class="price-cta price-cta-' +
+        '<a href="' + escapeHTML(waLink) + '" target="_blank" rel="noopener" class="price-cta price-cta-' +
           ctaStyle + '">Get Started \u2192</a>' +
 
       "</div>"

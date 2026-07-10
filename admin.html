@@ -4,26 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sewa Subidha Gardening Admin</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://sewa-subida-backend.onrender.com https://sewa-subidabackend-production.up.railway.app; img-src 'self' data: https://res.cloudinary.com https://*; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://sewa-subida-backend-a4d9.onrender.com https://sewa-subidabackend-production.up.railway.app; img-src 'self' data: https://res.cloudinary.com https://*; object-src 'none';" />
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
   <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </noscript>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #F7F2EA; }
-    #root:empty::after {
-      content: "Loading…";
-      display: block;
-      text-align: center;
-      padding: 80px;
-      color: #7A7A72;
-      font-family: sans-serif;
-      font-size: 14px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+  <link rel="stylesheet" href="admin.css" />
 </head>
 <body>
   <div id="root"></div>
@@ -35,7 +22,7 @@
     const { useState, useEffect, useCallback } = React;
 
     // ─── CONFIG ───────────────────────────────────────────────────────────────
-    const API_BASE = "https://sewa-subida-backend.onrender.com";
+    const API_BASE = "https://sewa-subida-backend-a4d9.onrender.com";
 
     async function apiFetch(path, options = {}, token = null) {
       const isFormData = options.body instanceof FormData;
@@ -72,8 +59,8 @@
     function Toast({ msg, onClose }) {
       useEffect(() => { const t = setTimeout(onClose, 3000); return () => clearTimeout(t); }, []);
       return (
-        <div style={{ position: "fixed", bottom: 28, right: 28, background: "#2A5726", color: "#fff", padding: "14px 22px", borderRadius: 12, fontSize: 14, fontWeight: 500, boxShadow: "0 8px 32px rgba(26,61,24,0.28)", zIndex: 9999, display: "flex", alignItems: "center", gap: 10 }}>
-          <i className="fa-solid fa-check" style={{ fontSize: 18 }}></i> {msg}
+        <div className="admin-s-01">
+          <i className="fa-solid fa-check admin-s-02"></i> {msg}
         </div>
       );
     }
@@ -81,11 +68,11 @@
     // ─── MODAL ────────────────────────────────────────────────────────────────
     function Modal({ title, onClose, children }) {
       return (
-        <div style={{ position: "fixed", inset: 0, background: "rgba(26,61,24,0.55)", backdropFilter: "blur(4px)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }} onClick={e => e.target === e.currentTarget && onClose()}>
-          <div style={{ background: "#fff", borderRadius: 20, padding: 32, width: "100%", maxWidth: 560, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 20px 60px rgba(26,61,24,0.22)" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-              <h3 style={{ fontFamily: "Georgia, serif", fontSize: 20, color: "#1A3D18" }}>{title}</h3>
-              <button onClick={onClose} style={{ background: "#f0f0ec", border: "none", borderRadius: 8, width: 32, height: 32, cursor: "pointer", fontSize: 16, color: "#555" }}>✕</button>
+        <div className="admin-s-03" onClick={e => e.target === e.currentTarget && onClose()}>
+          <div className="admin-s-04">
+            <div className="admin-s-05">
+              <h3 className="admin-s-06">{title}</h3>
+              <button onClick={onClose} className="admin-s-07">✕</button>
             </div>
             {children}
           </div>
@@ -95,8 +82,8 @@
 
     function Field({ label, children }) {
       return (
-        <div style={{ marginBottom: 16 }}>
-          <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: "#4A4A44", textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>{label}</label>
+        <div className="admin-s-08">
+          <label className="admin-s-09">{label}</label>
           {children}
         </div>
       );
@@ -135,36 +122,36 @@
       return (
         <div>
           {/* Upload button */}
-          <label style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 16px", border: "1.5px dashed #a8c89a", borderRadius: 10, cursor: "pointer", background: "#f8fdf6", transition: "all 0.2s" }}>
-            <input type="file" accept="image/*" onChange={handleFile} style={{ display: "none" }} disabled={uploading} />
+          <label className="admin-s-10">
+            <input type="file" accept="image/*" onChange={handleFile} className="admin-s-11" disabled={uploading} />
             {uploading ? (
               <>
-                <div style={{ width: 18, height: 18, border: "2px solid #e8f4e0", borderTop: "2px solid #2A5726", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
-                <span style={{ fontSize: 13, color: "#2A5726" }}>Uploading to Cloudinary…</span>
+                <div className="admin-s-12" />
+                <span className="admin-s-13">Uploading to Cloudinary…</span>
               </>
             ) : (
               <>
-                <i className="fa-solid fa-camera" style={{ fontSize: 18 }}></i>
-                <span style={{ fontSize: 13, color: "#2A5726", fontWeight: 600 }}>
+                <i className="fa-solid fa-camera admin-s-02"></i>
+                <span className="admin-s-14">
                   {preview ? "Change Image" : "Upload Image"}
                 </span>
-                <span style={{ fontSize: 11, color: "#7A7A72", marginLeft: "auto" }}>JPG, PNG, WebP · max 10MB</span>
+                <span className="admin-s-15">JPG, PNG, WebP · max 10MB</span>
               </>
             )}
           </label>
 
-          {error && <p style={{ fontSize: 12, color: "#dc2626", marginTop: 6 }}>{error}</p>}
+          {error && <p className="admin-s-16">{error}</p>}
 
           {/* Preview */}
           {preview && (
-            <div style={{ marginTop: 10, position: "relative", borderRadius: 10, overflow: "hidden", border: "1.5px solid #e0e8dc" }}>
-              <img src={preview} alt="preview" style={{ width: "100%", height: 140, objectFit: "cover", display: "block" }} />
+            <div className="admin-s-17">
+              <img src={preview} alt="preview" className="admin-s-18" />
               <button onClick={() => { setPreview(""); onChange(""); }} style={{ position: "absolute", top: 8, right: 8, background: "rgba(220,38,38,0.85)", color: "#fff", border: "none", borderRadius: "50%", width: 26, height: 26, cursor: "pointer", fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
             </div>
           )}
 
           {/* Manual URL fallback */}
-          <div style={{ marginTop: 8 }}>
+          <div className="admin-s-19">
             <input style={{ ...inputStyle, fontSize: 12, color: "#7A7A72" }} value={value} onChange={e => { onChange(e.target.value); setPreview(e.target.value); }} placeholder="Or paste image URL manually" />
           </div>
         </div>
@@ -179,7 +166,7 @@
       return (
         <>
           <Field label="Title"><input style={inputStyle} value={form.title} onChange={e => set("title", e.target.value)} placeholder="Project name" /></Field>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <div className="admin-s-20">
             <Field label="Category">
               <select style={selectStyle} value={form.cat} onChange={e => set("cat", e.target.value)}>
                 {CATEGORIES.map(c => <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>)}
@@ -194,7 +181,7 @@
           <Field label="Description">
             <textarea style={{ ...inputStyle, minHeight: 80, resize: "vertical" }} value={form.desc} onChange={e => set("desc", e.target.value)} />
           </Field>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <div className="admin-s-20">
             <Field label="Service"><input style={inputStyle} value={form.service} onChange={e => set("service", e.target.value)} placeholder="e.g. Garden Design" /></Field>
             <Field label="Duration"><input style={inputStyle} value={form.duration} onChange={e => set("duration", e.target.value)} placeholder="e.g. 2 Weeks" /></Field>
             <Field label="Location"><input style={inputStyle} value={form.location} onChange={e => set("location", e.target.value)} placeholder="e.g. Kathmandu" /></Field>
@@ -207,8 +194,8 @@
             <input style={inputStyle} value={form.bg} onChange={e => set("bg", e.target.value)} />
           </Field>
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: form.bg, height: 48, border: "1.5px solid #e0e8dc" }} />
-          <div style={{ display: "flex", gap: 10, marginTop: 24, justifyContent: "flex-end" }}>
-            <button onClick={onClose} style={{ padding: "10px 22px", border: "1.5px solid #cce0c8", borderRadius: 100, background: "transparent", cursor: "pointer", fontSize: 14 }}>Cancel</button>
+          <div className="admin-s-21">
+            <button onClick={onClose} className="admin-s-22">Cancel</button>
             <button onClick={() => onSave(form)} disabled={loading} style={{ padding: "10px 22px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading ? "not-allowed" : "pointer", fontSize: 14, fontWeight: 600, opacity: loading ? 0.7 : 1 }}>
               {loading ? "Saving…" : "Save Item"}
             </button>
@@ -227,7 +214,7 @@
       const removeFeat = i => setForm(f => ({ ...f, features: f.features.filter((_, idx) => idx !== i) }));
       return (
         <>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <div className="admin-s-20">
             <Field label="Plan Name"><input style={inputStyle} value={form.name} onChange={e => set("name", e.target.value)} /></Field>
             <Field label="FA Icon class"><input style={inputStyle} value={form.icon} onChange={e => set("icon", e.target.value)} placeholder="fa-leaf" /></Field>
             <Field label="Price (Rs.)"><input style={inputStyle} value={form.price} onChange={e => set("price", e.target.value)} placeholder="5,500" /></Field>
@@ -235,8 +222,8 @@
           </div>
           <Field label="Description"><textarea style={{ ...inputStyle, minHeight: 60, resize: "vertical" }} value={form.desc} onChange={e => set("desc", e.target.value)} /></Field>
           <Field label="Note"><input style={inputStyle} value={form.note} onChange={e => set("note", e.target.value)} /></Field>
-          <div style={{ display: "flex", gap: 20, alignItems: "center", marginBottom: 16 }}>
-            <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, cursor: "pointer" }}>
+          <div className="admin-s-23">
+            <label className="admin-s-24">
               <input type="checkbox" checked={form.popular} onChange={e => set("popular", e.target.checked)} /> Mark as "Most Popular"
             </label>
             <Field label="CTA Style">
@@ -246,19 +233,19 @@
               </select>
             </Field>
           </div>
-          <label style={{ fontSize: 12, fontWeight: 600, color: "#4A4A44", textTransform: "uppercase", letterSpacing: 1 }}>Features</label>
-          <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
+          <label className="admin-s-25">Features</label>
+          <div className="admin-s-26">
             {form.features.map((f, i) => (
-              <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <div key={i} className="admin-s-27">
                 <input type="checkbox" checked={f.enabled} onChange={e => setFeat(i, "enabled", e.target.checked)} />
                 <input style={{ ...inputStyle, flex: 1 }} value={f.text} onChange={e => setFeat(i, "text", e.target.value)} placeholder="Feature description" />
                 <button onClick={() => removeFeat(i)} style={{ background: "#fee2e2", border: "none", borderRadius: 8, width: 30, height: 30, cursor: "pointer", color: "#dc2626", fontWeight: "bold", flexShrink: 0 }}>×</button>
               </div>
             ))}
-            <button onClick={addFeat} style={{ alignSelf: "flex-start", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, padding: "6px 16px", fontSize: 13, cursor: "pointer", color: "#2A5726" }}>+ Add Feature</button>
+            <button onClick={addFeat} className="admin-s-28">+ Add Feature</button>
           </div>
-          <div style={{ display: "flex", gap: 10, marginTop: 24, justifyContent: "flex-end" }}>
-            <button onClick={onClose} style={{ padding: "10px 22px", border: "1.5px solid #cce0c8", borderRadius: 100, background: "transparent", cursor: "pointer", fontSize: 14 }}>Cancel</button>
+          <div className="admin-s-21">
+            <button onClick={onClose} className="admin-s-22">Cancel</button>
             <button onClick={() => onSave(form)} disabled={loading} style={{ padding: "10px 22px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading ? "not-allowed" : "pointer", fontSize: 14, fontWeight: 600, opacity: loading ? 0.7 : 1 }}>
               {loading ? "Saving…" : "Save Plan"}
             </button>
@@ -290,7 +277,7 @@
 
       return (
         <>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <div className="admin-s-20">
             <Field label="Product Name">
               <input style={inputStyle} value={form.name} onChange={e=>set("name",e.target.value)} placeholder="e.g. Monstera Deliciosa" />
             </Field>
@@ -335,26 +322,26 @@
             <ImageUploader token={token} value={form.image||""} onChange={url=>set("image",url)} />
           </Field>
 
-          <div style={{ marginBottom: 8 }}>
-            <label style={{ fontSize: 12, fontWeight: 600, color: "#4A4A44", textTransform: "uppercase", letterSpacing: 1 }}>Care Tags</label>
+          <div className="admin-s-29">
+            <label className="admin-s-25">Care Tags</label>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
+          <div className="admin-s-30">
             {(form.care_tags||[]).map((ct, i) => (
-              <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <div key={i} className="admin-s-27">
                 <input style={{ ...inputStyle, flex: "0 0 220px", fontSize: 12 }} value={ct.icon} onChange={e=>setTag(i,"icon",e.target.value)} placeholder="fa-solid fa-sun" />
                 <input style={{ ...inputStyle, flex: 1, fontSize: 12 }} value={ct.label} onChange={e=>setTag(i,"label",e.target.value)} placeholder="Label (e.g. Full sun)" />
                 <button onClick={()=>rmTag(i)} style={{ background:"#fee2e2",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",color:"#dc2626",fontWeight:"bold",flexShrink:0 }}>×</button>
               </div>
             ))}
-            <button onClick={addTag} style={{ alignSelf:"flex-start",background:"#e8f4e0",border:"1.5px solid #a8c89a",borderRadius:100,padding:"6px 16px",fontSize:13,cursor:"pointer",color:"#2A5726" }}>+ Add Care Tag</button>
+            <button onClick={addTag} className="admin-s-28">+ Add Care Tag</button>
           </div>
 
-          <div style={{ background: "#f8fdf6", borderRadius: 12, padding: "12px 16px", marginBottom: 16, fontSize: 12, color: "#4A4A44", lineHeight: 1.6 }}>
+          <div className="admin-s-31">
             <strong>Common icons:</strong> fa-solid fa-sun · fa-solid fa-droplet · fa-solid fa-wind · fa-solid fa-seedling · fa-solid fa-recycle · fa-solid fa-fire · fa-solid fa-star · fa-solid fa-shield
           </div>
 
-          <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
-            <button onClick={onClose} style={{ padding: "10px 22px", border: "1.5px solid #cce0c8", borderRadius: 100, background: "transparent", cursor: "pointer", fontSize: 14 }}>Cancel</button>
+          <div className="admin-s-32">
+            <button onClick={onClose} className="admin-s-22">Cancel</button>
             <button onClick={() => onSave(form)} disabled={loading || !form.name} style={{ padding: "10px 22px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading||!form.name ? "not-allowed" : "pointer", fontSize: 14, fontWeight: 600, opacity: loading||!form.name ? 0.7 : 1 }}>
               {loading ? "Saving…" : "Save Product"}
             </button>
@@ -381,13 +368,13 @@
       };
 
       return (
-        <div style={{ minHeight: "100vh", background: "#F7F2EA", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Sans','Segoe UI',sans-serif" }}>
-          <div style={{ background: "#fff", borderRadius: 24, padding: "48px 40px", width: "100%", maxWidth: 400, boxShadow: "0 20px 60px rgba(26,61,24,0.12)", textAlign: "center" }}>
-            <img src="images/logo.webp" alt="Sewa Subidha Gardening" style={{ width: 56, height: 56, borderRadius: 16, objectFit: "cover", margin: "0 auto 20px", display: "block" }} />
-            <h1 style={{ fontFamily: "Georgia,serif", fontSize: 24, color: "#1A3D18", margin: "0 0 6px" }}>Sewa Subidha Gardening Admin</h1>
-            <p style={{ color: "#7A7A72", fontSize: 13, marginBottom: 32 }}>Enter the admin password to continue</p>
+        <div className="admin-s-33">
+          <div className="admin-s-34">
+            <img src="images/logo.webp" alt="Sewa Subidha Gardening" className="admin-s-35" />
+            <h1 className="admin-s-36">Sewa Subidha Gardening Admin</h1>
+            <p className="admin-s-37">Enter the admin password to continue</p>
             <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && submit()} style={{ ...inputStyle, marginBottom: 12, textAlign: "center", letterSpacing: 2 }} autoFocus />
-            {error && <div style={{ background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 10, padding: "10px 14px", fontSize: 13, color: "#dc2626", marginBottom: 12 }}>{error}</div>}
+            {error && <div className="admin-s-38">{error}</div>}
             <button onClick={submit} disabled={loading || !password} style={{ width: "100%", padding: "12px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: loading || !password ? "not-allowed" : "pointer", fontSize: 15, fontWeight: 600, opacity: loading || !password ? 0.7 : 1 }}>
               {loading ? "Checking…" : "Sign In →"}
             </button>
@@ -542,73 +529,73 @@
       if (!token) return <LoginScreen onLogin={handleLogin} />;
 
       return (
-        <div style={{ minHeight: "100vh", background: "#F7F2EA", fontFamily: "'DM Sans','Segoe UI',sans-serif" }}>
+        <div className="admin-s-39">
 
           {/* Header */}
-          <div style={{ background: "#1A3D18", padding: "0 32px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 2px 16px rgba(26,61,24,0.3)", position: "sticky", top: 0, zIndex: 100 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <img src="images/logo.webp" alt="Sewa Subidha Gardening" style={{ width: 36, height: 36, borderRadius: 10, objectFit: "cover" }} />
+          <div className="admin-s-40">
+            <div className="admin-s-41">
+              <img src="images/logo.webp" alt="Sewa Subidha Gardening" className="admin-s-42" />
               <div>
-                <div style={{ color: "#fff", fontFamily: "Georgia,serif", fontSize: 17, fontWeight: 700, lineHeight: 1 }}>Sewa Subidha Gardening Admin</div>
-                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase" }}>
+                <div className="admin-s-43">Sewa Subidha Gardening Admin</div>
+                <div className="admin-s-44">
                   {loading ? "Connecting…" : "☁ Live — Railway PostgreSQL"}
                 </div>
               </div>
             </div>
-            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <div className="admin-s-27">
               {["gallery", "pricing", "arrivals"].map(t => (
                 <button key={t} onClick={() => setTab(t)} style={{ padding: "8px 20px", borderRadius: 100, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 600, background: tab === t ? "#C8891A" : "rgba(255,255,255,0.1)", color: tab === t ? "#fff" : "rgba(255,255,255,0.7)", transition: "all 0.2s" }}>
-                  {t === "gallery" ? <><i className="fa-regular fa-image" style={{ marginRight: 6 }}></i> Gallery</> : t === "pricing" ? <><i className="fa-solid fa-tags" style={{ marginRight: 6 }}></i> Pricing</> : <><i className="fa-solid fa-leaf" style={{ marginRight: 6 }}></i> Arrivals</>}
+                  {t === "gallery" ? <><i className="fa-regular fa-image admin-s-45"></i> Gallery</> : t === "pricing" ? <><i className="fa-solid fa-tags admin-s-45"></i> Pricing</> : <><i className="fa-solid fa-leaf admin-s-45"></i> Arrivals</>}
                 </button>
               ))}
-              <button onClick={handleLogout} style={{ marginLeft: 8, padding: "8px 16px", borderRadius: 100, border: "1.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "rgba(255,255,255,0.65)", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>Sign Out</button>
+              <button onClick={handleLogout} className="admin-s-46">Sign Out</button>
             </div>
           </div>
 
-          <div style={{ maxWidth: 1160, margin: "0 auto", padding: "32px 24px" }}>
+          <div className="admin-s-47">
 
             {/* Error Banner */}
             {error && (
-              <div style={{ background: "#fee2e2", border: "1.5px solid #fca5a5", borderRadius: 14, padding: "14px 18px", marginBottom: 24, fontSize: 13, color: "#dc2626", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div className="admin-s-48">
                 <span>⚠️ {error}</span>
-                <button onClick={loadAll} style={{ background: "#dc2626", color: "#fff", border: "none", borderRadius: 100, padding: "6px 16px", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>Retry</button>
+                <button onClick={loadAll} className="admin-s-49">Retry</button>
               </div>
             )}
 
             {/* Spinner */}
             {loading && (
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "80px 0", gap: 16 }}>
-                <div style={{ width: 48, height: 48, border: "4px solid #e8f4e0", borderTop: "4px solid #2A5726", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
-                <p style={{ color: "#7A7A72", fontSize: 14 }}>Loading…</p>
+              <div className="admin-s-50">
+                <div className="admin-s-51" />
+                <p className="admin-s-52">Loading…</p>
               </div>
             )}
 
             {/* ── GALLERY TAB ── */}
             {!loading && tab === "gallery" && (
               <>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
+                <div className="admin-s-53">
                   <div>
-                    <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, color: "#1A3D18", margin: 0 }}>Portfolio Gallery</h2>
-                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{gallery.length} items · images hosted on Cloudinary</p>
+                    <h2 className="admin-s-54">Portfolio Gallery</h2>
+                    <p className="admin-s-55">{gallery.length} items · images hosted on Cloudinary</p>
                   </div>
                   <button onClick={() => setModal({ type: "gallery-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Item</button>
                 </div>
-                <div style={{ display: "grid", gap: 12 }}>
+                <div className="admin-s-56">
                   {gallery.map((item, idx) => (
-                    <div key={item.id} style={{ background: "#fff", borderRadius: 16, padding: "16px 20px", border: "1.5px solid rgba(42,87,38,0.1)", display: "flex", gap: 16, alignItems: "center", boxShadow: "0 2px 8px rgba(26,61,24,0.06)" }}>
+                    <div key={item.id} className="admin-s-57">
                       {/* Thumbnail */}
                       <div style={{ width: 64, height: 52, borderRadius: 10, overflow: "hidden", flexShrink: 0, border: "1.5px solid #e0e8dc", background: item.bg }}>
-                        {item.image && <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
+                        {item.image && <img src={item.image} alt={item.title} className="admin-s-58" />}
                       </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
-                          <span style={{ fontWeight: 700, fontSize: 15, color: "#1A3D18" }}>{item.title}</span>
+                      <div className="admin-s-59">
+                        <div className="admin-s-60">
+                          <span className="admin-s-61">{item.title}</span>
                           <span style={{ background: catColors[item.cat] || "#6A9E5A", color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", padding: "2px 8px", borderRadius: 100 }}>{item.cat}</span>
-                          <span style={{ color: "#C8891A", fontSize: 12, fontWeight: 600 }}>{item.budget}</span>
+                          <span className="admin-s-62">{item.budget}</span>
                         </div>
-                        <div style={{ fontSize: 12, color: "#7A7A72", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.location} · {item.duration} · {item.service}</div>
+                        <div className="admin-s-63">{item.location} · {item.duration} · {item.service}</div>
                       </div>
-                      <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
+                      <div className="admin-s-64">
                         <button onClick={() => moveGallery(item.id, -1)} disabled={idx === 0 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === 0 ? "not-allowed" : "pointer", opacity: idx === 0 ? 0.4 : 1, fontSize: 14 }}>↑</button>
                         <button onClick={() => moveGallery(item.id, 1)} disabled={idx === gallery.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === gallery.length - 1 ? "not-allowed" : "pointer", opacity: idx === gallery.length - 1 ? 0.4 : 1, fontSize: 14 }}>↓</button>
                         <button onClick={() => setModal({ type: "gallery-edit", item })} style={{ padding: "6px 14px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>Edit</button>
@@ -616,7 +603,7 @@
                       </div>
                     </div>
                   ))}
-                  {gallery.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "#7A7A72", fontSize: 14 }}>No items yet. <button onClick={() => setModal({ type: "gallery-new" })} style={{ color: "#2A5726", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>Add your first →</button></div>}
+                  {gallery.length === 0 && <div className="admin-s-65">No items yet. <button onClick={() => setModal({ type: "gallery-new" })} style={{ color: "#2A5726", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>Add your first →</button></div>}
                 </div>
               </>
             )}
@@ -624,27 +611,27 @@
             {/* ── PRICING TAB ── */}
             {!loading && tab === "pricing" && (
               <>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
+                <div className="admin-s-53">
                   <div>
-                    <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, color: "#1A3D18", margin: 0 }}>Pricing Plans</h2>
-                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{pricing.length} plans</p>
+                    <h2 className="admin-s-54">Pricing Plans</h2>
+                    <p className="admin-s-55">{pricing.length} plans</p>
                   </div>
                   <button onClick={() => setModal({ type: "pricing-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Plan</button>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
+                <div className="admin-s-66">
                   {pricing.map((plan, idx) => (
                     <div key={plan.id} style={{ background: "#fff", borderRadius: 20, padding: "24px", border: plan.popular ? "2px solid #2A5726" : "1.5px solid rgba(42,87,38,0.1)", position: "relative", boxShadow: plan.popular ? "0 8px 28px rgba(26,61,24,0.12)" : "0 2px 8px rgba(26,61,24,0.06)" }}>
-                      {plan.popular && <span style={{ position: "absolute", top: 16, right: 16, background: "#2A5726", color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", padding: "3px 10px", borderRadius: 100 }}>Most Popular</span>}
-                      <div style={{ width: 48, height: 48, background: "#e8f4e0", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, marginBottom: 14 }}><i className="fa-solid fa-leaf" style={{ color: "#2A5726" }}></i></div>
-                      <div style={{ fontFamily: "Georgia,serif", fontSize: 18, color: "#1A3D18", fontWeight: 700 }}>{plan.name}</div>
-                      <div style={{ fontSize: 12, color: "#7A7A72", marginBottom: 12 }}>{plan.desc}</div>
-                      <div style={{ display: "flex", alignItems: "baseline", gap: 3, marginBottom: 4 }}>
-                        <span style={{ fontSize: 13, color: "#1A3D18", fontWeight: 600 }}>Rs.</span>
-                        <span style={{ fontFamily: "Georgia,serif", fontSize: 32, color: "#1A3D18", fontWeight: 700, lineHeight: 1 }}>{plan.price}</span>
-                        <span style={{ fontSize: 12, color: "#7A7A72" }}>{plan.period}</span>
+                      {plan.popular && <span className="admin-s-67">Most Popular</span>}
+                      <div className="admin-s-68"><i className="fa-solid fa-leaf admin-s-69"></i></div>
+                      <div className="admin-s-70">{plan.name}</div>
+                      <div className="admin-s-71">{plan.desc}</div>
+                      <div className="admin-s-72">
+                        <span className="admin-s-73">Rs.</span>
+                        <span className="admin-s-74">{plan.price}</span>
+                        <span className="admin-s-75">{plan.period}</span>
                       </div>
-                      <div style={{ fontSize: 11, color: "#7A7A72", marginBottom: 16 }}>{plan.note}</div>
-                      <div style={{ borderTop: "1px solid #ede6d8", paddingTop: 16, marginBottom: 16 }}>
+                      <div className="admin-s-76">{plan.note}</div>
+                      <div className="admin-s-77">
                         {plan.features.map((f, i) => (
                           <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: f.enabled ? "#4A4A44" : "#aaa", marginBottom: 6, opacity: f.enabled ? 1 : 0.6 }}>
                             <span style={{ color: f.enabled ? "#6A9E5A" : "#bbb", fontSize: 10 }}>{f.enabled ? "✓" : "✕"}</span>
@@ -652,7 +639,7 @@
                           </div>
                         ))}
                       </div>
-                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      <div className="admin-s-78">
                         <button onClick={() => movePricing(plan.id, -1)} disabled={idx === 0 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === 0 ? "not-allowed" : "pointer", opacity: idx === 0 ? 0.4 : 1 }}>↑</button>
                         <button onClick={() => movePricing(plan.id, 1)} disabled={idx === pricing.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === pricing.length - 1 ? "not-allowed" : "pointer", opacity: idx === pricing.length - 1 ? 0.4 : 1 }}>↓</button>
                         <button onClick={() => setModal({ type: "pricing-edit", item: plan })} style={{ padding: "6px 14px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>Edit</button>
@@ -660,7 +647,7 @@
                       </div>
                     </div>
                   ))}
-                  {pricing.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "#7A7A72", fontSize: 14, gridColumn: "1/-1" }}>No plans yet. <button onClick={() => setModal({ type: "pricing-new" })} style={{ color: "#2A5726", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>Add your first →</button></div>}
+                  {pricing.length === 0 && <div className="admin-s-79">No plans yet. <button onClick={() => setModal({ type: "pricing-new" })} style={{ color: "#2A5726", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>Add your first →</button></div>}
                 </div>
               </>
             )}
@@ -668,34 +655,34 @@
             {/* ── ARRIVALS TAB ── */}
             {!loading && tab === "arrivals" && (
               <>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
+                <div className="admin-s-53">
                   <div>
-                    <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, color: "#1A3D18", margin: 0 }}>New Arrivals</h2>
-                    <p style={{ color: "#7A7A72", fontSize: 13, marginTop: 4 }}>{arrivals.length} products · shown on arrival.html</p>
+                    <h2 className="admin-s-54">New Arrivals</h2>
+                    <p className="admin-s-55">{arrivals.length} products · shown on arrival.html</p>
                   </div>
                   <button onClick={() => setModal({ type: "arrivals-new" })} style={{ padding: "9px 20px", background: "#2A5726", color: "#fff", border: "none", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Product</button>
                 </div>
-                <div style={{ display: "grid", gap: 12 }}>
+                <div className="admin-s-56">
                   {arrivals.map((item, idx) => {
                     const badgeColors = { new: "#2A5726", hot: "#E85D35", sale: "#C8891A", limited: "#262622", best: "#6A9E5A" };
                     return (
-                      <div key={item.id} style={{ background: "#fff", borderRadius: 16, padding: "16px 20px", border: "1.5px solid rgba(42,87,38,0.1)", display: "flex", gap: 16, alignItems: "center", boxShadow: "0 2px 8px rgba(26,61,24,0.06)" }}>
+                      <div key={item.id} className="admin-s-57">
                         {/* Thumbnail */}
-                        <div style={{ width: 64, height: 64, borderRadius: 12, overflow: "hidden", flexShrink: 0, border: "1.5px solid #e0e8dc", background: "#e8f4e0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28 }}>
-                          {item.image ? <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <i className={item.emoji || "fa-solid fa-leaf"} style={{ color: "#2A5726" }}></i>}
+                        <div className="admin-s-80">
+                          {item.image ? <img src={item.image} alt={item.name} className="admin-s-58" /> : <i className={item.emoji || "fa-solid fa-leaf"} className="admin-s-69"></i>}
                         </div>
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
-                            <span style={{ fontWeight: 700, fontSize: 15, color: "#1A3D18" }}>{item.name}</span>
-                            {item.latin_name && <span style={{ fontSize: 12, color: "#7A7A72", fontStyle: "italic" }}>{item.latin_name}</span>}
+                        <div className="admin-s-59">
+                          <div className="admin-s-60">
+                            <span className="admin-s-61">{item.name}</span>
+                            {item.latin_name && <span className="admin-s-81">{item.latin_name}</span>}
                             {item.badge && <span style={{ background: badgeColors[item.badge] || "#6A9E5A", color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", padding: "2px 8px", borderRadius: 100 }}>{item.badge}</span>}
                           </div>
-                          <div style={{ fontSize: 12, color: "#7A7A72" }}>
-                            <span style={{ marginRight: 12 }}>{item.cat_label || item.cat}</span>
-                            {"★".repeat(Math.min(5, item.stars || 5))} <span style={{ color: "#bbb" }}>({item.review_count || 0})</span>
+                          <div className="admin-s-75">
+                            <span className="admin-s-82">{item.cat_label || item.cat}</span>
+                            {"★".repeat(Math.min(5, item.stars || 5))} <span className="admin-s-83">({item.review_count || 0})</span>
                           </div>
                         </div>
-                        <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
+                        <div className="admin-s-64">
                           <button onClick={() => moveArrival(item.id, -1)} disabled={idx === 0 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === 0 ? "not-allowed" : "pointer", opacity: idx === 0 ? 0.4 : 1, fontSize: 14 }}>↑</button>
                           <button onClick={() => moveArrival(item.id, 1)} disabled={idx === arrivals.length - 1 || saving} style={{ width: 30, height: 30, border: "1.5px solid #d8e8d0", borderRadius: 8, background: "transparent", cursor: idx === arrivals.length - 1 ? "not-allowed" : "pointer", opacity: idx === arrivals.length - 1 ? 0.4 : 1, fontSize: 14 }}>↓</button>
                           <button onClick={() => setModal({ type: "arrivals-edit", item })} style={{ padding: "6px 14px", background: "#e8f4e0", border: "1.5px solid #a8c89a", borderRadius: 100, cursor: "pointer", fontSize: 12, color: "#2A5726", fontWeight: 600 }}>Edit</button>
@@ -705,7 +692,7 @@
                     );
                   })}
                   {arrivals.length === 0 && (
-                    <div style={{ textAlign: "center", padding: 60, color: "#7A7A72", fontSize: 14 }}>
+                    <div className="admin-s-65">
                       No products yet.{" "}
                       <button onClick={() => setModal({ type: "arrivals-new" })} style={{ color: "#2A5726", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>Add your first →</button>
                     </div>

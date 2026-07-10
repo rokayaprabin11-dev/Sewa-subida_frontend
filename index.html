@@ -14,13 +14,6 @@
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     </noscript>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -200,6 +193,21 @@
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--charcoal);overflow-x:hidden}
+.fa-solid,.fa-brands,.fab{display:inline-block;font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}
+.fa-solid::before,.fa-brands::before,.fab::before{display:inline-block}
+.fa-leaf::before{content:"\1F343"}
+.fa-phone::before{content:"\260E"}
+.fa-calendar::before{content:"\1F4C5"}
+.fa-envelope::before{content:"\2709"}
+.fa-location-dot::before,.fa-map-marker-alt::before{content:"\25CF"}
+.fa-clock::before{content:"\23F2"}
+.fa-seedling::before{content:"\1F331"}
+.fa-spinner::before{content:"\25CC"}
+.fa-facebook::before{content:"f";font-family:Arial,sans-serif;font-weight:700}
+.fa-instagram::before{content:"\25CE"}
+.fa-whatsapp::before{content:"\260E"}
+.fa-spin{animation:fa-spin 1s linear infinite}
+@keyframes fa-spin{to{transform:rotate(360deg)}}
 
 /* ========== LOADING SCREEN ========== */
 #loader{position:fixed;inset:0;background:var(--green-dark);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:10000;transition:opacity 0.8s,visibility 0.8s}

@@ -8,7 +8,11 @@
 // Place at project ROOT (same folder as portfolio.html)
 
 document.addEventListener("galleryReady", function () {
-  var data         = window.GALLERY_DATA || [];
+  var data = Array.isArray(window.GALLERY_DATA) ? window.GALLERY_DATA : [];
+
+  if (!data.length && document.getElementById("empty-state")) {
+    document.getElementById("empty-state").style.display = "block";
+  }
 
   function escapeHTML(str) {
     if (str === null || str === undefined) return '';
